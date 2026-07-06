@@ -45,4 +45,17 @@ Entregas esperadas:
 - Project Board.
 - Primeira release bootstrap.
 
+## 2026-07-06 - Consolidacao do Business Discovery
+
+Foi concluida a Story de consolidacao do Business Discovery do Mercado Aurora.
+
+O documento foi reorganizado para refletir uma visao de produto orientada ao negocio, separando claramente contexto atual, dores, necessidades e visao futura.
+
+Resultados principais:
+
+- Business Discovery estruturado em 18 secoes;
+- consolidacao das regras de negocio identificadas;
+- mapeamento de stakeholders, personas e fluxo macro da venda;
+- registro de riscos, oportunidades e questoes em aberto para orientar os proximos refinamentos.
+
 

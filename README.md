@@ -33,6 +33,7 @@ Pagamento sera simulado dentro do Order Service por meio de um PaymentFakeAdapte
 
 - [Team Charter](docs/team/TEAM_CHARTER.md)
 - [Project History](docs/team/PROJECT_HISTORY.md)
+- [Business Discovery](docs/business/BUSINESS_DISCOVERY.md)
 
 ### Roadmap
 
