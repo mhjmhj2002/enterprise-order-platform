@@ -29,3 +29,13 @@ Pagamento sera simulado dentro do Order Service por meio de um PaymentFakeAdapte
 ## Status
 
 Sprint 0 - Fundacao arquitetural.
+
+## Gestao do Projeto
+
+Este projeto utiliza praticas simuladas de engenharia corporativa:
+
+- Issues para rastrear trabalho.
+- Milestones para organizar Sprints.
+- Project Board para acompanhar fluxo.
+- ADRs para documentar decisoes arquiteturais.
+- Releases para marcar entregas incrementais.

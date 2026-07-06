@@ -13,4 +13,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Team Charter.
 - Roadmap de estudos orientado a portfolio.
 - ADR-001 com escopo minimo da Sprint 0.
-
+- Organizacao inicial do GitHub com Issues, Milestones e Project Board.
+- `PROJECT_HISTORY.md` para registrar evolucao historica do projeto.
+- ADR-002 documentando decisao de monorepo.
+- Primeira release bootstrap planejada (`v0.0.1-bootstrap`).
