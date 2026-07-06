@@ -22,9 +22,21 @@ Pagamento sera simulado dentro do Order Service por meio de um PaymentFakeAdapte
 
 ## Documentacao
 
-- [Team Charter](TEAM_CHARTER.md)
-- [Roadmap](docs/roadmap/Roadmap_Estudos_Portfolio_Java_TechLead_v2.md)
+### Arquitetura
+
+- [Engineering Handbook](docs/architecture/ENGINEERING_HANDBOOK.md)
+- [Architecture Overview](docs/architecture/ARCHITECTURE.md)
+- [C4 Model](docs/architecture/C4.md)
 - [ADRs](docs/adr)
+
+### Time
+
+- [Team Charter](docs/team/TEAM_CHARTER.md)
+- [Project History](docs/team/PROJECT_HISTORY.md)
+
+### Roadmap
+
+- [Roadmap](docs/roadmap/Roadmap_Estudos_Portfolio_Java_TechLead_v2.md)
 
 ## Status
 

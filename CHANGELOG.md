@@ -17,3 +17,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - `PROJECT_HISTORY.md` para registrar evolucao historica do projeto.
 - ADR-002 documentando decisao de monorepo.
 - Primeira release bootstrap planejada (`v0.0.1-bootstrap`).
+- Reorganizacao da documentacao com nova estrutura em `docs/architecture/` e `docs/team/`.
+- Promocao de `ENGINEERING_GUIDE` para `docs/architecture/ENGINEERING_HANDBOOK.md`.
+- Criacao de `docs/architecture/ARCHITECTURE.md` e `docs/architecture/C4.md`.
+- Criacao da ADR-003 para formalizar a organizacao da documentacao.

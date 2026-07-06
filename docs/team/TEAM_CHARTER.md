@@ -110,3 +110,4 @@ Quando houver impasse tecnico, o TM Chatinho decide.
 
 A decisao deve sempre ser acompanhada da justificativa tecnica.
 
+
