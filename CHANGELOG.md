@@ -22,3 +22,5 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Criacao de `docs/architecture/ARCHITECTURE.md` e `docs/architecture/C4.md`.
 - Criacao da ADR-003 para formalizar a organizacao da documentacao.
 - Consolidacao de `docs/business/BUSINESS_DISCOVERY.md` com visao madura de produto em 18 secoes.
+- Added Domain Glossary with core business terms for Mercado Aurora.
+- Added Sprint 0 GitHub issues and project governance alignment.

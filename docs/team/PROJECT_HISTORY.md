@@ -58,4 +58,9 @@ Resultados principais:
 - mapeamento de stakeholders, personas e fluxo macro da venda;
 - registro de riscos, oportunidades e questoes em aberto para orientar os proximos refinamentos.
 
+## 2026-07-07 - Sprint 0 governance alignment and Domain Glossary
+
+Sprint 0 issues were formalized in GitHub to restore traceability between planning, documentation and implementation.
+
+The team also introduced the Domain Glossary as the official source for shared business language before Context Map and Service Boundaries.
 
