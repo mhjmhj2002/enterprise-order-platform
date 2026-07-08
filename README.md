@@ -20,6 +20,25 @@ A comunicacao inicial sera sincrona via REST.
 
 Pagamento sera simulado dentro do Order Service por meio de um PaymentFakeAdapter.
 
+## Implementacao atual
+
+### Catalog Service
+
+`services/catalog-service` foi bootstrapado na Story-007 com:
+
+- Spring Boot + Maven + PostgreSQL + Flyway.
+- DDD com Product (aggregate root) e Sku (entidade).
+- Arquitetura hexagonal (`domain`, `application`, `infrastructure`, `api`, `config`).
+- Endpoints REST em `/api/v1/products` e `/api/v1/skus`.
+- Testes de dominio, aplicacao (mocks) e integracao (Testcontainers).
+
+Comando rapido:
+
+```bash
+cd services/catalog-service
+mvn test
+```
+
 ## Documentacao
 
 ### Arquitetura

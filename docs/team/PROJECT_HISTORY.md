@@ -89,3 +89,20 @@ Sprint 0 was officially closed after completion of stories focused on business b
 Story-002 (Domain Glossary) and Story-003 (Business Flow) were finalized as Baseline documents. Story-004, Story-005 and Story-006 were closed with explicit iterative refinement planned across Sprint 1.
 
 The milestone `Sprint 0 — Fundacao Arquitetural` was closed, and Sprint 1 was prepared as `Sprint 1 — Primeiros Microsservicos` with backlog organized from Story-007 through Story-013.
+
+## 2026-07-08 - Story-007 bootstrap do Catalog Service
+
+O projeto recebeu a primeira implementacao funcional de microsservico com foco em dominio comercial de catalogo.
+
+Principais entregas:
+
+- Criacao do `catalog-service` com Spring Boot, Maven, JPA, Flyway e PostgreSQL.
+- Aplicacao de DDD/hexagonal com Product como aggregate root e Sku como entidade interna.
+- Implementacao dos endpoints REST de produto e SKU previstos para a Story-007.
+- Implementacao de regras de negocio criticas:
+  - Product ACTIVE exige SKU ACTIVE;
+  - SKU nao existe sem Product;
+  - sellerCode obrigatorio e unico no catalogo;
+  - ean unico quando informado.
+- Introducao de testes de dominio, testes de aplicacao com mocks e testes de integracao com Testcontainers.
+- Criacao da ADR-004 para registrar a decisao arquitetural do aggregate root de Catalog.

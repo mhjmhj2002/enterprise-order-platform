@@ -39,3 +39,13 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Closed milestone `Sprint 0 — Fundacao Arquitetural` and opened Sprint 1 execution track.
 - Aligned Sprint 1 milestone as `Sprint 1 — Primeiros Microsservicos` and reorganized backlog with Story-007 to Story-013.
 - Updated `docs/team/WORKFLOW.md` with guidance for continuous architecture/doc evolution via ADRs.
+- Bootstrap completo de `services/catalog-service` com Spring Boot, Maven, JPA, Flyway e PostgreSQL.
+- Implementacao do modelo de dominio de Catalogo com Product (aggregate root) e Sku (entidade).
+- Implementacao dos casos de uso: CreateProduct, UpdateProduct, ChangeProductStatus, AddSku, UpdateSku, GetProduct, GetSku, ListActiveProducts.
+- Implementacao da API REST v1 de Catalogo com tratamento padronizado de erros (400/404/409/500).
+- Migracao Flyway inicial `V1__init_catalog_schema.sql` com constraints de unicidade de `sellerCode` e `ean`.
+- Testes de dominio para regras do agregado Product/Sku.
+- Testes de aplicacao com mocks cobrindo todos os casos de uso de Catalogo.
+- Testes de integracao com Spring Boot Test + Testcontainers + PostgreSQL para fluxos de Product e SKU.
+- ADR-004 formalizando Product como Aggregate Root no Catalog Service.
+- Atualizacao de `CONTEXT_MAP.md`, `SERVICE_BOUNDARIES.md`, `ARCHITECTURE.md`, `ARCHITECTURE_NOTES.md` e READMEs com baseline de Sprint 1.

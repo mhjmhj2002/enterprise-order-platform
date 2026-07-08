@@ -237,3 +237,24 @@ Registrar exatamente a classificação discutida.
 3. Construir Context Map.
 4. Validar Bounded Contexts.
 5. Definir Service Boundaries.
+
+---
+
+# Reunião
+
+**Data:** 2026-07-08  
+**Participantes:** TM Chatinho, LT Aprendiz  
+**Objetivo da reunião:** Validar modelagem inicial do Catalog Service para Story-007.
+
+## Decisões registradas
+
+1. Product segue como Aggregate Root no contexto de Catalogo Comercial.
+2. SKU segue como entidade dependente de Product (nao existe sem Product).
+3. `sellerCode` deve ser unico no catalogo e validado em regra de aplicacao + constraint no banco.
+4. `ean` e unico quando informado e validado em regra de aplicacao + constraint no banco.
+5. Activacao de Product permanece protegida por invariante: ao menos um SKU ACTIVE.
+
+## Trade-offs observados
+
+- Constraint de unicidade no banco protege concorrencia; validacao em aplicacao melhora feedback de erro de negocio.
+- Catalog Service nao absorve preco/estoque para preservar fronteira com contexts dedicados.
