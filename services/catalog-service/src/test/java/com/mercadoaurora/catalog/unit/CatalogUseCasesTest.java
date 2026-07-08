@@ -264,7 +264,6 @@ class CatalogUseCasesTest {
         product.addSku(
                 Sku.create(
                         UUID.randomUUID(),
-                        product.getId(),
                         "SELLER-001",
                         "789001",
                         Map.of("color", "white"),

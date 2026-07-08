@@ -8,7 +8,6 @@ import java.util.UUID;
 
 public record SkuResponse(
         UUID id,
-        UUID productId,
         String sellerCode,
         String ean,
         Map<String, String> attributes,

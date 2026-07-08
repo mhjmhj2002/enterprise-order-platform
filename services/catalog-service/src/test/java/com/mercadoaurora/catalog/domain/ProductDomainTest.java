@@ -73,7 +73,6 @@ class ProductDomainTest {
 
         Sku sku = Sku.create(
                 UUID.randomUUID(),
-                product.getId(),
                 "SELLER-001",
                 "789123",
                 Map.of("color", "blue"),
@@ -102,7 +101,6 @@ class ProductDomainTest {
 
         product.addSku(Sku.create(
                 UUID.randomUUID(),
-                product.getId(),
                 "SELLER-001",
                 "789123",
                 Map.of(),
@@ -117,11 +115,8 @@ class ProductDomainTest {
     @Test
     void shouldRequireSellerCode() {
         Instant now = Instant.parse("2026-07-08T10:00:00Z");
-        UUID productId = UUID.randomUUID();
-
         assertThrows(DomainValidationException.class, () -> Sku.create(
                 UUID.randomUUID(),
-                productId,
                 " ",
                 "789123",
                 Map.of(),
@@ -147,7 +142,6 @@ class ProductDomainTest {
 
         product.addSku(Sku.create(
                 UUID.randomUUID(),
-                product.getId(),
                 "SELLER-001",
                 "789123",
                 Map.of(),
@@ -158,7 +152,6 @@ class ProductDomainTest {
         DomainValidationException exception = assertThrows(DomainValidationException.class, () -> product.addSku(
                 Sku.create(
                         UUID.randomUUID(),
-                        product.getId(),
                         "seller-001",
                         "789124",
                         Map.of(),
@@ -186,7 +179,6 @@ class ProductDomainTest {
 
         product.addSku(Sku.create(
                 UUID.randomUUID(),
-                product.getId(),
                 "SELLER-001",
                 "789123",
                 Map.of(),
@@ -197,7 +189,6 @@ class ProductDomainTest {
         DomainValidationException exception = assertThrows(DomainValidationException.class, () -> product.addSku(
                 Sku.create(
                         UUID.randomUUID(),
-                        product.getId(),
                         "SELLER-002",
                         "789123",
                         Map.of(),
