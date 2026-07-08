@@ -46,7 +46,8 @@ Pagamento sera simulado dentro do Order Service por meio de um PaymentFakeAdapte
 
 ## Status
 
-Sprint 0 - Fundacao arquitetural.
+Sprint 0 - Fundacao arquitetural (encerrada).
+Sprint 1 - Primeiros Microsservicos (em andamento).
 
 ## Gestao do Projeto
 

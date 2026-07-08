@@ -1,5 +1,9 @@
 # Business Flow - Mercado Aurora
 
+## Status
+
+Baseline
+
 ## Objetivo
 
 Descrever, em linguagem de negocio, a jornada completa de um pedido no Mercado Aurora, do interesse de compra ate o pos-venda.

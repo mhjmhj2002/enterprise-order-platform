@@ -35,3 +35,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Reorganized ADR location to `docs/architecture/ADR/` and updated architecture references.
 - Added placeholders `docs/architecture/CONTEXT_MAP.md` and `docs/architecture/SERVICE_BOUNDARIES.md`.
 - Added `docs/tasks/` directory for documentation task artifacts.
+- Closed Sprint 0 stories (Story-002 to Story-006), with Domain Glossary and Business Flow promoted to Baseline.
+- Closed milestone `Sprint 0 — Fundacao Arquitetural` and opened Sprint 1 execution track.
+- Aligned Sprint 1 milestone as `Sprint 1 — Primeiros Microsservicos` and reorganized backlog with Story-007 to Story-013.
+- Updated `docs/team/WORKFLOW.md` with guidance for continuous architecture/doc evolution via ADRs.

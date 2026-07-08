@@ -40,3 +40,8 @@ Deprecated
 - **Approved:** documento validado pelos revisores responsaveis.
 - **Baseline:** versao oficial de referencia para orientar stories e decisoes futuras.
 - **Deprecated:** documento substituido ou sem validade para novas decisoes.
+
+## Observacao de evolucao arquitetural
+
+Arquitetura e documentacao evoluem durante a implementacao.
+Mudancas relevantes devem ser registradas em ADRs e refletidas na documentacao oficial.

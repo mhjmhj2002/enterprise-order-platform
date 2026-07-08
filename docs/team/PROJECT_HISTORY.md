@@ -81,3 +81,11 @@ A new Story-003 (Business Flow) was added to Sprint 0, subsequent stories were r
 The first architecture meeting hypotheses between TM Chatinho and LT Aprendiz were formally recorded in `docs/architecture/ARCHITECTURE_NOTES.md`.
 
 The documentation structure was also adjusted to support next steps of Story-004, including ADR consolidation in `docs/architecture/ADR/` and creation of placeholders for Context Map and Service Boundaries.
+
+## 2026-07-08 - Sprint 0 closure and Sprint 1 kickoff
+
+Sprint 0 was officially closed after completion of stories focused on business baseline and architecture foundation.
+
+Story-002 (Domain Glossary) and Story-003 (Business Flow) were finalized as Baseline documents. Story-004, Story-005 and Story-006 were closed with explicit iterative refinement planned across Sprint 1.
+
+The milestone `Sprint 0 — Fundacao Arquitetural` was closed, and Sprint 1 was prepared as `Sprint 1 — Primeiros Microsservicos` with backlog organized from Story-007 through Story-013.
