@@ -43,4 +43,3 @@ Alternativa considerada:
 Manter todos os documentos na raiz.
 
 Rejeitada por comprometer organizacao de longo prazo.
-

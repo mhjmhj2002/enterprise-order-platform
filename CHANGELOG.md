@@ -31,3 +31,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Added `docs/business/BUSINESS_FLOW.md` describing the end-to-end business order flow.
 - Added Story-003 (Business Flow) in Sprint 0 and renumbered subsequent Sprint 0 stories.
 - Updated Sprint 0 GitHub board and issue traceability after story renumbering.
+- Added `docs/architecture/ARCHITECTURE_NOTES.md` as the official log for architecture discussions in progress.
+- Reorganized ADR location to `docs/architecture/ADR/` and updated architecture references.
+- Added placeholders `docs/architecture/CONTEXT_MAP.md` and `docs/architecture/SERVICE_BOUNDARIES.md`.
+- Added `docs/tasks/` directory for documentation task artifacts.

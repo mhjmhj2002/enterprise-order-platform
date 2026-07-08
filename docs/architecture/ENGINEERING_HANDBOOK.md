@@ -184,7 +184,7 @@ que o serviço vá absorvendo responsabilidade de outros com o tempo.
 
 ## 9. Como escrevemos ADR
 
-- Local: `/docs/adr/ADR-NNN-titulo-curto.md`, numeração sequencial, nunca
+- Local: `/docs/architecture/ADR/ADR-NNN-titulo-curto.md`, numeração sequencial, nunca
   reaproveitada mesmo se um ADR for depois superado.
 - Template:
 
@@ -337,4 +337,3 @@ da atualização deste guia.
 - Princípio do menor privilégio para acesso a recursos.
 - Dependências e imagens devem ser atualizadas para correções de segurança.
 - Não expor stacktrace e detalhes internos em respostas de erro públicas.
-

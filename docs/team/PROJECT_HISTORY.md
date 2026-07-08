@@ -75,3 +75,9 @@ Story-002 remained in review state, and the Project Board was aligned to reflect
 The team introduced Business Flow Discovery as a dedicated step between Domain Glossary and Context Map to improve business traceability before boundary discussions.
 
 A new Story-003 (Business Flow) was added to Sprint 0, subsequent stories were renumbered, and project artifacts were updated to preserve backlog consistency.
+
+## 2026-07-07 - Architecture Notes registered for Context Map preparation
+
+The first architecture meeting hypotheses between TM Chatinho and LT Aprendiz were formally recorded in `docs/architecture/ARCHITECTURE_NOTES.md`.
+
+The documentation structure was also adjusted to support next steps of Story-004, including ADR consolidation in `docs/architecture/ADR/` and creation of placeholders for Context Map and Service Boundaries.

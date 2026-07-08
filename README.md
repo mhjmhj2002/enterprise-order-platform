@@ -26,8 +26,11 @@ Pagamento sera simulado dentro do Order Service por meio de um PaymentFakeAdapte
 
 - [Engineering Handbook](docs/architecture/ENGINEERING_HANDBOOK.md)
 - [Architecture Overview](docs/architecture/ARCHITECTURE.md)
+- [Architecture Notes](docs/architecture/ARCHITECTURE_NOTES.md)
 - [C4 Model](docs/architecture/C4.md)
-- [ADRs](docs/adr)
+- [Context Map](docs/architecture/CONTEXT_MAP.md)
+- [Service Boundaries](docs/architecture/SERVICE_BOUNDARIES.md)
+- [ADRs](docs/architecture/ADR)
 
 ### Time
 
