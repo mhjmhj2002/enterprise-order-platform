@@ -29,7 +29,6 @@ public final class CatalogApiMapper {
     public static SkuResponse toResponse(Sku sku) {
         return new SkuResponse(
                 sku.getId(),
-                sku.getProductId(),
                 sku.getSellerCode(),
                 sku.getEan(),
                 sku.getAttributes(),

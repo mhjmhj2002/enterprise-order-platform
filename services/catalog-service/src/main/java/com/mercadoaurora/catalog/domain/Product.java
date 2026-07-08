@@ -121,9 +121,6 @@ public class Product {
         if (sku == null) {
             throw new DomainValidationException("SKU is required");
         }
-        if (!id.equals(sku.getProductId())) {
-            throw new DomainValidationException("SKU must belong to product");
-        }
         validateUniqueSkuData(this.skus, sku.getSellerCode(), sku.getEan());
         this.skus.add(sku);
         this.updatedAt = requireInstant(now, "now");

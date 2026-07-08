@@ -40,7 +40,6 @@ public class AddSkuUseCase {
         Instant now = Instant.now(clock);
         Sku sku = Sku.create(
                 UUID.randomUUID(),
-                product.getId(),
                 command.sellerCode(),
                 command.ean(),
                 command.attributes(),

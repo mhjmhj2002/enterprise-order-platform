@@ -20,6 +20,7 @@ Era necessario definir explicitamente a fronteira transacional entre Product e S
 Adotar **Product** como aggregate root no Catalog Service.
 
 - `Sku` torna-se entidade interna do agregado Product.
+- `Sku` no dominio nao carrega `productId`; essa relacao fica como detalhe de persistencia/infraestrutura.
 - Alteracoes de SKU ocorrem via comandos que carregam e persistem o Product.
 - Unicidade global de `sellerCode` e `ean` e garantida por validacao de aplicacao e constraint no PostgreSQL.
 - O contexto de Catalogo permanece restrito a informacao comercial; preco, estoque, pedido e pagamento ficam fora da fronteira.

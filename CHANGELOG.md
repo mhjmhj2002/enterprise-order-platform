@@ -49,3 +49,8 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Testes de integracao com Spring Boot Test + Testcontainers + PostgreSQL para fluxos de Product e SKU.
 - ADR-004 formalizando Product como Aggregate Root no Catalog Service.
 - Atualizacao de `CONTEXT_MAP.md`, `SERVICE_BOUNDARIES.md`, `ARCHITECTURE.md`, `ARCHITECTURE_NOTES.md` e READMEs com baseline de Sprint 1.
+
+### Changed
+
+- Atualizado `services/catalog-service/pom.xml` para baseline oficial de Java 21 LTS.
+- Removido `productId` da entidade de dominio `Sku`, mantendo o vinculo com `Product` apenas como detalhe de persistencia/adapters.

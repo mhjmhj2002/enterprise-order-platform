@@ -32,7 +32,6 @@ public final class CatalogPersistenceMapper {
     public static Sku toDomain(SkuEntity entity) {
         return Sku.restore(
                 entity.getId(),
-                entity.getProduct().getId(),
                 entity.getSellerCode(),
                 entity.getEan(),
                 entity.getAttributes(),

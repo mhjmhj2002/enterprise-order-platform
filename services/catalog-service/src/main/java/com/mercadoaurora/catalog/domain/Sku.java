@@ -8,7 +8,6 @@ import java.util.UUID;
 public class Sku {
 
     private final UUID id;
-    private final UUID productId;
     private String sellerCode;
     private String ean;
     private Map<String, String> attributes;
@@ -18,7 +17,6 @@ public class Sku {
 
     private Sku(
             UUID id,
-            UUID productId,
             String sellerCode,
             String ean,
             Map<String, String> attributes,
@@ -27,7 +25,6 @@ public class Sku {
             Instant updatedAt
     ) {
         this.id = requireId(id, "SKU id");
-        this.productId = requireId(productId, "Product id");
         this.sellerCode = validateSellerCode(sellerCode);
         this.ean = normalizeNullable(ean);
         this.attributes = attributes == null ? Map.of() : Map.copyOf(attributes);
@@ -38,7 +35,6 @@ public class Sku {
 
     public static Sku create(
             UUID id,
-            UUID productId,
             String sellerCode,
             String ean,
             Map<String, String> attributes,
@@ -46,12 +42,11 @@ public class Sku {
             Instant now
     ) {
         Instant timestamp = requireInstant(now, "now");
-        return new Sku(id, productId, sellerCode, ean, attributes, status, timestamp, timestamp);
+        return new Sku(id, sellerCode, ean, attributes, status, timestamp, timestamp);
     }
 
     public static Sku restore(
             UUID id,
-            UUID productId,
             String sellerCode,
             String ean,
             Map<String, String> attributes,
@@ -59,7 +54,7 @@ public class Sku {
             Instant createdAt,
             Instant updatedAt
     ) {
-        return new Sku(id, productId, sellerCode, ean, attributes, status, createdAt, updatedAt);
+        return new Sku(id, sellerCode, ean, attributes, status, createdAt, updatedAt);
     }
 
     public void update(String sellerCode, String ean, Map<String, String> attributes, SkuStatus status, Instant now) {
@@ -72,10 +67,6 @@ public class Sku {
 
     public UUID getId() {
         return id;
-    }
-
-    public UUID getProductId() {
-        return productId;
     }
 
     public String getSellerCode() {
