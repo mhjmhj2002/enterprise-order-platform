@@ -24,3 +24,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Consolidacao de `docs/business/BUSINESS_DISCOVERY.md` com visao madura de produto em 18 secoes.
 - Added Domain Glossary with core business terms for Mercado Aurora.
 - Added Sprint 0 GitHub issues and project governance alignment.
+- Added supporting document traceability links to Sprint 0 stories in GitHub Issues.
+- Standardized Sprint 0 governance labels by type, role, domain, sprint and status.
+- Updated Story-002 gate status to In Review and aligned Project Board to Review.
+- Evolved `docs/team/WORKFLOW.md` with Document Lifecycle states.

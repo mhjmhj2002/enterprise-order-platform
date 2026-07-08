@@ -64,3 +64,8 @@ Sprint 0 issues were formalized in GitHub to restore traceability between planni
 
 The team also introduced the Domain Glossary as the official source for shared business language before Context Map and Service Boundaries.
 
+## 2026-07-07 - Gate review adjustments for Story-002
+
+Post-review governance adjustments were applied to Sprint 0 stories, including standardized labels and explicit links between stories, tasks and produced documents.
+
+Story-002 remained in review state, and the Project Board was aligned to reflect the gate decision while the glossary stays as In Review.
