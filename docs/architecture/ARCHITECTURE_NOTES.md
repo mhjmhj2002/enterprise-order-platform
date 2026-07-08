@@ -258,3 +258,24 @@ Registrar exatamente a classificação discutida.
 
 - Constraint de unicidade no banco protege concorrencia; validacao em aplicacao melhora feedback de erro de negocio.
 - Catalog Service nao absorve preco/estoque para preservar fronteira com contexts dedicados.
+
+---
+
+# Reunião
+
+**Data:** 2026-07-08  
+**Participantes:** TM Chatinho, LT Aprendiz  
+**Objetivo da reunião:** Validar modelagem transacional do Inventory Service para Story-008.
+
+## Decisões registradas
+
+1. `InventoryItem` segue como aggregate root com identidade logica `skuId + warehouseId`.
+2. `Reservation` segue como entidade interna do agregado, com transicoes controladas exclusivamente no dominio.
+3. `availableQuantity` permanece derivado (`physical - reserved`) e nao sera persistido como fonte de verdade.
+4. Ajuste fisico, reserva, commit e release sao operacoes de agregado; services apenas orquestram carregamento/salvamento.
+5. O agregado passa a registrar Domain Events para facilitar plug futuro de Kafka/Saga sem reescrever o dominio.
+
+## Trade-offs observados
+
+- Persistir `reservedQuantity` com validacao por soma de reservas abertas melhora performance de leitura e protege consistencia.
+- Manter eventos somente em memoria nesta sprint evita acoplamento prematuro com mensageria, preservando fronteiras hexagonais.

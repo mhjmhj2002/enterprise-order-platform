@@ -1,0 +1,116 @@
+{
+  "info": {
+    "name": "Enterprise Order Platform - Inventory Service",
+    "_postman_id": "f9f9c8d7-2ab2-4a90-9b41-inventory-service",
+    "description": "Collection dos endpoints do Inventory Service (Story-008).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8082",
+      "type": "string"
+    },
+    {
+      "key": "skuId",
+      "value": "00000000-0000-0000-0000-000000000010",
+      "type": "string"
+    },
+    {
+      "key": "warehouseId",
+      "value": "00000000-0000-0000-0000-000000000011",
+      "type": "string"
+    },
+    {
+      "key": "reservationId",
+      "value": "00000000-0000-0000-0000-000000000012",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Create Inventory Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/inventory",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"skuId\": \"{{skuId}}\",\n  \"warehouseId\": \"{{warehouseId}}\",\n  \"physicalQuantity\": 20\n}"
+            }
+          }
+        },
+        {
+          "name": "Adjust Physical Stock",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}/adjust",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantityDelta\": 5\n}"
+            }
+          }
+        },
+        {
+          "name": "Reserve Stock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{baseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}/reservations",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reservationId\": \"{{reservationId}}\",\n  \"quantity\": 3\n}"
+            }
+          }
+        },
+        {
+          "name": "Commit Reservation",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}/reservations/{{reservationId}}/commit"
+          }
+        },
+        {
+          "name": "Release Reservation",
+          "request": {
+            "method": "POST",
+            "url": "{{baseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}/reservations/{{reservationId}}/release"
+          }
+        },
+        {
+          "name": "Get Inventory By Sku",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/inventory/{{skuId}}"
+          }
+        },
+        {
+          "name": "Get Inventory By Sku And Warehouse",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}"
+          }
+        }
+      ]
+    }
+  ]
+}

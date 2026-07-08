@@ -20,6 +20,12 @@ A comunicacao inicial sera sincrona via REST.
 
 Pagamento sera simulado dentro do Order Service por meio de um PaymentFakeAdapter.
 
+## Ambiente local (Docker)
+
+O passo a passo completo para subir PostgreSQL, validar Docker, criar bancos/usuarios e rodar os servicos localmente esta em:
+
+- [`docker/README.md`](docker/README.md)
+
 ## Implementacao atual
 
 ### Catalog Service
@@ -36,6 +42,24 @@ Comando rapido:
 
 ```bash
 cd services/catalog-service
+mvn test
+```
+
+### Inventory Service
+
+`services/inventory-service` foi bootstrapado na Story-008 com:
+
+- Spring Boot + Maven + PostgreSQL + Flyway.
+- DDD com `InventoryItem` (aggregate root) e `Reservation` (entidade interna).
+- Arquitetura hexagonal (`domain`, `application`, `infrastructure`, `api`, `config`).
+- Endpoints REST em `/api/v1/inventory`.
+- Testes de dominio, aplicacao (mocks) e integracao (Testcontainers).
+- Pontos naturais para evolucao de eventos de dominio (Kafka/Saga) sem reescrever o agregado.
+
+Comando rapido:
+
+```bash
+cd services/inventory-service
 mvn test
 ```
 

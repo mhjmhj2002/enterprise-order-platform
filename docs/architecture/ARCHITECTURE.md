@@ -8,6 +8,7 @@ Este documento consolida a visao geral da arquitetura do projeto.
 - Comunicacao inicial via REST sincrono.
 - Persistencia por servico com schema proprio.
 - Catalog Service bootstrapado com DDD + arquitetura hexagonal.
+- Inventory Service bootstrapado com dominio transacional e arquitetura hexagonal.
 
 ## Catalog Service (Story-007)
 
@@ -26,6 +27,18 @@ Regras obrigatorias implementadas:
 - `sellerCode` obrigatorio e unico no catalogo.
 - `ean` unico quando informado.
 - Catalogo sem acoplamento com preco, estoque, pedido e pagamento.
+
+## Inventory Service (Story-008)
+
+Implementacao do contexto de Estoque & Reserva com foco transacional:
+
+- `InventoryItem` como aggregate root com identidade logica `skuId + warehouseId`.
+- `Reservation` como entidade interna com maquina de estados (`CREATED`, `COMMITTED`, `RELEASED`, `EXPIRED`) encapsulada no dominio.
+- `availableQuantity` derivado exclusivamente de `physicalQuantity - reservedQuantity`.
+- Invariantes de consistencia protegidas no aggregate root (sem vazamento para service/controller).
+- Casos de uso de criacao, ajuste de saldo fisico, reserva, commit/release de reserva e consultas.
+- Persistencia em PostgreSQL (JPA + Flyway) sem coluna de `availableQuantity`.
+- Registro de Domain Events no agregado, deixando pontos naturais para posterior integracao via Kafka/Saga.
 
 ## Referencias
 

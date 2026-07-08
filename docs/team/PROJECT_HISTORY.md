@@ -106,3 +106,18 @@ Principais entregas:
   - ean unico quando informado.
 - Introducao de testes de dominio, testes de aplicacao com mocks e testes de integracao com Testcontainers.
 - Criacao da ADR-004 para registrar a decisao arquitetural do aggregate root de Catalog.
+
+## 2026-07-08 - Story-008 bootstrap do Inventory Service
+
+O projeto recebeu o segundo microsservico funcional, agora com foco em consistencia transacional de estoque.
+
+Principais entregas:
+
+- Criacao do `inventory-service` com Spring Boot, Maven, JPA, Flyway e PostgreSQL.
+- Aplicacao de DDD/hexagonal com `InventoryItem` como aggregate root e `Reservation` como entidade interna.
+- Implementacao dos endpoints REST de estoque, ajuste fisico e ciclo de vida de reservas.
+- Encapsulamento das invariantes de estoque e da maquina de estados da reserva no dominio.
+- Garantia de `availableQuantity` derivado no agregado, sem persistencia manual.
+- Introducao de Domain Events no agregado para preparar integracao futura com Kafka/Saga.
+- Introducao de testes de dominio, aplicacao com mocks e integracao com Testcontainers.
+- Criacao da ADR-005 para registrar a decisao arquitetural do aggregate root de Inventory.

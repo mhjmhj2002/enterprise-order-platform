@@ -25,15 +25,30 @@ Baseline (Sprint 1)
 - Tabela `skus`.
 - Constraint de unicidade para `sellerCode` e `ean`.
 
-## Inventory Service (planejado)
+## Inventory Service
 
 ### Responsabilidades
 
-- Controle de saldo, reserva e baixa de estoque por SKU.
+- Controle transacional de saldo, reserva e baixa de estoque por SKU e warehouse.
+- Protecao de invariantes de estoque no aggregate root `InventoryItem`.
+- Encapsulamento da maquina de estados de `Reservation`.
+
+### Fora da fronteira
+
+- Dados comerciais de produto.
+- Preco e promocoes.
+- Orquestracao de pedido, pagamento e saga.
 
 ### Dependencia de Catalog
 
 - Consome identificadores de SKU do Catalog Service.
+
+### Dados proprietarios
+
+- Tabela `inventory_items`.
+- Tabela `inventory_reservations`.
+- Constraints para proteger nao-negatividade e `reserved <= physical`.
+- `availableQuantity` calculado e nao persistido em coluna dedicada.
 
 ## Order Service (planejado)
 
