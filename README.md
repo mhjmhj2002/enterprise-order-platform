@@ -35,6 +35,7 @@ Pagamento sera simulado dentro do Order Service por meio de um PaymentFakeAdapte
 - [Project History](docs/team/PROJECT_HISTORY.md)
 - [Business Discovery](docs/business/BUSINESS_DISCOVERY.md)
 - [Domain Glossary](docs/business/GLOSSARY.md)
+- [Business Flow](docs/business/BUSINESS_FLOW.md)
 
 ### Roadmap
 

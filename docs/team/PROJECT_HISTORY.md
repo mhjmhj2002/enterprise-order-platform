@@ -69,3 +69,9 @@ The team also introduced the Domain Glossary as the official source for shared b
 Post-review governance adjustments were applied to Sprint 0 stories, including standardized labels and explicit links between stories, tasks and produced documents.
 
 Story-002 remained in review state, and the Project Board was aligned to reflect the gate decision while the glossary stays as In Review.
+
+## 2026-07-07 - Business Flow discovery added to Sprint 0
+
+The team introduced Business Flow Discovery as a dedicated step between Domain Glossary and Context Map to improve business traceability before boundary discussions.
+
+A new Story-003 (Business Flow) was added to Sprint 0, subsequent stories were renumbered, and project artifacts were updated to preserve backlog consistency.

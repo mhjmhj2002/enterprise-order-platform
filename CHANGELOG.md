@@ -28,3 +28,6 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Standardized Sprint 0 governance labels by type, role, domain, sprint and status.
 - Updated Story-002 gate status to In Review and aligned Project Board to Review.
 - Evolved `docs/team/WORKFLOW.md` with Document Lifecycle states.
+- Added `docs/business/BUSINESS_FLOW.md` describing the end-to-end business order flow.
+- Added Story-003 (Business Flow) in Sprint 0 and renumbered subsequent Sprint 0 stories.
+- Updated Sprint 0 GitHub board and issue traceability after story renumbering.
