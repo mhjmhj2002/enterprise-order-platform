@@ -5,7 +5,9 @@ import com.mercadoaurora.order.application.command.OrderActionCommand;
 import com.mercadoaurora.order.application.command.ReserveOrderStockCommand;
 import com.mercadoaurora.order.application.exception.OrderConflictException;
 import com.mercadoaurora.order.application.exception.OrderNotFoundException;
+import com.mercadoaurora.order.application.port.out.InventoryReservationPort;
 import com.mercadoaurora.order.application.port.out.OrderRepositoryPort;
+import com.mercadoaurora.order.application.port.out.PaymentGatewayPort;
 import com.mercadoaurora.order.application.usecase.CancelOrderUseCase;
 import com.mercadoaurora.order.application.usecase.ConfirmOrderUseCase;
 import com.mercadoaurora.order.application.usecase.CreateOrderUseCase;
@@ -38,6 +40,10 @@ import static org.mockito.Mockito.when;
 class OrderUseCasesTest {
     @Mock
     private OrderRepositoryPort repositoryPort;
+    @Mock
+    private InventoryReservationPort inventoryReservationPort;
+    @Mock
+    private PaymentGatewayPort paymentGatewayPort;
     private Clock clock;
     @BeforeEach
     void setupClock() {
@@ -64,15 +70,19 @@ class OrderUseCasesTest {
         ), now);
         when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
         when(repositoryPort.save(order)).thenReturn(order);
-        ReserveOrderStockUseCase reserve = new ReserveOrderStockUseCase(repositoryPort, clock);
-        StartPaymentUseCase startPayment = new StartPaymentUseCase(repositoryPort, clock);
+        ReserveOrderStockUseCase reserve = new ReserveOrderStockUseCase(repositoryPort, inventoryReservationPort, clock);
+        StartPaymentUseCase startPayment = new StartPaymentUseCase(repositoryPort, paymentGatewayPort, clock);
         MarkOrderPaidUseCase markPaid = new MarkOrderPaidUseCase(repositoryPort, clock);
-        ConfirmOrderUseCase confirm = new ConfirmOrderUseCase(repositoryPort, clock);
-        reserve.execute(new ReserveOrderStockCommand(order.getId(), List.of(UUID.randomUUID())));
+        ConfirmOrderUseCase confirm = new ConfirmOrderUseCase(repositoryPort, inventoryReservationPort, clock);
+        UUID reservationRef = UUID.randomUUID();
+        reserve.execute(new ReserveOrderStockCommand(order.getId(), List.of(reservationRef)));
         startPayment.execute(new OrderActionCommand(order.getId()));
         markPaid.execute(new OrderActionCommand(order.getId()));
         Order confirmed = confirm.execute(new OrderActionCommand(order.getId()));
         assertEquals(OrderStatus.CONFIRMED, confirmed.getStatus());
+        verify(inventoryReservationPort).reserveStock(order, List.of(reservationRef));
+        verify(paymentGatewayPort).startPayment(order);
+        verify(inventoryReservationPort).commitReservations(order);
     }
     @Test
     void shouldThrowNotFoundWhenOrderDoesNotExist() {
@@ -91,7 +101,7 @@ class OrderUseCasesTest {
                 )
         ), now);
         when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
-        ConfirmOrderUseCase useCase = new ConfirmOrderUseCase(repositoryPort, clock);
+        ConfirmOrderUseCase useCase = new ConfirmOrderUseCase(repositoryPort, inventoryReservationPort, clock);
         assertThrows(OrderConflictException.class, () -> useCase.execute(new OrderActionCommand(order.getId())));
     }
     @Test
@@ -120,7 +130,7 @@ class OrderUseCasesTest {
         ), now);
         when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
         when(repositoryPort.save(order)).thenReturn(order);
-        CancelOrderUseCase useCase = new CancelOrderUseCase(repositoryPort, clock);
+        CancelOrderUseCase useCase = new CancelOrderUseCase(repositoryPort, inventoryReservationPort, clock);
         Order cancelled = useCase.execute(new OrderActionCommand(order.getId()));
         assertEquals(OrderStatus.CANCELLED, cancelled.getStatus());
     }

@@ -1,6 +1,7 @@
 package com.mercadoaurora.order.api;
 import com.mercadoaurora.order.api.dto.ApiErrorResponse;
 import com.mercadoaurora.order.application.exception.OrderConflictException;
+import com.mercadoaurora.order.application.exception.OrderIntegrationException;
 import com.mercadoaurora.order.application.exception.OrderNotFoundException;
 import com.mercadoaurora.order.domain.DomainValidationException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +23,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(OrderConflictException.class)
     public ResponseEntity<ApiErrorResponse> handleConflict(OrderConflictException exception, HttpServletRequest request) {
         return buildErrorResponse(HttpStatus.CONFLICT, "ORDER_CONFLICT", exception.getMessage(), request);
+    }
+    @ExceptionHandler(OrderIntegrationException.class)
+    public ResponseEntity<ApiErrorResponse> handleIntegration(OrderIntegrationException exception, HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.BAD_GATEWAY, "ORDER_INTEGRATION_ERROR", exception.getMessage(), request);
     }
     @ExceptionHandler({
             DomainValidationException.class,

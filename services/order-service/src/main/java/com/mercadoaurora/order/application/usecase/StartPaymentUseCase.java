@@ -3,6 +3,7 @@ import com.mercadoaurora.order.application.command.OrderActionCommand;
 import com.mercadoaurora.order.application.exception.OrderConflictException;
 import com.mercadoaurora.order.application.exception.OrderNotFoundException;
 import com.mercadoaurora.order.application.port.out.OrderRepositoryPort;
+import com.mercadoaurora.order.application.port.out.PaymentGatewayPort;
 import com.mercadoaurora.order.domain.DomainConflictException;
 import com.mercadoaurora.order.domain.Order;
 import org.springframework.stereotype.Service;
@@ -12,9 +13,11 @@ import java.time.Instant;
 @Service
 public class StartPaymentUseCase {
     private final OrderRepositoryPort repositoryPort;
+    private final PaymentGatewayPort paymentGatewayPort;
     private final Clock clock;
-    public StartPaymentUseCase(OrderRepositoryPort repositoryPort, Clock clock) {
+    public StartPaymentUseCase(OrderRepositoryPort repositoryPort, PaymentGatewayPort paymentGatewayPort, Clock clock) {
         this.repositoryPort = repositoryPort;
+        this.paymentGatewayPort = paymentGatewayPort;
         this.clock = clock;
     }
     @Transactional
@@ -23,6 +26,7 @@ public class StartPaymentUseCase {
                 .orElseThrow(() -> new OrderNotFoundException(command.orderId()));
         Instant now = Instant.now(clock);
         try {
+            paymentGatewayPort.startPayment(order);
             order.startPayment(now);
         } catch (DomainConflictException exception) {
             throw new OrderConflictException(exception.getMessage());
