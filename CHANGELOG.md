@@ -60,6 +60,17 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - ADR-005 formalizando `InventoryItem` como Aggregate Root no Inventory Service.
 - Nova collection Postman: `docs/api/postman/inventory-service.postman_collection.json`.
 - Atualizacao de `CONTEXT_MAP.md`, `SERVICE_BOUNDARIES.md`, `ARCHITECTURE.md`, `ARCHITECTURE_NOTES.md` e READMEs com baseline transacional do Inventory.
+- Regularizacao da Story-008 no GitHub com issue encerrada, board em Done e release `v0.2.0-inventory-service` publicada.
+- Bootstrap completo de `services/order-service` com Spring Boot, Maven, JPA, Flyway e PostgreSQL.
+- Implementacao do modelo de dominio de Pedido com `Order` (aggregate root) e `OrderItem` (entidade interna).
+- Implementacao dos casos de uso: CreateOrder, ReserveOrderStock, StartPayment, MarkOrderPaid, ConfirmOrder, CancelOrder, GetOrder, ListOrdersByCustomer.
+- Implementacao da API REST v1 de Order com tratamento padronizado de erros (400/404/409/500).
+- Migracao Flyway inicial `V1__init_order_schema.sql` com constraints de consistencia para status e totais.
+- Testes de dominio para invariantes e transicoes de estado do agregado Order.
+- Testes de aplicacao com mocks cobrindo fluxo principal e cenarios de erro de Order.
+- Testes de integracao com Spring Boot Test + Testcontainers + PostgreSQL para fluxos de pedido.
+- ADR-006 formalizando `Order` como Aggregate Root no Order Service.
+- Nova collection Postman: `docs/api/postman/order-service.postman_collection.json`.
 
 ### Changed
 

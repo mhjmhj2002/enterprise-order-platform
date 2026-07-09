@@ -63,6 +63,24 @@ cd services/inventory-service
 mvn test
 ```
 
+### Order Service
+
+`services/order-service` foi bootstrapado na Story-009 com:
+
+- Spring Boot + Maven + PostgreSQL + Flyway.
+- DDD com `Order` (aggregate root) e `OrderItem` (entidade interna).
+- Arquitetura hexagonal (`domain`, `application`, `infrastructure`, `api`, `config`).
+- Endpoints REST em `/api/v1/orders` e `/api/v1/customers/{customerId}/orders`.
+- Fluxo de pedido com estados `CREATED -> STOCK_RESERVED -> PAYMENT_PENDING -> PAID -> CONFIRMED` e cancelamento controlado.
+- Testes de dominio, aplicacao (mocks) e integracao (Testcontainers).
+
+Comando rapido:
+
+```bash
+cd services/order-service
+mvn test
+```
+
 ## Documentacao
 
 ### Arquitetura

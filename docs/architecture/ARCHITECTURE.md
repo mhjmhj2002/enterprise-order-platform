@@ -9,6 +9,7 @@ Este documento consolida a visao geral da arquitetura do projeto.
 - Persistencia por servico com schema proprio.
 - Catalog Service bootstrapado com DDD + arquitetura hexagonal.
 - Inventory Service bootstrapado com dominio transacional e arquitetura hexagonal.
+- Order Service bootstrapado como contexto integrador de compromisso comercial.
 
 ## Catalog Service (Story-007)
 
@@ -39,6 +40,17 @@ Implementacao do contexto de Estoque & Reserva com foco transacional:
 - Casos de uso de criacao, ajuste de saldo fisico, reserva, commit/release de reserva e consultas.
 - Persistencia em PostgreSQL (JPA + Flyway) sem coluna de `availableQuantity`.
 - Registro de Domain Events no agregado, deixando pontos naturais para posterior integracao via Kafka/Saga.
+
+## Order Service (Story-009)
+
+Implementacao do contexto de Pedido com foco no compromisso comercial:
+
+- `Order` como aggregate root com ciclo de vida de checkout transacional na Sprint 1.
+- `OrderItem` como entidade interna com snapshot comercial e validacao de totais por item.
+- Invariantes de dominio encapsuladas no agregado: pedido com ao menos um item, total consistente, sem confirmacao sem pagamento e sem inicio de pagamento sem estoque reservado.
+- Casos de uso de criacao, reserva de estoque, inicio de pagamento, marcacao de pagamento, confirmacao, cancelamento e consultas.
+- Persistencia em PostgreSQL (JPA + Flyway) com tabelas proprietarias `orders` e `order_items`.
+- Registro de Domain Events (`OrderCreated`, `PaymentStarted`, `OrderPaid`, `OrderConfirmed`, `OrderCancelled`) mantendo o dominio pronto para evolucao orientada a eventos sem acoplamento com Kafka nesta sprint.
 
 ## Referencias
 

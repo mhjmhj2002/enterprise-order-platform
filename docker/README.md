@@ -82,6 +82,12 @@ BEGIN
    ELSE
 	  ALTER ROLE inventory WITH LOGIN PASSWORD 'inventory';
    END IF;
+
+   IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'order') THEN
+	  CREATE ROLE "order" LOGIN PASSWORD 'order';
+   ELSE
+	  ALTER ROLE "order" WITH LOGIN PASSWORD 'order';
+   END IF;
 END
 $$;
 SQL
@@ -95,6 +101,9 @@ docker exec -i eop-postgres psql -U postgres -d postgres -c "CREATE DATABASE cat
 
 docker exec -i eop-postgres psql -U postgres -d postgres -tAc "SELECT 1 FROM pg_database WHERE datname='inventory'" | grep -q 1 || \
 docker exec -i eop-postgres psql -U postgres -d postgres -c "CREATE DATABASE inventory OWNER inventory;"
+
+docker exec -i eop-postgres psql -U postgres -d postgres -tAc "SELECT 1 FROM pg_database WHERE datname='order'" | grep -q 1 || \
+docker exec -i eop-postgres psql -U postgres -d postgres -c "CREATE DATABASE \"order\" OWNER \"order\";"
 ```
 
 Validar acessos:
@@ -102,6 +111,7 @@ Validar acessos:
 ```bash
 docker exec -e PGPASSWORD=catalog -i eop-postgres psql -U catalog -d catalog -tAc 'SELECT current_user, current_database();'
 docker exec -e PGPASSWORD=inventory -i eop-postgres psql -U inventory -d inventory -tAc 'SELECT current_user, current_database();'
+docker exec -e PGPASSWORD=order -i eop-postgres psql -U order -d order -tAc 'SELECT current_user, current_database();'
 ```
 
 ## 4) Rodar os servicos
@@ -110,6 +120,7 @@ Defaults dos servicos:
 
 - `catalog-service`: `jdbc:postgresql://localhost:5432/catalog`, user `catalog`, senha `catalog`
 - `inventory-service`: `jdbc:postgresql://localhost:5432/inventory`, user `inventory`, senha `inventory`
+- `order-service`: `jdbc:postgresql://localhost:5432/order`, user `order`, senha `order`
 
 Subir localmente:
 
@@ -120,6 +131,11 @@ mvn spring-boot:run
 
 ```bash
 cd services/inventory-service
+mvn spring-boot:run
+```
+
+```bash
+cd services/order-service
 mvn spring-boot:run
 ```
 
@@ -135,14 +151,20 @@ export CATALOG_DB_PASSWORD=catalog
 export INVENTORY_DB_URL=jdbc:postgresql://localhost:5432/inventory
 export INVENTORY_DB_USERNAME=inventory
 export INVENTORY_DB_PASSWORD=inventory
+
+export ORDER_DB_URL=jdbc:postgresql://localhost:5432/order
+export ORDER_DB_USERNAME=order
+export ORDER_DB_PASSWORD=order
 ```
 
 ## Troubleshooting rapido
 
 - Erro `password authentication failed for user "inventory"`:
   - Reaplique o passo 3 para recriar/atualizar role e senha.
+- Erro `password authentication failed for user "order"`:
+  - Reaplique o passo 3 para recriar/atualizar role e senha do `order`.
 - Container em uso com outro nome:
   - Liste com `docker ps -a` e ajuste os comandos para o nome existente.
 - Porta `5432` ocupada:
-  - Suba em outra porta (`-p 5433:5432`) e ajuste `CATALOG_DB_URL` / `INVENTORY_DB_URL`.
+  - Suba em outra porta (`-p 5433:5432`) e ajuste `CATALOG_DB_URL` / `INVENTORY_DB_URL` / `ORDER_DB_URL`.
 

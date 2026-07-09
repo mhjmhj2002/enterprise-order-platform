@@ -22,6 +22,7 @@ Baseline (Sprint 1)
 2. Estoque & Reserva referencia SKU para disponibilidade e reserva transacional por warehouse.
 3. Pedido referencia dados de catalogo e disponibilidade sem copiar regras do Catalogo.
 4. Pagamento & Conciliacao nao depende de regras internas do Catalogo.
+5. Pedido evolui o compromisso comercial consumindo identificadores externos (SKU e referencias de reserva) sem absorver regras internas de Catalog e Inventory.
 
 ## Decisoes refletidas nos bootstraps de Sprint 1
 
@@ -31,3 +32,4 @@ Baseline (Sprint 1)
 - InventoryItem definido como aggregate root no contexto de Estoque & Reserva.
 - Reservation modelada como entidade interna com transicoes encapsuladas no dominio.
 - Disponibilidade (`availableQuantity`) calculada no dominio e nao persistida como dado primario.
+- Order definido como aggregate root no contexto de Pedido, com `OrderItem` como entidade interna e snapshots comerciais imutaveis durante o fluxo.

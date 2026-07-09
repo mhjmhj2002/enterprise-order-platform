@@ -50,13 +50,28 @@ Baseline (Sprint 1)
 - Constraints para proteger nao-negatividade e `reserved <= physical`.
 - `availableQuantity` calculado e nao persistido em coluna dedicada.
 
-## Order Service (planejado)
+## Order Service
 
 ### Responsabilidades
 
 - Criacao de pedido, consolidacao de itens e fluxo inicial de checkout.
+- Protecao das invariantes do agregado `Order` no ciclo de vida de pagamento e confirmacao.
+- Exposicao dos comandos de reserva, pagamento, confirmacao e cancelamento de pedido.
+
+### Fora da fronteira
+
+- Regras de consistencia de catalogo (produto, SKU, conteudo comercial de origem).
+- Regras de estoque transacional e ciclo de vida de reservas fisicas.
+- Captura financeira real, conciliacao e antifraude.
 
 ### Dependencias
 
 - Consulta Catalog Service para dados comerciais.
 - Consulta Inventory Service para disponibilidade.
+
+### Dados proprietarios
+
+- Tabela `orders`.
+- Tabela `order_items`.
+- Constraints de consistencia para status, payment status e totais monetarios nao negativos.
+

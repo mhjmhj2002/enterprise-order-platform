@@ -121,3 +121,29 @@ Principais entregas:
 - Introducao de Domain Events no agregado para preparar integracao futura com Kafka/Saga.
 - Introducao de testes de dominio, aplicacao com mocks e integracao com Testcontainers.
 - Criacao da ADR-005 para registrar a decisao arquitetural do aggregate root de Inventory.
+
+## 2026-07-09 - Story-008 regularizada no GitHub
+
+A Story-008 foi regularizada para manter rastreabilidade do projeto antes do inicio da Story-009.
+
+Principais acoes:
+
+- Issue da Story-008 encerrada oficialmente.
+- Item correspondente movido para Done no Project Board.
+- Release `v0.2.0-inventory-service` publicada no GitHub.
+- Link da release registrado na issue.
+- Verificacao de consistencia de registro em `CHANGELOG.md` e `PROJECT_HISTORY.md`.
+
+## 2026-07-09 - Story-009 bootstrap do Order Service
+
+O projeto recebeu o terceiro microsservico funcional, agora com foco no compromisso comercial do pedido.
+
+Principais entregas:
+
+- Criacao do `order-service` com Spring Boot, Maven, JPA, Flyway e PostgreSQL.
+- Aplicacao de DDD/hexagonal com `Order` como aggregate root e `OrderItem` como entidade interna.
+- Implementacao dos endpoints REST para ciclo de vida de pedido, pagamento e confirmacao.
+- Encapsulamento das invariantes de pedido no dominio, incluindo regras de confirmacao e cancelamento.
+- Introducao de testes de dominio, aplicacao com mocks e integracao com Testcontainers.
+- Criacao da ADR-006 para registrar a decisao arquitetural do aggregate root de Order.
+
