@@ -12,7 +12,7 @@
         "type": "text/javascript",
         "exec": [
           "if(!pm.environment.get(\"correlationId\")) pm.environment.set(\"correlationId\", pm.variables.replaceIn(\"{{$guid}}\"));",
-          "[\"customerId\",\"skuId\",\"skuId2\",\"inventoryReservationId\",\"reservationId\",\"reservationId2\"].forEach(k=>{if(!pm.environment.get(k))pm.environment.set(k,pm.variables.replaceIn(\"{{$guid}}\"));});"
+          "[\"customerId\",\"skuId\",\"skuId2\",\"inventoryReservationId\",\"reservationId\",\"reservationId2\",\"paymentFailureReservationId\"].forEach(k=>{if(!pm.environment.get(k))pm.environment.set(k,pm.variables.replaceIn(\"{{$guid}}\"));});"
         ]
       }
     }
@@ -773,7 +773,7 @@
             "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}/reserve-stock",
             "body": {
               "mode": "raw",
-              "raw": "{\"reservationRefs\":[\"{{$guid}}\"]}",
+              "raw": "{\"reservationRefs\":[\"{{paymentFailureReservationId}}\"]}",
               "options": {"raw": {"language": "json"}}
             }
           }
@@ -819,6 +819,31 @@
       "name": "07 - Compensation Scenarios",
       "item": [
         {
+          "name": "Verify Cancelled Order after Payment Failure",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.eql(200));",
+                "pm.test(\"Order is CANCELLED\", () => pm.expect(pm.response.json().status).to.eql(\"CANCELLED\"));",
+                "pm.test(\"Payment is FAILED\", () => pm.expect(pm.response.json().paymentStatus).to.eql(\"FAILED\"));",
+                "pm.test(\"Reservation reference preserved\", () => pm.expect(pm.response.json().reservationRefs).to.include(pm.environment.get(\"paymentFailureReservationId\")));",
+                "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+              ]
+            }
+          }],
+          "request": {
+            "description": "Proves the payment failure was persisted as CANCELLED/FAILED.",
+            "method": "GET",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "X-Correlation-Id", "value": "{{correlationId}}"}
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}"
+          }
+        },
+        {
           "name": "Verify Released Inventory",
           "event": [
             {
@@ -828,7 +853,9 @@
                 "exec": [
                   "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
                   "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
-                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));",
+                  "pm.test(\"Inventory invariant preserved\", () => {const j=pm.response.json(); pm.expect(j.availableQuantity).to.eql(j.physicalQuantity-j.reservedQuantity);});",
+                  "pm.test(\"Payment reservation is RELEASED\", () => {const j=pm.response.json(); const r=j.reservations.find(x=>x.reservationId===pm.environment.get(\"paymentFailureReservationId\")); pm.expect(r).to.exist; pm.expect(r.status).to.eql(\"RELEASED\");});"
                 ]
               }
             }
