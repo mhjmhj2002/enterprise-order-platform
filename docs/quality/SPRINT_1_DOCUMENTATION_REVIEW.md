@@ -35,18 +35,20 @@ A revisao abrangeu README, changelog, historico, arquitetura, ADRs, APIs, collec
 
 | Pendencia | Impacto | Correcao necessaria |
 | --- | --- | --- |
-| Milestone Sprint 1 aberto, com 3 issues abertas | Impede declarar a Sprint encerrada | Concluir ou replanejar formalmente #17 e #18; manter #24 como backlog nao bloqueante fora do fechamento |
+| Milestone Sprint 1 aberto, com 2 issues abertas | Impede declarar a Sprint encerrada | Concluir ou replanejar formalmente #18; manter #24 como backlog nao bloqueante fora do fechamento |
 | Playbook de Engineering Manager inexistente | Melhoria institucional nao bloqueante; nao pertence ao escopo funcional do milestone | Owner institucional deve fornecer ou aprovar o playbook baseline |
 | Playbook de Product Owner inexistente | Melhoria institucional nao bloqueante; o resumo legado foi removido na migracao para playbooks versionados | Owner institucional deve fornecer ou aprovar o playbook baseline |
 
-Os playbooks ausentes nao foram recriados, pois isso exigiria inventar responsabilidades normativas sem aprovacao do owner. A ausencia e real, nao apenas uma aprovacao formal pendente, mas foi reclassificada como melhoria de processo: nao impede o encerramento da Sprint 1 depois da conclusao ou do replanejamento formal das Stories #17 e #18.
+Os playbooks ausentes nao foram recriados, pois isso exigiria inventar responsabilidades normativas sem aprovacao do owner. A ausencia e real, nao apenas uma aprovacao formal pendente, mas foi reclassificada como melhoria de processo: nao impede o encerramento da Sprint 1 depois da conclusao ou do replanejamento formal da Story #18.
 
 A Story #15 foi regularizada e encerrada administrativamente depois que seu texto ambiguo foi alinhado ao escopo efetivamente entregue: integracao REST sincrona Order → Inventory, sem integracao runtime com Catalog.
 
 A Story #16 foi aprovada e encerrada depois da validacao final do Context Map atualizado no PR #28.
 
+A Story #17 foi aprovada e encerrada depois da validacao final dos Service Boundaries contra C4, Context Map, endpoints e integracoes implementadas.
+
 ## Resultado final
 
 **CHANGES REQUIRED**
 
-A Sprint 1 nao esta oficialmente encerrada. Uma nova validacao deve ocorrer depois que as Stories #17 e #18 forem concluidas ou formalmente replanejadas. A issue #24 e os playbooks institucionais ausentes nao bloqueiam esse encerramento.
+A Sprint 1 nao esta oficialmente encerrada. Uma nova validacao deve ocorrer depois que a Story #18 for concluida ou formalmente replanejada. A issue #24 e os playbooks institucionais ausentes nao bloqueiam esse encerramento.
