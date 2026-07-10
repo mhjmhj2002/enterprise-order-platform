@@ -30,8 +30,8 @@ public class ConfirmOrderUseCase {
                 .orElseThrow(() -> new OrderNotFoundException(command.orderId()));
         Instant now = Instant.now(clock);
         try {
-            inventoryReservationPort.commitReservations(order);
             order.confirm(now);
+            inventoryReservationPort.commitReservations(order);
         } catch (DomainConflictException exception) {
             throw new OrderConflictException(exception.getMessage());
         }

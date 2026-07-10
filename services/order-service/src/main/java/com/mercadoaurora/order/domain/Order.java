@@ -4,6 +4,7 @@ import com.mercadoaurora.order.domain.event.OrderConfirmedEvent;
 import com.mercadoaurora.order.domain.event.OrderCreatedEvent;
 import com.mercadoaurora.order.domain.event.OrderEvent;
 import com.mercadoaurora.order.domain.event.PaymentApprovedEvent;
+import com.mercadoaurora.order.domain.event.PaymentFailedEvent;
 import com.mercadoaurora.order.domain.event.PaymentStartedEvent;
 import com.mercadoaurora.order.domain.event.StockReservedEvent;
 import java.math.BigDecimal;
@@ -145,6 +146,16 @@ public class Order {
         this.updatedAt = requireInstant(now, "now");
         registerEvent(new PaymentApprovedEvent(id, this.updatedAt));
     }
+    public void failPayment(Instant now) {
+        ensureNotCancelled();
+        ensureNotConfirmed();
+        if (status != OrderStatus.PAYMENT_PENDING || paymentStatus != PaymentStatus.PENDING) {
+            throw new DomainConflictException("Order must have pending payment to mark payment as failed");
+        }
+        this.paymentStatus = PaymentStatus.FAILED;
+        this.updatedAt = requireInstant(now, "now");
+        registerEvent(new PaymentFailedEvent(id, this.updatedAt));
+    }
     public void confirm(Instant now) {
         ensureNotCancelled();
         if (status == OrderStatus.CONFIRMED) {
@@ -166,7 +177,7 @@ public class Order {
         this.status = OrderStatus.CANCELLED;
         this.cancelledAt = requireInstant(now, "now");
         this.updatedAt = this.cancelledAt;
-        if (paymentStatus == PaymentStatus.NOT_STARTED) {
+        if (paymentStatus == PaymentStatus.NOT_STARTED || paymentStatus == PaymentStatus.PENDING) {
             this.paymentStatus = PaymentStatus.FAILED;
         }
         registerEvent(new OrderCancelledEvent(id, this.updatedAt));

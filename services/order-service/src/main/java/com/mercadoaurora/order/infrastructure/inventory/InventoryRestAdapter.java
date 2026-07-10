@@ -4,6 +4,8 @@ import com.mercadoaurora.order.application.exception.OrderIntegrationException;
 import com.mercadoaurora.order.application.port.out.InventoryReservationPort;
 import com.mercadoaurora.order.domain.Order;
 import com.mercadoaurora.order.domain.OrderItem;
+import com.mercadoaurora.order.infrastructure.web.CorrelationIdContext;
+import com.mercadoaurora.order.infrastructure.web.CorrelationIdFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -24,7 +26,16 @@ public class InventoryRestAdapter implements InventoryReservationPort {
             @Value("${order.integrations.inventory.base-url}") String inventoryBaseUrl,
             @Value("${order.integrations.inventory.default-warehouse-id}") UUID defaultWarehouseId
     ) {
-        this(new RestClientInventoryHttpClient(restClientBuilder.baseUrl(inventoryBaseUrl).build()), defaultWarehouseId);
+        this(new RestClientInventoryHttpClient(restClientBuilder
+                .baseUrl(inventoryBaseUrl)
+                .requestInterceptor((request, body, execution) -> {
+                    String correlationId = CorrelationIdContext.get();
+                    if (correlationId != null) {
+                        request.getHeaders().set(CorrelationIdFilter.HEADER_NAME, correlationId);
+                    }
+                    return execution.execute(request, body);
+                })
+                .build()), defaultWarehouseId);
     }
 
     InventoryRestAdapter(InventoryHttpClient inventoryHttpClient, UUID defaultWarehouseId) {

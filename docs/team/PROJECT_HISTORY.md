@@ -157,3 +157,15 @@ Principais ajustes:
 - O adapter REST de Inventory passou a tentar liberar reservas ja criadas quando uma reserva posterior falha no mesmo pedido.
 - Foram adicionados testes para ordem de orquestracao, falha de integracao e reserva parcial.
 - O PR e a Story permaneceram em Review, sem merge e sem publicacao de release.
+
+## 2026-07-10 - Correcoes de QE da Story-009
+
+A validacao de qualidade identificou lacunas de observabilidade, compensacao de pagamento e tratamento de entradas invalidas.
+
+Principais ajustes:
+
+- Order e Inventory passaram a expor health check pelo Spring Boot Actuator.
+- O PaymentFake ganhou modo de falha configuravel, com liberacao best-effort do estoque e cancelamento persistido do pedido.
+- A ordem de orquestracao passou a validar o agregado antes de pagamento e commit de reservas.
+- O correlation ID passou a ser devolvido ao cliente e propagado do Order para o Inventory.
+- JSON malformado e UUID invalido passaram a retornar respostas `400` sanitizadas.

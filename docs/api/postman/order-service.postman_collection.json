@@ -1,128 +1,1170 @@
 {
   "info": {
-    "name": "Enterprise Order Platform - Order Service",
+    "name": "Enterprise Order Platform - STORY-009 QE",
     "_postman_id": "f9f9c8d7-2ab2-4a90-9b41-order-service",
-    "description": "Collection dos endpoints do Order Service (Story-009).",
+    "description": "QE regression-ready collection for Story-009. Execute folders in order. Requests document preconditions and expected status; environment is story-009-local.postman_environment.json.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if(!pm.environment.get(\"correlationId\")) pm.environment.set(\"correlationId\", pm.variables.replaceIn(\"{{$guid}}\"));",
+          "[\"customerId\",\"skuId\",\"skuId2\",\"inventoryReservationId\",\"reservationId\",\"reservationId2\"].forEach(k=>{if(!pm.environment.get(k))pm.environment.set(k,pm.variables.replaceIn(\"{{$guid}}\"));});"
+        ]
+      }
+    }
+  ],
   "variable": [
     {
-      "key": "baseUrl",
-      "value": "http://localhost:8083",
-      "type": "string"
+      "key": "orderBaseUrl",
+      "value": "http://localhost:8083"
     },
     {
-      "key": "customerId",
-      "value": "00000000-0000-0000-0000-000000000021",
-      "type": "string"
+      "key": "inventoryBaseUrl",
+      "value": "http://localhost:8082"
     },
     {
-      "key": "orderId",
-      "value": "00000000-0000-0000-0000-000000000022",
-      "type": "string"
+      "key": "catalogBaseUrl",
+      "value": "http://localhost:8081"
     },
     {
-      "key": "reservationRef",
-      "value": "00000000-0000-0000-0000-000000000023",
-      "type": "string"
+      "key": "warehouseId",
+      "value": "00000000-0000-0000-0000-000000000001"
+    },
+    {
+      "key": "quantity",
+      "value": "2"
     }
   ],
   "item": [
     {
-      "name": "Orders",
+      "name": "00 - Health Checks",
       "item": [
         {
-          "name": "Create Order",
+          "name": "CT-001 Inventory Health",
           "event": [
             {
               "listen": "test",
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "if (pm.response.code === 201) {",
-                  "  const data = pm.response.json();",
-                  "  if (data.id) pm.collectionVariables.set('orderId', data.id);",
-                  "}"
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
                 ]
               }
             }
           ],
           "request": {
+            "description": "Expected service health; currently records BUG-009-01.",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{inventoryBaseUrl}}/actuator/health"
+          }
+        },
+        {
+          "name": "CT-002 Order Health",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Expected service health; currently records BUG-009-01.",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/actuator/health"
+          }
+        }
+      ]
+    },
+    {
+      "name": "01 - Test Data Setup",
+      "item": [
+        {
+          "name": "Create Inventory Item",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([201 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));",
+                  "if(pm.response.code===201){const j=pm.response.json();pm.environment.set(\"inventoryItemId\",j.skuId);}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Creates isolated stock.",
             "method": "POST",
             "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              },
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
-            "url": "{{baseUrl}}/api/v1/orders",
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"customerId\": \"{{customerId}}\",\n  \"items\": [\n    {\n      \"skuId\": \"11111111-1111-1111-1111-111111111111\",\n      \"productNameSnapshot\": \"Camiseta Premium\",\n      \"skuNameSnapshot\": \"Camiseta Premium Preta M\",\n      \"attributesSnapshot\": {\n        \"color\": \"black\",\n        \"size\": \"M\"\n      },\n      \"quantity\": 2,\n      \"unitPriceSnapshot\": 25.00,\n      \"discountSnapshot\": 5.00,\n      \"lineTotalSnapshot\": 40.00\n    }\n  ]\n}"
+              "raw": "{\"skuId\":\"{{skuId}}\",\"warehouseId\":\"{{warehouseId}}\",\"physicalQuantity\":20}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Create Inventory Item for Release Regression",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.eql(201));",
+                "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+              ]
+            }
+          }],
+          "request": {
+            "description": "Creates independent stock used by release and duplicate-release regression.",
+            "method": "POST",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "X-Correlation-Id", "value": "{{correlationId}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"skuId\":\"{{skuId2}}\",\"warehouseId\":\"{{warehouseId}}\",\"physicalQuantity\":20}",
+              "options": {"raw": {"language": "json"}}
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 - Inventory Preconditions",
+      "item": [
+        {
+          "name": "Get Inventory Item",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Verifies known stock.",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}"
+          }
+        },
+        {
+          "name": "Reserve Inventory",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([201 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Creates reservation.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}/reservations",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"reservationId\":\"{{inventoryReservationId}}\",\"quantity\":{{quantity}}}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 - Order Happy Path",
+      "item": [
+        {
+          "name": "CT-004 Create Order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([201 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));",
+                  "if(pm.response.code===201){const j=pm.response.json();pm.environment.set(\"orderId\",j.id);}",
+                  "pm.test(\"Order id exists\",()=>pm.expect(pm.response.json().id).to.exist);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Creates order and captures its id.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"{{customerId}}\",\n  \"items\": [{\n    \"skuId\": \"{{skuId}}\",\n    \"productNameSnapshot\": \"Produto QE\",\n    \"skuNameSnapshot\": \"SKU QE\",\n    \"attributesSnapshot\": {\"color\": \"black\"},\n    \"quantity\": {{quantity}},\n    \"unitPriceSnapshot\": 25.00,\n    \"discountSnapshot\": 5.00,\n    \"lineTotalSnapshot\": 40.00\n  }]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             }
           }
         },
         {
           "name": "Reserve Order Stock",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
           "request": {
+            "description": "Reserves through Inventory.",
             "method": "POST",
             "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              },
               {
                 "key": "Content-Type",
                 "value": "application/json"
               }
             ],
-            "url": "{{baseUrl}}/api/v1/orders/{{orderId}}/reserve-stock",
+            "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}/reserve-stock",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"reservationRefs\": [\n    \"{{reservationRef}}\"\n  ]\n}"
+              "raw": "{\"reservationRefs\":[\"{{reservationId}}\"]}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
             }
           }
         },
         {
           "name": "Start Payment",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
           "request": {
+            "description": "Starts fake payment.",
             "method": "POST",
-            "url": "{{baseUrl}}/api/v1/orders/{{orderId}}/start-payment"
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}/start-payment"
           }
         },
         {
-          "name": "Mark Order Paid",
+          "name": "Mark Paid",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
           "request": {
+            "description": "Marks payment approved.",
             "method": "POST",
-            "url": "{{baseUrl}}/api/v1/orders/{{orderId}}/mark-paid"
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}/mark-paid"
           }
         },
         {
           "name": "Confirm Order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));",
+                  "pm.test(\"Confirmed\",()=>pm.expect(pm.response.json().status).to.eql(\"CONFIRMED\"));"
+                ]
+              }
+            }
+          ],
           "request": {
+            "description": "Commits reservations and confirms.",
             "method": "POST",
-            "url": "{{baseUrl}}/api/v1/orders/{{orderId}}/confirm"
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}/confirm"
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 - Order Validation Errors",
+      "item": [
+        {
+          "name": "CT-011 Empty Items",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([400,422 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Rejects empty order.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"customerId\":\"{{customerId}}\",\"items\":[]}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "CT-013 Zero Quantity",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([400,422 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Rejects zero quantity.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"{{customerId}}\",\n  \"items\": [{\n    \"skuId\": \"{{skuId}}\",\n    \"productNameSnapshot\": \"Produto QE\",\n    \"skuNameSnapshot\": \"SKU QE\",\n    \"attributesSnapshot\": {\"color\": \"black\"},\n    \"quantity\": 0,\n    \"unitPriceSnapshot\": 25.00,\n    \"discountSnapshot\": 5.00,\n    \"lineTotalSnapshot\": 40.00\n  }]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "CT-010 Invalid Order Id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([400 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Rejects malformed UUID.",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders/not-a-uuid"
+          }
+        },
+        {
+          "name": "CT-044 Malformed JSON",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([400 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Rejects malformed JSON.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"customerId\":",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 - Inventory Integration Errors",
+      "item": [
+        {
+          "name": "CT-017 Missing SKU Order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([201 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Create then reserve to observe missing Inventory SKU.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"{{customerId}}\",\n  \"items\": [{\n    \"skuId\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n    \"productNameSnapshot\": \"Produto QE\",\n    \"skuNameSnapshot\": \"SKU QE\",\n    \"attributesSnapshot\": {\"color\": \"black\"},\n    \"quantity\": {{quantity}},\n    \"unitPriceSnapshot\": 25.00,\n    \"discountSnapshot\": 5.00,\n    \"lineTotalSnapshot\": 40.00\n  }]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "CT-018 Insufficient Stock Reserve",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([400 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Rejects insufficient stock.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}/reservations",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"reservationId\":\"{{$guid}}\",\"quantity\":999999}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 - Payment Fake Errors",
+      "item": [
+        {
+          "name": "CT-022 Payment Failure Placeholder",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([503 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Requires failure-mode configuration; BUG-009-03.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}/start-payment"
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 - Compensation Scenarios",
+      "item": [
+        {
+          "name": "Verify Released Inventory",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "After payment failure, verifies restored quantity and RELEASED reservation.",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 - State Transition Validation",
+      "item": [
+        {
+          "name": "Start Payment Before Reservation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([409 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Rejects invalid transition.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}/start-payment"
           }
         },
         {
           "name": "Cancel Order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
           "request": {
+            "description": "Cancels eligible order.",
             "method": "POST",
-            "url": "{{baseUrl}}/api/v1/orders/{{orderId}}/cancel"
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}/cancel"
           }
-        },
+        }
+      ]
+    },
+    {
+      "name": "09 - Idempotency and Reprocessing",
+      "item": [
+        {
+          "name": "Repeat Create Order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([201,409 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Documents duplicate payload behavior.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"{{customerId}}\",\n  \"items\": [{\n    \"skuId\": \"{{skuId}}\",\n    \"productNameSnapshot\": \"Produto QE\",\n    \"skuNameSnapshot\": \"SKU QE\",\n    \"attributesSnapshot\": {\"color\": \"black\"},\n    \"quantity\": {{quantity}},\n    \"unitPriceSnapshot\": 25.00,\n    \"discountSnapshot\": 5.00,\n    \"lineTotalSnapshot\": 40.00\n  }]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "10 - Persistence and Query",
+      "item": [
         {
           "name": "Get Order",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));",
+                  "pm.test(\"Dates coherent\",()=>{const j=pm.response.json();pm.expect(Date.parse(j.updatedAt)).to.be.at.least(Date.parse(j.createdAt));});"
+                ]
+              }
+            }
+          ],
           "request": {
+            "description": "Verifies persisted order.",
             "method": "GET",
-            "url": "{{baseUrl}}/api/v1/orders/{{orderId}}"
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}"
           }
         },
         {
-          "name": "List Orders By Customer",
+          "name": "List Customer Orders",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
           "request": {
+            "description": "Verifies customer query.",
             "method": "GET",
-            "url": "{{baseUrl}}/api/v1/customers/{{customerId}}/orders"
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/customers/{{customerId}}/orders"
+          }
+        }
+      ]
+    },
+    {
+      "name": "11 - Regression",
+      "item": [
+        {
+          "name": "Commit Reservation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.eql(200));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Regression: commit once.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}/reservations/{{inventoryReservationId}}/commit"
+          }
+        },
+        {
+          "name": "Duplicate Commit",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200,400,409 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Regression: no duplicate decrement.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}/reservations/{{inventoryReservationId}}/commit"
+          }
+        },
+        {
+          "name": "Reserve Inventory for Release Regression",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.eql(201));",
+                "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+              ]
+            }
+          }],
+          "request": {
+            "description": "Creates the reservation required by release regression.",
+            "method": "POST",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "X-Correlation-Id", "value": "{{correlationId}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory/{{skuId2}}/{{warehouseId}}/reservations",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"reservationId\":\"{{reservationId2}}\",\"quantity\":{{quantity}}}",
+              "options": {"raw": {"language": "json"}}
+            }
+          }
+        },
+        {
+          "name": "Release Reservation",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.eql(200));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Regression: release once.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory/{{skuId2}}/{{warehouseId}}/reservations/{{reservationId2}}/release"
+          }
+        },
+        {
+          "name": "Duplicate Release",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200,400,409 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Regression: no duplicate increment.",
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory/{{skuId2}}/{{warehouseId}}/reservations/{{reservationId2}}/release"
+          }
+        }
+      ]
+    },
+    {
+      "name": "12 - Cleanup",
+      "item": [
+        {
+          "name": "Final Inventory Query",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.be.oneOf([200 ]));",
+                  "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                  "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "description": "Records final state; API has no destructive cleanup endpoint.",
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Correlation-Id",
+                "value": "{{correlationId}}"
+              }
+            ],
+            "url": "{{inventoryBaseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}"
           }
         }
       ]
     }
   ]
 }
-

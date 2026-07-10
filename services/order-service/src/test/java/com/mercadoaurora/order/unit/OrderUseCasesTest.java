@@ -6,6 +6,7 @@ import com.mercadoaurora.order.application.command.ReserveOrderStockCommand;
 import com.mercadoaurora.order.application.exception.OrderConflictException;
 import com.mercadoaurora.order.application.exception.OrderIntegrationException;
 import com.mercadoaurora.order.application.exception.OrderNotFoundException;
+import com.mercadoaurora.order.application.exception.PaymentProcessingException;
 import com.mercadoaurora.order.application.port.out.InventoryReservationPort;
 import com.mercadoaurora.order.application.port.out.OrderRepositoryPort;
 import com.mercadoaurora.order.application.port.out.PaymentGatewayPort;
@@ -20,6 +21,7 @@ import com.mercadoaurora.order.application.usecase.ReserveOrderStockUseCase;
 import com.mercadoaurora.order.application.usecase.StartPaymentUseCase;
 import com.mercadoaurora.order.domain.Order;
 import com.mercadoaurora.order.domain.OrderStatus;
+import com.mercadoaurora.order.domain.PaymentStatus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -75,7 +77,9 @@ class OrderUseCasesTest {
         when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
         when(repositoryPort.save(order)).thenReturn(order);
         ReserveOrderStockUseCase reserve = new ReserveOrderStockUseCase(repositoryPort, inventoryReservationPort, clock);
-        StartPaymentUseCase startPayment = new StartPaymentUseCase(repositoryPort, paymentGatewayPort, clock);
+        StartPaymentUseCase startPayment = new StartPaymentUseCase(
+                repositoryPort, paymentGatewayPort, inventoryReservationPort, clock
+        );
         MarkOrderPaidUseCase markPaid = new MarkOrderPaidUseCase(repositoryPort, clock);
         ConfirmOrderUseCase confirm = new ConfirmOrderUseCase(repositoryPort, inventoryReservationPort, clock);
         UUID reservationRef = UUID.randomUUID();
@@ -107,6 +111,7 @@ class OrderUseCasesTest {
         when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
         ConfirmOrderUseCase useCase = new ConfirmOrderUseCase(repositoryPort, inventoryReservationPort, clock);
         assertThrows(OrderConflictException.class, () -> useCase.execute(new OrderActionCommand(order.getId())));
+        verify(inventoryReservationPort, never()).commitReservations(any(Order.class));
     }
     @Test
     void shouldListOrdersByCustomer() {
@@ -175,6 +180,78 @@ class OrderUseCasesTest {
         assertThrows(OrderIntegrationException.class,
                 () -> useCase.execute(new ReserveOrderStockCommand(order.getId(), List.of(reservationRef))));
         verify(repositoryPort, never()).save(any(Order.class));
+    }
+    @Test
+    void shouldValidateOrderBeforeCallingPaymentGateway() {
+        Order order = Order.create(UUID.randomUUID(), UUID.randomUUID(), List.of(
+                com.mercadoaurora.order.domain.OrderItem.create(
+                        UUID.randomUUID(), "Produto", "SKU", Map.of(), 1,
+                        new BigDecimal("20.00"), BigDecimal.ZERO, new BigDecimal("20.00")
+                )
+        ), Instant.now(clock));
+        when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
+        StartPaymentUseCase useCase = new StartPaymentUseCase(
+                repositoryPort, paymentGatewayPort, inventoryReservationPort, clock
+        );
+
+        assertThrows(OrderConflictException.class,
+                () -> useCase.execute(new OrderActionCommand(order.getId())));
+
+        verify(paymentGatewayPort, never()).startPayment(any(Order.class));
+        verify(inventoryReservationPort, never()).releaseReservations(any(Order.class));
+        verify(repositoryPort, never()).save(any(Order.class));
+    }
+    @Test
+    void shouldReleaseReservationAndCancelOrderWhenPaymentFails() {
+        Order order = Order.create(UUID.randomUUID(), UUID.randomUUID(), List.of(
+                com.mercadoaurora.order.domain.OrderItem.create(
+                        UUID.randomUUID(), "Produto", "SKU", Map.of(), 1,
+                        new BigDecimal("20.00"), BigDecimal.ZERO, new BigDecimal("20.00")
+                )
+        ), Instant.now(clock));
+        UUID reservationRef = UUID.randomUUID();
+        order.reserveStock(List.of(reservationRef), Instant.now(clock));
+        when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
+        when(repositoryPort.save(order)).thenReturn(order);
+        doThrow(new PaymentProcessingException("Payment provider unavailable"))
+                .when(paymentGatewayPort).startPayment(order);
+        StartPaymentUseCase useCase = new StartPaymentUseCase(
+                repositoryPort, paymentGatewayPort, inventoryReservationPort, clock
+        );
+
+        assertThrows(PaymentProcessingException.class,
+                () -> useCase.execute(new OrderActionCommand(order.getId())));
+
+        assertEquals(OrderStatus.CANCELLED, order.getStatus());
+        assertEquals(PaymentStatus.FAILED, order.getPaymentStatus());
+        verify(inventoryReservationPort).releaseReservations(order);
+        verify(repositoryPort).save(order);
+    }
+    @Test
+    void shouldCancelOrderEvenWhenPaymentCompensationFails() {
+        Order order = Order.create(UUID.randomUUID(), UUID.randomUUID(), List.of(
+                com.mercadoaurora.order.domain.OrderItem.create(
+                        UUID.randomUUID(), "Produto", "SKU", Map.of(), 1,
+                        new BigDecimal("20.00"), BigDecimal.ZERO, new BigDecimal("20.00")
+                )
+        ), Instant.now(clock));
+        order.reserveStock(List.of(UUID.randomUUID()), Instant.now(clock));
+        when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
+        when(repositoryPort.save(order)).thenReturn(order);
+        doThrow(new PaymentProcessingException("Payment provider unavailable"))
+                .when(paymentGatewayPort).startPayment(order);
+        doThrow(new OrderIntegrationException("Inventory integration failed"))
+                .when(inventoryReservationPort).releaseReservations(order);
+        StartPaymentUseCase useCase = new StartPaymentUseCase(
+                repositoryPort, paymentGatewayPort, inventoryReservationPort, clock
+        );
+
+        assertThrows(PaymentProcessingException.class,
+                () -> useCase.execute(new OrderActionCommand(order.getId())));
+
+        assertEquals(OrderStatus.CANCELLED, order.getStatus());
+        assertEquals(PaymentStatus.FAILED, order.getPaymentStatus());
+        verify(repositoryPort).save(order);
     }
     private CreateOrderItemInput buildItemInput(int quantity) {
         return new CreateOrderItemInput(

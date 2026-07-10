@@ -17,7 +17,15 @@ spring:
     locations: classpath:db/migration
 server:
   port: ${SERVER_PORT:8083}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
 order:
+  payment:
+    fake:
+      fail: ${PAYMENT_FAKE_FAIL:false}
   integrations:
     inventory:
       base-url: ${INVENTORY_SERVICE_URL:http://localhost:8082}

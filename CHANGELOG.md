@@ -72,6 +72,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - ADR-006 formalizando `Order` como Aggregate Root no Order Service.
 - Nova collection Postman: `docs/api/postman/order-service.postman_collection.json`.
 - Ajuste pós-review da Story-009: validacao do agregado antes de chamadas ao Inventory, compensacao de reserva parcial e testes de erro de integracao.
+- Correcoes de QE da Story-009: health checks, PaymentFake configuravel com compensacao, correlation ID e erros `400` sanitizados para JSON/UUID invalidos.
 
 ### Changed
 
