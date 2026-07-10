@@ -4,6 +4,7 @@ import com.mercadoaurora.order.application.exception.OrderIntegrationException;
 import com.mercadoaurora.order.application.port.out.InventoryReservationPort;
 import com.mercadoaurora.order.domain.Order;
 import com.mercadoaurora.order.domain.OrderItem;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
@@ -17,6 +18,7 @@ public class InventoryRestAdapter implements InventoryReservationPort {
     private final InventoryHttpClient inventoryHttpClient;
     private final UUID defaultWarehouseId;
 
+    @Autowired
     public InventoryRestAdapter(
             RestClient.Builder restClientBuilder,
             @Value("${order.integrations.inventory.base-url}") String inventoryBaseUrl,

@@ -4,6 +4,11 @@ import com.mercadoaurora.order.application.exception.OrderIntegrationException;
 import com.mercadoaurora.order.domain.Order;
 import com.mercadoaurora.order.domain.OrderItem;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.runner.ApplicationContextRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.web.client.RestClient;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -13,10 +18,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class InventoryRestAdapterTest {
+    private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
+            .withUserConfiguration(InventoryRestAdapterConfig.class)
+            .withPropertyValues(
+                    "order.integrations.inventory.base-url=http://localhost:8082",
+                    "order.integrations.inventory.default-warehouse-id=00000000-0000-0000-0000-000000000001"
+            );
+
+    @Test
+    void shouldInstantiateAdapterWithSpringConstructorInjection() {
+        contextRunner.run(context -> assertThat(context).hasSingleBean(InventoryRestAdapter.class));
+    }
+
     @Test
     void shouldReleaseSuccessfulReservationsWhenLaterItemFails() {
         FakeInventoryHttpClient httpClient = new FakeInventoryHttpClient(2);
@@ -75,6 +93,15 @@ class InventoryRestAdapterTest {
             if (calls.size() == failingCall) {
                 throw new OrderIntegrationException("Inventory integration failed");
             }
+        }
+    }
+
+    @Configuration
+    @Import(InventoryRestAdapter.class)
+    static class InventoryRestAdapterConfig {
+        @Bean
+        RestClient.Builder restClientBuilder() {
+            return RestClient.builder();
         }
     }
 }
