@@ -13,6 +13,7 @@ import java.util.UUID;
 @Component
 public class CorrelationIdFilter extends OncePerRequestFilter {
     public static final String HEADER_NAME = "X-Correlation-Id";
+    public static final String PAYMENT_FAKE_OUTCOME_HEADER = "X-Payment-Fake-Outcome";
 
     @Override
     protected void doFilterInternal(
@@ -25,11 +26,15 @@ public class CorrelationIdFilter extends OncePerRequestFilter {
             correlationId = UUID.randomUUID().toString();
         }
         CorrelationIdContext.set(correlationId);
+        PaymentFakeContext.setFailureRequested(
+                "FAILED".equalsIgnoreCase(request.getHeader(PAYMENT_FAKE_OUTCOME_HEADER))
+        );
         response.setHeader(HEADER_NAME, correlationId);
         try {
             filterChain.doFilter(request, response);
         } finally {
             CorrelationIdContext.clear();
+            PaymentFakeContext.clear();
         }
     }
 }

@@ -15,7 +15,7 @@ Servico responsavel pelo compromisso comercial do pedido no Mercado Aurora.
 ## Integracoes Sprint 1
 - Inventory: REST sincrono via `INVENTORY_SERVICE_URL`.
 - Payment: porta de aplicacao com `PaymentFakeAdapter`, sem provedor externo real nesta sprint.
-- PaymentFake aprova por padrao. Com `PAYMENT_FAKE_FAIL=true`, retorna falha controlada, libera as reservas e cancela o pedido.
+- PaymentFake aprova por padrao. `PAYMENT_FAKE_FAIL=true` altera o processo inteiro; o header `X-Payment-Fake-Outcome: FAILED` simula falha somente na requisicao atual, sem restart. Em ambos os casos, a falha libera as reservas e cancela o pedido.
 - Domain Events ficam registrados no dominio para evolucao futura, mas nao sao publicados.
 - Reserva de estoque valida o agregado antes de chamar Inventory. Se uma reserva parcial falhar, o adapter tenta liberar as reservas ja criadas antes de propagar erro `502`.
 - `X-Correlation-Id` recebido pelo Order e devolvido na resposta e propagado nas chamadas REST ao Inventory.

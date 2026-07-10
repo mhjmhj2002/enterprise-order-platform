@@ -43,6 +43,8 @@ Environment sanitizado da Story-009: `story-009-local.postman_environment.json`
 2. Inicie Inventory em `8082` e Order em `8083` ou ajuste as URLs.
 3. Execute as pastas numeradas de `00 - Health Checks` a `12 - Cleanup`.
 
+A collection cria pedidos independentes para happy path, falha de pagamento e validacao de estados. O cenario de falha usa `X-Payment-Fake-Outcome: FAILED` somente no request correspondente, portanto a bateria completa pode ser executada sem reiniciar o Order Service.
+
 ### Variaveis
 
 - `orderBaseUrl`, `inventoryBaseUrl`, `catalogBaseUrl`: URLs dos servicos.

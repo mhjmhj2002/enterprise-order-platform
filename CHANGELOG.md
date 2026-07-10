@@ -73,6 +73,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Nova collection Postman: `docs/api/postman/order-service.postman_collection.json`.
 - Ajuste pós-review da Story-009: validacao do agregado antes de chamadas ao Inventory, compensacao de reserva parcial e testes de erro de integracao.
 - Correcoes de QE da Story-009: health checks, PaymentFake configuravel com compensacao, correlation ID e erros `400` sanitizados para JSON/UUID invalidos.
+- Collection da Story-009 isolada por cenario, com override de falha do PaymentFake por requisicao e sem necessidade de restart entre happy path e compensacao.
 
 ### Changed
 

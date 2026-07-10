@@ -720,7 +720,66 @@
       "name": "06 - Payment Fake Errors",
       "item": [
         {
-          "name": "CT-022 Payment Failure Placeholder",
+          "name": "Create Order for Payment Failure",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.eql(201));",
+                "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));",
+                "if(pm.response.code===201){pm.environment.set(\"orderId\",pm.response.json().id);}"
+              ]
+            }
+          }],
+          "request": {
+            "description": "Creates an isolated order for payment failure compensation.",
+            "method": "POST",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "X-Correlation-Id", "value": "{{correlationId}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"{{customerId}}\",\n  \"items\": [{\n    \"skuId\": \"{{skuId}}\",\n    \"productNameSnapshot\": \"Produto QE\",\n    \"skuNameSnapshot\": \"SKU QE\",\n    \"attributesSnapshot\": {\"color\": \"black\"},\n    \"quantity\": {{quantity}},\n    \"unitPriceSnapshot\": 25.00,\n    \"discountSnapshot\": 5.00,\n    \"lineTotalSnapshot\": 40.00\n  }]\n}",
+              "options": {"raw": {"language": "json"}}
+            }
+          }
+        },
+        {
+          "name": "Reserve Order for Payment Failure",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.eql(200));",
+                "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));"
+              ]
+            }
+          }],
+          "request": {
+            "description": "Reserves stock for the isolated payment failure order.",
+            "method": "POST",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "X-Correlation-Id", "value": "{{correlationId}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}/reserve-stock",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"reservationRefs\":[\"{{$guid}}\"]}",
+              "options": {"raw": {"language": "json"}}
+            }
+          }
+        },
+        {
+          "name": "CT-022 Payment Failure",
           "event": [
             {
               "listen": "test",
@@ -735,7 +794,7 @@
             }
           ],
           "request": {
-            "description": "Requires failure-mode configuration; BUG-009-03.",
+            "description": "Forces failure only for this PaymentFake request.",
             "method": "POST",
             "header": [
               {
@@ -745,6 +804,10 @@
               {
                 "key": "X-Correlation-Id",
                 "value": "{{correlationId}}"
+              },
+              {
+                "key": "X-Payment-Fake-Outcome",
+                "value": "FAILED"
               }
             ],
             "url": "{{orderBaseUrl}}/api/v1/orders/{{orderId}}/start-payment"
@@ -791,6 +854,36 @@
     {
       "name": "08 - State Transition Validation",
       "item": [
+        {
+          "name": "Create Order for State Validation",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "pm.test(\"Status code\", () => pm.expect(pm.response.code).to.eql(201));",
+                "pm.test(\"Response time under 2s\", () => pm.expect(pm.response.responseTime).to.be.below(2000));",
+                "pm.test(\"No internal details\", () => pm.expect(pm.response.text()).not.to.match(/stack trace|java\\.|password|jdbc:|select .* from/i));",
+                "if(pm.response.code===201){pm.environment.set(\"orderId\",pm.response.json().id);}"
+              ]
+            }
+          }],
+          "request": {
+            "description": "Creates an isolated order for transition and cancellation tests.",
+            "method": "POST",
+            "header": [
+              {"key": "Accept", "value": "application/json"},
+              {"key": "X-Correlation-Id", "value": "{{correlationId}}"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "url": "{{orderBaseUrl}}/api/v1/orders",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"{{customerId}}\",\n  \"items\": [{\n    \"skuId\": \"{{skuId}}\",\n    \"productNameSnapshot\": \"Produto QE\",\n    \"skuNameSnapshot\": \"SKU QE\",\n    \"attributesSnapshot\": {\"color\": \"black\"},\n    \"quantity\": {{quantity}},\n    \"unitPriceSnapshot\": 25.00,\n    \"discountSnapshot\": 5.00,\n    \"lineTotalSnapshot\": 40.00\n  }]\n}",
+              "options": {"raw": {"language": "json"}}
+            }
+          }
+        },
         {
           "name": "Start Payment Before Reservation",
           "event": [

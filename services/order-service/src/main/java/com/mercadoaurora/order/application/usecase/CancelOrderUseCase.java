@@ -30,10 +30,10 @@ public class CancelOrderUseCase {
                 .orElseThrow(() -> new OrderNotFoundException(command.orderId()));
         Instant now = Instant.now(clock);
         try {
+            order.cancel(now);
             if (!order.getReservationRefs().isEmpty()) {
                 inventoryReservationPort.releaseReservations(order);
             }
-            order.cancel(now);
         } catch (DomainConflictException exception) {
             throw new OrderConflictException(exception.getMessage());
         }

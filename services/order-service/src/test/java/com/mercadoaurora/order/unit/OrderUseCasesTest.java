@@ -144,6 +144,27 @@ class OrderUseCasesTest {
         assertEquals(OrderStatus.CANCELLED, cancelled.getStatus());
     }
     @Test
+    void shouldValidateCancellationBeforeCallingInventory() {
+        Order order = Order.create(UUID.randomUUID(), UUID.randomUUID(), List.of(
+                com.mercadoaurora.order.domain.OrderItem.create(
+                        UUID.randomUUID(), "Produto", "SKU", Map.of(), 1,
+                        new BigDecimal("20.00"), BigDecimal.ZERO, new BigDecimal("20.00")
+                )
+        ), Instant.now(clock));
+        order.reserveStock(List.of(UUID.randomUUID()), Instant.now(clock));
+        order.startPayment(Instant.now(clock));
+        order.markPaid(Instant.now(clock));
+        order.confirm(Instant.now(clock));
+        when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
+        CancelOrderUseCase useCase = new CancelOrderUseCase(repositoryPort, inventoryReservationPort, clock);
+
+        assertThrows(OrderConflictException.class,
+                () -> useCase.execute(new OrderActionCommand(order.getId())));
+
+        verify(inventoryReservationPort, never()).releaseReservations(any(Order.class));
+        verify(repositoryPort, never()).save(any(Order.class));
+    }
+    @Test
     void shouldValidateAggregateBeforeCallingInventory() {
         Instant now = Instant.now(clock);
         Order order = Order.create(UUID.randomUUID(), UUID.randomUUID(), List.of(
