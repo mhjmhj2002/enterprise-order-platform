@@ -11,10 +11,12 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - README evoluido para a Portfolio Edition v2.0, com resumo executivo, visao arquitetural, navegacao, execucao local, fluxo funcional, evidencias de qualidade, roadmap e documentacao categorizada.
 - Documentacao arquitetural da Sprint 1 alinhada as integracoes REST implementadas e aos Domain Events atuais do Order Service.
 - C4 deixou de ser placeholder e passou a representar os containers efetivamente implementados.
-- Revisao final da Sprint 1 registrada com resultado `CHANGES REQUIRED` enquanto o milestone e a Story #18 permanecerem abertos.
+- Revisao final de conteudo da Sprint 1 aprovada, aguardando apenas o merge do PR #28 e o fechamento administrativo do milestone.
 - Story #15 regularizada e encerrada administrativamente com o escopo implementado de integracao REST sincrona Order → Inventory.
 - Story #16 aprovada e encerrada com o Context Map alinhado a baseline implementada.
 - Story #17 aprovada e encerrada com os Service Boundaries alinhados ao C4, Context Map, endpoints e integracoes implementadas.
+- Story #18 aprovada e encerrada com a Architecture Overview consolidada como baseline da Sprint 1.
+- Issue #24 removida do milestone e mantida como backlog tecnico Medium nao bloqueante.
 
 ## [0.3.0] - 2026-07-10
 

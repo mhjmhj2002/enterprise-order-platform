@@ -189,6 +189,8 @@ Com esse marco, Catalog, Inventory e Order estao concluidos. O fechamento da Spr
 
 A revisao `DOC-SPRINT1-CLOSURE` confrontou README, historico, changelog, arquitetura, APIs, roadmap, playbooks e releases com a implementacao e o backlog oficial.
 
-Foram corrigidas divergencias na representacao das integracoes entre servicos, nos Domain Events de Order e no C4 da baseline. A Story #15 foi regularizada com o escopo efetivamente entregue de integracao REST Order → Inventory, a Story #16 foi aprovada com a atualizacao do Context Map e a Story #17 com a validacao dos Service Boundaries. A Sprint 1 nao foi encerrada porque a Story #18 permanece aberta. A ausencia de playbooks para Engineering Manager e Product Owner foi registrada como melhoria institucional nao bloqueante.
+Foram corrigidas divergencias na representacao das integracoes entre servicos, nos Domain Events de Order e no C4 da baseline. A Story #15 foi regularizada com o escopo efetivamente entregue de integracao REST Order → Inventory, a Story #16 foi aprovada com a atualizacao do Context Map, a Story #17 com a validacao dos Service Boundaries e a Story #18 com a consolidacao da Architecture Overview. A issue #24 foi replanejada como backlog tecnico Medium fora do milestone. A ausencia de playbooks para Engineering Manager e Product Owner foi registrada como melhoria institucional nao bloqueante.
+
+Com todas as Stories concluidas, o fechamento oficial da Sprint 1 ficou condicionado somente a aprovacao e ao merge do PR documental #28 e ao fechamento administrativo do milestone.
 
 O resultado detalhado esta registrado em [`docs/quality/SPRINT_1_DOCUMENTATION_REVIEW.md`](../quality/SPRINT_1_DOCUMENTATION_REVIEW.md).

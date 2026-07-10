@@ -35,11 +35,11 @@ A revisao abrangeu README, changelog, historico, arquitetura, ADRs, APIs, collec
 
 | Pendencia | Impacto | Correcao necessaria |
 | --- | --- | --- |
-| Milestone Sprint 1 aberto, com 2 issues abertas | Impede declarar a Sprint encerrada | Concluir ou replanejar formalmente #18; manter #24 como backlog nao bloqueante fora do fechamento |
+| PR #28 aguardando aprovacao e merge | Impede aplicar a baseline documental em `main` | Aprovar e integrar o PR; depois fechar o milestone Sprint 1 |
 | Playbook de Engineering Manager inexistente | Melhoria institucional nao bloqueante; nao pertence ao escopo funcional do milestone | Owner institucional deve fornecer ou aprovar o playbook baseline |
 | Playbook de Product Owner inexistente | Melhoria institucional nao bloqueante; o resumo legado foi removido na migracao para playbooks versionados | Owner institucional deve fornecer ou aprovar o playbook baseline |
 
-Os playbooks ausentes nao foram recriados, pois isso exigiria inventar responsabilidades normativas sem aprovacao do owner. A ausencia e real, nao apenas uma aprovacao formal pendente, mas foi reclassificada como melhoria de processo: nao impede o encerramento da Sprint 1 depois da conclusao ou do replanejamento formal da Story #18.
+Os playbooks ausentes nao foram recriados, pois isso exigiria inventar responsabilidades normativas sem aprovacao do owner. A ausencia e real, nao apenas uma aprovacao formal pendente, mas foi reclassificada como melhoria de processo e nao impede o encerramento da Sprint 1.
 
 A Story #15 foi regularizada e encerrada administrativamente depois que seu texto ambiguo foi alinhado ao escopo efetivamente entregue: integracao REST sincrona Order → Inventory, sem integracao runtime com Catalog.
 
@@ -47,8 +47,10 @@ A Story #16 foi aprovada e encerrada depois da validacao final do Context Map at
 
 A Story #17 foi aprovada e encerrada depois da validacao final dos Service Boundaries contra C4, Context Map, endpoints e integracoes implementadas.
 
+A Story #18 foi aprovada e encerrada depois da validacao final da Architecture Overview. A issue #24 foi removida do milestone e permanece aberta no backlog tecnico Medium, sem bloquear o fechamento.
+
 ## Resultado final
 
 **CHANGES REQUIRED**
 
-A Sprint 1 nao esta oficialmente encerrada. Uma nova validacao deve ocorrer depois que a Story #18 for concluida ou formalmente replanejada. A issue #24 e os playbooks institucionais ausentes nao bloqueiam esse encerramento.
+A revisao de conteudo esta aprovada e o milestone nao possui Stories abertas. O encerramento oficial depende apenas da aprovacao e do merge do PR #28, seguidos do fechamento administrativo do milestone. A issue #24 e os playbooks institucionais ausentes nao bloqueiam esse encerramento.
