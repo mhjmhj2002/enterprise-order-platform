@@ -10,4 +10,4 @@ Os documentos legados de papeis foram substituidos por estes playbooks versionad
 
 ## Pendencias institucionais
 
-Os playbooks de Engineering Manager e Product Owner ainda nao possuem baseline aprovada no repositorio. A lacuna esta registrada na [revisao documental da Sprint 1](../../quality/SPRINT_1_DOCUMENTATION_REVIEW.md) e impede considerar completa a matriz de papeis.
+Os playbooks de Engineering Manager e Product Owner ainda nao existem como baseline aprovada no repositorio. A lacuna esta registrada na [revisao documental da Sprint 1](../../quality/SPRINT_1_DOCUMENTATION_REVIEW.md) como melhoria institucional nao bloqueante.
