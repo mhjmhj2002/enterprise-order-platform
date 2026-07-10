@@ -147,3 +147,13 @@ Principais entregas:
 - Introducao de testes de dominio, aplicacao com mocks e integracao com Testcontainers.
 - Criacao da ADR-006 para registrar a decisao arquitetural do aggregate root de Order.
 
+## 2026-07-10 - Review da Story-009
+
+A revisao tecnica do PR da Story-009 ajustou a orquestracao de reserva de estoque antes da validacao funcional via Postman.
+
+Principais ajustes:
+
+- O agregado `Order` passou a ser validado antes das chamadas externas ao Inventory.
+- O adapter REST de Inventory passou a tentar liberar reservas ja criadas quando uma reserva posterior falha no mesmo pedido.
+- Foram adicionados testes para ordem de orquestracao, falha de integracao e reserva parcial.
+- O PR e a Story permaneceram em Review, sem merge e sem publicacao de release.

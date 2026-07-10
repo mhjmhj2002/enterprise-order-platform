@@ -71,6 +71,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Testes de integracao com Spring Boot Test + Testcontainers + PostgreSQL para fluxos de pedido.
 - ADR-006 formalizando `Order` como Aggregate Root no Order Service.
 - Nova collection Postman: `docs/api/postman/order-service.postman_collection.json`.
+- Ajuste pós-review da Story-009: validacao do agregado antes de chamadas ao Inventory, compensacao de reserva parcial e testes de erro de integracao.
 
 ### Changed
 

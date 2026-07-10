@@ -4,10 +4,12 @@ import com.mercadoaurora.order.application.command.CreateOrderItemInput;
 import com.mercadoaurora.order.application.command.OrderActionCommand;
 import com.mercadoaurora.order.application.command.ReserveOrderStockCommand;
 import com.mercadoaurora.order.application.exception.OrderConflictException;
+import com.mercadoaurora.order.application.exception.OrderIntegrationException;
 import com.mercadoaurora.order.application.exception.OrderNotFoundException;
 import com.mercadoaurora.order.application.port.out.InventoryReservationPort;
 import com.mercadoaurora.order.application.port.out.OrderRepositoryPort;
 import com.mercadoaurora.order.application.port.out.PaymentGatewayPort;
+import com.mercadoaurora.order.domain.DomainValidationException;
 import com.mercadoaurora.order.application.usecase.CancelOrderUseCase;
 import com.mercadoaurora.order.application.usecase.ConfirmOrderUseCase;
 import com.mercadoaurora.order.application.usecase.CreateOrderUseCase;
@@ -34,6 +36,8 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
@@ -133,6 +137,44 @@ class OrderUseCasesTest {
         CancelOrderUseCase useCase = new CancelOrderUseCase(repositoryPort, inventoryReservationPort, clock);
         Order cancelled = useCase.execute(new OrderActionCommand(order.getId()));
         assertEquals(OrderStatus.CANCELLED, cancelled.getStatus());
+    }
+    @Test
+    void shouldValidateAggregateBeforeCallingInventory() {
+        Instant now = Instant.now(clock);
+        Order order = Order.create(UUID.randomUUID(), UUID.randomUUID(), List.of(
+                com.mercadoaurora.order.domain.OrderItem.create(
+                        UUID.randomUUID(), "Produto", "SKU", Map.of(), 1,
+                        new BigDecimal("20.00"), BigDecimal.ZERO, new BigDecimal("20.00")
+                ),
+                com.mercadoaurora.order.domain.OrderItem.create(
+                        UUID.randomUUID(), "Produto 2", "SKU 2", Map.of(), 1,
+                        new BigDecimal("30.00"), BigDecimal.ZERO, new BigDecimal("30.00")
+                )
+        ), now);
+        when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
+        ReserveOrderStockUseCase useCase = new ReserveOrderStockUseCase(repositoryPort, inventoryReservationPort, clock);
+        assertThrows(DomainValidationException.class,
+                () -> useCase.execute(new ReserveOrderStockCommand(order.getId(), List.of(UUID.randomUUID()))));
+        verify(inventoryReservationPort, never()).reserveStock(any(Order.class), any());
+        verify(repositoryPort, never()).save(any(Order.class));
+    }
+    @Test
+    void shouldNotPersistOrderWhenInventoryReservationFails() {
+        Instant now = Instant.now(clock);
+        Order order = Order.create(UUID.randomUUID(), UUID.randomUUID(), List.of(
+                com.mercadoaurora.order.domain.OrderItem.create(
+                        UUID.randomUUID(), "Produto", "SKU", Map.of(), 1,
+                        new BigDecimal("20.00"), BigDecimal.ZERO, new BigDecimal("20.00")
+                )
+        ), now);
+        UUID reservationRef = UUID.randomUUID();
+        when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
+        doThrow(new OrderIntegrationException("Inventory integration failed"))
+                .when(inventoryReservationPort).reserveStock(order, List.of(reservationRef));
+        ReserveOrderStockUseCase useCase = new ReserveOrderStockUseCase(repositoryPort, inventoryReservationPort, clock);
+        assertThrows(OrderIntegrationException.class,
+                () -> useCase.execute(new ReserveOrderStockCommand(order.getId(), List.of(reservationRef))));
+        verify(repositoryPort, never()).save(any(Order.class));
     }
     private CreateOrderItemInput buildItemInput(int quantity) {
         return new CreateOrderItemInput(

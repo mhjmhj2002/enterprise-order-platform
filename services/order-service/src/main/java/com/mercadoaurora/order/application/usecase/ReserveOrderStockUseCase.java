@@ -30,8 +30,8 @@ public class ReserveOrderStockUseCase {
                 .orElseThrow(() -> new OrderNotFoundException(command.orderId()));
         Instant now = Instant.now(clock);
         try {
-            inventoryReservationPort.reserveStock(order, command.reservationRefs());
             order.reserveStock(command.reservationRefs(), now);
+            inventoryReservationPort.reserveStock(order, command.reservationRefs());
         } catch (DomainConflictException exception) {
             throw new OrderConflictException(exception.getMessage());
         }

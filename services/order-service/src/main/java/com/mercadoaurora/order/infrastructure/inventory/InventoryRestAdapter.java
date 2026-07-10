@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @Component
 public class InventoryRestAdapter implements InventoryReservationPort {
-    private final RestClient restClient;
+    private final InventoryHttpClient inventoryHttpClient;
     private final UUID defaultWarehouseId;
 
     public InventoryRestAdapter(
@@ -22,22 +22,33 @@ public class InventoryRestAdapter implements InventoryReservationPort {
             @Value("${order.integrations.inventory.base-url}") String inventoryBaseUrl,
             @Value("${order.integrations.inventory.default-warehouse-id}") UUID defaultWarehouseId
     ) {
-        this.restClient = restClientBuilder.baseUrl(inventoryBaseUrl).build();
+        this(new RestClientInventoryHttpClient(restClientBuilder.baseUrl(inventoryBaseUrl).build()), defaultWarehouseId);
+    }
+
+    InventoryRestAdapter(InventoryHttpClient inventoryHttpClient, UUID defaultWarehouseId) {
+        this.inventoryHttpClient = inventoryHttpClient;
         this.defaultWarehouseId = defaultWarehouseId;
     }
 
     @Override
     public void reserveStock(Order order, List<UUID> reservationRefs) {
         List<OrderItem> items = order.getItems();
+        int reservedItems = 0;
         for (int index = 0; index < items.size(); index++) {
             OrderItem item = items.get(index);
             UUID reservationRef = reservationRefs.get(index);
-            post(
-                    "/api/v1/inventory/{skuId}/{warehouseId}/reservations",
-                    new ReserveStockRequest(reservationRef, item.getQuantity()),
-                    item.getSkuId(),
-                    defaultWarehouseId
-            );
+            try {
+                post(
+                        "/api/v1/inventory/{skuId}/{warehouseId}/reservations",
+                        new ReserveStockRequest(reservationRef, item.getQuantity()),
+                        item.getSkuId(),
+                        defaultWarehouseId
+                );
+                reservedItems++;
+            } catch (OrderIntegrationException exception) {
+                releaseReservedItems(items, reservationRefs, reservedItems);
+                throw exception;
+            }
         }
     }
 
@@ -55,17 +66,51 @@ public class InventoryRestAdapter implements InventoryReservationPort {
         List<OrderItem> items = order.getItems();
         List<UUID> reservationRefs = order.getReservationRefs();
         for (int index = 0; index < reservationRefs.size(); index++) {
-            post(
-                    "/api/v1/inventory/{skuId}/{warehouseId}/reservations/{reservationId}/" + action,
-                    null,
-                    items.get(index).getSkuId(),
-                    defaultWarehouseId,
-                    reservationRefs.get(index)
-            );
+            applyReservationAction(items.get(index).getSkuId(), reservationRefs.get(index), action);
         }
     }
 
+    private void releaseReservedItems(List<OrderItem> items, List<UUID> reservationRefs, int reservedItems) {
+        for (int index = 0; index < reservedItems; index++) {
+            try {
+                applyReservationAction(items.get(index).getSkuId(), reservationRefs.get(index), "release");
+            } catch (OrderIntegrationException exception) {
+                // Keep the original reservation failure as the operation outcome.
+            }
+        }
+    }
+
+    private void applyReservationAction(UUID skuId, UUID reservationRef, String action) {
+        post(
+                "/api/v1/inventory/{skuId}/{warehouseId}/reservations/{reservationId}/" + action,
+                null,
+                skuId,
+                defaultWarehouseId,
+                reservationRef
+        );
+    }
+
     private void post(String path, Object body, Object... uriVariables) {
+        inventoryHttpClient.post(path, body, uriVariables);
+    }
+
+    private record ReserveStockRequest(UUID reservationId, Integer quantity) {
+    }
+}
+
+interface InventoryHttpClient {
+    void post(String path, Object body, Object... uriVariables);
+}
+
+class RestClientInventoryHttpClient implements InventoryHttpClient {
+    private final RestClient restClient;
+
+    RestClientInventoryHttpClient(RestClient restClient) {
+        this.restClient = restClient;
+    }
+
+    @Override
+    public void post(String path, Object body, Object... uriVariables) {
         try {
             RestClient.RequestBodySpec request = restClient.post().uri(path, uriVariables);
             if (body == null) {
@@ -76,8 +121,5 @@ public class InventoryRestAdapter implements InventoryReservationPort {
         } catch (RestClientException exception) {
             throw new OrderIntegrationException("Inventory integration failed");
         }
-    }
-
-    private record ReserveStockRequest(UUID reservationId, Integer quantity) {
     }
 }

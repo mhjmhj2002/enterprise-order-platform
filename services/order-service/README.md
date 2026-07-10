@@ -16,6 +16,7 @@ Servico responsavel pelo compromisso comercial do pedido no Mercado Aurora.
 - Inventory: REST sincrono via `INVENTORY_SERVICE_URL`.
 - Payment: porta de aplicacao com `PaymentFakeAdapter`, sem provedor externo real nesta sprint.
 - Domain Events ficam registrados no dominio para evolucao futura, mas nao sao publicados.
+- Reserva de estoque valida o agregado antes de chamar Inventory. Se uma reserva parcial falhar, o adapter tenta liberar as reservas ja criadas antes de propagar erro `502`.
 ## Endpoints principais
 - `POST /api/v1/orders`
 - `POST /api/v1/orders/{orderId}/reserve-stock`
