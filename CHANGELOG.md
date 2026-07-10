@@ -4,6 +4,12 @@ Todas as mudancas relevantes deste projeto serao documentadas neste arquivo.
 
 O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemVer.
 
+## [Unreleased]
+
+### Changed
+
+- README evoluido para a Portfolio Edition v2.0, com resumo executivo, visao arquitetural, navegacao, execucao local, fluxo funcional, evidencias de qualidade, roadmap e documentacao categorizada.
+
 ## [0.3.0] - 2026-07-10
 
 ### Added
