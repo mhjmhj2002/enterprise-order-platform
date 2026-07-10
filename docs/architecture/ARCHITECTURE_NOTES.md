@@ -294,10 +294,9 @@ Registrar exatamente a classificação discutida.
 2. `OrderItem` segue como entidade interna com snapshot comercial para congelar contexto do momento da compra.
 3. O fluxo de checkout desta sprint fica restrito ao ciclo `CREATED -> STOCK_RESERVED -> PAYMENT_PENDING -> PAID -> CONFIRMED` com cancelamento permitido apenas antes da confirmacao.
 4. Regras de negocio criticas (`nao confirmar sem pagamento`, `nao iniciar pagamento sem reserva`, `pedido cancelado nao muda estado`) permanecem exclusivamente no dominio.
-5. Eventos de dominio (`OrderCreated`, `PaymentStarted`, `OrderPaid`, `OrderConfirmed`, `OrderCancelled`) serao registrados em memoria como ponto de extensao para evolucao assíncrona futura.
+5. Eventos de dominio (`OrderCreated`, `StockReserved`, `StockReservationFailed`, `PaymentStarted`, `PaymentApproved`, `PaymentFailed`, `OrderConfirmed`, `OrderCancelled`) sao registrados em memoria, sem publicacao externa nesta sprint.
 
 ## Trade-offs observados
 
 - Guardar referencias de reserva no `Order` simplifica rastreabilidade entre Pedido e Inventory nesta sprint, com custo de acoplamento por identificadores.
 - Nao integrar Kafka agora reduz risco de escopo e mantém foco no modelo de dominio; a evolucao para eventos publicados fica postergada para sprint futura.
-

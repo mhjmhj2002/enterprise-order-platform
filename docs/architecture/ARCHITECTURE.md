@@ -50,7 +50,8 @@ Implementacao do contexto de Pedido com foco no compromisso comercial:
 - Invariantes de dominio encapsuladas no agregado: pedido com ao menos um item, total consistente, sem confirmacao sem pagamento e sem inicio de pagamento sem estoque reservado.
 - Casos de uso de criacao, reserva de estoque, inicio de pagamento, marcacao de pagamento, confirmacao, cancelamento e consultas.
 - Persistencia em PostgreSQL (JPA + Flyway) com tabelas proprietarias `orders` e `order_items`.
-- Registro de Domain Events (`OrderCreated`, `PaymentStarted`, `OrderPaid`, `OrderConfirmed`, `OrderCancelled`) mantendo o dominio pronto para evolucao orientada a eventos sem acoplamento com Kafka nesta sprint.
+- Registro em memoria de Domain Events (`OrderCreated`, `StockReserved`, `StockReservationFailed`, `PaymentStarted`, `PaymentApproved`, `PaymentFailed`, `OrderConfirmed`, `OrderCancelled`), sem publicacao externa nesta sprint.
+- Integracao REST sincrona exclusivamente com Inventory para reserva, commit e liberacao; nao existe integracao runtime entre Order e Catalog.
 
 ## Referencias
 

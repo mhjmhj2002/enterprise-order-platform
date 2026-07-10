@@ -18,11 +18,11 @@ Baseline (Sprint 1)
 
 ## Relacoes atuais (Sprint 1)
 
-1. Catalogo Comercial publica dados de produto/SKU para consulta dos demais contextos.
-2. Estoque & Reserva referencia SKU para disponibilidade e reserva transacional por warehouse.
-3. Pedido referencia dados de catalogo e disponibilidade sem copiar regras do Catalogo.
-4. Pagamento & Conciliacao nao depende de regras internas do Catalogo.
-5. Pedido evolui o compromisso comercial consumindo identificadores externos (SKU e referencias de reserva) sem absorver regras internas de Catalog e Inventory.
+1. Catalogo Comercial mantem produtos e SKUs, sem integracao runtime com os demais servicos nesta baseline.
+2. Estoque & Reserva recebe identificadores de SKU pela API e controla disponibilidade e reserva por warehouse, sem consultar o Catalog Service.
+3. Pedido recebe snapshots comerciais e identificadores de SKU na criacao, sem consultar o Catalog Service.
+4. Pedido integra-se ao Inventory Service por REST sincrono para reservar, confirmar e liberar estoque.
+5. Pagamento real nao esta implementado; o Order Service utiliza um `PaymentFakeAdapter` interno.
 
 ## Decisoes refletidas nos bootstraps de Sprint 1
 

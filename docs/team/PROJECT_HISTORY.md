@@ -183,4 +183,12 @@ Resultados do quality gate:
 
 O PR #20 foi destinado ao merge em `main` e a entrega foi consolidada na release `v0.3.0-order-service`. A issue #24 permanece aberta como backlog tecnico Medium, sem bloquear a Sprint 1, para complementar a evidencia de Correlation ID ponta a ponta.
 
-Com esse marco, Catalog, Inventory e Order estao concluidos na Sprint 1. O proximo ciclo inicia a arquitetura da Story-010, dedicada ao Payment Service.
+Com esse marco, Catalog, Inventory e Order estao concluidos. O fechamento da Sprint 1 permanece condicionado as Stories #15 a #18 e a validacao documental final; nenhuma atividade da Sprint 2 foi iniciada.
+
+## 2026-07-10 - Revisao documental final da Sprint 1
+
+A revisao `DOC-SPRINT1-CLOSURE` confrontou README, historico, changelog, arquitetura, APIs, roadmap, playbooks e releases com a implementacao e o backlog oficial.
+
+Foram corrigidas divergencias na representacao das integracoes entre servicos, nos Domain Events de Order e no C4 da baseline. A Sprint 1 nao foi encerrada: o milestone ainda possui Stories abertas (#15 a #18) e a documentacao institucional nao possui playbooks para Engineering Manager e Product Owner.
+
+O resultado detalhado esta registrado em [`docs/quality/SPRINT_1_DOCUMENTATION_REVIEW.md`](../quality/SPRINT_1_DOCUMENTATION_REVIEW.md).
