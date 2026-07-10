@@ -169,3 +169,18 @@ Principais ajustes:
 - A ordem de orquestracao passou a validar o agregado antes de pagamento e commit de reservas.
 - O correlation ID passou a ser devolvido ao cliente e propagado do Order para o Inventory.
 - JSON malformado e UUID invalido passaram a retornar respostas `400` sanitizadas.
+
+## 2026-07-10 - Encerramento da Story-009
+
+A Story-009 concluiu o ciclo de desenvolvimento do Order Service apos aprovacao tecnica e validacao funcional do Quality Engineer.
+
+Resultados do quality gate:
+
+- 34 requests executadas;
+- 109 assertions aprovadas;
+- nenhuma falha;
+- smoke, happy path, cenarios negativos e regressao aprovados.
+
+O PR #20 foi destinado ao merge em `main` e a entrega foi consolidada na release `v0.3.0-order-service`. A issue #24 permanece aberta como backlog tecnico Medium, sem bloquear a Sprint 1, para complementar a evidencia de Correlation ID ponta a ponta.
+
+Com esse marco, Catalog, Inventory e Order estao concluidos na Sprint 1. O proximo ciclo inicia a arquitetura da Story-010, dedicada ao Payment Service.
