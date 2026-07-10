@@ -5,12 +5,20 @@ Servico responsavel pelo compromisso comercial do pedido no Mercado Aurora.
 - Registrar reservas de estoque associadas ao pedido.
 - Controlar fluxo de pagamento (`NOT_STARTED -> PENDING -> PAID`).
 - Confirmar ou cancelar pedido respeitando invariantes de dominio.
+- Orquestrar chamadas REST sincronas para Inventory nas etapas de reserva, commit e liberacao.
 - Expor API REST em `/api/v1/orders` e `/api/v1/customers/{customerId}/orders`.
 ## Fora da fronteira
 - Catalogo de produto/SKU.
 - Controle de estoque fisico e reservas de inventario.
 - Captura financeira real e conciliacao.
 - Mensageria/Kafka nesta sprint.
+## Integracoes Sprint 1
+- Inventory: REST sincrono via `INVENTORY_SERVICE_URL`.
+- Payment: porta de aplicacao com `PaymentFakeAdapter`, sem provedor externo real nesta sprint.
+- PaymentFake aprova por padrao. `PAYMENT_FAKE_FAIL=true` altera o processo inteiro; o header `X-Payment-Fake-Outcome: FAILED` simula falha somente na requisicao atual, sem restart. Em ambos os casos, a falha libera as reservas e cancela o pedido.
+- Domain Events ficam registrados no dominio para evolucao futura, mas nao sao publicados.
+- Reserva de estoque valida o agregado antes de chamar Inventory. Se uma reserva parcial falhar, o adapter tenta liberar as reservas ja criadas antes de propagar erro `502`.
+- `X-Correlation-Id` recebido pelo Order e devolvido na resposta e propagado nas chamadas REST ao Inventory.
 ## Endpoints principais
 - `POST /api/v1/orders`
 - `POST /api/v1/orders/{orderId}/reserve-stock`
@@ -20,6 +28,9 @@ Servico responsavel pelo compromisso comercial do pedido no Mercado Aurora.
 - `POST /api/v1/orders/{orderId}/cancel`
 - `GET /api/v1/orders/{orderId}`
 - `GET /api/v1/customers/{customerId}/orders`
+- `GET /actuator/health`
+
+Erros previsiveis de entrada, incluindo JSON malformado e UUID invalido, retornam `400` com resposta sanitizada. Falha configurada do PaymentFake retorna `503`.
 ## Execucao local
 ```bash
 mvn spring-boot:run
@@ -29,3 +40,6 @@ Variaveis principais:
 - `ORDER_DB_USERNAME` (default `order`)
 - `ORDER_DB_PASSWORD` (default `order`)
 - `SERVER_PORT` (default `8083`)
+- `INVENTORY_SERVICE_URL` (default `http://localhost:8082`)
+- `ORDER_DEFAULT_WAREHOUSE_ID` (default `00000000-0000-0000-0000-000000000001`)
+- `PAYMENT_FAKE_FAIL` (default `false`)

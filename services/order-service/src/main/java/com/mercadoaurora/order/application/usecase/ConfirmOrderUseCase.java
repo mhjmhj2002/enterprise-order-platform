@@ -2,6 +2,7 @@ package com.mercadoaurora.order.application.usecase;
 import com.mercadoaurora.order.application.command.OrderActionCommand;
 import com.mercadoaurora.order.application.exception.OrderConflictException;
 import com.mercadoaurora.order.application.exception.OrderNotFoundException;
+import com.mercadoaurora.order.application.port.out.InventoryReservationPort;
 import com.mercadoaurora.order.application.port.out.OrderRepositoryPort;
 import com.mercadoaurora.order.domain.DomainConflictException;
 import com.mercadoaurora.order.domain.Order;
@@ -12,9 +13,15 @@ import java.time.Instant;
 @Service
 public class ConfirmOrderUseCase {
     private final OrderRepositoryPort repositoryPort;
+    private final InventoryReservationPort inventoryReservationPort;
     private final Clock clock;
-    public ConfirmOrderUseCase(OrderRepositoryPort repositoryPort, Clock clock) {
+    public ConfirmOrderUseCase(
+            OrderRepositoryPort repositoryPort,
+            InventoryReservationPort inventoryReservationPort,
+            Clock clock
+    ) {
         this.repositoryPort = repositoryPort;
+        this.inventoryReservationPort = inventoryReservationPort;
         this.clock = clock;
     }
     @Transactional
@@ -24,6 +31,7 @@ public class ConfirmOrderUseCase {
         Instant now = Instant.now(clock);
         try {
             order.confirm(now);
+            inventoryReservationPort.commitReservations(order);
         } catch (DomainConflictException exception) {
             throw new OrderConflictException(exception.getMessage());
         }

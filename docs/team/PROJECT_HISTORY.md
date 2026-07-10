@@ -147,3 +147,40 @@ Principais entregas:
 - Introducao de testes de dominio, aplicacao com mocks e integracao com Testcontainers.
 - Criacao da ADR-006 para registrar a decisao arquitetural do aggregate root de Order.
 
+## 2026-07-10 - Review da Story-009
+
+A revisao tecnica do PR da Story-009 ajustou a orquestracao de reserva de estoque antes da validacao funcional via Postman.
+
+Principais ajustes:
+
+- O agregado `Order` passou a ser validado antes das chamadas externas ao Inventory.
+- O adapter REST de Inventory passou a tentar liberar reservas ja criadas quando uma reserva posterior falha no mesmo pedido.
+- Foram adicionados testes para ordem de orquestracao, falha de integracao e reserva parcial.
+- O PR e a Story permaneceram em Review, sem merge e sem publicacao de release.
+
+## 2026-07-10 - Correcoes de QE da Story-009
+
+A validacao de qualidade identificou lacunas de observabilidade, compensacao de pagamento e tratamento de entradas invalidas.
+
+Principais ajustes:
+
+- Order e Inventory passaram a expor health check pelo Spring Boot Actuator.
+- O PaymentFake ganhou modo de falha configuravel, com liberacao best-effort do estoque e cancelamento persistido do pedido.
+- A ordem de orquestracao passou a validar o agregado antes de pagamento e commit de reservas.
+- O correlation ID passou a ser devolvido ao cliente e propagado do Order para o Inventory.
+- JSON malformado e UUID invalido passaram a retornar respostas `400` sanitizadas.
+
+## 2026-07-10 - Encerramento da Story-009
+
+A Story-009 concluiu o ciclo de desenvolvimento do Order Service apos aprovacao tecnica e validacao funcional do Quality Engineer.
+
+Resultados do quality gate:
+
+- 34 requests executadas;
+- 109 assertions aprovadas;
+- nenhuma falha;
+- smoke, happy path, cenarios negativos e regressao aprovados.
+
+O PR #20 foi destinado ao merge em `main` e a entrega foi consolidada na release `v0.3.0-order-service`. A issue #24 permanece aberta como backlog tecnico Medium, sem bloquear a Sprint 1, para complementar a evidencia de Correlation ID ponta a ponta.
+
+Com esse marco, Catalog, Inventory e Order estao concluidos na Sprint 1. O proximo ciclo inicia a arquitetura da Story-010, dedicada ao Payment Service.

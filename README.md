@@ -65,7 +65,7 @@ mvn test
 
 ### Order Service
 
-`services/order-service` foi bootstrapado na Story-009 com:
+`services/order-service` foi concluido na Story-009 e publicado na release `v0.3.0-order-service`, com:
 
 - Spring Boot + Maven + PostgreSQL + Flyway.
 - DDD com `Order` (aggregate root) e `OrderItem` (entidade interna).
@@ -73,6 +73,8 @@ mvn test
 - Endpoints REST em `/api/v1/orders` e `/api/v1/customers/{customerId}/orders`.
 - Fluxo de pedido com estados `CREATED -> STOCK_RESERVED -> PAYMENT_PENDING -> PAID -> CONFIRMED` e cancelamento controlado.
 - Testes de dominio, aplicacao (mocks) e integracao (Testcontainers).
+- Validacao funcional do Quality Engineer: 34 requests, 109 assertions e nenhuma falha.
+- Backlog nao bloqueante para evidencia ponta a ponta de Correlation ID na issue #24.
 
 Comando rapido:
 
@@ -100,6 +102,7 @@ mvn test
 - [Business Discovery](docs/business/BUSINESS_DISCOVERY.md)
 - [Domain Glossary](docs/business/GLOSSARY.md)
 - [Business Flow](docs/business/BUSINESS_FLOW.md)
+- [Playbooks de papeis](docs/team/roles/README.md)
 
 ### Roadmap
 
@@ -109,6 +112,8 @@ mvn test
 
 Sprint 0 - Fundacao arquitetural (encerrada).
 Sprint 1 - Primeiros Microsservicos (em andamento).
+
+Concluidas na Sprint 1: Story-007 (Catalog), Story-008 (Inventory) e Story-009 (Order).
 
 ## Gestao do Projeto
 

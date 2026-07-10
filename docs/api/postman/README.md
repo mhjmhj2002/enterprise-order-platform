@@ -35,16 +35,20 @@ Arquivo: `inventory-service.postman_collection.json`
 
 Arquivo: `order-service.postman_collection.json`
 
+Environment sanitizado da Story-009: `story-009-local.postman_environment.json`
+
 ### Como usar
 
-1. Importe a collection no Postman.
-2. Garanta o `baseUrl` apontando para o servico local (default: `http://localhost:8083`).
-3. Execute na ordem: `Create Order` -> `Reserve Order Stock` -> `Start Payment` -> `Mark Paid` -> `Confirm Order`.
+1. Importe a collection e o environment no Postman.
+2. Inicie Inventory em `8082` e Order em `8083` ou ajuste as URLs.
+3. Execute as pastas numeradas de `00 - Health Checks` a `12 - Cleanup`.
+
+A collection cria pedidos independentes para happy path, falha de pagamento e validacao de estados. O cenario de falha usa `X-Payment-Fake-Outcome: FAILED` somente no request correspondente, portanto a bateria completa pode ser executada sem reiniciar o Order Service.
 
 ### Variaveis
 
-- `baseUrl`: URL base da API.
-- `customerId`: cliente alvo para criacao/listagem.
-- `orderId`: preenchida automaticamente no teste de criacao de pedido.
-- `reservationRef`: referencia de reserva para vinculo com Inventory.
-
+- `orderBaseUrl`, `inventoryBaseUrl`, `catalogBaseUrl`: URLs dos servicos.
+- `customerId`, `skuId`, `skuId2`: massa gerada automaticamente.
+- `orderId`: preenchido automaticamente na criacao do pedido.
+- `reservationId`, `reservationId2`: referencias geradas automaticamente.
+- `warehouseId`, `quantity`, `correlationId`: contexto da execucao.

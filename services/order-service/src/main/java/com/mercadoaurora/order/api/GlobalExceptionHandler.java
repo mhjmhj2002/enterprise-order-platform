@@ -1,11 +1,14 @@
 package com.mercadoaurora.order.api;
 import com.mercadoaurora.order.api.dto.ApiErrorResponse;
 import com.mercadoaurora.order.application.exception.OrderConflictException;
+import com.mercadoaurora.order.application.exception.OrderIntegrationException;
 import com.mercadoaurora.order.application.exception.OrderNotFoundException;
+import com.mercadoaurora.order.application.exception.PaymentProcessingException;
 import com.mercadoaurora.order.domain.DomainValidationException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,9 +26,32 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiErrorResponse> handleConflict(OrderConflictException exception, HttpServletRequest request) {
         return buildErrorResponse(HttpStatus.CONFLICT, "ORDER_CONFLICT", exception.getMessage(), request);
     }
+    @ExceptionHandler(OrderIntegrationException.class)
+    public ResponseEntity<ApiErrorResponse> handleIntegration(OrderIntegrationException exception, HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.BAD_GATEWAY, "ORDER_INTEGRATION_ERROR", exception.getMessage(), request);
+    }
+    @ExceptionHandler(PaymentProcessingException.class)
+    public ResponseEntity<ApiErrorResponse> handlePayment(PaymentProcessingException exception, HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.SERVICE_UNAVAILABLE, "PAYMENT_UNAVAILABLE", exception.getMessage(), request);
+    }
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ApiErrorResponse> handleMalformedJson(HttpMessageNotReadableException exception, HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, "INVALID_REQUEST", "Malformed JSON request", request);
+    }
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public ResponseEntity<ApiErrorResponse> handleTypeMismatch(
+            MethodArgumentTypeMismatchException exception,
+            HttpServletRequest request
+    ) {
+        return buildErrorResponse(
+                HttpStatus.BAD_REQUEST,
+                "VALIDATION_ERROR",
+                "Invalid path parameter: " + exception.getName(),
+                request
+        );
+    }
     @ExceptionHandler({
             DomainValidationException.class,
-            MethodArgumentTypeMismatchException.class,
             IllegalArgumentException.class
     })
     public ResponseEntity<ApiErrorResponse> handleValidation(RuntimeException exception, HttpServletRequest request) {

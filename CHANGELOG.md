@@ -4,6 +4,22 @@ Todas as mudancas relevantes deste projeto serao documentadas neste arquivo.
 
 O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemVer.
 
+## [0.3.0] - 2026-07-10
+
+### Added
+
+- Bootstrap completo do Order Service com arquitetura hexagonal, persistencia PostgreSQL e migracoes Flyway.
+- Integracao REST sincrona com o Inventory Service para reserva, confirmacao e compensacao de estoque.
+- `PaymentFakeAdapter` configuravel para os fluxos de aprovacao e falha de pagamento.
+- Casos de uso do ciclo de vida de pedidos e ADR-006 para o aggregate root `Order`.
+- Testes unitarios, de integracao e validacao funcional com 34 requests e 109 assertions aprovadas.
+- Collection Postman autocontida para smoke, happy path, cenarios negativos e regressao.
+
+### Changed
+
+- Tratamento de JSON malformado e UUID invalido com respostas `400` sanitizadas.
+- Propagacao de Correlation ID entre Order e Inventory; a evidencia ponta a ponta permanece no backlog tecnico da issue #24.
+
 ## [0.1.0] - Em desenvolvimento
 
 ### Added
@@ -71,6 +87,9 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Testes de integracao com Spring Boot Test + Testcontainers + PostgreSQL para fluxos de pedido.
 - ADR-006 formalizando `Order` como Aggregate Root no Order Service.
 - Nova collection Postman: `docs/api/postman/order-service.postman_collection.json`.
+- Ajuste pós-review da Story-009: validacao do agregado antes de chamadas ao Inventory, compensacao de reserva parcial e testes de erro de integracao.
+- Correcoes de QE da Story-009: health checks, PaymentFake configuravel com compensacao, correlation ID e erros `400` sanitizados para JSON/UUID invalidos.
+- Collection da Story-009 isolada por cenario, com override de falha do PaymentFake por requisicao e sem necessidade de restart entre happy path e compensacao.
 
 ### Changed
 

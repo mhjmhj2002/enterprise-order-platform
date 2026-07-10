@@ -3,9 +3,12 @@ import com.mercadoaurora.order.api.dto.CreateOrderItemRequest;
 import com.mercadoaurora.order.api.dto.CreateOrderRequest;
 import com.mercadoaurora.order.api.dto.OrderResponse;
 import com.mercadoaurora.order.api.dto.ReserveOrderStockRequest;
+import com.mercadoaurora.order.application.port.out.InventoryReservationPort;
+import com.mercadoaurora.order.application.port.out.PaymentGatewayPort;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
@@ -39,6 +42,10 @@ class OrderIntegrationTest {
     int port;
     @Autowired
     TestRestTemplate restTemplate;
+    @MockBean
+    InventoryReservationPort inventoryReservationPort;
+    @MockBean
+    PaymentGatewayPort paymentGatewayPort;
     @Test
     void shouldCreateGetAndListOrderByCustomer() {
         UUID customerId = UUID.randomUUID();

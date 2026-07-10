@@ -45,6 +45,13 @@ class OrderDomainTest {
         Order order = Order.create(UUID.randomUUID(), UUID.randomUUID(), List.of(buildItem(3), buildItem(1)), Instant.now());
         assertEquals(0, new BigDecimal("40.00").compareTo(order.getTotalAmount()));
     }
+    @Test
+    void shouldRequireReservationReferenceForEachItem() {
+        Order order = Order.create(UUID.randomUUID(), UUID.randomUUID(), List.of(buildItem(1), buildItem(1)), Instant.now());
+        DomainValidationException exception = assertThrows(DomainValidationException.class,
+                () -> order.reserveStock(List.of(UUID.randomUUID()), Instant.now()));
+        assertEquals("reservationRefs must match order items", exception.getMessage());
+    }
     private OrderItem buildItem(int quantity) {
         BigDecimal unitPrice = new BigDecimal("10.00");
         BigDecimal discount = BigDecimal.ZERO;
