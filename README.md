@@ -181,13 +181,16 @@ Na validação da Story-009, o quality gate registrou 34 requests, 109 assertion
 | ✅ | Inventory Service |
 | ✅ | Order Service e PaymentFakeAdapter |
 | 🗓️ | Payment, Fulfillment e Notification Services |
-| 🗓️ | Arquitetura orientada a eventos com Kafka e Saga Pattern |
+| 🗓️ | Sprint 2: evolução incremental para eventos com Kafka (`OrderConfirmed` v1); REST permanece suportado |
+| 🗓️ | Saga Pattern, após validação do primeiro fluxo assíncrono |
 | 🗓️ | Resiliência, observabilidade e rastreamento distribuído |
 | 🗓️ | Autenticação, autorização e API Gateway |
 | 🗓️ | Ambiente completo com Docker Compose |
 | 🗓️ | CI/CD e implantação em Kubernetes |
 
 Consulte o [roadmap detalhado](docs/roadmap/Roadmap_Estudos_Portfolio_Java_TechLead_v2.md) para o plano de evolução.
+
+O planejamento aprovado da Sprint 2 e as convenções institucionais estão no [Sprint 2 Product Plan](docs/team/sprints/SPRINT_2_PRODUCT_PLAN.md) e no [Event Catalog](docs/architecture/events/EVENT_CATALOG.md). Kafka ainda não está implementado.
 
 ## Releases
 

@@ -2,7 +2,7 @@
 
 ## Status
 
-Baseline (Sprint 1)
+Baseline implementada (Sprint 1) com evolucao planejada para Sprint 2.
 
 ## Bounded Contexts mapeados
 
@@ -23,6 +23,15 @@ Baseline (Sprint 1)
 3. Pedido recebe snapshots comerciais e identificadores de SKU na criacao, sem consultar o Catalog Service.
 4. Pedido integra-se ao Inventory Service por REST sincrono para reservar, confirmar e liberar estoque.
 5. Pagamento real nao esta implementado; o Order Service utiliza um `PaymentFakeAdapter` interno.
+
+## Comunicacao assincrona planejada (Sprint 2)
+
+- Order continuara sendo o owner do fato `OrderConfirmed` v1 e o producer planejado desse evento.
+- Inventory sera o consumidor inicial planejado por meio de Kafka, sem assumir nova regra de reserva ou baixa de estoque.
+- A comunicacao assincrona complementa, e nao substitui, as chamadas REST ja existentes entre Order e Inventory.
+- Catalog, Payment Service, Gateway e Saga nao entram nessa evolucao.
+
+O contrato planejado esta definido no [Event Catalog](events/EVENT_CATALOG.md). Nenhum producer, consumer ou broker Kafka esta implementado nesta baseline.
 
 ## Decisoes refletidas nos bootstraps de Sprint 1
 
