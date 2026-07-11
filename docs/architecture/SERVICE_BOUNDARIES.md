@@ -39,9 +39,9 @@ Baseline (Sprint 1)
 - Preco e promocoes.
 - Orquestracao de pedido, pagamento e saga.
 
-### Dependencia de Catalog
+### Integracoes
 
-- Consome identificadores de SKU do Catalog Service.
+- Nao possui integracao runtime com Catalog; recebe `skuId` pela propria API.
 
 ### Dados proprietarios
 
@@ -66,12 +66,12 @@ Baseline (Sprint 1)
 
 ### Dependencias
 
-- Consulta Catalog Service para dados comerciais.
-- Consulta Inventory Service para disponibilidade.
+- Integra-se ao Inventory Service por REST sincrono para reserva, commit e liberacao.
+- Recebe snapshots comerciais na criacao do pedido; nao consulta o Catalog Service nesta baseline.
+- Usa `PaymentFakeAdapter` interno, sem Payment Service externo.
 
 ### Dados proprietarios
 
 - Tabela `orders`.
 - Tabela `order_items`.
 - Constraints de consistencia para status, payment status e totais monetarios nao negativos.
-

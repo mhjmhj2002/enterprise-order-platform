@@ -143,7 +143,7 @@ Inventory Service
 
 Order Service
 
-Payment Service (under development)
+Payment Service (future)
 
 Notification Service (future)
 
