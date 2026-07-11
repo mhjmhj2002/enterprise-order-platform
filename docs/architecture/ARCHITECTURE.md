@@ -11,6 +11,16 @@ Este documento consolida a visao geral da arquitetura do projeto.
 - Inventory Service bootstrapado com dominio transacional e arquitetura hexagonal.
 - Order Service bootstrapado como contexto integrador de compromisso comercial.
 
+## Evolucao planejada (Sprint 2)
+
+A Sprint 2 inicia a evolucao incremental para arquitetura orientada a eventos. A plataforma permanecera hibrida: as integracoes REST existentes continuam suportadas e Kafka sera introduzido somente para o fluxo assincrono planejado de `OrderConfirmed` v1 entre Order e Inventory.
+
+Esta secao descreve planejamento aprovado, nao componentes ja implementados. Nao ha migracao integral de REST, Payment Service, Saga distribuida, API Gateway ou novos servicos no escopo da Sprint 2.
+
+O primeiro fluxo planejado publica o fato de dominio de que um pedido foi confirmado depois das regras vigentes de pagamento aprovado e estoque reservado. Inventory sera o consumidor inicial. O resultado verificavel do consumo sera refinado com Engenharia sem criar ou repetir regra de estoque.
+
+As convencoes e o contrato institucional estao em [Event Catalog](events/EVENT_CATALOG.md), [convencoes de eventos](events/EVENT_CONVENTIONS.md) e [ADR-007](ADR/ADR-007-incremental-event-driven-architecture.md).
+
 ## Catalog Service (Story-007)
 
 Implementacao de referencia para os proximos microsservicos com camadas:

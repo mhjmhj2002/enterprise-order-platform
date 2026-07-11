@@ -194,3 +194,15 @@ Foram corrigidas divergencias na representacao das integracoes entre servicos, n
 Com todas as Stories concluidas, o fechamento oficial da Sprint 1 ficou condicionado somente a aprovacao e ao merge do PR documental #28 e ao fechamento administrativo do milestone.
 
 O resultado detalhado esta registrado em [`docs/quality/SPRINT_1_DOCUMENTATION_REVIEW.md`](../quality/SPRINT_1_DOCUMENTATION_REVIEW.md).
+
+## 2026-07-11 - Encerramento oficial da Sprint 1
+
+A Sprint 1 foi encerrada operacionalmente após o merge do PR #28, o fechamento do milestone e a consolidação dos cartões das Stories em Done no Project Board.
+
+A release `v0.3.0-order-service` permanece como marco oficial da Sprint. A baseline arquitetural consolidada contém Catalog, Inventory e Order, com integração REST síncrona de Order para Inventory. A issue #24 foi preservada no backlog técnico, fora do milestone, como item Medium não bloqueante.
+
+## 2026-07-11 - Abertura documental da Sprint 2
+
+O Product Planning aprovado para a Sprint 2 estabeleceu a evolução incremental para Event-Driven Architecture. A plataforma continuará híbrida: REST permanece suportado e Kafka é planejado apenas para o fluxo `OrderConfirmed` v1 entre Order e Inventory.
+
+Foram institucionalizados o Event Catalog, as convenções de eventos e tópicos e a ADR-007. Nenhum producer, consumer, broker Kafka ou novo serviço foi implementado nesta abertura de Sprint. Payment Service, Saga, Gateway e migração integral de REST permanecem fora de escopo.

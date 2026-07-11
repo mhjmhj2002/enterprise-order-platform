@@ -17,6 +17,14 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Story #17 aprovada e encerrada com os Service Boundaries alinhados ao C4, Context Map, endpoints e integracoes implementadas.
 - Story #18 aprovada e encerrada com a Architecture Overview consolidada como baseline da Sprint 1.
 - Issue #24 removida do milestone e mantida como backlog tecnico Medium nao bloqueante.
+- Sprint 1 encerrada operacionalmente após merge do PR #28 e fechamento do milestone.
+- Baseline documental da Sprint 2 adicionada para a evolução incremental a eventos, sem implementação de Kafka ou novos serviços.
+
+### Added
+
+- Event Catalog institucional com `OrderConfirmed` v1, ownership, tópico planejado e payload mínimo de negócio.
+- Convenções institucionais de nomenclatura, versionamento, ownership, rastreabilidade e duplicidade de eventos.
+- ADR-007 para registrar a adoção incremental de Event-Driven Architecture na Sprint 2.
 
 ## [0.3.0] - 2026-07-10
 

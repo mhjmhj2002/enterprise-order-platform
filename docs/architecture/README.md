@@ -8,4 +8,5 @@ Documentacao de arquitetura do projeto, incluindo visao geral, limites de domini
 - [Engineering Handbook](ENGINEERING_HANDBOOK.md)
 - [Context Map](CONTEXT_MAP.md)
 - [Service Boundaries](SERVICE_BOUNDARIES.md)
+- [Event-Driven Architecture — Sprint 2](events/README.md)
 - [ADRs](ADR)
