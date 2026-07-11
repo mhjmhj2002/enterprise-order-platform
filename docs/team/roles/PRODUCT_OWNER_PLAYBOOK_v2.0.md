@@ -234,6 +234,16 @@ The PO initiates the Sprint but does not authorize implementation.
 
 ---
 
+# After Materializing the Backlog
+
+After materializing the backlog, the Product Owner must:
+
+- verify the existing official labels before applying them to backlog items;
+- never create new labels without Engineering Manager approval;
+- use an approved fallback when the required taxonomy does not yet exist, as done in the current workflow.
+
+---
+
 # Quality Checklist
 
 Before requesting EM approval verify:
