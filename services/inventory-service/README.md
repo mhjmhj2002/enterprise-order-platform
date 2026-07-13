@@ -45,6 +45,10 @@ Variaveis opcionais:
 - `INVENTORY_DB_USERNAME` (default `inventory`)
 - `INVENTORY_DB_PASSWORD` (default `inventory`)
 - `SERVER_PORT` (default `8082`)
+- `KAFKA_BOOTSTRAP_SERVERS` (profile Spring e Maven `kafka`; default `localhost:9094`)
+- `KAFKA_CONSUMER_GROUP_ID` (profile `kafka`; default `mercadoaurora.inventory.v1`)
+
+O profile `kafka` prepara somente configuracao e health check nesta Story. Nenhum consumer e iniciado.
 
 ## Como testar
 
