@@ -219,3 +219,9 @@ com o Event Catalog e com o plano de produto. Permanecem válidos o único event
 `OrderConfirmed` v1, a coexistência com REST e a vedação de novas regras de
 estoque, tópicos ou eventos. Esta sincronização não altera decisões
 arquiteturais nem autoriza implementação além das Stories refinadas.
+
+## 2026-07-13 - Institucionalização do Engineering Workflow
+
+O projeto consolidou `docs/team/ENGINEERING_WORKFLOW.md` como fonte oficial de governança da engenharia. O documento formaliza o fluxo entre Program Director, AI Engineering Orchestrator, Product Owner, Engineering Manager, Technical Writer, Technical Lead, Software Engineer e Quality Engineer.
+
+Os handoffs, authority matrix, Architecture Gates, Technical Contracts, Quality Gates, workflow de Pull Requests e releases passaram a ter uma referência institucional única. Os playbooks de papel foram atualizados como especializações do Workflow; em caso de conflito, o Workflow Institucional prevalece.

@@ -12,6 +12,14 @@ Following this Playbook is mandatory.
 
 ---
 
+# Engineering Workflow
+
+This playbook specializes the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), the official source for governance, handoffs and authority. In case of conflict, the Engineering Workflow prevails.
+
+Implementation may begin only after the applicable Architecture Gate and Technical Contract have been approved.
+
+---
+
 # Golden Rules
 
 1. Never commit directly to `main`.

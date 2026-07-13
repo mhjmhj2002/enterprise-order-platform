@@ -1,5 +1,7 @@
 # Workflow
 
+> **Status:** Complementary. The official governance source is [Engineering Workflow](ENGINEERING_WORKFLOW.md). In case of conflict, the Engineering Workflow prevails.
+
 ## Definition of Ready
 
 A Story so pode entrar em desenvolvimento quando:

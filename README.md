@@ -173,6 +173,10 @@ Na validação da Story-009, o quality gate registrou 34 requests, 109 assertion
 | Governança | [Team Charter](docs/team/TEAM_CHARTER.md) · [Workflow](docs/team/WORKFLOW.md) · [Playbooks](docs/team/roles/README.md) |
 | Histórico | [Project History](docs/team/PROJECT_HISTORY.md) · [Changelog](CHANGELOG.md) · [Release notes](docs/releases) |
 
+## Governança
+
+O [Engineering Workflow](docs/team/ENGINEERING_WORKFLOW.md) é a fonte institucional de verdade para governança, handoffs, authority matrix, gates de arquitetura e qualidade, pull requests, releases e encerramento de Sprint. Os playbooks de cada papel são especializações desse fluxo.
+
 ## Roadmap
 
 | Estado | Evolução |
