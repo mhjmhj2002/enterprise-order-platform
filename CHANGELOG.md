@@ -8,6 +8,8 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Changed
 
+- Sprint 2 sincronizada com o backlog refinado: #30, #31, #32, #33, #34, #35 e #37 agora estão rastreáveis no Product Plan, com dependências oficiais preservadas.
+- Project History e relatório documental da Sprint 2 atualizados para registrar a aprovação do Event Platform Technical Contract e sua consistência com o Event Catalog.
 - README evoluido para a Portfolio Edition v2.0, com resumo executivo, visao arquitetural, navegacao, execucao local, fluxo funcional, evidencias de qualidade, roadmap e documentacao categorizada.
 - Documentacao arquitetural da Sprint 1 alinhada as integracoes REST implementadas e aos Domain Events atuais do Order Service.
 - C4 deixou de ser placeholder e passou a representar os containers efetivamente implementados.

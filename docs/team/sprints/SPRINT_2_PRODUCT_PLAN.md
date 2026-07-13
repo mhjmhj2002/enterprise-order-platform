@@ -1,6 +1,6 @@
 # Sprint 2 — Product Plan: Event-Driven Architecture
 
-**Status:** APPROVED — pronto para encaminhamento ao Technical Writer
+**Status:** APPROVED — backlog refinado e sincronizado em 2026-07-13
 
 **Responsavel pela proposta:** Product Owner
 
@@ -148,7 +148,7 @@ Os itens da secao "Fora de escopo" nao compoem compromisso desta Sprint.
 As Stories abaixo sao uma proposta de backlog; nao representam issues aprovadas
 nem autorizacao para inicio de implementacao.
 
-### Story A — Ambiente local para demonstracao de eventos
+### Story A — Ambiente local para demonstracao de eventos ([#37 — Story-020](https://github.com/mhjmhj2002/enterprise-order-platform/issues/37))
 
 **Prioridade:** Must Have
 **Contexto e descricao:** Disponibilizar um ambiente local reproduzivel que
@@ -163,12 +163,12 @@ configuracoes manuais individuais.
 - Dado um evento publicado no fluxo da Sprint, quando o ambiente estiver em uso,
   entao existe uma forma documentada de inspecionar sua presenca e seus dados.
 
-**Dependencias:** Revisao de capacidade e abordagem operacional pelo EM.
+**Dependencias:** [#30 — Architecture Gate e Event Platform Technical Contract](https://github.com/mhjmhj2002/enterprise-order-platform/issues/30) e [#31 — Catalogo e contrato do evento](https://github.com/mhjmhj2002/enterprise-order-platform/issues/31).
 **Riscos:** Ambiente dificil de reproduzir ou de diagnosticar.
 **Fora de escopo da Story:** Ambiente corporativo, alta disponibilidade e
 operacao em producao.
 
-### Story B — Catalogo inicial de eventos de pedido
+### Story B — Catalogo inicial de eventos de pedido ([#31 — Story-015](https://github.com/mhjmhj2002/enterprise-order-platform/issues/31))
 
 **Prioridade:** Must Have
 **Contexto e descricao:** Definir o contrato de negocio inicial para comunicar
@@ -185,13 +185,12 @@ evolucao sem proliferacao prematura de eventos.
   documentacao torna explicita como preservar a compatibilidade ou criar nova
   versao.
 
-**Dependencias:** Alinhamento EM/Engenharia sobre contrato, ownership e
-compatibilidade.
+**Dependencias:** Nenhuma. O catálogo é a base de negócio para o refinamento técnico da [#30](https://github.com/mhjmhj2002/enterprise-order-platform/issues/30).
 **Riscos:** Dados em excesso, evento que nao representa fato de dominio ou
 contrato definido antes da necessidade.
 **Fora de escopo da Story:** Schema Registry e catalogo corporativo de eventos.
 
-### Story C — Publicacao do fato de pedido confirmado
+### Story C — Publicacao do fato de pedido confirmado ([#32 — Story-016](https://github.com/mhjmhj2002/enterprise-order-platform/issues/32))
 
 **Prioridade:** Must Have
 **Contexto e descricao:** Fazer o Order disponibilizar o fato de negocio de que
@@ -209,12 +208,12 @@ dependencia sincronica do Order.
 - O evento permite correlacionar sua origem com o pedido confirmado, sem expor
   dados alem do necessario ao proposito definido.
 
-**Dependencias:** Story A e contrato aprovado na Story B.
+**Dependencias:** [#37 — Plataforma local de eventos](https://github.com/mhjmhj2002/enterprise-order-platform/issues/37) e [#31 — Catálogo e contrato do evento](https://github.com/mhjmhj2002/enterprise-order-platform/issues/31).
 **Riscos:** Publicacao divergente do estado de negocio ou quebra de fluxo REST.
 **Fora de escopo da Story:** Publicar todos os eventos possiveis do ciclo de
 pedido.
 
-### Story D — Processamento assincrono verificavel no Inventory
+### Story D — Processamento assincrono verificavel no Inventory ([#33 — Story-017](https://github.com/mhjmhj2002/enterprise-order-platform/issues/33))
 
 **Prioridade:** Must Have
 **Contexto e descricao:** Permitir que o Inventory receba o fato de pedido
@@ -232,14 +231,13 @@ e sua rastreabilidade.
 - Dado um evento invalido ou impossivel de processar, quando o consumo falhar,
   entao a falha fica rastreavel para analise e nao e silenciosamente descartada.
 
-**Dependencias:** Stories A, B e C; decisao do EM sobre o resultado funcional
-minimo e capacidade de confiabilidade.
+**Dependencias:** [#32 — Publicação de `OrderConfirmed` v1 pelo Order Service](https://github.com/mhjmhj2002/enterprise-order-platform/issues/32).
 **Riscos:** Duplicidade, consistencia eventual mal compreendida e acoplamento a
 detalhes do produtor.
 **Fora de escopo da Story:** Nova regra de reserva, baixa de estoque, Saga ou
 compensacao distribuida.
 
-### Story E — Confiabilidade inicial do processamento
+### Story E — Confiabilidade inicial do processamento ([#34 — Story-018](https://github.com/mhjmhj2002/enterprise-order-platform/issues/34))
 
 **Prioridade:** Should Have
 **Contexto e descricao:** Estabelecer o comportamento minimo para falhas
@@ -255,12 +253,12 @@ de negocio e torna os limites da baseline explicitos.
 - A documentacao deixa explicito que a Sprint nao promete processamento
   exatamente uma vez.
 
-**Dependencias:** Definicao de capacidade pelo EM e Stories A a D.
+**Dependencias:** [#33 — Consumo de `OrderConfirmed` v1 pelo Inventory Service](https://github.com/mhjmhj2002/enterprise-order-platform/issues/33).
 **Riscos:** Consumir a capacidade da Sprint antes da validacao ponta a ponta.
 **Fora de escopo da Story:** Garantias distribuidas de exatamente uma vez e
 automacao completa de recuperacao.
 
-### Story F — Evidencias e documentacao do fluxo
+### Story F — Evidencias e documentacao do fluxo ([#35 — Story-019](https://github.com/mhjmhj2002/enterprise-order-platform/issues/35))
 
 **Prioridade:** Must Have
 **Contexto e descricao:** Registrar como validar o fluxo, seu contrato e seus
@@ -276,12 +274,33 @@ permite aprendizado replicavel.
 - A validacao cobre o fluxo assincrono proposto e confirma que os fluxos REST
   existentes relevantes nao regrediram.
 
-**Dependencias:** Entregas das Stories A a D.
+**Dependencias:** [#34 — Confiabilidade inicial do processamento](https://github.com/mhjmhj2002/enterprise-order-platform/issues/34).
 **Riscos:** Evidencia insuficiente ou documentacao divergente da entrega.
 **Fora de escopo da Story:** Redesenho completo da documentacao arquitetural;
 atualizacoes necessarias serao definidas pelo responsavel tecnico.
 
-## 6. Fora de escopo da Sprint
+## 6. Backlog refinado e rastreabilidade
+
+O backlog foi materializado sem alterar o escopo funcional aprovado. A numeração
+das issues segue a sequência institucional de Stories, enquanto as letras desta
+proposta preservam a decomposição original de produto.
+
+| Item de planejamento | Issue oficial | Dependência direta no backlog |
+| --- | --- | --- |
+| Refinamento técnico / Architecture Gate | [#30 — Story-014](https://github.com/mhjmhj2002/enterprise-order-platform/issues/30) | Catálogo da #31 e refinamento EM/Engenharia |
+| Story B — Catálogo | [#31 — Story-015](https://github.com/mhjmhj2002/enterprise-order-platform/issues/31) | Nenhuma |
+| Story C — Publicação | [#32 — Story-016](https://github.com/mhjmhj2002/enterprise-order-platform/issues/32) | #37 e #31 |
+| Story D — Consumo | [#33 — Story-017](https://github.com/mhjmhj2002/enterprise-order-platform/issues/33) | #32 |
+| Story E — Confiabilidade | [#34 — Story-018](https://github.com/mhjmhj2002/enterprise-order-platform/issues/34) | #33 |
+| Story F — Evidências | [#35 — Story-019](https://github.com/mhjmhj2002/enterprise-order-platform/issues/35) | #34 |
+| Story A — Plataforma local | [#37 — Story-020](https://github.com/mhjmhj2002/enterprise-order-platform/issues/37) | #30 e #31 |
+
+O [Event Catalog](../../architecture/events/EVENT_CATALOG.md) permanece a fonte
+funcional de `OrderConfirmed` v1. O [Event Platform Technical Contract](../../architecture/contracts/EVENT_PLATFORM_TECHNICAL_CONTRACT.md)
+foi aprovado no refinamento #30 e é consistente com este plano; suas decisões
+arquiteturais não são alteradas por esta sincronização.
+
+## 7. Fora de escopo da Sprint
 
 - Payment Service externo/independente (o `PaymentFakeAdapter` atual permanece
   como parte da baseline).
@@ -296,7 +315,7 @@ atualizacoes necessarias serao definidas pelo responsavel tecnico.
 - Promessa funcional de processamento exatamente uma vez.
 - Novos dominios ou regras de negocio para reserva, baixa ou liberacao de estoque.
 
-## 7. Riscos e mitigacoes de planejamento
+## 8. Riscos e mitigacoes de planejamento
 
 | Risco | Impacto de produto | Mitigacao proposta |
 | --- | --- | --- |
@@ -309,18 +328,15 @@ atualizacoes necessarias serao definidas pelo responsavel tecnico.
 | Falhas silenciosas | Perda de rastreabilidade | Tornar falhas invalidas ou nao processaveis identificaveis; priorizar tratamento adicional conforme capacidade. |
 | Documentacao divergir da entrega | Uso incorreto e perda de aprendizado | Tornar evidencias e atualizacao documental parte do nucleo da Sprint. |
 
-## 8. Dependencias e sequenciamento
+## 9. Dependencias e sequenciamento
 
-1. O EM valida capacidade, limite de confiabilidade e o resultado verificavel da
-   Story D.
-2. A Engenharia detalha as decisoes tecnicas necessarias sem alterar o objetivo
-   funcional desta proposta.
-3. O contrato minimo (Story B) e o ambiente demonstravel (Story A) precisam estar
-   prontos antes da validacao ponta a ponta das Stories C e D.
-4. QE e Technical Writer participam da definicao de evidencias e da validacao
+1. A #31 sustenta o refinamento técnico #30; a #37 depende de ambos.
+2. A #32 depende de #37 e #31; a #33 depende de #32; a #34 depende de #33; e a
+   #35 depende de #34.
+3. QE e Technical Writer participam da definição de evidências e da validação
    final, conforme o workflow do time.
 
-## 9. Metricas e evidencias de sucesso
+## 10. Metricas e evidencias de sucesso
 
 - Uma pessoa do time inicia o ambiente local pelo procedimento documentado e
   consegue inspecionar eventos sem configuracao manual adicional.
@@ -334,7 +350,7 @@ atualizacoes necessarias serao definidas pelo responsavel tecnico.
 - Evidencias de teste/execucao e documentacao do fluxo estao atualizadas.
 - Os fluxos REST existentes relevantes continuam validados sem regressao.
 
-## 10. Pontos para decisao do Engineering Manager
+## 11. Pontos para decisao do Engineering Manager
 
 1. Confirmar, com Engenharia, qual resultado funcional minimo e seguro o Inventory
    produzira ao receber o evento, sem introduzir regra de negocio nova.
@@ -344,9 +360,9 @@ atualizacoes necessarias serao definidas pelo responsavel tecnico.
    processaveis, sem prometer exatamente uma vez.
 4. Confirmar responsaveis pelas atualizacoes tecnicas de arquitetura e pelas
    evidencias de qualidade, preservando as fronteiras de papel.
-5. Autorizar a criacao das issues apos o refinamento tecnico.
+5. Reavaliar somente alterações futuras que extrapolem o contrato técnico aprovado.
 
-## 11. Sintese de aprovacao e encaminhamento
+## 12. Sintese de aprovacao e encaminhamento
 
 > Product Planning da Sprint 2 aprovado com refinamentos incorporados. O compromisso
 > minimo recomendado e demonstrar `OrderConfirmed` v1 de ponta a ponta entre
@@ -357,6 +373,6 @@ atualizacoes necessarias serao definidas pelo responsavel tecnico.
 > tecnicos que cabem na Sprint. O artefato esta pronto para encaminhamento ao
 > Technical Writer; nenhuma implementacao e autorizada por este documento.
 
-## 12. Resultado
+## 13. Resultado
 
 **APPROVED**

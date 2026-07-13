@@ -206,3 +206,16 @@ A release `v0.3.0-order-service` permanece como marco oficial da Sprint. A basel
 O Product Planning aprovado para a Sprint 2 estabeleceu a evolução incremental para Event-Driven Architecture. A plataforma continuará híbrida: REST permanece suportado e Kafka é planejado apenas para o fluxo `OrderConfirmed` v1 entre Order e Inventory.
 
 Foram institucionalizados o Event Catalog, as convenções de eventos e tópicos e a ADR-007. Nenhum producer, consumer, broker Kafka ou novo serviço foi implementado nesta abertura de Sprint. Payment Service, Saga, Gateway e migração integral de REST permanecem fora de escopo.
+
+## 2026-07-13 - Backlog refinado e documentação sincronizada da Sprint 2
+
+O backlog refinado da Sprint 2 foi materializado e sincronizado com o Product
+Plan. A rastreabilidade oficial passou a ser: #30 (refinamento técnico e
+Architecture Gate), #31 (catálogo), #37 (plataforma local), #32 (publicação),
+#33 (consumo), #34 (confiabilidade) e #35 (evidências e documentação).
+
+O Event Platform Technical Contract foi aprovado como saída da #30 e confrontado
+com o Event Catalog e com o plano de produto. Permanecem válidos o único evento
+`OrderConfirmed` v1, a coexistência com REST e a vedação de novas regras de
+estoque, tópicos ou eventos. Esta sincronização não altera decisões
+arquiteturais nem autoriza implementação além das Stories refinadas.
