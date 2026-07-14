@@ -15,6 +15,7 @@ import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -72,7 +73,10 @@ class KafkaOrderConfirmedEventPublisherTest {
                 UUID.randomUUID(), new OrderConfirmedEventEnvelope.Data(UUID.randomUUID())
         );
 
-        byte[] serialized = new JsonSerializer<OrderConfirmedEventEnvelope>().serialize(
+        ObjectMapper objectMapper = new ObjectMapper()
+                .findAndRegisterModules()
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        byte[] serialized = new JsonSerializer<OrderConfirmedEventEnvelope>(objectMapper).serialize(
                 KafkaOrderConfirmedEventPublisher.TOPIC, event
         );
         JsonNode payload = new ObjectMapper().readTree(serialized);
@@ -80,7 +84,7 @@ class KafkaOrderConfirmedEventPublisherTest {
         assertTrue(payload.hasNonNull("eventId"));
         assertEquals("OrderConfirmed", payload.get("eventType").asText());
         assertEquals(1, payload.get("eventVersion").asInt());
-        assertTrue(payload.hasNonNull("occurredAt"));
+        assertEquals("2026-07-14T12:00:00Z", payload.get("occurredAt").asText());
         assertTrue(payload.hasNonNull("correlationId"));
         assertTrue(payload.path("data").hasNonNull("orderId"));
     }
