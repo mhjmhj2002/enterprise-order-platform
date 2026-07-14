@@ -6,6 +6,7 @@ Documentos de organizacao do time, alinhamento de trabalho e historico do projet
 - [Project History](PROJECT_HISTORY.md)
 - [Workflow](WORKFLOW.md)
 - [Engineering Workflow](ENGINEERING_WORKFLOW.md)
+- [Engineering Roadmap](ENGINEERING_ROADMAP.md)
 - [Playbooks de papeis](roles/README.md)
 - [Sprint 2 Product Plan](sprints/SPRINT_2_PRODUCT_PLAN.md)
 - [Sprint 2 Documentation Baseline](sprints/SPRINT_2_DOCUMENTATION_BASELINE.md)

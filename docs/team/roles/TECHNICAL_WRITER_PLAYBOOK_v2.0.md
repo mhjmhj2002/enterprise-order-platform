@@ -59,6 +59,7 @@ This playbook specializes the [Engineering Workflow](../ENGINEERING_WORKFLOW.md)
 -   Synchronize workflow changes across role playbooks.
 -   Validate organizational consistency, cross-references and documentation versioning.
 -   Maintain traceability between governance artifacts, technical contracts and delivery documentation.
+-   Maintain `docs/team/ENGINEERING_ROADMAP.md` after each Sprint closure, preserving its directional and non-binding nature.
 
 ------------------------------------------------------------------------
 

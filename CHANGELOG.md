@@ -30,6 +30,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Convenções institucionais de nomenclatura, versionamento, ownership, rastreabilidade e duplicidade de eventos.
 - ADR-007 para registrar a adoção incremental de Event-Driven Architecture na Sprint 2.
 - `docs/team/ENGINEERING_WORKFLOW.md` como fonte institucional de governança, handoffs, authority matrix e gates de engenharia.
+- `docs/team/ENGINEERING_ROADMAP.md` como visão institucional, evolutiva e não vinculante das Sprints concluídas, atual e futuras.
 
 ## [0.3.0] - 2026-07-10
 

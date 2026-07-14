@@ -177,6 +177,8 @@ Na validação da Story-009, o quality gate registrou 34 requests, 109 assertion
 
 O [Engineering Workflow](docs/team/ENGINEERING_WORKFLOW.md) é a fonte institucional de verdade para governança, handoffs, authority matrix, gates de arquitetura e qualidade, pull requests, releases e encerramento de Sprint. Os playbooks de cada papel são especializações desse fluxo.
 
+A direção evolutiva da plataforma está registrada no [Engineering Roadmap](docs/team/ENGINEERING_ROADMAP.md). O roadmap é revisado a cada encerramento de Sprint e não substitui planejamento aprovado, backlog ou decisões arquiteturais.
+
 ## Roadmap
 
 | Estado | Evolução |

@@ -113,6 +113,7 @@ No implementation begins before the applicable approval gate. The Software Engin
 | Test Plan and Test Report | Quality Engineer | Engineering Manager for authorization/recommendation | Quality Engineer |
 | Release Notes and Changelog | Technical Writer | Engineering Manager | Technical Writer |
 | Project History | Technical Writer | Engineering Manager when closure-related | Technical Writer |
+| Engineering Roadmap | Technical Writer | Engineering Manager for strategic changes | Technical Writer |
 
 ## Architecture Gates and Technical Contracts
 
@@ -145,5 +146,7 @@ The gate produces a Technical Contract when applicable. A minimum contract recor
 ## Continuous Improvement and Organizational Evolution
 
 The Engineering Manager reviews this workflow at Sprint boundaries or when process gaps are discovered. The Technical Writer maintains this document, synchronizes changes across playbooks, validates organizational consistency and preserves cross-references and document versioning.
+
+Roadmap review is part of each Sprint closure. The Technical Writer updates the [Engineering Roadmap](ENGINEERING_ROADMAP.md) with completed evolution and the current directional view; the Engineering Manager approves strategic changes.
 
 Process changes must be documented before they become mandatory. Role playbooks may add operational detail but cannot override this workflow.
