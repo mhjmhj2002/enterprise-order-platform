@@ -9,6 +9,7 @@ import com.mercadoaurora.order.application.exception.OrderNotFoundException;
 import com.mercadoaurora.order.application.exception.PaymentProcessingException;
 import com.mercadoaurora.order.application.port.out.InventoryReservationPort;
 import com.mercadoaurora.order.application.port.out.OrderRepositoryPort;
+import com.mercadoaurora.order.application.port.out.OrderConfirmedEventPublisherPort;
 import com.mercadoaurora.order.application.port.out.PaymentGatewayPort;
 import com.mercadoaurora.order.domain.DomainValidationException;
 import com.mercadoaurora.order.application.usecase.CancelOrderUseCase;
@@ -50,6 +51,8 @@ class OrderUseCasesTest {
     private InventoryReservationPort inventoryReservationPort;
     @Mock
     private PaymentGatewayPort paymentGatewayPort;
+    @Mock
+    private OrderConfirmedEventPublisherPort orderConfirmedEventPublisherPort;
     private Clock clock;
     @BeforeEach
     void setupClock() {
@@ -81,7 +84,9 @@ class OrderUseCasesTest {
                 repositoryPort, paymentGatewayPort, inventoryReservationPort, clock
         );
         MarkOrderPaidUseCase markPaid = new MarkOrderPaidUseCase(repositoryPort, clock);
-        ConfirmOrderUseCase confirm = new ConfirmOrderUseCase(repositoryPort, inventoryReservationPort, clock);
+        ConfirmOrderUseCase confirm = new ConfirmOrderUseCase(
+                repositoryPort, inventoryReservationPort, orderConfirmedEventPublisherPort, clock
+        );
         UUID reservationRef = UUID.randomUUID();
         reserve.execute(new ReserveOrderStockCommand(order.getId(), List.of(reservationRef)));
         startPayment.execute(new OrderActionCommand(order.getId()));
@@ -91,6 +96,7 @@ class OrderUseCasesTest {
         verify(inventoryReservationPort).reserveStock(order, List.of(reservationRef));
         verify(paymentGatewayPort).startPayment(order);
         verify(inventoryReservationPort).commitReservations(order);
+        verify(orderConfirmedEventPublisherPort).publish(order);
     }
     @Test
     void shouldThrowNotFoundWhenOrderDoesNotExist() {
@@ -109,9 +115,12 @@ class OrderUseCasesTest {
                 )
         ), now);
         when(repositoryPort.findById(order.getId())).thenReturn(Optional.of(order));
-        ConfirmOrderUseCase useCase = new ConfirmOrderUseCase(repositoryPort, inventoryReservationPort, clock);
+        ConfirmOrderUseCase useCase = new ConfirmOrderUseCase(
+                repositoryPort, inventoryReservationPort, orderConfirmedEventPublisherPort, clock
+        );
         assertThrows(OrderConflictException.class, () -> useCase.execute(new OrderActionCommand(order.getId())));
         verify(inventoryReservationPort, never()).commitReservations(any(Order.class));
+        verify(orderConfirmedEventPublisherPort, never()).publish(any(Order.class));
     }
     @Test
     void shouldListOrdersByCustomer() {
