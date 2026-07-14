@@ -29,7 +29,7 @@ Como portfólio técnico, evidencia decisões e entregas rastreáveis: DDD, arqu
 
 ## Arquitetura
 
-Cada serviço possui domínio, casos de uso e persistência próprios. Na baseline atual, o Order Service orquestra reservas de estoque por REST síncrono; a evolução para integração orientada a eventos está planejada.
+Cada serviço possui domínio, casos de uso e persistência próprios. Na baseline atual, o Order Service orquestra reservas de estoque por REST síncrono e publica assincronamente `OrderConfirmed` v1 quando executado com o perfil Kafka; o consumo permanece pendente da Story #33.
 
 ```mermaid
 flowchart LR
@@ -175,7 +175,7 @@ Na validação da Story-009, o quality gate registrou 34 requests, 109 assertion
 
 ## Governança
 
-O [Engineering Workflow](docs/team/ENGINEERING_WORKFLOW.md) é a fonte institucional de verdade para governança, handoffs, authority matrix, gates de arquitetura e qualidade, pull requests, releases e encerramento de Sprint. Os playbooks de cada papel são especializações desse fluxo.
+O [Engineering Workflow](docs/team/ENGINEERING_WORKFLOW.md) é a fonte institucional de verdade para governança, handoffs, authority matrix, gates de arquitetura e qualidade, pull requests, releases e encerramento de Sprint. Os playbooks de cada papel são especializações desse fluxo. A aprovação técnica pertence às roles de engenharia; o Repository Owner realiza exclusivamente a administração do GitHub e o merge definitivo após os gates previstos.
 
 A direção evolutiva da plataforma está registrada no [Engineering Roadmap](docs/team/ENGINEERING_ROADMAP.md). O roadmap é revisado a cada encerramento de Sprint e não substitui planejamento aprovado, backlog ou decisões arquiteturais.
 
@@ -196,7 +196,7 @@ A direção evolutiva da plataforma está registrada no [Engineering Roadmap](do
 
 Consulte o [roadmap detalhado](docs/roadmap/Roadmap_Estudos_Portfolio_Java_TechLead_v2.md) para o plano de evolução.
 
-O planejamento aprovado da Sprint 2 e as convenções institucionais estão no [Sprint 2 Product Plan](docs/team/sprints/SPRINT_2_PRODUCT_PLAN.md) e no [Event Catalog](docs/architecture/events/EVENT_CATALOG.md). Kafka ainda não está implementado.
+O planejamento aprovado da Sprint 2 e as convenções institucionais estão no [Sprint 2 Product Plan](docs/team/sprints/SPRINT_2_PRODUCT_PLAN.md) e no [Event Catalog](docs/architecture/events/EVENT_CATALOG.md). A infraestrutura Kafka local está operacional e o primeiro producer, `OrderConfirmed` v1, está implementado no Order Service.
 
 ## Releases
 

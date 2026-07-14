@@ -102,7 +102,7 @@ Changes Requested?
   Yes          No
    │           │
 Update PR      ▼
-   └──────► Merge (Engineering Manager)
+   └──────► Merge (Repository Owner)
                  │
                  ▼
              Publish Release
@@ -287,7 +287,7 @@ Checklist:
 - PR opened
 - Story moved to Review
 
-The Engineering Manager is the only role authorized to approve the PR, publish the official release (unless delegated) and move the Story to Done.
+The Engineering Manager is the role authorized to approve the PR technically and publish the official release (unless delegated). The Repository Owner is exclusively responsible for the definitive merge; the Story moves to Done after the workflow gates and merge are complete.
 
 ---
 

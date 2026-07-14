@@ -60,6 +60,10 @@ This playbook specializes the [Engineering Workflow](../ENGINEERING_WORKFLOW.md)
 -   Validate organizational consistency, cross-references and documentation versioning.
 -   Maintain traceability between governance artifacts, technical contracts and delivery documentation.
 -   Maintain `docs/team/ENGINEERING_ROADMAP.md` after each Sprint closure, preserving its directional and non-binding nature.
+-   Validate documentation, traceability and cross-references in Pull Requests before technical approval.
+-   Record the distinction between technical approval and Repository Owner merge operations in governance documentation.
+
+The Technical Writer does not provide technical approval or execute the definitive merge. Those responsibilities belong respectively to the Engineering Manager and the Repository Owner, as defined in the Engineering Workflow.
 
 ------------------------------------------------------------------------
 

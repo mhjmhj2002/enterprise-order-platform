@@ -225,3 +225,15 @@ arquiteturais nem autoriza implementação além das Stories refinadas.
 O projeto consolidou `docs/team/ENGINEERING_WORKFLOW.md` como fonte oficial de governança da engenharia. O documento formaliza o fluxo entre Program Director, AI Engineering Orchestrator, Product Owner, Engineering Manager, Technical Writer, Technical Lead, Software Engineer e Quality Engineer.
 
 Os handoffs, authority matrix, Architecture Gates, Technical Contracts, Quality Gates, workflow de Pull Requests e releases passaram a ter uma referência institucional única. Os playbooks de papel foram atualizados como especializações do Workflow; em caso de conflito, o Workflow Institucional prevalece.
+
+## 2026-07-14 - Story #32: primeira publicação Kafka
+
+A Sprint 2 passou a contar com a primeira publicação assíncrona implementada. Após a confirmação comercial bem-sucedida — com estoque previamente reservado e pagamento aprovado pelo `PaymentFakeAdapter` — o Order Service publica `OrderConfirmed` v1 no tópico `mercadoaurora.order.order-confirmed.v1`.
+
+A mensagem utiliza o envelope JSON v1 aprovado, versionamento explícito e `orderId` como chave Kafka. A infraestrutura local Kafka está operacional e a integração REST entre Order e Inventory permanece ativa. O consumo pelo Inventory Service não faz parte desta entrega e continua pendente da Story #33.
+
+## 2026-07-14 - Institucionalização do Repository Owner
+
+Durante a Sprint 2, um Pull Request permaneceu bloqueado apenas pela política nativa de revisão obrigatória do GitHub em um repositório de único mantenedor. As aprovações técnica e de qualidade estavam concluídas; a impossibilidade de o autor autoaprovar o próprio PR não representava pendência de engenharia.
+
+O processo foi atualizado para separar formalmente aprovação técnica e administração do repositório. O Engineering Manager aprova tecnicamente após os gates aplicáveis; o Repository Owner executa o merge definitivo, inclusive o **Administrative Merge** quando a única barreira remanescente for operacional. A mudança não substitui nenhuma aprovação técnica nem altera o fluxo de engenharia.

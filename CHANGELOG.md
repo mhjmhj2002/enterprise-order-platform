@@ -26,6 +26,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Added
 
+- Story #32 concluída: Order Service publica `OrderConfirmed` v1 de forma assíncrona no Kafka, com envelope JSON v1, versionamento e `orderId` como chave da mensagem.
 - Event Catalog institucional com `OrderConfirmed` v1, ownership, tópico planejado e payload mínimo de negócio.
 - Convenções institucionais de nomenclatura, versionamento, ownership, rastreabilidade e duplicidade de eventos.
 - ADR-007 para registrar a adoção incremental de Event-Driven Architecture na Sprint 2.
