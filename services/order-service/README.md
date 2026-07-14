@@ -43,3 +43,4 @@ Variaveis principais:
 - `INVENTORY_SERVICE_URL` (default `http://localhost:8082`)
 - `ORDER_DEFAULT_WAREHOUSE_ID` (default `00000000-0000-0000-0000-000000000001`)
 - `PAYMENT_FAKE_FAIL` (default `false`)
+- `KAFKA_BOOTSTRAP_SERVERS` (profile Spring e Maven `kafka`; default `localhost:9094`)
