@@ -12,7 +12,7 @@
 | Data | 2026-07-14 (America/Sao_Paulo) |
 | Serviço | Inventory Service |
 | Contrato | [Event Platform Technical Contract](../../architecture/contracts/EVENT_PLATFORM_TECHNICAL_CONTRACT.md) |
-| Java observado | Eclipse Adoptium 25.0.3+9-LTS |
+| Baseline Java para aprovação | Temurin 21.0.11 / Java 21, conforme `.sdkmanrc` |
 | Docker/Testcontainers | daemon mínimo API 1.40; Testcontainers 1.20.1 solicita API 1.32 |
 
 ## Contagem
@@ -35,7 +35,7 @@ A limitação de ambiente Testcontainers–Docker permanece registrada: seis tes
 | INV-033-007 a INV-033-010 | Aprovado | Publicados `eventType` inválido, `eventVersion=2`, e envelopes sem `eventId`, `correlationId` e `occurredAt`; nenhuma evidência adicional foi persistida. |
 | INV-033-011 | Aprovado | Publicados envelopes sem `data` e sem `data.orderId`, além de `eventId` incompatível (`42`); contagem final de evidências permaneceu 1. |
 | INV-033-012 | Aprovado | Com o `FixedBackOff` contratado (duas tentativas adicionais), os inválidos foram recuperados sem DLT; o grupo terminou em offset 12, log-end 12, lag 0. |
-| INV-033-013 | Aprovado | Regressão REST/unitária executada dentro de `mvn -Pkafka test`: 25 testes, 0 falhas/erros. O comando sem perfil é inaplicável porque os testes Kafka dependem intencionalmente do profile Maven `kafka`. |
+| INV-033-013 | Aprovado | Regressão dos fluxos de estoque executada com `mvn -Pkafka test`: criar, ajustar, reservar, confirmar/liberar e consultar estoque permaneceram aprovados na suíte; 25 testes, 0 falhas/erros. O profile Maven `kafka` é obrigatório porque os testes atuais carregam classes Kafka. |
 | INV-033-014 | Aprovado | `mvn -Pkafka test` com Temurin 21.0.11: 25 testes, 0 falhas/erros, 6 ignorados pela limitação de ambiente Testcontainers–Docker. |
 
 ## Observações de aderência estática (não substituem execução)

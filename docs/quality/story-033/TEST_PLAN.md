@@ -13,7 +13,7 @@ Validar o Inventory Consumer de `OrderConfirmed` v1 contra o contrato funcional 
 
 ## Serviços envolvidos
 
-- Kafka local da Story #20.
+- Kafka local da Story #37 — plataforma local de eventos aprovada para a Sprint 2.
 - Inventory Service e PostgreSQL.
 - Order Service somente como produtor opcional do evento válido; payloads negativos podem ser publicados pelo cliente Kafka.
 
@@ -40,8 +40,8 @@ Validar o Inventory Consumer de `OrderConfirmed` v1 contra o contrato funcional 
 | INV-033-010 | `data` ou `data.orderId` ausente | Cada variação é rejeitada; sem evidência. |
 | INV-033-011 | JSON/tipos incompatíveis | Desserialização não alcança o caso de uso e não persiste evidência. |
 | INV-033-012 | Retry de falha processável | Uma entrega inicial mais duas tentativas adicionais; após esgotamento, sem DLT e com mensagem diagnosticável. |
-| INV-033-013 | Regressão sem perfil Kafka | Fluxos REST de criar, ajustar, reservar, confirmar/liberar e consultar estoque preservados. |
-| INV-033-014 | Regressão com perfil Kafka | `mvn -Pkafka test` executa sem falhas. |
+| INV-033-013 | Regressão dos fluxos de estoque na suíte Inventory | Executar `mvn -Pkafka test`; criar, ajustar, reservar, confirmar/liberar e consultar estoque permanecem aprovados. O profile Maven `kafka` é obrigatório porque os testes atuais carregam classes Kafka. |
+| INV-033-014 | Regressão completa com perfil Kafka | `mvn -Pkafka test` executa sem falhas, incluindo os testes do consumer. |
 
 ## Critérios de aceite
 
