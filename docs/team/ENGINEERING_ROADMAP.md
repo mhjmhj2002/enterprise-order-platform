@@ -65,7 +65,7 @@ Only approved Sprint Plans and technical contracts authorize work. A roadmap ent
 
 **Architectural decisions:** REST and events coexist; Kafka is introduced incrementally; the event contract and platform constraints are governed by the Event Catalog, ADR-007 and the Event Platform Technical Contract. Payment Service, Saga, API Gateway, Kubernetes, Schema Registry and a full REST migration remain outside this Sprint.
 
-**Current Stories:** #30 is closed after the Architecture Gate and Technical Contract; #37 is in review for the local event platform; #31 through #35 remain planned in the Sprint backlog. Story state is authoritative in the GitHub milestone and Project Board.
+**Current Stories:** Story state is authoritative in the GitHub milestone and Project Board. This roadmap records the Sprint direction and does not duplicate operational status, which changes throughout delivery.
 
 **Expected result:** a documented, reproducible end-to-end `OrderConfirmed` v1 flow with publication, consumption, traceability and quality evidence.
 

@@ -10,15 +10,15 @@ Este documento consolida a visao geral da arquitetura do projeto.
 - Catalog Service bootstrapado com DDD + arquitetura hexagonal.
 - Inventory Service bootstrapado com dominio transacional e arquitetura hexagonal.
 - Order Service bootstrapado como contexto integrador de compromisso comercial.
-- Plataforma Kafka local operacional e publicação assíncrona de `OrderConfirmed` v1 pelo Order Service.
+- Plataforma Kafka local operacional, com publicação assíncrona de `OrderConfirmed` v1 pelo Order Service e consumo de reconhecimento pelo Inventory Service.
 
 ## Evolucao da Sprint 2
 
-A Sprint 2 realiza a evolucao incremental para arquitetura orientada a eventos. A plataforma permanece hibrida: as integracoes REST existentes continuam suportadas e Kafka foi introduzido para a publicação assíncrona de `OrderConfirmed` v1 pelo Order Service.
+A Sprint 2 realiza a evolucao incremental para arquitetura orientada a eventos. A plataforma permanece hibrida: as integracoes REST existentes continuam suportadas e Kafka foi introduzido para a publicação de `OrderConfirmed` v1 pelo Order Service e seu consumo de reconhecimento pelo Inventory Service.
 
-O consumer inicial no Inventory Service ainda não está implementado e pertence exclusivamente à Story #33. Não há migração integral de REST, Payment Service, Saga distribuída, API Gateway ou novos serviços no escopo da Sprint 2.
+O consumer inicial do Inventory Service reconhece o evento e persiste evidência idempotente por `eventId`, sem alterar estoque, reservas ou pedidos. Não há migração integral de REST, Payment Service, Saga distribuída, API Gateway ou novos serviços no escopo da Sprint 2.
 
-O fluxo entregue publica o fato de domínio de que um pedido foi confirmado depois das regras vigentes de pagamento aprovado e estoque reservado. A publicação não altera a semântica da confirmação nem a integração REST com Inventory.
+O fluxo entregue publica o fato de domínio de que um pedido foi confirmado depois das regras vigentes de pagamento aprovado e estoque reservado. O Inventory registra a ciência rastreável do fato; a publicação e o consumo não alteram a semântica da confirmação nem a integração REST com Inventory.
 
 As convencoes e o contrato institucional estao em [Event Catalog](events/EVENT_CATALOG.md), [convencoes de eventos](events/EVENT_CONVENTIONS.md) e [ADR-007](ADR/ADR-007-incremental-event-driven-architecture.md).
 

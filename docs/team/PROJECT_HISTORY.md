@@ -237,3 +237,9 @@ A mensagem utiliza o envelope JSON v1 aprovado, versionamento explícito e `orde
 Durante a Sprint 2, um Pull Request permaneceu bloqueado apenas pela política nativa de revisão obrigatória do GitHub em um repositório de único mantenedor. As aprovações técnica e de qualidade estavam concluídas; a impossibilidade de o autor autoaprovar o próprio PR não representava pendência de engenharia.
 
 O processo foi atualizado para separar formalmente aprovação técnica e administração do repositório. O Engineering Manager aprova tecnicamente após os gates aplicáveis; o Repository Owner executa o merge definitivo, inclusive o **Administrative Merge** quando a única barreira remanescente for operacional. A mudança não substitui nenhuma aprovação técnica nem altera o fluxo de engenharia.
+
+## 2026-07-14 - Story #33: consumo rastreável de `OrderConfirmed` v1
+
+O Inventory Service passou a consumir `OrderConfirmed` v1 pelo grupo `mercadoaurora.inventory.v1`. Para cada evento válido, registra uma evidência de reconhecimento rastreável e idempotente por `eventId`, associada ao pedido, à correlação e ao instante de ocorrência.
+
+O consumo não cria, confirma, libera ou baixa estoque e não altera pedidos ou a integração REST vigente. A validação integrada registrou consumo, consulta da evidência, rejeições contratuais, recuperação limitada sem DLT e ausência de efeitos colaterais sobre estoque e reservas.

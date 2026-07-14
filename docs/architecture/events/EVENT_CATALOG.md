@@ -1,6 +1,6 @@
 # Event Catalog
 
-**Status:** Implementação parcial — producer entregue na Story #32; consumo pendente na Story #33
+**Status:** Implementado — producer entregue na Story #32; consumer de reconhecimento entregue na Story #33
 **Fonte de aprovação:** [Sprint 2 Product Plan](../../team/sprints/SPRINT_2_PRODUCT_PLAN.md) e [Event Platform Technical Contract](../contracts/EVENT_PLATFORM_TECHNICAL_CONTRACT.md)
 
 ## Escopo
