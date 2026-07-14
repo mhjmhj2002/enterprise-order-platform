@@ -53,7 +53,6 @@ Essas observações reduzem risco, mas não provam o comportamento em execução
 | --- | --- | --- |
 | Limitação de ambiente Testcontainers–Docker | Conhecida, não bloqueadora | Testcontainers 1.20.1 não é compatível com a API Docker disponível; seis testes foram ignorados. A cobertura integrada foi executada manualmente com a infraestrutura local. |
 | Conectividade do PostgreSQL | Resolvida no ambiente | A Engenharia recriou o PostgreSQL com `localhost:5432`; Inventory conectou, migrou e iniciou. |
-| Divergência no README da plataforma de eventos | Inconsistência documental, baixa | `infra/event-platform/README.md` ainda afirma que o Inventory não possui consumer nesta Story, contrariando a implementação validada. |
 
 ## Evidências reproduzíveis
 
@@ -70,8 +69,8 @@ Atualizada a coleção Inventory com a variável `orderId` e a requisição **Ge
 
 ## Issues abertas
 
-Nenhuma issue ou defeito formal foi aberto pelo QE. A limitação Testcontainers–Docker e a conectividade do PostgreSQL foram registradas no contexto desta validação; a divergência no README deve ser tratada no fluxo documental apropriado se exigir acompanhamento além da Story.
+Nenhuma issue ou defeito formal foi aberto pelo QE. A limitação Testcontainers–Docker e a conectividade do PostgreSQL foram registradas no contexto desta validação.
 
 ## Recomendação final
 
-**APPROVED — Validation Completed.** O contrato funcional e técnico foi demonstrado com evidências reproduzíveis. Manter Java 21 conforme `.sdkmanrc`; manter registrada a limitação Testcontainers–Docker e corrigir a divergência documental no fluxo apropriado.
+**APPROVED — Validation Completed.** O contrato funcional e técnico foi demonstrado com evidências reproduzíveis. Manter Java 21 conforme `.sdkmanrc` e manter registrada a limitação Testcontainers–Docker.
