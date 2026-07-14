@@ -29,7 +29,7 @@ Como portfólio técnico, evidencia decisões e entregas rastreáveis: DDD, arqu
 
 ## Arquitetura
 
-Cada serviço possui domínio, casos de uso e persistência próprios. Na baseline atual, o Order Service orquestra reservas de estoque por REST síncrono e publica assincronamente `OrderConfirmed` v1 quando executado com o perfil Kafka; o consumo permanece pendente da Story #33.
+Cada serviço possui domínio, casos de uso e persistência próprios. Na baseline atual, o Order Service orquestra reservas de estoque por REST síncrono, publica assincronamente `OrderConfirmed` v1 com o perfil Kafka e o Inventory Service registra seu reconhecimento idempotente, sem alterar estoque ou reservas.
 
 ```mermaid
 flowchart LR
@@ -196,7 +196,7 @@ A direção evolutiva da plataforma está registrada no [Engineering Roadmap](do
 
 Consulte o [roadmap detalhado](docs/roadmap/Roadmap_Estudos_Portfolio_Java_TechLead_v2.md) para o plano de evolução.
 
-O planejamento aprovado da Sprint 2 e as convenções institucionais estão no [Sprint 2 Product Plan](docs/team/sprints/SPRINT_2_PRODUCT_PLAN.md) e no [Event Catalog](docs/architecture/events/EVENT_CATALOG.md). A infraestrutura Kafka local está operacional e o primeiro producer, `OrderConfirmed` v1, está implementado no Order Service.
+O planejamento aprovado da Sprint 2 e as convenções institucionais estão no [Sprint 2 Product Plan](docs/team/sprints/SPRINT_2_PRODUCT_PLAN.md) e no [Event Catalog](docs/architecture/events/EVENT_CATALOG.md). A infraestrutura Kafka local está operacional; `OrderConfirmed` v1 é publicado pelo Order Service e reconhecido de forma idempotente pelo Inventory Service.
 
 ## Releases
 

@@ -29,4 +29,11 @@ cd services/order-service
 mvn spring-boot:run -Dspring-boot.run.profiles=kafka
 ```
 
-Use `KAFKA_BOOTSTRAP_SERVERS` para substituir o default `localhost:9094`. O Inventory Service ainda nao possui consumer nesta Story.
+Use `KAFKA_BOOTSTRAP_SERVERS` para substituir o default `localhost:9094`.
+
+O Inventory Service consome `OrderConfirmed` v1 quando executado com o profile Spring `kafka`. O consumer registra somente a evidência idempotente de reconhecimento por `eventId`; ele não altera estoque, reservas ou pedidos.
+
+```bash
+cd services/inventory-service
+mvn -Pkafka spring-boot:run -Dspring-boot.run.profiles=kafka
+```

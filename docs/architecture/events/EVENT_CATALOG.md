@@ -1,11 +1,11 @@
 # Event Catalog
 
-**Status:** Implementação parcial — producer entregue na Story #32; consumo pendente na Story #33
+**Status:** Implementado — producer entregue na Story #32; consumer de reconhecimento entregue na Story #33
 **Fonte de aprovação:** [Sprint 2 Product Plan](../../team/sprints/SPRINT_2_PRODUCT_PLAN.md) e [Event Platform Technical Contract](../contracts/EVENT_PLATFORM_TECHNICAL_CONTRACT.md)
 
 ## Escopo
 
-O catálogo contém somente o primeiro fato de domínio aprovado para a Sprint 2. A publicação pelo Order Service está implementada; o consumo pelo Inventory Service permanece fora do escopo da Story #32 e depende da Story #33. O catálogo não autoriza novos eventos sem refinamento e aprovação.
+O catálogo contém somente o primeiro fato de domínio aprovado para a Sprint 2. A publicação pelo Order Service e o consumo de reconhecimento pelo Inventory Service estão implementados. O catálogo não autoriza novos eventos sem refinamento e aprovação.
 
 ## `OrderConfirmed` v1
 
@@ -15,13 +15,13 @@ O catálogo contém somente o primeiro fato de domínio aprovado para a Sprint 2
 | Descrição | Fato de domínio de que a confirmação comercial do pedido foi concluída. |
 | Versão | `v1` |
 | Producer / owner | Order Service |
-| Consumer | Inventory Service — pendente da Story #33; não implementado nesta entrega. |
+| Consumer | Inventory Service — reconhece e persiste evidência idempotente por `eventId`; não altera estoque. |
 | Tópico oficial | `mercadoaurora.order.order-confirmed.v1` |
 | Chave Kafka | `orderId`, serializado como string UUID. |
 | Gatilho | Pedido confirmado após pagamento aprovado e estoque previamente reservado, conforme o fluxo vigente. |
 | Propósito | Registrar assincronamente o fato de confirmação comercial, sem substituir a integração REST vigente. |
 | Ownership | Order Service é owner da semântica e producer do evento. |
-| Observações | A publicação usa `acks=all`. REST continua ativo; esta entrega não inclui consumo. |
+| Observações | A publicação usa `acks=all`. REST continua ativo; o consumidor não executa reserva, baixa ou outra regra comercial. |
 
 ### Envelope JSON v1 implementado
 
@@ -45,4 +45,4 @@ O valor é JSON UTF-8. `eventId`, `correlationId` e `data.orderId` são UUIDs n�
 - Não há Payment Service externo; o `PaymentFakeAdapter` integra a baseline existente.
 - Não há novos eventos de reserva, baixa ou liberação de estoque aprovados para esta Sprint.
 - Não há Saga distribuída, API Gateway ou novos bounded contexts.
-- O consumo pelo Inventory Service é pendência exclusiva da Story #33.
+- O consumidor do Inventory Service limita-se ao reconhecimento rastreável e idempotente do evento.

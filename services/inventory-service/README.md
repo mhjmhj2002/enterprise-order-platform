@@ -30,7 +30,7 @@ Gerencia saldo fisico, reservas e baixa de estoque por SKU e warehouse, protegen
 - Preco e promocoes.
 - Pedido e checkout.
 - Pagamento.
-- Orquestracao Saga e publicacao Kafka (dominio ja preparado com Domain Events).
+- Orquestracao Saga, compensacoes e novos eventos de negocio.
 
 ## Como rodar localmente
 
@@ -48,13 +48,17 @@ Variaveis opcionais:
 - `KAFKA_BOOTSTRAP_SERVERS` (profile Spring e Maven `kafka`; default `localhost:9094`)
 - `KAFKA_CONSUMER_GROUP_ID` (profile `kafka`; default `mercadoaurora.inventory.v1`)
 
-O profile `kafka` prepara somente configuracao e health check nesta Story. Nenhum consumer e iniciado.
+Com o profile Maven e Spring `kafka`, o servico consome `OrderConfirmed` v1 no grupo
+`mercadoaurora.inventory.v1`. Cada evento valido gera uma evidencia idempotente por `eventId`,
+consultavel em `GET /api/v1/inventory/order-confirmations/{orderId}`. O consumo nao reserva,
+baixa ou altera estoque. Falhas possuem duas tentativas adicionais; nao ha DLT nesta Story.
 
 ## Como testar
 
 ```bash
 cd services/inventory-service
 mvn test
+mvn -Pkafka test
 ```
 
 > Os testes de integracao usam Testcontainers e sao automaticamente ignorados quando Docker nao estiver disponivel.
@@ -68,6 +72,7 @@ mvn test
 - `POST /api/v1/inventory/{skuId}/{warehouseId}/reservations/{reservationId}/release`
 - `GET /api/v1/inventory/{skuId}`
 - `GET /api/v1/inventory/{skuId}/{warehouseId}`
+- `GET /api/v1/inventory/order-confirmations/{orderId}`
 
 Swagger UI:
 

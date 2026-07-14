@@ -3,6 +3,7 @@ package com.mercadoaurora.inventory.api;
 import com.mercadoaurora.inventory.api.dto.AdjustPhysicalStockRequest;
 import com.mercadoaurora.inventory.api.dto.CreateInventoryItemRequest;
 import com.mercadoaurora.inventory.api.dto.InventoryItemResponse;
+import com.mercadoaurora.inventory.api.dto.OrderConfirmationEvidenceResponse;
 import com.mercadoaurora.inventory.api.dto.ReserveStockRequest;
 import com.mercadoaurora.inventory.api.mapper.InventoryApiMapper;
 import com.mercadoaurora.inventory.application.command.AdjustPhysicalStockCommand;
@@ -15,6 +16,7 @@ import com.mercadoaurora.inventory.application.usecase.CommitReservationUseCase;
 import com.mercadoaurora.inventory.application.usecase.CreateInventoryItemUseCase;
 import com.mercadoaurora.inventory.application.usecase.GetInventoryBySkuAndWarehouseUseCase;
 import com.mercadoaurora.inventory.application.usecase.GetInventoryBySkuUseCase;
+import com.mercadoaurora.inventory.application.usecase.GetOrderConfirmationEvidenceUseCase;
 import com.mercadoaurora.inventory.application.usecase.ReleaseReservationUseCase;
 import com.mercadoaurora.inventory.application.usecase.ReserveStockUseCase;
 import jakarta.validation.Valid;
@@ -42,6 +44,7 @@ public class InventoryController {
     private final CommitReservationUseCase commitReservationUseCase;
     private final GetInventoryBySkuUseCase getInventoryBySkuUseCase;
     private final GetInventoryBySkuAndWarehouseUseCase getInventoryBySkuAndWarehouseUseCase;
+    private final GetOrderConfirmationEvidenceUseCase getOrderConfirmationEvidenceUseCase;
 
     public InventoryController(
             CreateInventoryItemUseCase createInventoryItemUseCase,
@@ -50,7 +53,8 @@ public class InventoryController {
             ReleaseReservationUseCase releaseReservationUseCase,
             CommitReservationUseCase commitReservationUseCase,
             GetInventoryBySkuUseCase getInventoryBySkuUseCase,
-            GetInventoryBySkuAndWarehouseUseCase getInventoryBySkuAndWarehouseUseCase
+            GetInventoryBySkuAndWarehouseUseCase getInventoryBySkuAndWarehouseUseCase,
+            GetOrderConfirmationEvidenceUseCase getOrderConfirmationEvidenceUseCase
     ) {
         this.createInventoryItemUseCase = createInventoryItemUseCase;
         this.adjustPhysicalStockUseCase = adjustPhysicalStockUseCase;
@@ -59,6 +63,7 @@ public class InventoryController {
         this.commitReservationUseCase = commitReservationUseCase;
         this.getInventoryBySkuUseCase = getInventoryBySkuUseCase;
         this.getInventoryBySkuAndWarehouseUseCase = getInventoryBySkuAndWarehouseUseCase;
+        this.getOrderConfirmationEvidenceUseCase = getOrderConfirmationEvidenceUseCase;
     }
 
     @PostMapping
@@ -118,6 +123,15 @@ public class InventoryController {
     public List<InventoryItemResponse> getInventoryBySku(@PathVariable UUID skuId) {
         return getInventoryBySkuUseCase.execute(skuId).stream()
                 .map(InventoryApiMapper::toResponse)
+                .toList();
+    }
+
+    @GetMapping("/order-confirmations/{orderId}")
+    public List<OrderConfirmationEvidenceResponse> getOrderConfirmations(@PathVariable UUID orderId) {
+        return getOrderConfirmationEvidenceUseCase.execute(orderId).stream()
+                .map(evidence -> new OrderConfirmationEvidenceResponse(
+                        evidence.eventId(), evidence.correlationId(), evidence.orderId(), evidence.occurredAt(),
+                        evidence.recognizedAt(), evidence.topic(), evidence.partition(), evidence.offset()))
                 .toList();
     }
 

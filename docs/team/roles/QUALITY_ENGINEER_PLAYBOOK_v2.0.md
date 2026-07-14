@@ -326,53 +326,14 @@ Final Recommendation
 
 ---
 
-# 12. Naming Standard
+# 12. Naming and Traceability
 
-All scenarios must follow a standard.
+Use only the institutional conventions in the [Engineering Workflow](../ENGINEERING_WORKFLOW.md#institutional-naming-and-traceability).
 
-Examples
-
-Catalog
-
-CAT-001
-
-CAT-002
-
----
-
-Inventory
-
-INV-001
-
-INV-002
-
----
-
-Order
-
-ORDER-001
-
-ORDER-002
-
-ORDER-003
-
----
-
-Payment
-
-PAY-001
-
----
-
-Fulfillment
-
-FUL-001
-
----
-
-Notification
-
-NOT-001
+- Define test scenarios as `<scope>-<story>-<sequence>` in `TEST_PLAN.md` and preserve the same ID in `TEST_REPORT.md` and the related evidence. For example: `INV-033-001`.
+- Identify each evidence item with its Story/Issue, scenario, environment and reproducible result; do not create a separate local evidence, bug, pending or documentation prefix.
+- Report a defect, pending or documentation inconsistency with the affected Story/Issue and scenario/evidence. The Engineering Manager determines whether it needs formal GitHub Issue tracking; do not create a local substitute for that Issue.
+- Preserve official identifiers exactly as supplied by the backlog, Technical Writer or existing institutional artifacts.
 
 ---
 
