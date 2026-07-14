@@ -11,12 +11,12 @@ Servico responsavel pelo compromisso comercial do pedido no Mercado Aurora.
 - Catalogo de produto/SKU.
 - Controle de estoque fisico e reservas de inventario.
 - Captura financeira real e conciliacao.
-- Mensageria/Kafka nesta sprint.
+- Consumo Kafka, retry, DLQ e Outbox.
 ## Integracoes Sprint 1
 - Inventory: REST sincrono via `INVENTORY_SERVICE_URL`.
 - Payment: porta de aplicacao com `PaymentFakeAdapter`, sem provedor externo real nesta sprint.
 - PaymentFake aprova por padrao. `PAYMENT_FAKE_FAIL=true` altera o processo inteiro; o header `X-Payment-Fake-Outcome: FAILED` simula falha somente na requisicao atual, sem restart. Em ambos os casos, a falha libera as reservas e cancela o pedido.
-- Domain Events ficam registrados no dominio para evolucao futura, mas nao sao publicados.
+- Com o profile Spring `kafka`, a confirmacao concluida publica `OrderConfirmed` v1 no topico aprovado. Sem esse profile, nenhuma publicacao Kafka ocorre.
 - Reserva de estoque valida o agregado antes de chamar Inventory. Se uma reserva parcial falhar, o adapter tenta liberar as reservas ja criadas antes de propagar erro `502`.
 - `X-Correlation-Id` recebido pelo Order e devolvido na resposta e propagado nas chamadas REST ao Inventory.
 ## Endpoints principais
@@ -43,4 +43,10 @@ Variaveis principais:
 - `INVENTORY_SERVICE_URL` (default `http://localhost:8082`)
 - `ORDER_DEFAULT_WAREHOUSE_ID` (default `00000000-0000-0000-0000-000000000001`)
 - `PAYMENT_FAKE_FAIL` (default `false`)
-- `KAFKA_BOOTSTRAP_SERVERS` (profile Spring e Maven `kafka`; default `localhost:9094`)
+- `KAFKA_BOOTSTRAP_SERVERS` (profile Spring `kafka`; default `localhost:9094`)
+
+Para habilitar a publicacao localmente:
+
+```bash
+mvn spring-boot:run -Dspring-boot.run.profiles=kafka
+```

@@ -22,11 +22,11 @@ O topico provisionado possui uma particao, fator de replicacao 1, limpeza `delet
 
 ## Profile Spring
 
-Order e Inventory recebem a configuracao Kafka apenas quando compilados com o profile Maven `kafka` e executados com o profile Spring `kafka`:
+O Order Service publica eventos somente quando executado com o profile Spring `kafka`:
 
 ```bash
 cd services/order-service
-mvn -Pkafka spring-boot:run -Dspring-boot.run.profiles=kafka
+mvn spring-boot:run -Dspring-boot.run.profiles=kafka
 ```
 
-Use `KAFKA_BOOTSTRAP_SERVERS` para substituir o default `localhost:9094`. Nenhum producer ou consumer e iniciado por esta Story.
+Use `KAFKA_BOOTSTRAP_SERVERS` para substituir o default `localhost:9094`. O Inventory Service ainda nao possui consumer nesta Story.
