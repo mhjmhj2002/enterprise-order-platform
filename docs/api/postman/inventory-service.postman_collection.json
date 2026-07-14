@@ -25,6 +25,11 @@
       "key": "reservationId",
       "value": "00000000-0000-0000-0000-000000000012",
       "type": "string"
+    },
+    {
+      "key": "orderId",
+      "value": "00000000-0000-0000-0000-000000000013",
+      "type": "string"
     }
   ],
   "item": [
@@ -108,6 +113,30 @@
           "request": {
             "method": "GET",
             "url": "{{baseUrl}}/api/v1/inventory/{{skuId}}/{{warehouseId}}"
+          }
+        },
+        {
+          "name": "Get Order Confirmation Evidence",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('returns successful evidence lookup', function () {",
+                  "    pm.expect(pm.response.code).to.eql(200);",
+                  "});",
+                  "pm.test('returns an evidence array', function () {",
+                  "    pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "description": "After a valid OrderConfirmed v1 is consumed, returns its functional recognition evidence. An unknown order returns an empty array.",
+            "method": "GET",
+            "url": "{{baseUrl}}/api/v1/inventory/order-confirmations/{{orderId}}"
           }
         }
       ]
