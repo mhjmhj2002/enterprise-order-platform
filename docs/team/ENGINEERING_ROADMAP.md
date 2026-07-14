@@ -71,6 +71,10 @@ Only approved Sprint Plans and technical contracts authorize work. A roadmap ent
 
 References: [Sprint 2 Product Plan](sprints/SPRINT_2_PRODUCT_PLAN.md), [Event Catalog](../architecture/events/EVENT_CATALOG.md), [ADR-007](../architecture/ADR/ADR-007-incremental-event-driven-architecture.md) and [Project History](PROJECT_HISTORY.md).
 
+### Sprint 2 — Organizational evolution
+
+The Repository Owner responsibilities and the Administrative Merge concept were institutionalized during Sprint 2. Technical approval remains with the engineering roles defined in the [Engineering Workflow](ENGINEERING_WORKFLOW.md); repository administration and the definitive GitHub merge belong exclusively to the Repository Owner.
+
 ## Current Engineering Outlook
 
 The following Sprints are directional only. Their order and scope will be reviewed after each delivered increment.
@@ -89,4 +93,4 @@ No row above constitutes a commitment, approved backlog or implementation author
 
 ## Governance
 
-Roadmap maintenance follows the [Engineering Workflow](ENGINEERING_WORKFLOW.md). The Technical Writer updates this document after Sprint closure; the Engineering Manager reviews strategic changes and approves any decision that changes architecture, priorities or delivery scope.
+Roadmap maintenance follows the [Engineering Workflow](ENGINEERING_WORKFLOW.md). The Technical Writer updates this document after Sprint closure; the Engineering Manager reviews strategic changes and approves any decision that changes architecture, priorities or delivery scope. Repository Owner operations do not change roadmap authority.

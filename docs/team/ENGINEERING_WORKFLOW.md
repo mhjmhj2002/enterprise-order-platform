@@ -25,6 +25,7 @@ This document defines how engineering work moves from strategic direction to spr
 | AI Engineering Orchestrator | Coordinates agents, preserves task flow and escalates authority gaps. |
 | Product Owner | Defines why and what: value, scope, priorities and functional acceptance criteria. |
 | Engineering Manager | Owns technical governance, capacity, architecture approval, release approval and sprint closure. |
+| Repository Owner | Administers the GitHub repository and executes repository operations after the defined technical gates. |
 | Technical Writer | Maintains institutional documentation, cross-references and process consistency. |
 | Technical Lead | Refines technical direction, identifies delivery risks and reviews technical readiness. |
 | Software Engineer | Implements approved technical work and produces code-level evidence. |
@@ -59,7 +60,11 @@ Quality Engineer — Execution
         ↓
 Technical Writer — Release Documentation
         ↓
-Engineering Manager — Merge, Release and Sprint Closure
+Engineering Manager — Technical Approval
+        ↓
+Repository Owner — Administrative Merge
+        ↓
+Engineering Manager — Release and Sprint Closure
 ```
 
 No implementation begins before the applicable approval gate. The Software Engineer must stop and escalate when a Story does not meet the Definition of Ready.
@@ -72,7 +77,7 @@ No implementation begins before the applicable approval gate. The Software Engin
 4. **Documentation Baseline:** Technical Writer synchronizes planning, architecture references, ADRs, catalogs and governance documents.
 5. **Architecture Gate:** Required when infrastructure, cross-service contracts, technology choices or other unresolved technical decisions affect implementation.
 6. **Implementation and Quality:** Software Engineer implements approved work; Quality Engineer plans, is authorized and executes validation.
-7. **Release and Closure:** Technical Writer prepares release documentation; Engineering Manager merges, publishes releases and closes the Sprint after gates are satisfied.
+7. **Release and Closure:** Technical Writer prepares release documentation; Engineering Manager confirms the technical gates and authorizes release and Sprint closure; Repository Owner performs the repository merge operation after approval.
 
 ## Official Handoffs
 
@@ -87,18 +92,41 @@ No implementation begins before the applicable approval gate. The Software Engin
 | Software Engineer | Quality Engineer | Implementation handoff, testable environment and technical evidence. |
 | Quality Engineer | Engineering Manager | Test Plan, Test Report, defects and release recommendation. |
 | Technical Writer | Engineering Manager | Release documentation, changelog and history ready for publication. |
+| Engineering Manager | Repository Owner | Technical approval of the PR and confirmation that all institutional gates are complete. |
 
 ## Authority Matrix
 
-| Decision or action | PO | EM | TW | LT | SE | QE |
-| --- | :---: | :---: | :---: | :---: | :---: | :---: |
-| Sprint goal, value and business scope | Owns | Reviews | Supports | Consults | Consults | Consults |
-| Backlog priorities and functional criteria | Owns | Approves | Supports | Consults | Consults | Consults |
-| Architecture, stack and Technical Contract | Consults | Approves | Documents | Refines | Implements | Consults |
-| ADR | Consults | Approves | Maintains | Proposes | Contributes | Consults |
-| Code and service configuration | Consults | Governs | Documents | Reviews | Owns | Validates |
-| Test strategy and evidence | Consults | Authorizes | Documents | Reviews | Contributes | Owns |
-| Merge, release and Sprint closure | Informed | Owns | Prepares | Reviews | Never self-merges | Recommends |
+| Decision or action | PO | EM | Repository Owner | TW | LT | SE | QE |
+| --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Sprint goal, value and business scope | Owns | Reviews | Informed | Supports | Consults | Consults | Consults |
+| Backlog priorities and functional criteria | Owns | Approves | Informed | Supports | Consults | Consults | Consults |
+| Architecture, stack and Technical Contract | Consults | Approves | Informed | Documents | Refines | Implements | Consults |
+| ADR | Consults | Approves | Informed | Maintains | Proposes | Contributes | Consults |
+| Code and service configuration | Consults | Governs | Informed | Documents | Reviews | Owns | Validates |
+| Test strategy and evidence | Consults | Authorizes | Informed | Documents | Reviews | Contributes | Owns |
+| Technical approval of a PR | Informed | Owns | Informed | Validates documentation | Verifies operational conformity | Never self-approves | Recommends |
+| GitHub merge and branch administration | Informed | Authorizes technically | Owns | Informed | Verifies | Never self-merges | Informed |
+| Release and Sprint closure | Informed | Owns | Executes repository operations when required | Prepares | Reviews | Informed | Recommends |
+
+## Repository Owner Responsibilities
+
+The Repository Owner is responsible exclusively for GitHub repository administration. This role does not participate in engineering technical decisions and does not replace the Product Owner, Engineering Manager, Technical Writer, Technical Lead, Software Engineer or Quality Engineer.
+
+The Repository Owner exclusively:
+
+- performs Pull Request merges after the required institutional gates are complete;
+- removes merged temporary branches;
+- synchronizes the `main` branch;
+- administers Branch Protection Rules, repository permissions and GitHub settings; and
+- performs administrative merges when the conditions below are met.
+
+### Administrative Merge
+
+When every technical approval required by this workflow is complete and the only remaining blocker is an operational limitation of GitHub — such as the prohibition on self-approval in a single-maintainer repository — the Repository Owner may perform an **Administrative Merge**.
+
+An Administrative Merge does not replace technical approval, remove any workflow gate or change the engineering decision. It only completes the repository operation after the Engineering Manager has confirmed the technical authorization.
+
+> The official engineering process is defined by the ENGINEERING_WORKFLOW. Native GitHub policies are operational support mechanisms; they do not replace or invalidate formal approvals made by engineering roles.
 
 ## Institutional Artifacts
 
@@ -132,16 +160,18 @@ The gate produces a Technical Contract when applicable. A minimum contract recor
 
 1. Software Engineer creates a Story branch from synchronized `main`.
 2. The PR includes implementation scope, tests, documentation updates and known limitations.
-3. Reviews address code, architecture and quality criteria.
-4. Only the Engineering Manager, or an explicitly delegated authority, merges an approved PR.
-5. The Story moves to Done only after the defined governance and quality gates are met.
+3. Quality Engineer completes the applicable validation and provides evidence.
+4. Technical Writer validates the documentation impact and institutional traceability.
+5. Engineering Manager approves the PR technically after the required reviews and gates; the Technical Lead verifies operational conformity when assigned.
+6. Repository Owner executes the merge operation, including an Administrative Merge when applicable.
+7. The Story moves to Done only after the defined governance and quality gates are met and the merge is complete.
 
 ## Release Workflow
 
 1. Technical Writer validates release notes, changelog, history and cross-references.
 2. Quality Engineer provides validation evidence and recommendation.
-3. Engineering Manager confirms merge state and authorizes the release.
-4. The release, tags, issue state, Project Board and milestone are synchronized.
+3. Engineering Manager confirms the technical merge state and authorizes the release.
+4. Repository Owner performs the required GitHub repository operations; the release, tags, issue state, Project Board and milestone are synchronized.
 
 ## Continuous Improvement and Organizational Evolution
 

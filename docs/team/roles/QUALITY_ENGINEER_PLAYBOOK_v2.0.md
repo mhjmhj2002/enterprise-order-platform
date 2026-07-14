@@ -602,7 +602,7 @@ or
 
 Validation Rejected
 
-Merge remains Engineering Manager responsibility.
+Technical approval remains Engineering Manager responsibility. The definitive repository merge remains Repository Owner responsibility.
 
 Release remains Engineering Manager responsibility.
 
