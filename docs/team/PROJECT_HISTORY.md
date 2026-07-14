@@ -225,3 +225,9 @@ arquiteturais nem autoriza implementação além das Stories refinadas.
 O projeto consolidou `docs/team/ENGINEERING_WORKFLOW.md` como fonte oficial de governança da engenharia. O documento formaliza o fluxo entre Program Director, AI Engineering Orchestrator, Product Owner, Engineering Manager, Technical Writer, Technical Lead, Software Engineer e Quality Engineer.
 
 Os handoffs, authority matrix, Architecture Gates, Technical Contracts, Quality Gates, workflow de Pull Requests e releases passaram a ter uma referência institucional única. Os playbooks de papel foram atualizados como especializações do Workflow; em caso de conflito, o Workflow Institucional prevalece.
+
+## 2026-07-14 - Story #32: primeira publicação Kafka
+
+A Sprint 2 passou a contar com a primeira publicação assíncrona implementada. Após a confirmação comercial bem-sucedida — com estoque previamente reservado e pagamento aprovado pelo `PaymentFakeAdapter` — o Order Service publica `OrderConfirmed` v1 no tópico `mercadoaurora.order.order-confirmed.v1`.
+
+A mensagem utiliza o envelope JSON v1 aprovado, versionamento explícito e `orderId` como chave Kafka. A infraestrutura local Kafka está operacional e a integração REST entre Order e Inventory permanece ativa. O consumo pelo Inventory Service não faz parte desta entrega e continua pendente da Story #33.
