@@ -1,53 +1,41 @@
 # TW Documentation Review — Story #33
 
-**Status:** CHANGES REQUIRED
+**Status:** APPROVED
 **From:** Technical Writer
-**To:** Quality Engineer
-**Scope:** Correções de documentação de qualidade antes da segunda revisão do TW.
+**To:** Engineering Manager
+**Scope:** Segunda revisão final da documentação de qualidade da Story #33.
 
 ## Contexto
 
-O Technical Writer sincronizou os documentos institucionais com a implementação validada do consumer `OrderConfirmed` v1. Permanecem três ajustes sob ownership do Quality Engineer nos artefatos de teste da Story #33.
+O Technical Writer sincronizou os documentos institucionais com a implementação validada do consumer `OrderConfirmed` v1 e confirmou os ajustes solicitados na primeira revisão.
 
 Este parecer não solicita alteração de código, arquitetura, contrato de evento ou regras de negócio.
 
-## Ajustes obrigatórios
+## Verificação final
 
-### 1. Corrigir rastreabilidade da plataforma
+### 1. Rastreabilidade da plataforma — resolvida
 
 **Documento:** [TEST_PLAN.md](TEST_PLAN.md)
 
-Na seção **Serviços envolvidos**, substituir a referência à “Kafka local da Story #20” pela Story #37, que é a plataforma local de eventos aprovada para a Sprint 2.
+Na seção **Serviços envolvidos**, a referência à infraestrutura aponta para a Story #37, plataforma local de eventos aprovada para a Sprint 2.
 
-**Critério de aceite:** a dependência de infraestrutura do plano aponta para a Story #37 e permanece consistente com o Event Platform Technical Contract.
+**Resultado:** a dependência de infraestrutura permanece consistente com o Event Platform Technical Contract.
 
-### 2. Resolver a divergência de `INV-033-013`
+### 2. Cenário `INV-033-013` — resolvido
 
 **Documentos:** [TEST_PLAN.md](TEST_PLAN.md) e [TEST_REPORT.md](TEST_REPORT.md)
 
-O plano define `INV-033-013` como regressão **sem** perfil Kafka. O relatório a marca como aprovada, mas informa que `mvn test` sem perfil é inaplicável e usa `mvn -Pkafka test` como evidência.
+Plano e relatório registram o mesmo cenário e o mesmo comando aplicável: `mvn -Pkafka test`. A documentação justifica que o perfil Maven `kafka` é obrigatório para disponibilizar as classes Kafka dos testes atuais.
 
-Escolher e registrar uma única situação:
+**Resultado:** a evidência reproduzível e o critério de aceite estão consistentes.
 
-1. Executar e registrar evidência reproduzível da regressão sem perfil Kafka; ou
-2. Refinar formalmente o cenário e seu critério de aceite para a estratégia de execução aprovada, com justificativa de por que o perfil Maven `kafka` é obrigatório para os testes atuais.
-
-**Critério de aceite:** plano e relatório descrevem o mesmo cenário, o mesmo comando aplicável e a mesma evidência. Não é permitido manter o cenário como “sem perfil Kafka” e aprová-lo somente com execução `-Pkafka`.
-
-### 3. Consolidar a baseline Java da evidência
+### 3. Baseline Java da evidência — resolvida
 
 **Documento:** [TEST_REPORT.md](TEST_REPORT.md)
 
-O relatório identifica Java 25 como ambiente observado, mas registra a execução aprovada com Temurin 21.0.11 e determina Java 21 como baseline do projeto.
+O Test Report registra Temurin 21.0.11 / Java 21, conforme `.sdkmanrc`, como baseline suportada e usada para aprovação. Não há referência a Java 25 como base do resultado.
 
-Atualizar a seção de referência para distinguir claramente:
-
-- **Baseline suportada e usada para aprovação:** Temurin 21.0.11 / Java 21, conforme `.sdkmanrc`.
-- **Ambiente adicional observado:** Eclipse Adoptium 25.0.3+9-LTS, quando aplicável, sem elevar Java 25 a baseline nem usar essa execução como fundamento da aprovação.
-
-Se não houver evidência de execução em Java 25 relevante para a validação, remover essa referência da tabela de ambiente observado.
-
-**Critério de aceite:** não há ambiguidade sobre qual JDK sustenta o resultado aprovado.
+**Resultado:** não há ambiguidade sobre o JDK que sustenta a aprovação.
 
 ## Preservar
 
@@ -55,12 +43,6 @@ Se não houver evidência de execução em Java 25 relevante para a validação,
 - Registro da limitação Testcontainers–Docker como conhecida e não bloqueadora, com a execução integrada local como evidência complementar.
 - Escopo sem DLT, novos tópicos, novos eventos ou mudanças em regras de estoque.
 
-## Handoff para segunda revisão
+## Parecer final
 
-Após atualizar os dois documentos, o QE deve informar:
-
-- os arquivos alterados;
-- a decisão/evidência adotada para `INV-033-013`; e
-- a baseline Java registrada no Test Report.
-
-O Technical Writer então executará a segunda revisão de consistência documental.
+**APPROVED — Documentation Gate Completed.** Catálogo de eventos, README principal, README da plataforma de eventos, Test Plan e Test Report refletem o consumer entregue. Não há pendência documental ou técnica aberta no escopo da Story #33.
