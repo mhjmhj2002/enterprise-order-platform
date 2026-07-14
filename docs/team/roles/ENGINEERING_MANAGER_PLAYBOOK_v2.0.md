@@ -18,6 +18,9 @@ Ser a autoridade técnica e de processo do projeto.
 - Encerramento de Sprint
 - Melhoria contínua
 - Aprovar tecnicamente Pull Requests após os gates previstos pelo Workflow
+- Preservar a consistência institucional de nomenclatura e rastreabilidade
+- Decidir se um achado requer Issue formal e aprovar qualquer evolução de convenções
+- Evitar a proliferação de identificadores ou rastreadores paralelos
 
 ## Fluxo
 Program Director -> AI Engineering Orchestrator -> PO -> EM -> PO (backlog) -> TW -> Architecture Gate -> EM -> SE -> QE Planning -> EM QA Authorization -> QE Execution -> TW -> EM (aprovação técnica) -> Repository Owner (merge administrativo) -> EM (release e encerramento)

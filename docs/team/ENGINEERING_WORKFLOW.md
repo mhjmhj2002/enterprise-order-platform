@@ -143,6 +143,19 @@ An Administrative Merge does not replace technical approval, remove any workflow
 | Project History | Technical Writer | Engineering Manager when closure-related | Technical Writer |
 | Engineering Roadmap | Technical Writer | Engineering Manager for strategic changes | Technical Writer |
 
+## Institutional Naming and Traceability
+
+Use the smallest identifier that preserves an unambiguous link to its institutional source. A label in a report is not a parallel backlog or defect tracker.
+
+| Artifact or reference | Official identifier and rule | Creation authority |
+| --- | --- | --- |
+| Story, defect or action pending | GitHub Issue `#<number>`; this is the system of record for work that requires prioritization, ownership or follow-up beyond the current validation. | Product Owner materializes approved backlog items; the Engineering Manager decides whether a reported finding requires formal tracking. |
+| Test scenario | `<scope>-<story>-<sequence>` (for example, `INV-033-001`), defined in the Story Test Plan and repeated unchanged in its Test Report. | Quality Engineer. |
+| Evidence | The applicable Story/Issue reference and test-scenario ID, plus enough context to reproduce it (such as commit or PR, environment, date and command). No separate evidence numbering is required unless an approved artifact already defines it. | Producing role; Quality Engineer for test evidence. |
+| Institutional document | Its approved filename or existing document identifier (for example, `ADR-001`). A documentation finding that needs follow-up is linked to its GitHub Issue; otherwise it is described with the Story and scenario/evidence that exposed it. | Technical Writer maintains identifiers already established for documentation. |
+
+Roles may create identifiers only in the artifact they own and only according to this table. They must not invent local prefixes, parallel defect numbers or naming patterns. A new identifier format is allowed only when an existing artifact cannot provide traceability; the Technical Writer records the proposal and the Engineering Manager approves it before use. Existing official references must be preserved consistently across plans, reports, documentation and GitHub.
+
 ## Architecture Gates and Technical Contracts
 
 An Architecture Gate is mandatory before implementation when a Story leaves technical decisions unresolved, including shared infrastructure, event platforms, contracts between services, versioning, runtime topology, security boundaries or reliability behavior.
@@ -175,7 +188,7 @@ The gate produces a Technical Contract when applicable. A minimum contract recor
 
 ## Continuous Improvement and Organizational Evolution
 
-The Engineering Manager reviews this workflow at Sprint boundaries or when process gaps are discovered. The Technical Writer maintains this document, synchronizes changes across playbooks, validates organizational consistency and preserves cross-references and document versioning.
+The Engineering Manager reviews this workflow at Sprint boundaries or when process gaps are discovered. The Engineering Manager approves changes to institutional naming and traceability conventions and prevents parallel nomenclatures. The Technical Writer maintains this document, synchronizes changes across playbooks, validates organizational consistency and preserves cross-references and document versioning.
 
 Roadmap review is part of each Sprint closure. The Technical Writer updates the [Engineering Roadmap](ENGINEERING_ROADMAP.md) with completed evolution and the current directional view; the Engineering Manager approves strategic changes.
 
