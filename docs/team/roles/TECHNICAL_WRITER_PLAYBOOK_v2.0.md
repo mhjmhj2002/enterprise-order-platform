@@ -13,6 +13,10 @@ artifacts are clear, consistent, versioned, and aligned with engineering
 standards. Documentation is treated as a first-class deliverable and
 must evolve together with the codebase.
 
+## Engineering Workflow
+
+This playbook specializes the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), the official source for governance, handoffs and authority. In case of conflict, the Engineering Workflow prevails.
+
 ------------------------------------------------------------------------
 
 # 2. Objectives
@@ -48,6 +52,14 @@ must evolve together with the codebase.
 -   Publish release notes.
 -   Validate cross-links.
 -   Archive obsolete documents.
+
+## Institutional Governance
+
+-   Maintain `docs/team/ENGINEERING_WORKFLOW.md` as the institutional workflow.
+-   Synchronize workflow changes across role playbooks.
+-   Validate organizational consistency, cross-references and documentation versioning.
+-   Maintain traceability between governance artifacts, technical contracts and delivery documentation.
+-   Maintain `docs/team/ENGINEERING_ROADMAP.md` after each Sprint closure, preserving its directional and non-binding nature.
 
 ------------------------------------------------------------------------
 

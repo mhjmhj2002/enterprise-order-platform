@@ -1,0 +1,92 @@
+# Engineering Roadmap
+
+**Status:** Living institutional document
+**Owner:** Engineering Manager
+**Maintainer:** Technical Writer
+**Last reviewed:** 2026-07-14
+
+## Purpose
+
+This document is the official engineering view of the platform's evolution: where it started, its current state and the direction currently intended for future Sprints. It complements [Project History](PROJECT_HISTORY.md), which records completed events, and the individual Sprint Plans, which define approved scope.
+
+## Roadmap Evolution
+
+The roadmap is a living artifact, not a rigid delivery commitment. Future Sprints represent the best information available when this document was updated. They may be reordered, split, combined, removed or expanded as the team learns.
+
+At the end of every Sprint, Engineering reviews this roadmap considering:
+
+- outcomes and technical learnings;
+- changes in priorities and business needs;
+- risks, dependencies and capacity;
+- opportunities revealed by the delivered increment.
+
+Only approved Sprint Plans and technical contracts authorize work. A roadmap entry alone does not create Stories, change architecture or authorize implementation.
+
+## Completed Evolution
+
+### Sprint -1 — Project Bootstrap
+
+**Objective:** Establish the repository, documentation foundation and GitHub governance needed to begin delivery with traceability.
+
+**Key deliveries:** monorepo structure, initial README and changelog, Team Charter, roadmap, Project History, ADR-001/ADR-002, issues, milestones, Project Board and bootstrap release.
+
+**Learnings:** governance and documentation must be established before service delivery so planning, decisions and releases remain traceable.
+
+### Sprint 0 — Architectural Foundation
+
+**Objective:** Establish the business and architectural baseline before implementation.
+
+**Key deliveries:** Business Discovery, Domain Glossary, Business Flow, Context Map, Service Boundaries, Architecture Overview, Engineering Handbook and ADR organization.
+
+**Learnings:** shared business language and explicit boundaries reduce ambiguity before services and contracts are introduced.
+
+### Sprint 1 — REST Microservices
+
+**Objective:** Deliver Catalog, Inventory and Order Services as the first functional platform baseline.
+
+**Key deliveries:** three Spring Boot services, DDD and hexagonal architecture, PostgreSQL/Flyway persistence, synchronous Order-to-Inventory REST integration, `PaymentFakeAdapter`, ADR-004 to ADR-006, quality evidence and release `v0.3.0-order-service`.
+
+**Learnings:** incremental integration preserved service boundaries and showed that observability, compensation and documentation must evolve alongside behavior.
+
+## Current Sprint
+
+### Sprint 2 — Event-Driven Architecture
+
+**Status:** In progress.
+
+**Objective:** Introduce the first asynchronous, event-driven increment between Order and Inventory while preserving the existing REST baseline.
+
+**Approved scope:**
+
+- `OrderConfirmed` v1 as the initial domain event.
+- Order as producer and Inventory as the initial consumer.
+- Local, reproducible event-platform environment and inspectable event flow.
+- Traceable processing, protection against duplicate business effects and evidence without regression of relevant REST flows.
+
+**Architectural decisions:** REST and events coexist; Kafka is introduced incrementally; the event contract and platform constraints are governed by the Event Catalog, ADR-007 and the Event Platform Technical Contract. Payment Service, Saga, API Gateway, Kubernetes, Schema Registry and a full REST migration remain outside this Sprint.
+
+**Current Stories:** #30 is closed after the Architecture Gate and Technical Contract; #37 is in review for the local event platform; #31 through #35 remain planned in the Sprint backlog. Story state is authoritative in the GitHub milestone and Project Board.
+
+**Expected result:** a documented, reproducible end-to-end `OrderConfirmed` v1 flow with publication, consumption, traceability and quality evidence.
+
+References: [Sprint 2 Product Plan](sprints/SPRINT_2_PRODUCT_PLAN.md), [Event Catalog](../architecture/events/EVENT_CATALOG.md), [ADR-007](../architecture/ADR/ADR-007-incremental-event-driven-architecture.md) and [Project History](PROJECT_HISTORY.md).
+
+## Current Engineering Outlook
+
+The following Sprints are directional only. Their order and scope will be reviewed after each delivered increment.
+
+| Sprint | Direction | High-level objective |
+| --- | --- | --- |
+| Sprint 3 | Advanced Event-Driven Architecture | Evolve the validated event baseline using lessons from Sprint 2, without assuming a fixed implementation. |
+| Sprint 4 | Observability | Improve visibility of platform behavior, dependencies and operational evidence. |
+| Sprint 5 | Security | Establish the next security baseline appropriate to the evolved platform. |
+| Sprint 6 | API Gateway | Evaluate and introduce an API entry-point strategy when justified by platform needs. |
+| Sprint 7 | Payment Service | Explore an independent payment bounded context after the supporting platform capabilities are mature enough. |
+| Sprint 8 | Saga | Evaluate distributed coordination only after event and payment boundaries have been validated. |
+| Sprint 9 | Platform / Kubernetes | Evaluate platform orchestration and deployment capabilities based on operational needs. |
+
+No row above constitutes a commitment, approved backlog or implementation authorization.
+
+## Governance
+
+Roadmap maintenance follows the [Engineering Workflow](ENGINEERING_WORKFLOW.md). The Technical Writer updates this document after Sprint closure; the Engineering Manager reviews strategic changes and approves any decision that changes architecture, priorities or delivery scope.

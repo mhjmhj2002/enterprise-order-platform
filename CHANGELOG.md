@@ -21,12 +21,16 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 - Issue #24 removida do milestone e mantida como backlog tecnico Medium nao bloqueante.
 - Sprint 1 encerrada operacionalmente após merge do PR #28 e fechamento do milestone.
 - Baseline documental da Sprint 2 adicionada para a evolução incremental a eventos, sem implementação de Kafka ou novos serviços.
+- Playbooks de Engineering Manager, Product Owner, Technical Writer, Software Engineer, Quality Engineer e LT subordinados ao Engineering Workflow.
+- `docs/team/WORKFLOW.md` reposicionado como documento complementar para evitar conflito de governança.
 
 ### Added
 
 - Event Catalog institucional com `OrderConfirmed` v1, ownership, tópico planejado e payload mínimo de negócio.
 - Convenções institucionais de nomenclatura, versionamento, ownership, rastreabilidade e duplicidade de eventos.
 - ADR-007 para registrar a adoção incremental de Event-Driven Architecture na Sprint 2.
+- `docs/team/ENGINEERING_WORKFLOW.md` como fonte institucional de governança, handoffs, authority matrix e gates de engenharia.
+- `docs/team/ENGINEERING_ROADMAP.md` como visão institucional, evolutiva e não vinculante das Sprints concluídas, atual e futuras.
 
 ## [0.3.0] - 2026-07-10
 

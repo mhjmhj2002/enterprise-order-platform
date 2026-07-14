@@ -2,6 +2,10 @@
 
 Versão institucional v2.0.
 
+## Engineering Workflow
+
+Este playbook especializa o [Engineering Workflow](../ENGINEERING_WORKFLOW.md), que é a fonte oficial de governança. Em caso de conflito, prevalece o Workflow Institucional.
+
 ## Missão
 Ser a autoridade técnica e de processo do projeto.
 
@@ -15,7 +19,7 @@ Ser a autoridade técnica e de processo do projeto.
 - Melhoria contínua
 
 ## Fluxo
-PO -> EM -> PO(backlog) -> TW -> Architecture Gate -> SE -> QE -> TW -> EM
+Program Director -> AI Engineering Orchestrator -> PO -> EM -> PO (backlog) -> TW -> Architecture Gate -> EM -> SE -> QE Planning -> EM QA Authorization -> QE Execution -> TW -> EM
 
 ## Authority Matrix
 - PO: WHY/WHAT
