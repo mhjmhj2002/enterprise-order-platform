@@ -13,11 +13,13 @@ import com.mercadoaurora.inventory.infrastructure.persistence.entity.OrderConfir
 import com.mercadoaurora.inventory.infrastructure.persistence.repository.SpringDataOrderConfirmationEvidenceRepository;
 import com.mercadoaurora.inventory.infrastructure.persistence.repository.SpringDataOrderConfirmationProcessingRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -70,6 +72,11 @@ class InventoryIntegrationTest {
 
     @Autowired
     RecoverOrderConfirmationProcessingUseCase recoverProcessing;
+
+    @BeforeEach
+    void configureHttpClientThatSupportsPatch() {
+        restTemplate.getRestTemplate().setRequestFactory(new JdkClientHttpRequestFactory());
+    }
 
     @Test
     void shouldCreateAndGetInventoryItem() {
