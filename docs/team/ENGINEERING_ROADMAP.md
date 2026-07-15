@@ -3,7 +3,7 @@
 **Status:** Living institutional document
 **Owner:** Engineering Manager
 **Maintainer:** Technical Writer
-**Last reviewed:** 2026-07-14
+**Last reviewed:** 2026-07-15
 
 ## Purpose
 
@@ -48,11 +48,11 @@ Only approved Sprint Plans and technical contracts authorize work. A roadmap ent
 
 **Learnings:** incremental integration preserved service boundaries and showed that observability, compensation and documentation must evolve alongside behavior.
 
-## Current Sprint
+## Previous Sprint
 
 ### Sprint 2 — Event-Driven Architecture
 
-**Status:** In progress.
+**Status:** Baseline delivered; administrative Sprint closure is governed separately.
 
 **Objective:** Introduce the first asynchronous, event-driven increment between Order and Inventory while preserving the existing REST baseline.
 
@@ -69,11 +69,10 @@ Only approved Sprint Plans and technical contracts authorize work. A roadmap ent
 
 **Expected result:** a documented, reproducible end-to-end `OrderConfirmed` v1 flow with publication, consumption, traceability and quality evidence.
 
-**Capacity decision (2026-07-15):** Story #34, the Should Have reliability
-evolution, was re-planned to Sprint 3 so it does not block the Must Have
-evidence and documentation Story #35. The Sprint 2 closure baseline records
-the delivered limited retry behavior and explicitly excludes DLT and additional
-observable-retry evolution.
+**Capacity decision (2026-07-15):** Story #34 was re-planned to Sprint 3 and
+is not part of the Sprint 2 baseline. The baseline records the delivered
+limited retry behavior and explicitly excludes DLT and additional observable
+reliability evolution.
 
 References: [Sprint 2 Product Plan](sprints/SPRINT_2_PRODUCT_PLAN.md), [Event Catalog](../architecture/events/EVENT_CATALOG.md), [ADR-007](../architecture/ADR/ADR-007-incremental-event-driven-architecture.md) and [Project History](PROJECT_HISTORY.md).
 
@@ -81,13 +80,26 @@ References: [Sprint 2 Product Plan](sprints/SPRINT_2_PRODUCT_PLAN.md), [Event Ca
 
 The Repository Owner responsibilities and the Administrative Merge concept were institutionalized during Sprint 2. Technical approval remains with the engineering roles defined in the [Engineering Workflow](ENGINEERING_WORKFLOW.md); repository administration and the definitive GitHub merge belong exclusively to the Repository Owner.
 
+## Current Sprint
+
+### Sprint 3 — Initial Reliability
+
+**Status:** Final Engineering Review approved — Story #34 is technically complete and ready for Repository Owner administrative closure.
+
+**Objective:** Make the Inventory processing of `OrderConfirmed` v1 recoverable after temporary failures while preserving the approved event and REST baseline.
+
+**Delivered increment:** Inventory records a durable, idempotent processing pending item before acknowledgment, recovers pending work locally, and exposes `PENDING`/`COMPLETED` processing state for demonstration. The topic, envelope, producer, consumer group and existing REST behavior remain unchanged.
+
+**Quality evidence:** the Quality Gate is **APPROVED WITH OBSERVATIONS**. The non-blocking observation is the Order Service Testcontainers follow-up; its equivalent cross-service flow was executed live. The Final Engineering Review classified this as future technical debt and authorized administrative closure.
+
+References: [Sprint 3 Product Plan](sprints/SPRINT_3_PRODUCT_PLAN.md), [Story #34 Architecture Gate](../architecture/contracts/STORY_034_ARCHITECTURE_GATE.md), [Sprint 3 Quality Evidence](../quality/SPRINT_3_QUALITY_EVIDENCE.md) and [Final Engineering Review](sprints/SPRINT_3_FINAL_ENGINEERING_REVIEW.md).
+
 ## Current Engineering Outlook
 
 The following Sprints are directional only. Their order and scope will be reviewed after each delivered increment.
 
 | Sprint | Direction | High-level objective |
 | --- | --- | --- |
-| Sprint 3 | Advanced Event-Driven Architecture | Evolve the validated event baseline using lessons from Sprint 2, without assuming a fixed implementation. |
 | Sprint 4 | Observability | Improve visibility of platform behavior, dependencies and operational evidence. |
 | Sprint 5 | Security | Establish the next security baseline appropriate to the evolved platform. |
 | Sprint 6 | API Gateway | Evaluate and introduce an API entry-point strategy when justified by platform needs. |

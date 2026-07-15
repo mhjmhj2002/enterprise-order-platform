@@ -29,7 +29,7 @@ Como portfólio técnico, evidencia decisões e entregas rastreáveis: DDD, arqu
 
 ## Arquitetura
 
-Cada serviço possui domínio, casos de uso e persistência próprios. Na baseline atual, o Order Service orquestra reservas de estoque por REST síncrono, publica assincronamente `OrderConfirmed` v1 com o perfil Kafka e o Inventory Service registra seu reconhecimento idempotente, sem alterar estoque ou reservas.
+Cada serviço possui domínio, casos de uso e persistência próprios. Na baseline atual, o Order Service orquestra reservas de estoque por REST síncrono, publica assincronamente `OrderConfirmed` v1 com o perfil Kafka e o Inventory Service registra e recupera localmente seu processamento idempotente, sem alterar estoque ou reservas.
 
 ```mermaid
 flowchart LR

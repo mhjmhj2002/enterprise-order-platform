@@ -47,11 +47,16 @@ Variaveis opcionais:
 - `SERVER_PORT` (default `8082`)
 - `KAFKA_BOOTSTRAP_SERVERS` (profile Spring e Maven `kafka`; default `localhost:9094`)
 - `KAFKA_CONSUMER_GROUP_ID` (profile `kafka`; default `mercadoaurora.inventory.v1`)
+- `ORDER_CONFIRMATION_RECOVERY_FIXED_DELAY_MS` (profile `kafka`; cadência do worker de recuperação)
+- `ORDER_CONFIRMATION_RECOVERY_BATCH_SIZE` (profile `kafka`; limite de pendências por execução)
 
 Com o profile Maven e Spring `kafka`, o servico consome `OrderConfirmed` v1 no grupo
-`mercadoaurora.inventory.v1`. Cada evento valido gera uma evidencia idempotente por `eventId`,
-consultavel em `GET /api/v1/inventory/order-confirmations/{orderId}`. O consumo nao reserva,
-baixa ou altera estoque. Falhas possuem duas tentativas adicionais; nao ha DLT nesta Story.
+`mercadoaurora.inventory.v1`. Cada evento válido é registrado de forma idempotente por `eventId`
+em uma pendência durável antes do reconhecimento. Um worker local recupera pendências de falhas
+temporárias e, ao concluir, gera uma única evidência consultável em
+`GET /api/v1/inventory/order-confirmations/{orderId}`. O estado `PENDING` ou `COMPLETED` e sua
+rastreabilidade podem ser consultados em `GET /api/v1/inventory/order-confirmation-processings/{orderId}`.
+O consumo não reserva, baixa ou altera estoque. Não há DLT nesta Story.
 
 ## Como testar
 
@@ -73,6 +78,7 @@ mvn -Pkafka test
 - `GET /api/v1/inventory/{skuId}`
 - `GET /api/v1/inventory/{skuId}/{warehouseId}`
 - `GET /api/v1/inventory/order-confirmations/{orderId}`
+- `GET /api/v1/inventory/order-confirmation-processings/{orderId}`
 
 Swagger UI:
 
