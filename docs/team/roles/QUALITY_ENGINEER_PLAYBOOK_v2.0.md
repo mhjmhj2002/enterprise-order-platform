@@ -335,6 +335,10 @@ Use only the institutional conventions in the [Engineering Workflow](../ENGINEER
 - Report a defect, pending or documentation inconsistency with the affected Story/Issue and scenario/evidence. The Engineering Manager determines whether it needs formal GitHub Issue tracking; do not create a local substitute for that Issue.
 - Preserve official identifiers exactly as supplied by the backlog, Technical Writer or existing institutional artifacts.
 
+## Versioned Quality Handoff
+
+Before handing a versioned test plan, report, collection or evidence to the Engineering Manager or Technical Writer, validate its diff, commit and push the Quality Engineer's own artifacts to the official Story branch. Record the branch, commit hash and published artifacts in the existing Test Report or quality handoff. Quality validation may reference only published implementation artifacts; a local-only implementation is escalated to its producing role. The shared rule is [Versioned Handoff](../ENGINEERING_WORKFLOW.md#versioned-handoff).
+
 ---
 
 # 13. Severity Classification

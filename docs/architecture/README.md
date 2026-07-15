@@ -9,4 +9,6 @@ Documentacao de arquitetura do projeto, incluindo visao geral, limites de domini
 - [Context Map](CONTEXT_MAP.md)
 - [Service Boundaries](SERVICE_BOUNDARIES.md)
 - [Event-Driven Architecture — Sprint 2](events/README.md)
+- [Event Platform Technical Contract](contracts/EVENT_PLATFORM_TECHNICAL_CONTRACT.md)
+- [Story #34 — Architecture Gate: Confiabilidade Inicial do Processamento](contracts/STORY_034_ARCHITECTURE_GATE.md)
 - [ADRs](ADR)

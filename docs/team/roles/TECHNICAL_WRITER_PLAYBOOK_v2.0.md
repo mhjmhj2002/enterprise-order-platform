@@ -66,6 +66,7 @@ This playbook inherits all institutional engineering rules defined by the [Engin
 -   Identify naming or traceability inconsistencies during review; record a proposed convention change for Engineering Manager approval instead of creating a pattern during the review.
 -   Link documentation findings that require follow-up to the applicable institutional Issue; do not create parallel documentation or defect identifiers.
 -   Supply documentation and cross-reference evidence to the Sprint Engineering Audit, then publish the approved closure record in history, roadmap and governance references.
+-   Before a documentation handoff, validate the diff and publish the Technical Writer's own cohesive commit to the official Story branch; record branch, commit hash and published artifacts in the existing documentation, release or review record, following the [Versioned Handoff](../ENGINEERING_WORKFLOW.md#versioned-handoff) convention.
 
 The Technical Writer does not provide technical approval or execute the definitive merge. Those responsibilities belong respectively to the Engineering Manager and the Repository Owner, as defined in the Engineering Workflow.
 

@@ -2,7 +2,7 @@
 
 Este documento consolida a visao geral da arquitetura do projeto.
 
-## Estado atual (Sprint 2)
+## Estado atual (Sprint 3)
 
 - Monorepo com servicos em `services/`.
 - Comunicacao inicial via REST sincrono.
@@ -10,13 +10,15 @@ Este documento consolida a visao geral da arquitetura do projeto.
 - Catalog Service bootstrapado com DDD + arquitetura hexagonal.
 - Inventory Service bootstrapado com dominio transacional e arquitetura hexagonal.
 - Order Service bootstrapado como contexto integrador de compromisso comercial.
-- Plataforma Kafka local operacional, com publicação assíncrona de `OrderConfirmed` v1 pelo Order Service e consumo de reconhecimento pelo Inventory Service.
+- Plataforma Kafka local operacional, com publicação assíncrona de `OrderConfirmed` v1 pelo Order Service e consumo confiável pelo Inventory Service.
 
 ## Evolucao da Sprint 2
 
 A Sprint 2 realiza a evolucao incremental para arquitetura orientada a eventos. A plataforma permanece hibrida: as integracoes REST existentes continuam suportadas e Kafka foi introduzido para a publicação de `OrderConfirmed` v1 pelo Order Service e seu consumo de reconhecimento pelo Inventory Service.
 
 O consumer inicial do Inventory Service reconhece o evento e persiste evidência idempotente por `eventId`, sem alterar estoque, reservas ou pedidos. Não há migração integral de REST, Payment Service, Saga distribuída, API Gateway ou novos serviços no escopo da Sprint 2.
+
+Na Story #34 (Sprint 3), o Inventory passou a registrar uma pendência durável antes do reconhecimento e a retomá-la localmente quando uma falha temporária cessa. A consulta aditiva de processamento torna demonstrável o estado `PENDING` ou `COMPLETED`; o contrato `OrderConfirmed` v1, tópico, producer, grupo de consumo e integração REST permanecem inalterados.
 
 O fluxo entregue publica o fato de domínio de que um pedido foi confirmado depois das regras vigentes de pagamento aprovado e estoque reservado. O Inventory registra a ciência rastreável do fato; a publicação e o consumo não alteram a semântica da confirmação nem a integração REST com Inventory.
 
@@ -72,3 +74,4 @@ Implementacao do contexto de Pedido com foco no compromisso comercial:
 - [Architecture Notes](ARCHITECTURE_NOTES.md)
 - [Context Map](CONTEXT_MAP.md)
 - [Service Boundaries](SERVICE_BOUNDARIES.md)
+- [Story #34 Architecture Gate](contracts/STORY_034_ARCHITECTURE_GATE.md)

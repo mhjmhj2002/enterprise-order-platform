@@ -248,6 +248,10 @@ After materializing the backlog, the Product Owner must:
 - never create new labels without Engineering Manager approval;
 - use an approved fallback when the required taxonomy does not yet exist, as done in the current workflow.
 
+## Versioned Planning Handoff
+
+When planning or backlog artifacts are versioned, publish the Product Owner's own cohesive commit to the official Story branch before handing them to the Engineering Manager or Technical Writer. Validate the intended diff and record the branch, commit hash and published artifacts in the existing planning or handoff record, as required by the [Engineering Workflow](../ENGINEERING_WORKFLOW.md#versioned-handoff).
+
 ---
 
 # Quality Checklist

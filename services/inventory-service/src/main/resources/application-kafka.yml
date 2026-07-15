@@ -21,3 +21,7 @@ management:
   health:
     kafka:
       enabled: true
+app:
+  order-confirmation-recovery:
+    fixed-delay-ms: ${ORDER_CONFIRMATION_RECOVERY_FIXED_DELAY_MS:5000}
+    batch-size: ${ORDER_CONFIRMATION_RECOVERY_BATCH_SIZE:25}

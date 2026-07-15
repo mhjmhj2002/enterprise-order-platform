@@ -59,6 +59,7 @@ The Repository Owner is responsible for:
 -   Confirmation that `main` is synchronized.
 -   Confirmation that the worktree is clean.
 -   Supply GitHub, milestone, release and `main`-synchronization evidence to the AI Engineering Orchestrator after authorized Sprint operations.
+-   Block administrative closure when an obligatory deliverable is only in a local workspace or has no published reference on the official Story branch.
 
 ------------------------------------------------------------------------
 
@@ -77,6 +78,7 @@ The Repository Owner MUST NOT:
 -   Change the engineering workflow.
 -   Change the roadmap.
 -   Interpret product decisions.
+-   Assume authorship of another role's changes or commit/push those changes on that role's behalf.
 
 ## Pull Request Approval
 
@@ -178,6 +180,7 @@ Before executing repository actions, confirm:
 -   Project Board reflects reality.
 -   Milestone is consistent.
 -   Target branch is correct.
+-   Obligatory Story deliverables are published on the official Story branch; the applicable existing handoffs record branch, commit hash and artifacts.
 
 After execution:
 

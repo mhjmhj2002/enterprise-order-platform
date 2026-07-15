@@ -99,6 +99,16 @@ No implementation begins before the applicable approval gate. The Software Engin
 
 ## Official Handoffs
 
+### Versioned Handoff
+
+A **Versioned Handoff** is the mandatory form of every handoff that produces versioned artifacts, including code, tests, documentation, plans, reports and governance records. Local workspace changes do not characterize a delivery and must not be used as the sole evidence for a handoff, review, approval or administrative closure.
+
+Before such a handoff, the producing role must synchronize the official Story branch as appropriate, inspect the intended diff, create a cohesive commit, push it to the remote Story branch and record the published reference in its existing handoff record. The official Story branch is the shared state of the implementation; GitHub must continuously reflect the work available to the receiving role.
+
+The existing handoff record (for example, a PR, Story plan, test report, engineering review or audit evidence) records, when applicable: the branch, published commit hash and published artifacts. No additional handoff document or gate is created by this rule. A receiving role works only from published artifacts and escalates a missing or divergent publication to the producing role.
+
+Roles publish their own artifacts. No role may take authorship of, commit, or publish another role's uncommitted deliverable in order to complete a handoff.
+
 | From | To | Required handoff |
 | --- | --- | --- |
 | Product Owner | Engineering Manager | Sprint Plan with scope, priorities, risks and functional criteria. |
@@ -140,6 +150,8 @@ The Repository Owner exclusively:
 - synchronizes the `main` branch;
 - administers Branch Protection Rules, repository permissions and GitHub settings; and
 - performs administrative merges when the conditions below are met.
+
+The Repository Owner does not assume authorship of work produced by other roles and does not create commits on their behalf. It blocks administrative closure when an obligatory Story deliverable exists only in a local workspace or lacks a published reference on the official Story branch.
 
 ### Administrative Merge
 
@@ -199,6 +211,8 @@ The gate produces a Technical Contract when applicable. A minimum contract recor
 5. Engineering Manager approves the PR technically after the required reviews and gates; the Technical Lead verifies operational conformity when assigned.
 6. Repository Owner executes the merge operation, including an Administrative Merge when applicable.
 7. The Story moves to Done only after the defined governance and quality gates are met and the merge is complete.
+
+All role handoffs within this workflow that contain versioned artifacts follow the Versioned Handoff rule. Publication is progressive throughout the Story; it is not deferred until the final Pull Request step.
 
 ## Release Workflow
 

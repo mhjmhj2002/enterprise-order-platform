@@ -2,7 +2,7 @@
 
 ## Status
 
-Aceito para planejamento da Sprint 2.
+Aceito e implementado incrementalmente na Sprint 2; a Story #34 da Sprint 3 adicionou confiabilidade interna ao processamento do consumer sem alterar esta decisão.
 
 ## Contexto
 
@@ -48,8 +48,8 @@ Rejeitada por extrapolar o planejamento aprovado e por misturar responsabilidade
 
 ### Limitações atuais
 
-- Kafka, producer e consumer ainda não estão implementados.
-- O resultado funcional do consumidor ainda requer refinamento com Engenharia.
+- Kafka, producer e consumer inicial estão implementados para `OrderConfirmed` v1; a recuperação local de pendências temporárias permanece interna ao Inventory.
+- O contrato de negócio do evento e o escopo do consumidor permanecem limitados ao reconhecimento rastreável, sem nova regra de estoque.
 - Não há promessa de processamento exatamente uma vez.
 - Retry, DLT e Schema Registry dependem de capacidade e aprovação posterior.
 

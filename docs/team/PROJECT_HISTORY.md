@@ -281,3 +281,9 @@ PI-001 e PI-002 dependem agora de evidência da execução real do Sprint Closin
 O `ENGINEERING_WORKFLOW.md` foi formalizado como o documento raiz da engenharia. Ele concentra regras compartilhadas, workflows, Authority Matrix, auditoria, melhoria contínua e padrões institucionais. Os playbooks das roles passaram a declarar a herança automática dessas regras e a restringir seu conteúdo às responsabilidades e ao detalhe operacional específicos de cada role.
 
 Esse modelo reduz manutenção e divergência: mudanças institucionais futuras são feitas primeiro no workflow raiz; um playbook só é alterado quando sua responsabilidade própria for impactada. O fluxo e a matriz globais que estavam repetidos no playbook do Engineering Manager foram substituídos pela referência herdada.
+
+## 2026-07-15 - Story #34: confiabilidade inicial do processamento
+
+A Story #34 implementou no Inventory Service a recuperação local do processamento de `OrderConfirmed` v1 após falha temporária. Cada fato passa a ter pendência durável e idempotente por `eventId` antes do reconhecimento; o worker local retoma pendências elegíveis e a consulta aditiva permite demonstrar `PENDING` e `COMPLETED` com rastreabilidade.
+
+O Architecture Gate permaneceu **APPROVED WITH CONDITIONS** e suas condições foram demonstradas no Quality Gate: não houve perda silenciosa na falha temporária injetada, reentrega e retomada concorrente preservaram um único resultado e a baseline Order → Kafka → Inventory, incluindo o fluxo REST de reservas, foi exercitada. O Quality Gate resultou em **APPROVED WITH OBSERVATIONS**: a atualização dos testes de integração Testcontainers do Order Service segue como acompanhamento não bloqueante. Não foram alterados o contrato `OrderConfirmed` v1, tópico, envelope, producer, grupo de consumo ou regras de pedido/estoque.

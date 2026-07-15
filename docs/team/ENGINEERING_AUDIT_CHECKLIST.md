@@ -1,6 +1,6 @@
 # Engineering Audit Checklist
 
-**Version:** 1.1
+**Version:** 1.3
 **Status:** Institutional baseline  
 **Owner:** AI Engineering Orchestrator  
 **Closure authority:** Engineering Manager
@@ -37,6 +37,9 @@ For each applicable line, link the evidence and record one result: `Verified`, `
 | Governance | Engineering Roadmap was reviewed and updated when the outcome affects its direction. | |
 | Governance | **Workflow separation:** Story Workflow, Release Workflow and Sprint Closing Workflow are independent, each has explicit entry criteria, exit criteria and closure authority. | |
 | Governance | **Operational authority:** every required closing operation has an explicit owner, corresponding playbook, defined evidence handoff and authority. This includes release, GitHub, milestones, Project Board, branch cleanup and repository administration when applicable. | |
+| Governance | **Versioned handoffs:** applicable producing roles made progressive commits and handed off only artifacts published on the official Story branch; their existing records contain the branch, commit hash and published artifacts. | |
+| Governance | **Versioned-handoff chronology:** using only the official Story-branch history and the existing handoff records, each applicable mandatory handoff has at least one published commit, and that commit precedes the start of the next institutional stage. Record only a confirmed sequence, an exception and its owner, or N/A with rationale; do not perform a detailed Git-history inspection. | |
+| Governance | **No local-only obligatory deliverables:** no required Story artifact exists solely in a workspace; any exception identifies its owner and Engineering Manager decision. | |
 | GitHub | Issues have the approved final disposition and traceability. | |
 | GitHub | Labels and Project Board reflect that disposition. | |
 | GitHub | Milestone and release/tag reflect the authorized Sprint state. | |
