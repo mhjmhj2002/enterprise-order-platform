@@ -1,6 +1,6 @@
 # Sprint 2 — Closure Readiness
 
-**Status:** DOCUMENTATION GATE PASSED — AWAITING EM AUTHORIZATION  
+**Status:** DOCUMENTATION GATE PASSED — AWAITING EM AUTHORIZATION
 **Data:** 2026-07-15  
 **Responsável:** Technical Writer
 
