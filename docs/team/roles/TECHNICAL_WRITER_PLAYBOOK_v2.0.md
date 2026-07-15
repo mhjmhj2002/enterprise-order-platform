@@ -65,6 +65,7 @@ This playbook specializes the [Engineering Workflow](../ENGINEERING_WORKFLOW.md)
 -   Preserve approved institutional identifiers and verify that they remain consistent across plans, reports, GitHub references and documentation.
 -   Identify naming or traceability inconsistencies during review; record a proposed convention change for Engineering Manager approval instead of creating a pattern during the review.
 -   Link documentation findings that require follow-up to the applicable institutional Issue; do not create parallel documentation or defect identifiers.
+-   Supply documentation and cross-reference evidence to the Sprint Engineering Audit, then publish the approved closure record in history, roadmap and governance references.
 
 The Technical Writer does not provide technical approval or execute the definitive merge. Those responsibilities belong respectively to the Engineering Manager and the Repository Owner, as defined in the Engineering Workflow.
 

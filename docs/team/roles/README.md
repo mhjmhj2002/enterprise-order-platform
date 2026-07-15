@@ -7,6 +7,8 @@ Baselines institucionais que definem responsabilidades, fluxo de trabalho e crit
 - [Technical Writer Playbook v2.0](TECHNICAL_WRITER_PLAYBOOK_v2.0.md)
 - [Product Owner Playbook v2.0](PRODUCT_OWNER_PLAYBOOK_v2.0.md)
 - [Engineering Manager Playbook v2.0](ENGINEERING_MANAGER_PLAYBOOK_v2.0.md)
+- [AI Engineering Orchestrator Playbook v1.0](AI_ENGINEERING_ORCHESTRATOR_PLAYBOOK_v1.0.md)
+- [Repository Owner Playbook v1.0](REPOSITORY_OWNER_PLAYBOOK_v1.0.md)
 - [LT Playbook](LT_PLAYBOOK.md)
 
 Os documentos legados de papeis foram substituidos por estes playbooks versionados.

@@ -22,7 +22,7 @@ This document defines how engineering work moves from strategic direction to spr
 | Role | Primary accountability |
 | --- | --- |
 | Program Director | Strategic direction and portfolio-level sponsorship. |
-| AI Engineering Orchestrator | Coordinates agents, preserves task flow and escalates authority gaps. |
+| AI Engineering Orchestrator | Improves engineering processes and governance; coordinates the institutional Sprint audit and escalates authority gaps. |
 | Product Owner | Defines why and what: value, scope, priorities and functional acceptance criteria. |
 | Engineering Manager | Owns technical governance, capacity, architecture approval, release approval and sprint closure. |
 | Repository Owner | Administers the GitHub repository and executes repository operations after the defined technical gates. |
@@ -64,7 +64,13 @@ Engineering Manager — Technical Approval
         ↓
 Repository Owner — Administrative Merge
         ↓
-Engineering Manager — Release and Sprint Closure
+Engineering Manager — Release Authorization
+        ↓
+Repository Owner — Release and GitHub Synchronization
+        ↓
+AI Engineering Orchestrator — Engineering Audit
+        ↓
+Engineering Manager — Sprint Closure
 ```
 
 No implementation begins before the applicable approval gate. The Software Engineer must stop and escalate when a Story does not meet the Definition of Ready.
@@ -77,7 +83,8 @@ No implementation begins before the applicable approval gate. The Software Engin
 4. **Documentation Baseline:** Technical Writer synchronizes planning, architecture references, ADRs, catalogs and governance documents.
 5. **Architecture Gate:** Required when infrastructure, cross-service contracts, technology choices or other unresolved technical decisions affect implementation.
 6. **Implementation and Quality:** Software Engineer implements approved work; Quality Engineer plans, is authorized and executes validation.
-7. **Release and Closure:** Technical Writer prepares release documentation; Engineering Manager confirms the technical gates and authorizes release and Sprint closure; Repository Owner performs the repository merge operation after approval.
+7. **Release Readiness:** Technical Writer prepares release documentation; Quality Engineer provides the final recommendation; Engineering Manager authorizes release readiness; Repository Owner performs the approved repository operations.
+8. **Engineering Audit and Sprint Closure:** after repository operations are complete, the AI Engineering Orchestrator performs the lightweight institutional audit using the [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md). The Engineering Manager decides closure only after the audit result and the process retrospective are recorded.
 
 ## Official Handoffs
 
@@ -93,6 +100,8 @@ No implementation begins before the applicable approval gate. The Software Engin
 | Quality Engineer | Engineering Manager | Test Plan, Test Report, defects and release recommendation. |
 | Technical Writer | Engineering Manager | Release documentation, changelog and history ready for publication. |
 | Engineering Manager | Repository Owner | Technical approval of the PR and confirmation that all institutional gates are complete. |
+| Repository Owner | AI Engineering Orchestrator | Evidence that the authorized GitHub operations, release and `main` synchronization are complete. |
+| AI Engineering Orchestrator | Engineering Manager | Completed audit checklist, exceptions, process retrospective and any process-improvement proposal. |
 
 ## Authority Matrix
 
@@ -106,7 +115,8 @@ No implementation begins before the applicable approval gate. The Software Engin
 | Test strategy and evidence | Consults | Authorizes | Informed | Documents | Reviews | Contributes | Owns |
 | Technical approval of a PR | Informed | Owns | Informed | Validates documentation | Verifies operational conformity | Never self-approves | Recommends |
 | GitHub merge and branch administration | Informed | Authorizes technically | Owns | Informed | Verifies | Never self-merges | Informed |
-| Release and Sprint closure | Informed | Owns | Executes repository operations when required | Prepares | Reviews | Informed | Recommends |
+| Release readiness | Informed | Owns | Executes authorized repository operations | Prepares | Reviews | Informed | Recommends |
+| Engineering audit and process retrospective | Consults | Decides closure / approves improvement | Supplies GitHub evidence | Supplies documentation evidence | Consults | Consults | Supplies quality evidence |
 
 ## Repository Owner Responsibilities
 
@@ -186,9 +196,32 @@ The gate produces a Technical Contract when applicable. A minimum contract recor
 3. Engineering Manager confirms the technical merge state and authorizes the release.
 4. Repository Owner performs the required GitHub repository operations; the release, tags, issue state, Project Board and milestone are synchronized.
 
+## Sprint Closing Workflow
+
+The **Story Workflow** delivers and accepts one Story: planning, applicable architecture gate, implementation, quality, documentation, technical approval, merge and Story state. Its completion does not close the Sprint.
+
+The **Sprint Closing Workflow** verifies that the completed set of Stories produced a coherent institutional result. It starts only after every in-scope Story has reached its approved disposition (Done, formally re-planned or explicitly removed) and release operations authorized by the Engineering Manager have finished.
+
+| Activity | Responsible | Authority / handoff |
+| --- | --- | --- |
+| Supply documentation evidence | Technical Writer | Maintains evidence and publishes approved closure references. |
+| Supply quality evidence | Quality Engineer | Recommends; does not authorize closure. |
+| Supply GitHub and release evidence | Repository Owner | Executes only authorized operations; does not decide closure. |
+| Run audit and retrospective | AI Engineering Orchestrator | Records evidence, exceptions and proposals; does not approve other roles' work. |
+| Decide exceptions, improvements and closure | Engineering Manager | Sole closure authority. |
+
+1. **Evidence assembly — Technical Writer, Quality Engineer and Repository Owner:** provide the existing documentation, quality and GitHub/release evidence; no role repeats another role's review.
+2. **Engineering audit — AI Engineering Orchestrator:** checks the expected artifacts and their cross-consistency through the [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md). Each item is marked verified, not applicable with rationale, or exception with evidence.
+3. **Process retrospective — AI Engineering Orchestrator:** records what escaped the process, the expected detection point, whether accountability was explicit, proportionality of a change and the institutional document that should evolve. It is a retrospective of engineering process, not product scope.
+4. **Improvement decision — Engineering Manager:** accepts the audit result, decides whether an exception blocks closure, and approves any process change. Accepted improvements are recorded in the [Process Improvement Backlog](PROCESS_IMPROVEMENT_BACKLOG.md).
+5. **Closure decision — Engineering Manager:** closes the Sprint only when there are no unaccepted blocking exceptions, mandatory audit items are verified or justified as not applicable, and all accepted improvements have an owner, status and validation Sprint.
+6. **Publication — Technical Writer:** updates the appropriate history, roadmap and governance references after closure. The Repository Owner makes only the GitHub operations authorized by the Engineering Manager.
+
+The AI Engineering Orchestrator coordinates and records the audit; it does not approve documentation, quality, architecture, releases or GitHub operations. An audit finding never silently changes product scope or the product backlog.
+
 ## Continuous Improvement and Organizational Evolution
 
-The Engineering Manager reviews this workflow at Sprint boundaries or when process gaps are discovered. The Engineering Manager approves changes to institutional naming and traceability conventions and prevents parallel nomenclatures. The Technical Writer maintains this document, synchronizes changes across playbooks, validates organizational consistency and preserves cross-references and document versioning.
+The Engineering Manager reviews this workflow at Sprint boundaries or when process gaps are discovered. The AI Engineering Orchestrator maintains the process-improvement cycle and the [Process Improvement Backlog](PROCESS_IMPROVEMENT_BACKLOG.md); its identifiers use `PI-<sequence>` solely within that backlog and are not product backlog identifiers. Each improvement records the observed problem, root cause, decision, status, evidence and validation Sprint. The Engineering Manager approves changes to institutional naming and traceability conventions and prevents parallel nomenclatures. The Technical Writer maintains this document, synchronizes changes across playbooks, validates organizational consistency and preserves cross-references and document versioning.
 
 Roadmap review is part of each Sprint closure. The Technical Writer updates the [Engineering Roadmap](ENGINEERING_ROADMAP.md) with completed evolution and the current directional view; the Engineering Manager approves strategic changes.
 

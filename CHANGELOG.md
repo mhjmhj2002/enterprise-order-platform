@@ -8,6 +8,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Changed
 
+- O encerramento de Sprint passou a exigir Engineering Audit e retrospectiva de processo antes da decisão definitiva do Engineering Manager; o rito separa explicitamente entrega de Story e fechamento institucional da Sprint.
 - Gate documental da Sprint 2 aprovado: contrato, catálogo, READMEs, arquitetura, replanejamento da #34, evidências da #35 e limites da baseline foram consolidados para decisão de release do Engineering Manager.
 - Preparação de encerramento da Sprint 2 consolidada: #34 replanejada para a Sprint 3, #35 dependente diretamente da #33 e registros de baseline/revisão sincronizados; não há release da Sprint 2 nesta etapa.
 - Sprint 2 sincronizada com o backlog refinado: #30, #31, #32, #33, #34, #35 e #37 agora estão rastreáveis no Product Plan, com dependências oficiais preservadas.
@@ -28,6 +29,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Added
 
+- Checklist institucional de Engineering Audit e Process Improvement Backlog, com evidências, exceções, decisão de autoridade e validação em Sprint futura.
 - Story #33 concluída: Inventory Service consome `OrderConfirmed` v1, persiste evidência idempotente por `eventId` e preserva estoque, reservas e integração REST sem alterações.
 - Story #32 concluída: Order Service publica `OrderConfirmed` v1 de forma assíncrona no Kafka, com envelope JSON v1, versionamento e `orderId` como chave da mensagem.
 - Event Catalog institucional com `OrderConfirmed` v1, ownership, tópico planejado e payload mínimo de negócio.

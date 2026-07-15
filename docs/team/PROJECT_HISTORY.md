@@ -255,3 +255,11 @@ Por decisão de capacidade aprovada, a Story #34 (Should Have) foi replanejada p
 O Technical Writer consolidou os artefatos institucionais do fluxo ponta a ponta: Event Catalog, contrato técnico, documentação da plataforma, Architecture Overview, README, Product Plan, Roadmap, CHANGELOG, PROJECT_HISTORY e evidências de qualidade. A baseline registra publicação de `OrderConfirmed` v1, consumo idempotente de reconhecimento no Inventory e preservação da integração REST.
 
 O gate documental está aprovado para decisão do Engineering Manager. A Story #34 permanece replanejada para a Sprint 3; DLT e evolução adicional de retries observáveis não pertencem à baseline da Sprint 2. Release, fechamento do milestone e operações de repositório aguardam autorização do EM e execução pelo Repository Owner.
+
+## 2026-07-15 - Evolução institucional: auditoria de encerramento de Sprint
+
+Uma inconsistência do README principal identificada somente após o encerramento administrativo da Sprint 2 revelou uma lacuna de processo, não uma falha individual. Não havia uma etapa que verificasse, de forma independente e leve, se o conjunto de artefatos esperados pela Sprint estava completo e coerente antes do encerramento definitivo.
+
+O Engineering Workflow passou a separar o Story Workflow do Sprint Closing Workflow. O novo rito reúne evidências já produzidas pelas roles, aplica um checklist institucional de documentação, arquitetura, qualidade, governança, GitHub e Sprint, e registra uma retrospectiva específica do processo. O Engineering Manager conserva a autoridade de decisão de encerramento e de aprovação de melhorias; o AI Engineering Orchestrator coordena a auditoria sem substituir revisões operacionais.
+
+Foi criado também um backlog de melhorias de processo, independente do backlog de produto. A primeira melhoria será validada na Sprint 3 para confirmar que o novo controle reduz a recorrência sem adicionar burocracia desnecessária.

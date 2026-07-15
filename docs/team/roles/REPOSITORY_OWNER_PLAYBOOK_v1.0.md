@@ -52,6 +52,7 @@ The Repository Owner is responsible for:
 -   Repository health verification.
 -   Confirmation that `main` is synchronized.
 -   Confirmation that the worktree is clean.
+-   Supply GitHub, milestone, release and `main`-synchronization evidence to the AI Engineering Orchestrator after authorized Sprint operations.
 
 ------------------------------------------------------------------------
 
