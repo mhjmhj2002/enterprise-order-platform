@@ -4,6 +4,7 @@ import com.mercadoaurora.inventory.api.dto.AdjustPhysicalStockRequest;
 import com.mercadoaurora.inventory.api.dto.CreateInventoryItemRequest;
 import com.mercadoaurora.inventory.api.dto.InventoryItemResponse;
 import com.mercadoaurora.inventory.api.dto.OrderConfirmationEvidenceResponse;
+import com.mercadoaurora.inventory.api.dto.OrderConfirmationProcessingResponse;
 import com.mercadoaurora.inventory.api.dto.ReserveStockRequest;
 import com.mercadoaurora.inventory.api.mapper.InventoryApiMapper;
 import com.mercadoaurora.inventory.application.command.AdjustPhysicalStockCommand;
@@ -17,6 +18,7 @@ import com.mercadoaurora.inventory.application.usecase.CreateInventoryItemUseCas
 import com.mercadoaurora.inventory.application.usecase.GetInventoryBySkuAndWarehouseUseCase;
 import com.mercadoaurora.inventory.application.usecase.GetInventoryBySkuUseCase;
 import com.mercadoaurora.inventory.application.usecase.GetOrderConfirmationEvidenceUseCase;
+import com.mercadoaurora.inventory.application.usecase.GetOrderConfirmationProcessingUseCase;
 import com.mercadoaurora.inventory.application.usecase.ReleaseReservationUseCase;
 import com.mercadoaurora.inventory.application.usecase.ReserveStockUseCase;
 import jakarta.validation.Valid;
@@ -45,6 +47,7 @@ public class InventoryController {
     private final GetInventoryBySkuUseCase getInventoryBySkuUseCase;
     private final GetInventoryBySkuAndWarehouseUseCase getInventoryBySkuAndWarehouseUseCase;
     private final GetOrderConfirmationEvidenceUseCase getOrderConfirmationEvidenceUseCase;
+    private final GetOrderConfirmationProcessingUseCase getOrderConfirmationProcessingUseCase;
 
     public InventoryController(
             CreateInventoryItemUseCase createInventoryItemUseCase,
@@ -54,7 +57,8 @@ public class InventoryController {
             CommitReservationUseCase commitReservationUseCase,
             GetInventoryBySkuUseCase getInventoryBySkuUseCase,
             GetInventoryBySkuAndWarehouseUseCase getInventoryBySkuAndWarehouseUseCase,
-            GetOrderConfirmationEvidenceUseCase getOrderConfirmationEvidenceUseCase
+            GetOrderConfirmationEvidenceUseCase getOrderConfirmationEvidenceUseCase,
+            GetOrderConfirmationProcessingUseCase getOrderConfirmationProcessingUseCase
     ) {
         this.createInventoryItemUseCase = createInventoryItemUseCase;
         this.adjustPhysicalStockUseCase = adjustPhysicalStockUseCase;
@@ -64,6 +68,7 @@ public class InventoryController {
         this.getInventoryBySkuUseCase = getInventoryBySkuUseCase;
         this.getInventoryBySkuAndWarehouseUseCase = getInventoryBySkuAndWarehouseUseCase;
         this.getOrderConfirmationEvidenceUseCase = getOrderConfirmationEvidenceUseCase;
+        this.getOrderConfirmationProcessingUseCase = getOrderConfirmationProcessingUseCase;
     }
 
     @PostMapping
@@ -132,6 +137,16 @@ public class InventoryController {
                 .map(evidence -> new OrderConfirmationEvidenceResponse(
                         evidence.eventId(), evidence.correlationId(), evidence.orderId(), evidence.occurredAt(),
                         evidence.recognizedAt(), evidence.topic(), evidence.partition(), evidence.offset()))
+                .toList();
+    }
+
+    @GetMapping("/order-confirmation-processings/{orderId}")
+    public List<OrderConfirmationProcessingResponse> getOrderConfirmationProcessings(@PathVariable UUID orderId) {
+        return getOrderConfirmationProcessingUseCase.execute(orderId).stream()
+                .map(processing -> new OrderConfirmationProcessingResponse(
+                        processing.eventId(), processing.correlationId(), processing.orderId(), processing.occurredAt(),
+                        processing.topic(), processing.partition(), processing.offset(), processing.status(), processing.attemptCount(),
+                        processing.createdAt(), processing.updatedAt(), processing.completedAt()))
                 .toList();
     }
 

@@ -1,7 +1,7 @@
 # Build artifacts
 target/
 build/
-out/
+/out/
 
 # Java binaries and logs
 *.class
@@ -36,4 +36,3 @@ replay_pid*
 
 # Local task notes/instructions
 tasks/
-

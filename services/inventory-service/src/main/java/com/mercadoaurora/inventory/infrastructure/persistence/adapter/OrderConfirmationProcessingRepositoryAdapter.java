@@ -31,6 +31,9 @@ public class OrderConfirmationProcessingRepositoryAdapter implements OrderConfir
     @Override public List<OrderConfirmationProcessing> findPending(int limit) {
         return repository.findByStatus(OrderConfirmationProcessing.Status.PENDING, PageRequest.of(0, limit)).stream().map(this::toDomain).toList();
     }
+    @Override public List<OrderConfirmationProcessing> findByOrderId(UUID orderId) {
+        return repository.findByOrderIdOrderByCreatedAtAsc(orderId).stream().map(this::toDomain).toList();
+    }
     @Override public void markAttempted(UUID eventId, Instant attemptedAt) { repository.markAttempted(eventId, attemptedAt); }
     @Override public void markCompleted(UUID eventId, Instant completedAt) { repository.markCompleted(eventId, completedAt); }
 

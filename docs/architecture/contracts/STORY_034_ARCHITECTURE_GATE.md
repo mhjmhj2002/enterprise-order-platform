@@ -175,5 +175,6 @@ Esta implementação realiza a estratégia aprovada exclusivamente no Inventory 
 - a conclusão persiste a evidência existente e marca a pendência como concluída em uma única transação local;
 - o agendador local, ativo apenas no perfil `kafka`, retoma pendências em lote. A cadência e o tamanho do lote são externalizados por `ORDER_CONFIRMATION_RECOVERY_FIXED_DELAY_MS` e `ORDER_CONFIRMATION_RECOVERY_BATCH_SIZE`;
 - inserções concorrentes da mesma pendência usam `ON CONFLICT (event_id) DO NOTHING`; a evidência mantém a mesma proteção por `eventId`.
+- a consulta aditiva `GET /api/v1/inventory/order-confirmation-processings/{orderId}` expõe o estado suportado da pendência (`PENDING` ou `COMPLETED`) e sua rastreabilidade, sem alterar a resposta de evidências concluídas já existente.
 
 Não foram alterados o contrato público HTTP, o catálogo de eventos, o envelope, o tópico, o producer nem a infraestrutura Kafka.

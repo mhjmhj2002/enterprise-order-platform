@@ -36,6 +36,8 @@ public interface SpringDataOrderConfirmationProcessingRepository extends JpaRepo
     @Query("select p from OrderConfirmationProcessingEntity p where p.status = :status order by p.createdAt")
     List<OrderConfirmationProcessingEntity> findByStatus(@Param("status") OrderConfirmationProcessing.Status status, Pageable pageable);
 
+    List<OrderConfirmationProcessingEntity> findByOrderIdOrderByCreatedAtAsc(UUID orderId);
+
     @Modifying
     @Query(value = """
             UPDATE order_confirmation_processing

@@ -4,6 +4,14 @@ import com.mercadoaurora.inventory.api.dto.AdjustPhysicalStockRequest;
 import com.mercadoaurora.inventory.api.dto.CreateInventoryItemRequest;
 import com.mercadoaurora.inventory.api.dto.InventoryItemResponse;
 import com.mercadoaurora.inventory.api.dto.ReserveStockRequest;
+import com.mercadoaurora.inventory.api.dto.OrderConfirmationProcessingResponse;
+import com.mercadoaurora.inventory.application.command.RecognizeOrderConfirmationCommand;
+import com.mercadoaurora.inventory.application.usecase.RecoverOrderConfirmationProcessingUseCase;
+import com.mercadoaurora.inventory.application.usecase.RegisterOrderConfirmationProcessingUseCase;
+import com.mercadoaurora.inventory.domain.OrderConfirmationProcessing;
+import com.mercadoaurora.inventory.infrastructure.persistence.entity.OrderConfirmationProcessingEntity;
+import com.mercadoaurora.inventory.infrastructure.persistence.repository.SpringDataOrderConfirmationEvidenceRepository;
+import com.mercadoaurora.inventory.infrastructure.persistence.repository.SpringDataOrderConfirmationProcessingRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,10 +25,16 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.time.Instant;
 import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Testcontainers(disabledWithoutDocker = true)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -44,6 +58,18 @@ class InventoryIntegrationTest {
 
     @Autowired
     TestRestTemplate restTemplate;
+
+    @Autowired
+    SpringDataOrderConfirmationProcessingRepository processingRepository;
+
+    @Autowired
+    SpringDataOrderConfirmationEvidenceRepository evidenceRepository;
+
+    @Autowired
+    RegisterOrderConfirmationProcessingUseCase registerProcessing;
+
+    @Autowired
+    RecoverOrderConfirmationProcessingUseCase recoverProcessing;
 
     @Test
     void shouldCreateAndGetInventoryItem() {
@@ -198,6 +224,71 @@ class InventoryIntegrationTest {
         );
 
         assertEquals(HttpStatus.CONFLICT, response.getStatusCode());
+    }
+
+    @Test
+    void shouldExposePendingProcessingThroughSupportedConsultation() {
+        UUID orderId = UUID.randomUUID();
+        UUID eventId = UUID.randomUUID();
+        OrderConfirmationProcessingEntity pending = processingEntity(eventId, orderId);
+        processingRepository.save(pending);
+
+        ResponseEntity<OrderConfirmationProcessingResponse[]> response = restTemplate.getForEntity(
+                baseUrl("/api/v1/inventory/order-confirmation-processings/" + orderId), OrderConfirmationProcessingResponse[].class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals(1, response.getBody().length);
+        assertEquals(eventId, response.getBody()[0].eventId());
+        assertEquals(OrderConfirmationProcessing.Status.PENDING, response.getBody()[0].status());
+        assertEquals(0, response.getBody()[0].attemptCount());
+        assertEquals(null, response.getBody()[0].completedAt());
+    }
+
+    @Test
+    void shouldKeepOneEvidenceWhenRecoveryRunsConcurrently() throws Exception {
+        UUID eventId = UUID.randomUUID();
+        RecognizeOrderConfirmationCommand command = new RecognizeOrderConfirmationCommand(eventId, UUID.randomUUID(), UUID.randomUUID(),
+                Instant.now(), "mercadoaurora.order.order-confirmed.v1", 0, 10L);
+        registerProcessing.execute(command);
+        CountDownLatch start = new CountDownLatch(1);
+        try (ExecutorService executor = Executors.newFixedThreadPool(2)) {
+            Future<?> first = executor.submit(() -> recoverAfterStart(start, eventId));
+            Future<?> second = executor.submit(() -> recoverAfterStart(start, eventId));
+            start.countDown();
+            first.get();
+            second.get();
+        }
+
+        assertEquals(OrderConfirmationProcessing.Status.COMPLETED, processingRepository.findById(eventId).orElseThrow().getStatus());
+        assertTrue(evidenceRepository.existsById(eventId));
+    }
+
+    private void recoverAfterStart(CountDownLatch start, UUID eventId) {
+        try {
+            start.await();
+            recoverProcessing.execute(eventId);
+        } catch (InterruptedException exception) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException(exception);
+        }
+    }
+
+    private OrderConfirmationProcessingEntity processingEntity(UUID eventId, UUID orderId) {
+        OrderConfirmationProcessingEntity entity = new OrderConfirmationProcessingEntity();
+        Instant now = Instant.now();
+        entity.setEventId(eventId);
+        entity.setCorrelationId(UUID.randomUUID());
+        entity.setOrderId(orderId);
+        entity.setOccurredAt(now);
+        entity.setTopic("mercadoaurora.order.order-confirmed.v1");
+        entity.setPartition(0);
+        entity.setOffset(10L);
+        entity.setStatus(OrderConfirmationProcessing.Status.PENDING);
+        entity.setAttemptCount(0);
+        entity.setCreatedAt(now);
+        entity.setUpdatedAt(now);
+        return entity;
     }
 
     private String baseUrl(String path) {

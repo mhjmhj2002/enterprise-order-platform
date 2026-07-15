@@ -5,6 +5,7 @@ import com.mercadoaurora.inventory.application.port.out.OrderConfirmationEvidenc
 import com.mercadoaurora.inventory.application.port.out.OrderConfirmationProcessingRepositoryPort;
 import com.mercadoaurora.inventory.application.usecase.RecoverOrderConfirmationProcessingUseCase;
 import com.mercadoaurora.inventory.application.usecase.RegisterOrderConfirmationProcessingUseCase;
+import com.mercadoaurora.inventory.application.usecase.GetOrderConfirmationProcessingUseCase;
 import com.mercadoaurora.inventory.domain.OrderConfirmationProcessing;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +17,7 @@ import java.time.Clock;
 import java.time.Instant;
 import java.time.ZoneOffset;
 import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -87,6 +89,17 @@ class OrderConfirmationProcessingUseCasesTest {
                 () -> new RecoverOrderConfirmationProcessingUseCase(processingRepository, evidenceRepository, clock).execute(pending.eventId()));
 
         verify(processingRepository, never()).markCompleted(any(), any());
+    }
+
+    @Test
+    void shouldExposePendingProcessingForSupportedConsultation() {
+        OrderConfirmationProcessing pending = pending();
+        when(processingRepository.findByOrderId(pending.orderId())).thenReturn(List.of(pending));
+
+        List<OrderConfirmationProcessing> result = new GetOrderConfirmationProcessingUseCase(processingRepository).execute(pending.orderId());
+
+        assertEquals(OrderConfirmationProcessing.Status.PENDING, result.getFirst().status());
+        verify(processingRepository).findByOrderId(pending.orderId());
     }
 
     private RecognizeOrderConfirmationCommand command() {
