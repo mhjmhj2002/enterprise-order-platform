@@ -31,8 +31,12 @@
 | [#37](https://github.com/mhjmhj2002/enterprise-order-platform/issues/37) | Story-020 | Plataforma local de eventos | #30, #31 |
 | [#32](https://github.com/mhjmhj2002/enterprise-order-platform/issues/32) | Story-016 | Publicação do evento | #37, #31 |
 | [#33](https://github.com/mhjmhj2002/enterprise-order-platform/issues/33) | Story-017 | Consumo pelo Inventory | #32 |
-| [#34](https://github.com/mhjmhj2002/enterprise-order-platform/issues/34) | Story-018 | Confiabilidade inicial | #33 |
-| [#35](https://github.com/mhjmhj2002/enterprise-order-platform/issues/35) | Story-019 | Evidências e documentação | #34 |
+| [#34](https://github.com/mhjmhj2002/enterprise-order-platform/issues/34) | Story-018 | Confiabilidade inicial | #33; replanejada para Sprint 3 em 2026-07-15 |
+| [#35](https://github.com/mhjmhj2002/enterprise-order-platform/issues/35) | Story-019 | Evidências e documentação | #33 |
+
+## Atualização de fechamento — 2026-07-15
+
+As Stories #30, #31, #32, #33 e #37 estão concluídas. A Story #34, classificada como Should Have, foi replanejada para a Sprint 3 e não bloqueia a evidência/documentação Must Have da Story #35. A Sprint permanece em preparação de encerramento até a conclusão e a regularização administrativa da #35; esta atualização não cria release nem declara o milestone fechado.
 
 ## Decisões preservadas
 

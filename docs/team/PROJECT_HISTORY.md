@@ -243,3 +243,9 @@ O processo foi atualizado para separar formalmente aprovação técnica e admini
 O Inventory Service passou a consumir `OrderConfirmed` v1 pelo grupo `mercadoaurora.inventory.v1`. Para cada evento válido, registra uma evidência de reconhecimento rastreável e idempotente por `eventId`, associada ao pedido, à correlação e ao instante de ocorrência.
 
 O consumo não cria, confirma, libera ou baixa estoque e não altera pedidos ou a integração REST vigente. A validação integrada registrou consumo, consulta da evidência, rejeições contratuais, recuperação limitada sem DLT e ausência de efeitos colaterais sobre estoque e reservas.
+
+## 2026-07-15 - Preparação de encerramento da Sprint 2
+
+Com a conclusão administrativa das Stories #30, #31, #32, #33 e #37, a baseline da Sprint 2 passou a conter a plataforma Kafka local, a publicação de `OrderConfirmed` v1 pelo Order Service e o reconhecimento idempotente pelo Inventory Service. A arquitetura permanece híbrida e a integração REST existente continua suportada.
+
+Por decisão de capacidade aprovada, a Story #34 (Should Have) foi replanejada para a Sprint 3. A Story #35 permanece como entrega Must Have de evidências e documentação do fluxo ponta a ponta, agora dependente diretamente da #33. A Sprint está em preparação de encerramento; não foi criada release nem fechado o milestone nesta etapa.

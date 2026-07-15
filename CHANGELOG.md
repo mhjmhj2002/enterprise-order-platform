@@ -8,6 +8,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Changed
 
+- Preparação de encerramento da Sprint 2 consolidada: #34 replanejada para a Sprint 3, #35 dependente diretamente da #33 e registros de baseline/revisão sincronizados; não há release da Sprint 2 nesta etapa.
 - Sprint 2 sincronizada com o backlog refinado: #30, #31, #32, #33, #34, #35 e #37 agora estão rastreáveis no Product Plan, com dependências oficiais preservadas.
 - Project History e relatório documental da Sprint 2 atualizados para registrar a aprovação do Event Platform Technical Contract e sua consistência com o Event Catalog.
 - README evoluido para a Portfolio Edition v2.0, com resumo executivo, visao arquitetural, navegacao, execucao local, fluxo funcional, evidencias de qualidade, roadmap e documentacao categorizada.

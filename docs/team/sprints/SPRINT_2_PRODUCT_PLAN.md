@@ -305,8 +305,8 @@ proposta preservam a decomposição original de produto.
 | Story B — Catálogo | [#31 — Story-015](https://github.com/mhjmhj2002/enterprise-order-platform/issues/31) | Nenhuma |
 | Story C — Publicação | [#32 — Story-016](https://github.com/mhjmhj2002/enterprise-order-platform/issues/32) | #37 e #31 |
 | Story D — Consumo | [#33 — Story-017](https://github.com/mhjmhj2002/enterprise-order-platform/issues/33) | #32 |
-| Story E — Confiabilidade | [#34 — Story-018](https://github.com/mhjmhj2002/enterprise-order-platform/issues/34) | #33 |
-| Story F — Evidências | [#35 — Story-019](https://github.com/mhjmhj2002/enterprise-order-platform/issues/35) | #34 |
+| Story E — Confiabilidade | [#34 — Story-018](https://github.com/mhjmhj2002/enterprise-order-platform/issues/34) | #33; replanejada para Sprint 3 em 2026-07-15 |
+| Story F — Evidências | [#35 — Story-019](https://github.com/mhjmhj2002/enterprise-order-platform/issues/35) | #33 |
 | Story A — Plataforma local | [#37 — Story-020](https://github.com/mhjmhj2002/enterprise-order-platform/issues/37) | #30 e #31 |
 
 O [Event Catalog](../../architecture/events/EVENT_CATALOG.md) permanece a fonte
@@ -345,8 +345,9 @@ arquiteturais não são alteradas por esta sincronização.
 ## 9. Dependencias e sequenciamento
 
 1. A #31 sustenta o refinamento técnico #30; a #37 depende de ambos.
-2. A #32 depende de #37 e #31; a #33 depende de #32; a #34 depende de #33; e a
-   #35 depende de #34.
+2. A #32 depende de #37 e #31; a #33 depende de #32. A #34 depende de #33,
+   foi replanejada para a Sprint 3 e não bloqueia a #35; a #35 depende
+   diretamente da #33.
 3. QE e Technical Writer participam da definição de evidências e da validação
    final, conforme o workflow do time.
 

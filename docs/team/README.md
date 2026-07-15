@@ -10,3 +10,4 @@ Documentos de organizacao do time, alinhamento de trabalho e historico do projet
 - [Playbooks de papeis](roles/README.md)
 - [Sprint 2 Product Plan](sprints/SPRINT_2_PRODUCT_PLAN.md)
 - [Sprint 2 Documentation Baseline](sprints/SPRINT_2_DOCUMENTATION_BASELINE.md)
+- [Sprint 2 Closure Readiness](SPRINT_2_CLOSURE_READINESS.md)
