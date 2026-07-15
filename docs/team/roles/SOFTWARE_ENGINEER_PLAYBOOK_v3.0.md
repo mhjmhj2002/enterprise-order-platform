@@ -35,6 +35,8 @@ Implementation may begin only after the applicable Architecture Gate and Technic
 
 Violation of any rule means the Story is **not delivered**.
 
+For every implementation handoff, publish your own cohesive commit to the remote Story branch after validating the intended diff. Record the branch, commit hash and published code, tests and documentation in the existing implementation handoff or PR; an unpushed workspace is not ready for Quality Engineer review. See the [Versioned Handoff](../ENGINEERING_WORKFLOW.md#versioned-handoff) rule.
+
 ---
 
 # Official Stack
@@ -284,6 +286,7 @@ Checklist:
 - Unit tests pass
 - Integration tests pass or limitation documented
 - Documentation updated
+- Cohesive commit pushed to the official Story branch, with published reference recorded
 - PR opened
 - Story moved to Review
 

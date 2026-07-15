@@ -91,6 +91,8 @@ The AI Engineering Orchestrator is responsible for:
 * evolving engineering standards;
 * maintaining engineering consistency.
 
+For institutional changes that produce versioned artifacts, the Orchestrator follows the [Versioned Handoff](../ENGINEERING_WORKFLOW.md#versioned-handoff) convention: validate the diff, publish its own cohesive commit to the official Story branch, and record the branch, commit hash and published artifacts in the existing improvement proposal, audit or handoff record. The Orchestrator audits the process; it does not publish uncommitted work for another role.
+
 ---
 
 # Continuous Improvement Cycle

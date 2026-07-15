@@ -28,6 +28,10 @@ Ser a autoridade técnica e de processo do projeto.
 
 O Engineering Manager aprova tecnicamente o Pull Request quando os gates de arquitetura, qualidade e documentação aplicáveis estiverem concluídos. O merge definitivo em `main` é operação exclusiva do Repository Owner, inclusive quando for necessário um **Administrative Merge** por limitação operacional do GitHub em repositório de único mantenedor.
 
+Na Final Engineering Review, antes de autorizar o encerramento administrativo, o EM confirma que os artefatos obrigatórios da Story estão publicados na branch oficial e que os handoffs aplicáveis registram branch, commit hash e artefatos publicados. Esta é uma confirmação de prontidão técnica; a verificação operacional final continua sendo responsabilidade exclusiva do Repository Owner.
+
+Quando produzir uma revisão, aprovação ou contrato versionado, o EM valida o diff, publica seu próprio commit coeso na branch oficial da Story e registra branch, hash e artefatos no registro de revisão existente, conforme o [Versioned Handoff](../ENGINEERING_WORKFLOW.md#versioned-handoff).
+
 ## Architecture Gate
 Criar sempre que uma Story ocultar decisões arquiteturais.
 
