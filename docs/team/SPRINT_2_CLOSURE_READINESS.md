@@ -1,6 +1,6 @@
 # Sprint 2 — Closure Readiness
 
-**Status:** CLOSURE IN PROGRESS  
+**Status:** DOCUMENTATION GATE PASSED — AWAITING EM AUTHORIZATION  
 **Data:** 2026-07-15  
 **Responsável:** Technical Writer
 
@@ -21,9 +21,9 @@ O [Event Catalog](../architecture/events/EVENT_CATALOG.md), a [Architecture Over
 | --- | --- | --- |
 | #30, #31, #32, #33 e #37 | Concluídas | Evidências, documentação e rastreabilidade disponíveis. |
 | #34 — Confiabilidade inicial | Replanejada para Sprint 3 | Should Have; não bloqueia a conclusão Must Have da Sprint 2. |
-| #35 — Evidências e documentação | Em andamento | Única Story ainda aberta no milestone; depende diretamente da #33. |
-| Release da Sprint 2 | Não criada | Deve ser avaliada após #35 e autorização do Engineering Manager. |
-| Milestone Sprint 2 | Aberto | Não fechar enquanto #35 permanecer aberta. |
+| #35 — Evidências e documentação | Handoff documental concluído | A regularização administrativa ocorre após a decisão do Engineering Manager. |
+| Release da Sprint 2 | Não criada | Aguarda autorização do Engineering Manager. |
+| Milestone Sprint 2 | Aberto | Aguarda autorização e operação administrativa do Repository Owner. |
 
 ## Limites da baseline
 
@@ -33,12 +33,11 @@ O [Event Catalog](../architecture/events/EVENT_CATALOG.md), a [Architecture Over
 
 ## Próximos passos de encerramento
 
-1. Concluir e validar a Story #35.
-2. Registrar e publicar a regularização administrativa da #34 para a Sprint 3 no GitHub.
-3. Confirmar que não há Issues abertas no milestone Sprint 2 e que todos os cards estão em Done.
-4. Preparar release notes e versão de release, mediante autorização do Engineering Manager.
-5. Repository Owner executa as operações administrativas finais; o Engineering Manager autoriza release e fechamento do milestone.
+1. Engineering Manager revisa os handoffs documental e de qualidade e decide sobre a autorização de release.
+2. Repository Owner regulariza o fechamento administrativo de #35 e da #34 no GitHub, conforme a decisão de capacidade já documentada.
+3. Repository Owner cria a release autorizada e sincroniza milestone, Issues, Project Board e branches.
+4. Engineering Manager confirma o encerramento da Sprint após as operações administrativas.
 
 ## Resultado atual
 
-**CHANGES REQUIRED** — a documentação de baseline está consolidada, mas a Story #35 e as operações administrativas de encerramento ainda estão pendentes.
+**READY FOR EM AUTHORIZATION** — a documentação institucional e o handoff da Story #35 estão consolidados. Restam apenas a decisão de release do Engineering Manager e as operações administrativas do Repository Owner.

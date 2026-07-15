@@ -249,3 +249,9 @@ O consumo não cria, confirma, libera ou baixa estoque e não altera pedidos ou 
 Com a conclusão administrativa das Stories #30, #31, #32, #33 e #37, a baseline da Sprint 2 passou a conter a plataforma Kafka local, a publicação de `OrderConfirmed` v1 pelo Order Service e o reconhecimento idempotente pelo Inventory Service. A arquitetura permanece híbrida e a integração REST existente continua suportada.
 
 Por decisão de capacidade aprovada, a Story #34 (Should Have) foi replanejada para a Sprint 3. A Story #35 permanece como entrega Must Have de evidências e documentação do fluxo ponta a ponta, agora dependente diretamente da #33. A Sprint está em preparação de encerramento; não foi criada release nem fechado o milestone nesta etapa.
+
+## 2026-07-15 - Handoff documental da Sprint 2
+
+O Technical Writer consolidou os artefatos institucionais do fluxo ponta a ponta: Event Catalog, contrato técnico, documentação da plataforma, Architecture Overview, README, Product Plan, Roadmap, CHANGELOG, PROJECT_HISTORY e evidências de qualidade. A baseline registra publicação de `OrderConfirmed` v1, consumo idempotente de reconhecimento no Inventory e preservação da integração REST.
+
+O gate documental está aprovado para decisão do Engineering Manager. A Story #34 permanece replanejada para a Sprint 3; DLT e evolução adicional de retries observáveis não pertencem à baseline da Sprint 2. Release, fechamento do milestone e operações de repositório aguardam autorização do EM e execução pelo Repository Owner.
