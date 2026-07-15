@@ -134,6 +134,19 @@ flowchart LR
 - Colecao ou roteiro de validacao que permita demonstrar o fluxo por outra pessoa
   alem de quem o implementou.
 
+### Decisão de capacidade — 2026-07-15
+
+Após a entrega da Story #33, o Engineering Manager postergou a Story #34
+([Confiabilidade inicial do processamento](https://github.com/mhjmhj2002/enterprise-order-platform/issues/34))
+para a Sprint 3. Ela é um **Should Have** e a evolução adicional de retries
+observáveis não pode bloquear a conclusão dos itens Must Have.
+
+A Story #35 passa a depender diretamente da Story #33 e deve encerrar a Sprint
+2 com evidências do fluxo ponta a ponta já entregue. Enquanto #34 estiver
+postergada, a documentação deve declarar que a baseline não inclui DLT nem
+evolução adicional de retries observáveis; REST, reconhecimento idempotente e
+o retry limitado já validado permanecem os limites vigentes.
+
 ### Could Have
 
 - Segundo consumidor somente se o nucleo minimo estiver validado, sem criar nova
@@ -274,10 +287,11 @@ permite aprendizado replicavel.
 - A validacao cobre o fluxo assincrono proposto e confirma que os fluxos REST
   existentes relevantes nao regrediram.
 
-**Dependencias:** [#34 — Confiabilidade inicial do processamento](https://github.com/mhjmhj2002/enterprise-order-platform/issues/34).
+**Dependencias:** [#33 — Processamento assíncrono verificável no Inventory](https://github.com/mhjmhj2002/enterprise-order-platform/issues/33).
 **Riscos:** Evidencia insuficiente ou documentacao divergente da entrega.
-**Fora de escopo da Story:** Redesenho completo da documentacao arquitetural;
-atualizacoes necessarias serao definidas pelo responsavel tecnico.
+**Fora de escopo da Story:** Redesenho completo da documentacao arquitetural,
+DLT e evolucao adicional de retries observaveis; atualizacoes necessarias serao
+definidas pelo responsavel tecnico.
 
 ## 6. Backlog refinado e rastreabilidade
 

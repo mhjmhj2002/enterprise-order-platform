@@ -69,6 +69,12 @@ Only approved Sprint Plans and technical contracts authorize work. A roadmap ent
 
 **Expected result:** a documented, reproducible end-to-end `OrderConfirmed` v1 flow with publication, consumption, traceability and quality evidence.
 
+**Capacity decision (2026-07-15):** Story #34, the Should Have reliability
+evolution, was re-planned to Sprint 3 so it does not block the Must Have
+evidence and documentation Story #35. The Sprint 2 closure baseline records
+the delivered limited retry behavior and explicitly excludes DLT and additional
+observable-retry evolution.
+
 References: [Sprint 2 Product Plan](sprints/SPRINT_2_PRODUCT_PLAN.md), [Event Catalog](../architecture/events/EVENT_CATALOG.md), [ADR-007](../architecture/ADR/ADR-007-incremental-event-driven-architecture.md) and [Project History](PROJECT_HISTORY.md).
 
 ### Sprint 2 — Organizational evolution
