@@ -12,9 +12,9 @@ Following this Playbook is mandatory.
 
 ---
 
-# Engineering Workflow
+## Institutional Inheritance
 
-This playbook specializes the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), the official source for governance, handoffs and authority. In case of conflict, the Engineering Workflow prevails.
+This playbook inherits all institutional engineering rules defined by the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), including the Authority Matrix, Story Workflow, Sprint Closing Workflow, Engineering Audit, Process Improvement, engineering governance and institutional standards. It defines only responsibilities specific to the Software Engineer. When a conflict exists, the Engineering Workflow prevails.
 
 Implementation may begin only after the applicable Architecture Gate and Technical Contract have been approved.
 

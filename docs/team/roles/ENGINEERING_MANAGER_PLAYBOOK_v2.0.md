@@ -2,9 +2,9 @@
 
 Versão institucional v2.0.
 
-## Engineering Workflow
+## Institutional Inheritance
 
-Este playbook especializa o [Engineering Workflow](../ENGINEERING_WORKFLOW.md), que é a fonte oficial de governança. Em caso de conflito, prevalece o Workflow Institucional.
+This playbook inherits all institutional engineering rules defined by the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), including the Authority Matrix, Story Workflow, Sprint Closing Workflow, Engineering Audit, Process Improvement, engineering governance and institutional standards. It defines only responsibilities specific to the Engineering Manager. When a conflict exists, the Engineering Workflow prevails.
 
 ## Missão
 Ser a autoridade técnica e de processo do projeto.
@@ -23,17 +23,6 @@ Ser a autoridade técnica e de processo do projeto.
 - Evitar a proliferação de identificadores ou rastreadores paralelos
 - Decidir o encerramento definitivo da Sprint após o Engineering Audit e a retrospectiva de processo
 - Aprovar melhorias de processo e decidir se uma exceção de auditoria bloqueia o encerramento
-
-## Fluxo
-Program Director -> AI Engineering Orchestrator -> PO -> EM -> PO (backlog) -> TW -> Architecture Gate -> EM -> SE -> QE Planning -> EM QA Authorization -> QE Execution -> TW -> EM (aprovação técnica e de release) -> Repository Owner (operações autorizadas) -> AEO (Engineering Audit) -> EM (encerramento)
-
-## Authority Matrix
-- PO: WHY/WHAT
-- EM: HOW/WHEN
-- SE: implementação
-- QE: estratégia de testes
-- TW: documentação institucional
-- Repository Owner: administração do GitHub e merge definitivo após aprovação técnica
 
 ## Pull Requests e merge
 

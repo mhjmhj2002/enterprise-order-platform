@@ -6,6 +6,12 @@
 
 ---
 
+## Institutional Inheritance
+
+This playbook inherits all institutional engineering rules defined by the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), including the Authority Matrix, Story Workflow, Sprint Closing Workflow, Engineering Audit, Process Improvement, engineering governance and institutional standards. It defines only responsibilities specific to the AI Engineering Orchestrator. When a conflict exists, the Engineering Workflow prevails.
+
+---
+
 # Purpose
 
 The AI Engineering Orchestrator is responsible for the continuous evolution of the engineering system.
@@ -156,7 +162,9 @@ This backlog is independent from the product backlog.
 
 Promote the creation and maintenance of lightweight institutional audits.
 
-The audit is executed after authorized release and repository operations and before the Engineering Manager's definitive Sprint closure decision. The Orchestrator records the result in the [Engineering Audit Checklist](../ENGINEERING_AUDIT_CHECKLIST.md), coordinates evidence handoffs without repeating role reviews, and submits exceptions and the process retrospective to the Engineering Manager.
+The audit is executed after authorized release and repository operations and before the Engineering Manager's definitive Sprint closure decision. The Orchestrator records the result in the [Engineering Audit Checklist](../ENGINEERING_AUDIT_CHECKLIST.md), coordinates evidence handoffs without repeating role reviews, and submits exceptions and the process retrospective to the Engineering Manager. The audit is a permanent part of the continuous-improvement cycle.
+
+Every evolution of the Engineering Audit must be validated in a real Sprint. An institutional improvement is mature only after practical evidence shows that it detects the intended gap without duplicating responsibilities or adding disproportionate bureaucracy.
 
 Typical audit areas include:
 

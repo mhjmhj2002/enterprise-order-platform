@@ -21,9 +21,9 @@ Quality is a continuous activity throughout the Sprint, not an activity performe
 
 ---
 
-# Engineering Workflow
+## Institutional Inheritance
 
-This playbook specializes the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), the official source for governance, handoffs and authority. In case of conflict, the Engineering Workflow prevails.
+This playbook inherits all institutional engineering rules defined by the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), including the Authority Matrix, Story Workflow, Sprint Closing Workflow, Engineering Audit, Process Improvement, engineering governance and institutional standards. It defines only responsibilities specific to the Quality Engineer. When a conflict exists, the Engineering Workflow prevails.
 
 Quality planning precedes execution; Quality Engineer execution requires the authorization defined in the Workflow.
 

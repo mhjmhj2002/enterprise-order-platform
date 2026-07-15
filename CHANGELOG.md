@@ -8,6 +8,9 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Changed
 
+- `ENGINEERING_WORKFLOW.md` foi formalizado como documento raiz da engenharia; os playbooks passaram a declarar herança institucional e a evitar duplicação de regras compartilhadas.
+- Engineering Audit v1.1 implementado com verificações de separação entre Story, Release e Sprint Closing Workflows e de autoridade operacional para operações de encerramento.
+- A primeira validação retrospectiva do Engineering Audit na Sprint 2 concluiu `CHANGES REQUIRED`: a cobertura documental e GitHub é efetiva, mas o checklist precisa verificar explicitamente a separação de workflows e a autoridade operacional de GitHub/release.
 - O encerramento de Sprint passou a exigir Engineering Audit e retrospectiva de processo antes da decisão definitiva do Engineering Manager; o rito separa explicitamente entrega de Story e fechamento institucional da Sprint.
 - Gate documental da Sprint 2 aprovado: contrato, catálogo, READMEs, arquitetura, replanejamento da #34, evidências da #35 e limites da baseline foram consolidados para decisão de release do Engineering Manager.
 - Preparação de encerramento da Sprint 2 consolidada: #34 replanejada para a Sprint 3, #35 dependente diretamente da #33 e registros de baseline/revisão sincronizados; não há release da Sprint 2 nesta etapa.

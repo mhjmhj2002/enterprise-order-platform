@@ -9,6 +9,17 @@
 
 This document defines how engineering work moves from strategic direction to sprint closure in the Enterprise Order Platform. Role playbooks are specialized operational guides; when a playbook conflicts with this workflow, this document prevails.
 
+## Institutional Document Hierarchy
+
+The engineering documentation follows a hierarchy to keep shared rules in one authoritative place and role guidance focused.
+
+1. **[Engineering Workflow](ENGINEERING_WORKFLOW.md)** is the root institutional document. It defines shared engineering rules, governance, Authority Matrix, Story Workflow, Release Workflow, Sprint Closing Workflow, Engineering Audit, Process Improvement and institutional standards.
+2. **[Role Playbooks](roles/README.md)** automatically inherit every rule from this document. They define only role-specific responsibilities, operating detail and role-owned deliverables; they must link to, rather than duplicate, shared institutional rules.
+3. **Product Documentation** records approved product scope, business rules and acceptance context. It does not redefine engineering governance.
+4. **Project Documentation** records architecture, quality, releases, history and other evidence. It implements or evidences the institutional rules but does not override them.
+
+When documents conflict, the highest applicable level prevails. Future institutional changes must be made in this root document first; a role playbook changes only when its own specific responsibilities change.
+
 ## Engineering Philosophy
 
 - Deliver increments that are valuable, testable and traceable.
@@ -211,7 +222,7 @@ The **Sprint Closing Workflow** verifies that the completed set of Stories produ
 | Decide exceptions, improvements and closure | Engineering Manager | Sole closure authority. |
 
 1. **Evidence assembly — Technical Writer, Quality Engineer and Repository Owner:** provide the existing documentation, quality and GitHub/release evidence; no role repeats another role's review.
-2. **Engineering audit — AI Engineering Orchestrator:** checks the expected artifacts and their cross-consistency through the [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md). Each item is marked verified, not applicable with rationale, or exception with evidence.
+2. **Engineering audit — AI Engineering Orchestrator:** checks the expected artifacts and their cross-consistency through the [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md), including separation of Story, Release and Sprint Closing Workflows and explicit operational authority for required closing operations. Each item is marked verified, not applicable with rationale, or exception with evidence.
 3. **Process retrospective — AI Engineering Orchestrator:** records what escaped the process, the expected detection point, whether accountability was explicit, proportionality of a change and the institutional document that should evolve. It is a retrospective of engineering process, not product scope.
 4. **Improvement decision — Engineering Manager:** accepts the audit result, decides whether an exception blocks closure, and approves any process change. Accepted improvements are recorded in the [Process Improvement Backlog](PROCESS_IMPROVEMENT_BACKLOG.md).
 5. **Closure decision — Engineering Manager:** closes the Sprint only when there are no unaccepted blocking exceptions, mandatory audit items are verified or justified as not applicable, and all accepted improvements have an owner, status and validation Sprint.

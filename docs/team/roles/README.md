@@ -1,6 +1,6 @@
 # Playbooks de papeis
 
-Baselines institucionais que definem responsabilidades, fluxo de trabalho e criterios de qualidade por papel.
+Playbooks que definem responsabilidades, detalhe operacional e entregáveis específicos por papel. Todos herdam automaticamente as regras institucionais do [Engineering Workflow](../ENGINEERING_WORKFLOW.md), a fonte raiz de governança.
 
 - [Software Engineer Playbook v3.0](SOFTWARE_ENGINEER_PLAYBOOK_v3.0.md)
 - [Quality Engineer Playbook v2.0](QUALITY_ENGINEER_PLAYBOOK_v2.0.md)

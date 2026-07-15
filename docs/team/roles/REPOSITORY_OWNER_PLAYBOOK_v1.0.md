@@ -6,6 +6,12 @@
 
 ------------------------------------------------------------------------
 
+## Institutional Inheritance
+
+This playbook inherits all institutional engineering rules defined by the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), including the Authority Matrix, Story Workflow, Sprint Closing Workflow, Engineering Audit, Process Improvement, engineering governance and institutional standards. It defines only responsibilities specific to the Repository Owner. When a conflict exists, the Engineering Workflow prevails.
+
+------------------------------------------------------------------------
+
 # Purpose
 
 The Repository Owner is responsible for the operational governance of

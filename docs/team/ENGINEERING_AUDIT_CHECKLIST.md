@@ -1,5 +1,6 @@
 # Engineering Audit Checklist
 
+**Version:** 1.1
 **Status:** Institutional baseline  
 **Owner:** AI Engineering Orchestrator  
 **Closure authority:** Engineering Manager
@@ -34,6 +35,8 @@ For each applicable line, link the evidence and record one result: `Verified`, `
 | Governance | `CHANGELOG` records the relevant change. | |
 | Governance | `PROJECT_HISTORY` records the Sprint outcome. | |
 | Governance | Engineering Roadmap was reviewed and updated when the outcome affects its direction. | |
+| Governance | **Workflow separation:** Story Workflow, Release Workflow and Sprint Closing Workflow are independent, each has explicit entry criteria, exit criteria and closure authority. | |
+| Governance | **Operational authority:** every required closing operation has an explicit owner, corresponding playbook, defined evidence handoff and authority. This includes release, GitHub, milestones, Project Board, branch cleanup and repository administration when applicable. | |
 | GitHub | Issues have the approved final disposition and traceability. | |
 | GitHub | Labels and Project Board reflect that disposition. | |
 | GitHub | Milestone and release/tag reflect the authorized Sprint state. | |

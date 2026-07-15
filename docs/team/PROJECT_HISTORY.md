@@ -263,3 +263,21 @@ Uma inconsistência do README principal identificada somente após o encerrament
 O Engineering Workflow passou a separar o Story Workflow do Sprint Closing Workflow. O novo rito reúne evidências já produzidas pelas roles, aplica um checklist institucional de documentação, arquitetura, qualidade, governança, GitHub e Sprint, e registra uma retrospectiva específica do processo. O Engineering Manager conserva a autoridade de decisão de encerramento e de aprovação de melhorias; o AI Engineering Orchestrator coordena a auditoria sem substituir revisões operacionais.
 
 Foi criado também um backlog de melhorias de processo, independente do backlog de produto. A primeira melhoria será validada na Sprint 3 para confirmar que o novo controle reduz a recorrência sem adicionar burocracia desnecessária.
+
+## 2026-07-15 - Validação retrospectiva do Engineering Audit
+
+O primeiro Engineering Audit foi aplicado retrospectivamente à Sprint 2 sem reabrir Stories, alterar release ou revisar produto. Ele demonstrou que o checklist identificaria a inconsistência do README principal, as correções documentais e a necessidade de regularização do estado de GitHub das Stories #31 e #32.
+
+A validação também demonstrou uma lacuna: o checklist não verificava explicitamente que o Story Workflow, o Release Workflow e o Sprint Closing Workflow são distintos, nem que as operações GitHub/release têm role e playbook explícitos. Por isso o parecer é `CHANGES REQUIRED`; PI-001 segue implementado, mas não validado, e PI-002 foi proposto para a evolução mínima do checklist antes de seu uso oficial na Sprint 3.
+
+## 2026-07-15 - PI-002: Engineering Audit v1.1
+
+PI-002 foi implementado antes da Sprint 3 com dois controles no checklist existente: separação explícita entre Story, Release e Sprint Closing Workflows, e autoridade operacional explícita para as operações de encerramento. O workflow passou apenas a referenciar esses controles durante a auditoria; não foram criados gates, roles ou checklists paralelos.
+
+PI-001 e PI-002 dependem agora de evidência da execução real do Sprint Closing Workflow da Sprint 3. A revisão institucional do Engineering Manager, a verificação de consistência do Technical Writer e a publicação pelo Repository Owner precedem essa validação prática.
+
+## 2026-07-15 - Arquitetura documental institucional por herança
+
+O `ENGINEERING_WORKFLOW.md` foi formalizado como o documento raiz da engenharia. Ele concentra regras compartilhadas, workflows, Authority Matrix, auditoria, melhoria contínua e padrões institucionais. Os playbooks das roles passaram a declarar a herança automática dessas regras e a restringir seu conteúdo às responsabilidades e ao detalhe operacional específicos de cada role.
+
+Esse modelo reduz manutenção e divergência: mudanças institucionais futuras são feitas primeiro no workflow raiz; um playbook só é alterado quando sua responsabilidade própria for impactada. O fluxo e a matriz globais que estavam repetidos no playbook do Engineering Manager foram substituídos pela referência herdada.

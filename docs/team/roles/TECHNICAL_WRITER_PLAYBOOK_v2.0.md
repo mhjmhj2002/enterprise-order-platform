@@ -13,9 +13,9 @@ artifacts are clear, consistent, versioned, and aligned with engineering
 standards. Documentation is treated as a first-class deliverable and
 must evolve together with the codebase.
 
-## Engineering Workflow
+## Institutional Inheritance
 
-This playbook specializes the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), the official source for governance, handoffs and authority. In case of conflict, the Engineering Workflow prevails.
+This playbook inherits all institutional engineering rules defined by the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), including the Authority Matrix, Story Workflow, Sprint Closing Workflow, Engineering Audit, Process Improvement, engineering governance and institutional standards. It defines only responsibilities specific to the Technical Writer. When a conflict exists, the Engineering Workflow prevails.
 
 ------------------------------------------------------------------------
 
@@ -56,7 +56,7 @@ This playbook specializes the [Engineering Workflow](../ENGINEERING_WORKFLOW.md)
 ## Institutional Governance
 
 -   Maintain `docs/team/ENGINEERING_WORKFLOW.md` as the institutional workflow.
--   Synchronize workflow changes across role playbooks.
+-   Maintain the inherited-document architecture and update a role playbook only when its role-specific responsibilities are affected.
 -   Validate organizational consistency, cross-references and documentation versioning.
 -   Maintain traceability between governance artifacts, technical contracts and delivery documentation.
 -   Maintain `docs/team/ENGINEERING_ROADMAP.md` after each Sprint closure, preserving its directional and non-binding nature.
