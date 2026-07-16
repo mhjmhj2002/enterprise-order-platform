@@ -15,7 +15,7 @@
 
 **Current gate:** Organizational Validation approved; Organizational Freeze effective.
 
-**Latest published handoff:** Sponsor / Program Direction Sprint Initiation Request — `main` / recorded in the publication commit.
+**Latest published handoff:** Sponsor / Program Direction Sprint Initiation Request — `main` / `50dfbc714a3f5e7ebc42c5fcbf315171690d4625`.
 
 **Blockers:** None for PMO Sprint Bootstrap. All later work remains blocked by the applicable institutional gates.
 **Last updated:** 2026-07-16 — Sponsor / Program Direction — Sprint Initiation Request approved, published and authorized exclusively for PMO Sprint Bootstrap.
@@ -26,7 +26,7 @@
 | --- | --- | --- | --- |
 | Organizational Validation | Engineering Manager | DONE | `main` / `4ae6773648433f79932e0d240594a2af72dea138`. |
 | Organizational Freeze | Engineering Manager | DONE | Effective through the published Organizational Validation. |
-| Sprint initiation | Sponsor / Program Direction | DONE | `main` / recorded in the publication commit — Sprint Initiation Request approved and published. |
+| Sprint initiation | Sponsor / Program Direction | DONE | `main` / `50dfbc714a3f5e7ebc42c5fcbf315171690d4625` — Sprint Initiation Request approved and published. |
 | Sprint Bootstrap | PMO | DOING | Authorized by the published Sprint Initiation Request. |
 | Initial STATUS and Story materialization | PMO | TODO | N/A — no Sprint 5 Story authorized. |
 | Product refinement | Product Owner | TODO | N/A |

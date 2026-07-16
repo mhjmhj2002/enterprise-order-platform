@@ -88,8 +88,8 @@ Direção estratégica mínima e autorização explícita fornecidas ao PMO para
 ### Versioned reference
 
 - Branch: `main`
-- Commit: registrado no commit de publicação deste artefato
-- Full hash: registrado no commit de publicação deste artefato
+- Commit: `50dfbc7`
+- Full hash: `50dfbc714a3f5e7ebc42c5fcbf315171690d4625`
 
 ### Evidence and constraints
 
