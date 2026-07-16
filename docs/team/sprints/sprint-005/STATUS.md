@@ -10,7 +10,7 @@
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Sprint Bootstrap concluído; Product refinement autorizado. Architecture Gate, implementação e Quality permanecem bloqueados até seus handoffs e aprovações aplicáveis.
-**Latest published handoff:** PMO Sprint Bootstrap — publicação pendente deste `STATUS.md` na `main`.
+**Latest published handoff:** PMO Sprint Bootstrap — `main` / `bd275c3c3e7905ee1ced7c5c36d3df9ba7791f41`.
 **Blockers:** Nenhum para Product refinement. O período da Sprint não foi especificado pelo Sponsor; não altera esta autorização.
 **Last updated:** 2026-07-16 — Program Management Office — bootstrap concluído; Story #46 materializada no GitHub.
 
@@ -56,8 +56,8 @@ Materializada administrativamente a direção de estabelecer uma baseline inicia
 ### Versioned reference
 
 - Branch: `main`
-- Commit: pendente da publicação deste artefato pelo PMO
-- Full hash: pendente da publicação deste artefato pelo PMO
+- Commit: `bd275c3`
+- Full hash: `bd275c3c3e7905ee1ced7c5c36d3df9ba7791f41`
 
 ### Evidence and constraints
 
