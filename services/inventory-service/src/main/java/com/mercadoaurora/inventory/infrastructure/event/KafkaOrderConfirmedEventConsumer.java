@@ -3,12 +3,14 @@ package com.mercadoaurora.inventory.infrastructure.event;
 import com.mercadoaurora.inventory.application.command.RecognizeOrderConfirmationCommand;
 import com.mercadoaurora.inventory.application.usecase.RecoverOrderConfirmationProcessingUseCase;
 import com.mercadoaurora.inventory.application.usecase.RegisterOrderConfirmationProcessingUseCase;
+import com.mercadoaurora.inventory.application.usecase.RecordOrderConfirmationTemporaryFailureUseCase;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 @Profile("kafka")
@@ -17,11 +19,20 @@ public class KafkaOrderConfirmedEventConsumer {
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaOrderConfirmedEventConsumer.class);
     private final RegisterOrderConfirmationProcessingUseCase registerProcessing;
     private final RecoverOrderConfirmationProcessingUseCase recoverProcessing;
+    private final RecordOrderConfirmationTemporaryFailureUseCase recordTemporaryFailure;
 
     public KafkaOrderConfirmedEventConsumer(RegisterOrderConfirmationProcessingUseCase registerProcessing,
                                              RecoverOrderConfirmationProcessingUseCase recoverProcessing) {
+        this(registerProcessing, recoverProcessing, null);
+    }
+
+    @Autowired
+    public KafkaOrderConfirmedEventConsumer(RegisterOrderConfirmationProcessingUseCase registerProcessing,
+                                             RecoverOrderConfirmationProcessingUseCase recoverProcessing,
+                                             RecordOrderConfirmationTemporaryFailureUseCase recordTemporaryFailure) {
         this.registerProcessing = registerProcessing;
         this.recoverProcessing = recoverProcessing;
+        this.recordTemporaryFailure = recordTemporaryFailure;
     }
 
     @KafkaListener(topics = TOPIC, containerFactory = "orderConfirmedKafkaListenerContainerFactory")
@@ -32,7 +43,14 @@ public class KafkaOrderConfirmedEventConsumer {
                 event.eventId(), event.correlationId(), event.data().orderId(), event.occurredAt(),
                 record.topic(), record.partition(), record.offset());
         boolean registered = registerProcessing.execute(command);
-        recoverProcessing.execute(event.eventId());
+        try {
+            recoverProcessing.execute(event.eventId());
+        } catch (RuntimeException exception) {
+            if (recordTemporaryFailure != null) {
+                recordTemporaryFailure.execute(event.eventId());
+            }
+            throw exception;
+        }
         LOGGER.info("OrderConfirmed processing completed eventId={} correlationId={} orderId={} topic={} partition={} offset={} registered={}",
                 event.eventId(), event.correlationId(), event.data().orderId(),
                 record.topic(), record.partition(), record.offset(), registered);

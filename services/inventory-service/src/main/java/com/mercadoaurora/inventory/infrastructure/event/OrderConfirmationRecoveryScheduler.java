@@ -2,6 +2,7 @@ package com.mercadoaurora.inventory.infrastructure.event;
 
 import com.mercadoaurora.inventory.application.port.out.OrderConfirmationProcessingRepositoryPort;
 import com.mercadoaurora.inventory.application.usecase.RecoverOrderConfirmationProcessingUseCase;
+import com.mercadoaurora.inventory.application.usecase.RecordOrderConfirmationTemporaryFailureUseCase;
 import com.mercadoaurora.inventory.domain.OrderConfirmationProcessing;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +17,15 @@ public class OrderConfirmationRecoveryScheduler {
     private final OrderConfirmationProcessingRepositoryPort processingRepository;
     private final RecoverOrderConfirmationProcessingUseCase recoverProcessing;
     private final int batchSize;
+    private final RecordOrderConfirmationTemporaryFailureUseCase recordTemporaryFailure;
 
     public OrderConfirmationRecoveryScheduler(OrderConfirmationProcessingRepositoryPort processingRepository,
                                               RecoverOrderConfirmationProcessingUseCase recoverProcessing,
+                                              RecordOrderConfirmationTemporaryFailureUseCase recordTemporaryFailure,
                                               @org.springframework.beans.factory.annotation.Value("${app.order-confirmation-recovery.batch-size:25}") int batchSize) {
         this.processingRepository = processingRepository;
         this.recoverProcessing = recoverProcessing;
+        this.recordTemporaryFailure = recordTemporaryFailure;
         this.batchSize = batchSize;
     }
 
@@ -33,6 +37,7 @@ public class OrderConfirmationRecoveryScheduler {
                 LOGGER.info("OrderConfirmed recovery completed eventId={} correlationId={} orderId={}",
                         processing.eventId(), processing.correlationId(), processing.orderId());
             } catch (RuntimeException exception) {
+                recordTemporaryFailure.execute(processing.eventId());
                 LOGGER.warn("OrderConfirmed recovery pending eventId={} correlationId={} orderId={}",
                         processing.eventId(), processing.correlationId(), processing.orderId(), exception);
             }

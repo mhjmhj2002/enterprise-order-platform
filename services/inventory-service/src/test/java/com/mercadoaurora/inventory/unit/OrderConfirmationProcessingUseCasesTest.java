@@ -3,10 +3,12 @@ package com.mercadoaurora.inventory.unit;
 import com.mercadoaurora.inventory.application.command.RecognizeOrderConfirmationCommand;
 import com.mercadoaurora.inventory.application.port.out.OrderConfirmationEvidenceRepositoryPort;
 import com.mercadoaurora.inventory.application.port.out.OrderConfirmationProcessingRepositoryPort;
+import com.mercadoaurora.inventory.application.port.out.OrderConfirmationProcessingLifecycleRepositoryPort;
 import com.mercadoaurora.inventory.application.usecase.RecoverOrderConfirmationProcessingUseCase;
 import com.mercadoaurora.inventory.application.usecase.RegisterOrderConfirmationProcessingUseCase;
 import com.mercadoaurora.inventory.application.usecase.GetOrderConfirmationProcessingUseCase;
 import com.mercadoaurora.inventory.domain.OrderConfirmationProcessing;
+import com.mercadoaurora.inventory.domain.OrderConfirmationProcessingLifecycle;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -31,25 +33,28 @@ class OrderConfirmationProcessingUseCasesTest {
     private final Clock clock = Clock.fixed(Instant.parse("2026-07-15T12:00:00Z"), ZoneOffset.UTC);
     @Mock private OrderConfirmationProcessingRepositoryPort processingRepository;
     @Mock private OrderConfirmationEvidenceRepositoryPort evidenceRepository;
+    @Mock private OrderConfirmationProcessingLifecycleRepositoryPort lifecycleRepository;
 
     @Test
     void shouldDurablyRegisterPendingBeforeItCanBeAcknowledged() {
         RecognizeOrderConfirmationCommand command = command();
         when(processingRepository.savePendingIfAbsent(any())).thenReturn(true);
 
-        assertTrue(new RegisterOrderConfirmationProcessingUseCase(processingRepository, clock).execute(command));
+        assertTrue(new RegisterOrderConfirmationProcessingUseCase(processingRepository, lifecycleRepository, clock).execute(command));
 
         ArgumentCaptor<OrderConfirmationProcessing> pending = ArgumentCaptor.forClass(OrderConfirmationProcessing.class);
         verify(processingRepository).savePendingIfAbsent(pending.capture());
         assertEquals(OrderConfirmationProcessing.Status.PENDING, pending.getValue().status());
         assertEquals(command.eventId(), pending.getValue().eventId());
+        verify(lifecycleRepository).saveIfAbsent(new OrderConfirmationProcessingLifecycle(command.eventId(),
+                OrderConfirmationProcessingLifecycle.Milestone.REGISTERED, Instant.now(clock), null));
     }
 
     @Test
     void shouldKeepExistingPendingIdempotentlyOnRedelivery() {
         when(processingRepository.savePendingIfAbsent(any())).thenReturn(false);
 
-        assertFalse(new RegisterOrderConfirmationProcessingUseCase(processingRepository, clock).execute(command()));
+        assertFalse(new RegisterOrderConfirmationProcessingUseCase(processingRepository, lifecycleRepository, clock).execute(command()));
         verify(processingRepository).savePendingIfAbsent(any());
     }
 
@@ -59,11 +64,13 @@ class OrderConfirmationProcessingUseCasesTest {
         when(processingRepository.findByEventId(pending.eventId())).thenReturn(Optional.of(pending));
         when(evidenceRepository.saveIfAbsent(any())).thenReturn(true);
 
-        new RecoverOrderConfirmationProcessingUseCase(processingRepository, evidenceRepository, clock).execute(pending.eventId());
+        new RecoverOrderConfirmationProcessingUseCase(processingRepository, evidenceRepository, lifecycleRepository, clock).execute(pending.eventId());
 
         verify(processingRepository).markAttempted(pending.eventId(), Instant.now(clock));
         verify(evidenceRepository).saveIfAbsent(any());
         verify(processingRepository).markCompleted(pending.eventId(), Instant.now(clock));
+        verify(lifecycleRepository).saveIfAbsent(new OrderConfirmationProcessingLifecycle(pending.eventId(),
+                OrderConfirmationProcessingLifecycle.Milestone.COMPLETED, Instant.now(clock), null));
     }
 
     @Test

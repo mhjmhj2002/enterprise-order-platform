@@ -5,6 +5,8 @@ import com.mercadoaurora.inventory.api.dto.CreateInventoryItemRequest;
 import com.mercadoaurora.inventory.api.dto.InventoryItemResponse;
 import com.mercadoaurora.inventory.api.dto.OrderConfirmationEvidenceResponse;
 import com.mercadoaurora.inventory.api.dto.OrderConfirmationProcessingResponse;
+import com.mercadoaurora.inventory.api.dto.OrderConfirmationObservationResponse;
+import com.mercadoaurora.inventory.api.dto.OrderConfirmationLifecycleResponse;
 import com.mercadoaurora.inventory.api.dto.ReserveStockRequest;
 import com.mercadoaurora.inventory.api.mapper.InventoryApiMapper;
 import com.mercadoaurora.inventory.application.command.AdjustPhysicalStockCommand;
@@ -19,6 +21,7 @@ import com.mercadoaurora.inventory.application.usecase.GetInventoryBySkuAndWareh
 import com.mercadoaurora.inventory.application.usecase.GetInventoryBySkuUseCase;
 import com.mercadoaurora.inventory.application.usecase.GetOrderConfirmationEvidenceUseCase;
 import com.mercadoaurora.inventory.application.usecase.GetOrderConfirmationProcessingUseCase;
+import com.mercadoaurora.inventory.application.usecase.GetOrderConfirmationObservationUseCase;
 import com.mercadoaurora.inventory.application.usecase.ReleaseReservationUseCase;
 import com.mercadoaurora.inventory.application.usecase.ReserveStockUseCase;
 import jakarta.validation.Valid;
@@ -48,6 +51,7 @@ public class InventoryController {
     private final GetInventoryBySkuAndWarehouseUseCase getInventoryBySkuAndWarehouseUseCase;
     private final GetOrderConfirmationEvidenceUseCase getOrderConfirmationEvidenceUseCase;
     private final GetOrderConfirmationProcessingUseCase getOrderConfirmationProcessingUseCase;
+    private final GetOrderConfirmationObservationUseCase getOrderConfirmationObservationUseCase;
 
     public InventoryController(
             CreateInventoryItemUseCase createInventoryItemUseCase,
@@ -58,7 +62,8 @@ public class InventoryController {
             GetInventoryBySkuUseCase getInventoryBySkuUseCase,
             GetInventoryBySkuAndWarehouseUseCase getInventoryBySkuAndWarehouseUseCase,
             GetOrderConfirmationEvidenceUseCase getOrderConfirmationEvidenceUseCase,
-            GetOrderConfirmationProcessingUseCase getOrderConfirmationProcessingUseCase
+            GetOrderConfirmationProcessingUseCase getOrderConfirmationProcessingUseCase,
+            GetOrderConfirmationObservationUseCase getOrderConfirmationObservationUseCase
     ) {
         this.createInventoryItemUseCase = createInventoryItemUseCase;
         this.adjustPhysicalStockUseCase = adjustPhysicalStockUseCase;
@@ -69,6 +74,7 @@ public class InventoryController {
         this.getInventoryBySkuAndWarehouseUseCase = getInventoryBySkuAndWarehouseUseCase;
         this.getOrderConfirmationEvidenceUseCase = getOrderConfirmationEvidenceUseCase;
         this.getOrderConfirmationProcessingUseCase = getOrderConfirmationProcessingUseCase;
+        this.getOrderConfirmationObservationUseCase = getOrderConfirmationObservationUseCase;
     }
 
     @PostMapping
@@ -148,6 +154,20 @@ public class InventoryController {
                         processing.topic(), processing.partition(), processing.offset(), processing.status(), processing.attemptCount(),
                         processing.createdAt(), processing.updatedAt(), processing.completedAt()))
                 .toList();
+    }
+
+    @GetMapping("/order-confirmation-observations/{orderId}")
+    public List<OrderConfirmationObservationResponse> getOrderConfirmationObservations(@PathVariable UUID orderId) {
+        return getOrderConfirmationObservationUseCase.execute(orderId).stream().map(observation -> {
+            var processing = observation.processing();
+            var evidence = observation.evidence();
+            return new OrderConfirmationObservationResponse(processing.orderId(), processing.eventId(), processing.correlationId(),
+                    "OrderConfirmed", 1, processing.occurredAt(), processing.topic(), processing.partition(), processing.offset(),
+                    processing.status(), processing.attemptCount(), processing.createdAt(), processing.updatedAt(), processing.completedAt(),
+                    evidence == null ? null : evidence.recognizedAt(), evidence != null,
+                    observation.lifecycle().stream().map(item -> new OrderConfirmationLifecycleResponse(
+                            item.milestone(), item.occurredAt(), item.failureCategory())).toList());
+        }).toList();
     }
 
     @GetMapping("/{skuId}/{warehouseId}")
