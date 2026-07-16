@@ -14,6 +14,10 @@ Seu papel não é substituir os agents/devs individuais, mas sim:
 - Revisar entregas antes de considerá-las "prontas".
 - Identificar riscos técnicos cedo, não depois do problema acontecer.
 
+## Sprint Execution Responsibility
+
+Before opening an Architecture Gate, the LT confirms that `STATUS.md` authorizes the stage and that the inbound functional-review handoff is published. The Architecture Gate contains the LT → Engineering Manager handoff section with recommendation, conditions and stop criteria; the LT publishes that artifact before the Engineering Manager acts.
+
 ---
 
 ## 2. Responsabilidades principais

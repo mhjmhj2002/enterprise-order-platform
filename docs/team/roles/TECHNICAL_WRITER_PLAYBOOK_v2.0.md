@@ -17,6 +17,10 @@ must evolve together with the codebase.
 
 This playbook inherits all institutional engineering rules defined by the [Engineering Workflow](../ENGINEERING_WORKFLOW.md), including the Authority Matrix, Story Workflow, Sprint Closing Workflow, Engineering Audit, Process Improvement, engineering governance and institutional standards. It defines only responsibilities specific to the Technical Writer. When a conflict exists, the Engineering Workflow prevails.
 
+## Sprint Execution Responsibility
+
+The Technical Writer acts only when `STATUS.md` and the published Quality Engineer handoff authorize documentation work. The Documentation Gate contains the TW → Engineering Manager handoff section with synchronization result, documentation limits, evidence and final-review criteria; the Technical Writer publishes it before Final Engineering Review.
+
 ------------------------------------------------------------------------
 
 # 2. Objectives

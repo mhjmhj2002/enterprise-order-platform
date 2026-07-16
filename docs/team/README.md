@@ -17,5 +17,7 @@ Documentos de organizacao do time, alinhamento de trabalho e historico do projet
 - [Sprint 2 Engineering Audit Report](SPRINT_2_ENGINEERING_AUDIT_REPORT.md)
 - [Sprint 3 Product Plan](sprints/SPRINT_3_PRODUCT_PLAN.md)
 - [Sprint 3 Engineering Manager Review](sprints/SPRINT_3_ENGINEERING_MANAGER_REVIEW.md)
+- [Organizational Implementation Plan](ORGANIZATIONAL_IMPLEMENTATION_PLAN.md)
+- [Sprint 5 Workspace](sprints/sprint-005/STATUS.md)
 - [Sprint 4 Product Plan](sprints/SPRINT_4_PRODUCT_PLAN.md)
 - [Sprint 4 Engineering Manager Review](sprints/SPRINT_4_ENGINEERING_MANAGER_REVIEW.md)

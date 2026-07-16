@@ -18,6 +18,10 @@ This playbook inherits all institutional engineering rules defined by the [Engin
 
 Implementation may begin only after the applicable Architecture Gate and Technical Contract have been approved.
 
+## Sprint Execution Responsibility
+
+The Software Engineer acts only when `STATUS.md` authorizes implementation and the Engineering Manager → SE handoff section is published. The implementation PR contains the SE → QE handoff section with delivered scope, tests, constraints, known risks and QE acceptance/stop criteria; the Software Engineer publishes its own PR and evidence before Quality execution.
+
 ---
 
 # Golden Rules

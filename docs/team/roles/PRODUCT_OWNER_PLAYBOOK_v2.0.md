@@ -55,6 +55,10 @@ This playbook inherits all institutional engineering rules defined by the [Engin
 
 These belong to the Engineering Manager and the engineering team.
 
+## Sprint Execution Responsibility
+
+The Product Owner begins refinement only after PMO materialization, the published PMO → PO handoff section and `STATUS.md` authorize it. The Product Plan contains the PO → Engineering Manager handoff section and is published by the Product Owner before Functional Review.
+
 ---
 
 # Authority Matrix

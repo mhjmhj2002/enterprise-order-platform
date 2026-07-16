@@ -25,6 +25,10 @@ Em especial:
 * Engineering Audit;
 * Process Improvement.
 
+## Sprint Execution Responsibility
+
+The PMO materializes approved direction as the official GitHub Story before Product refinement. The GitHub Issue contains the PMO → Product Owner Institutional Handoff section with branch, published artifacts, scope boundaries and next authorized action. The PMO publishes only its own administrative artifact and does not begin Product refinement or publish Product Owner work.
+
 ---
 
 # Responsabilidades

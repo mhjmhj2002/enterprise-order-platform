@@ -8,6 +8,7 @@ Playbooks que definem responsabilidades, detalhe operacional e entregáveis espe
 - [Product Owner Playbook v2.0](PRODUCT_OWNER_PLAYBOOK_v2.0.md)
 - [Engineering Manager Playbook v2.0](ENGINEERING_MANAGER_PLAYBOOK_v2.0.md)
 - [AI Engineering Orchestrator Playbook v1.0](AI_ENGINEERING_ORCHESTRATOR_PLAYBOOK_v1.0.md)
+- [Program Management Office Playbook v1.0](PLAYBOOK%20%E2%80%94%20PROGRAM%20MANAGEMENT%20OFFICE.md)
 - [Repository Owner Playbook v1.0](REPOSITORY_OWNER_PLAYBOOK_v1.0.md)
 - [LT Playbook](LT_PLAYBOOK.md)
 

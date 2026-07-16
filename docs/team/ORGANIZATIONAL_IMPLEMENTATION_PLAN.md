@@ -2,14 +2,14 @@
 
 **Owner:** AI Engineering Orchestrator  
 **Decision authority:** Engineering Manager  
-**Status:** Planned — no organizational change is effective through this document  
+**Status:** Implemented — pending Engineering Manager Organizational Validation
 **Target:** Complete implementation and organizational validation before Sprint 5 kickoff
 
 ## 1. Purpose and implementation boundary
 
 This plan translates the approved Sprint 4 retrospective decisions — PI-004, PI-005, the Sprint Execution Protocol and Organizational Freeze — into an ordered implementation plan. Its source is the [Sprint 4 Engineering Retrospective](SPRINT_4_ENGINEERING_RETROSPECTIVE.md).
 
-This is a planning artifact only. It does not change the Engineering Workflow, role playbooks, audit checklist, templates, active Sprint rules or product scope. The Engineering Manager must approve the implemented result before the protocol becomes mandatory.
+The planned organizational artifacts are implemented; the Engineering Manager must approve the implemented result before the protocol becomes mandatory or Sprint 5 may begin. This document does not alter product scope.
 
 ## 2. Target operating model
 

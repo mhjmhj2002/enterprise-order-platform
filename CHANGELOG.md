@@ -8,6 +8,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Changed
 
+- Organizational implementation of PI-004 and PI-005 completed pending Engineering Manager validation: Sprint Execution Protocol, Organizational Freeze, Sprint workspace, STATUS.md, embedded Institutional Handoff sections, role responsibilities and audit controls are now documented for Sprint 5 use.
 - `ENGINEERING_WORKFLOW.md` foi formalizado como documento raiz da engenharia; os playbooks passaram a declarar herança institucional e a evitar duplicação de regras compartilhadas.
 - Engineering Audit v1.1 implementado com verificações de separação entre Story, Release e Sprint Closing Workflows e de autoridade operacional para operações de encerramento.
 - A primeira validação retrospectiva do Engineering Audit na Sprint 2 concluiu `CHANGES REQUIRED`: a cobertura documental e GitHub é efetiva, mas o checklist precisa verificar explicitamente a separação de workflows e a autoridade operacional de GitHub/release.

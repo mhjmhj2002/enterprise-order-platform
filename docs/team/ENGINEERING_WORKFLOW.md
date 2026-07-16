@@ -13,7 +13,7 @@ This document defines how engineering work moves from strategic direction to spr
 
 The engineering documentation follows a hierarchy to keep shared rules in one authoritative place and role guidance focused.
 
-1. **[Engineering Workflow](ENGINEERING_WORKFLOW.md)** is the root institutional document. It defines shared engineering rules, governance, Authority Matrix, Story Workflow, Release Workflow, Sprint Closing Workflow, Engineering Audit, Process Improvement and institutional standards.
+1. **[Engineering Workflow](ENGINEERING_WORKFLOW.md)** is the root institutional document. It defines shared engineering rules, governance, Authority Matrix, Story Workflow, Release Workflow, Sprint Closing Workflow, Sprint Execution Protocol, Engineering Audit, Process Improvement and institutional standards.
 2. **[Role Playbooks](roles/README.md)** automatically inherit every rule from this document. They define only role-specific responsibilities, operating detail and role-owned deliverables; they must link to, rather than duplicate, shared institutional rules.
 3. **Product Documentation** records approved product scope, business rules and acceptance context. It does not redefine engineering governance.
 4. **Project Documentation** records architecture, quality, releases, history and other evidence. It implements or evidences the institutional rules but does not override them.
@@ -33,6 +33,7 @@ When documents conflict, the highest applicable level prevails. Future instituti
 | Role | Primary accountability |
 | --- | --- |
 | Program Director | Strategic direction and portfolio-level sponsorship. |
+| Program Management Office | Materializes approved program direction as traceable GitHub backlog administration before Product refinement. |
 | AI Engineering Orchestrator | Improves engineering processes and governance; coordinates the institutional Sprint audit and escalates authority gaps. |
 | Product Owner | Defines why and what: value, scope, priorities and functional acceptance criteria. |
 | Engineering Manager | Owns technical governance, capacity, architecture approval, release approval and sprint closure. |
@@ -47,7 +48,7 @@ When documents conflict, the highest applicable level prevails. Future instituti
 ```text
 Program Director
         ↓
-AI Engineering Orchestrator
+Program Management Office — Story Materialization
         ↓
 Product Owner
         ↓
@@ -88,14 +89,30 @@ No implementation begins before the applicable approval gate. The Software Engin
 
 ## Sprint Lifecycle
 
-1. **Direction and Product Planning:** Program direction and Product Owner planning define the goal, value, scope, priorities, risks and acceptance criteria.
-2. **Engineering Review:** Engineering Manager validates capacity, architectural fit and unresolved decisions.
-3. **Backlog Materialization:** Product Owner creates the approved backlog, with traceable labels, dependencies and milestones.
-4. **Documentation Baseline:** Technical Writer synchronizes planning, architecture references, ADRs, catalogs and governance documents.
-5. **Architecture Gate:** Required when infrastructure, cross-service contracts, technology choices or other unresolved technical decisions affect implementation.
-6. **Implementation and Quality:** Software Engineer implements approved work; Quality Engineer plans, is authorized and executes validation.
-7. **Release Readiness:** Technical Writer prepares release documentation; Quality Engineer provides the final recommendation; Engineering Manager authorizes release readiness; Repository Owner performs the approved repository operations.
-8. **Engineering Audit and Sprint Closure:** after repository operations are complete, the AI Engineering Orchestrator performs the lightweight institutional audit using the [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md). The Engineering Manager decides closure only after the audit result and the process retrospective are recorded.
+1. **Direction and Materialization:** Program direction is materialized by the Program Management Office as the official Story, labels, milestone and Project Board state before Product refinement. The Product Owner owns the resulting product backlog content.
+2. **Product and Engineering Review:** Product Owner planning defines value, scope, priorities, risks and acceptance criteria; Engineering Manager validates readiness, capacity and unresolved decisions.
+3. **Documentation Baseline:** Technical Writer synchronizes planning, architecture references, ADRs, catalogs and governance documents.
+4. **Architecture Gate:** Required when infrastructure, cross-service contracts, technology choices or other unresolved technical decisions affect implementation.
+5. **Implementation and Quality:** Software Engineer implements approved work; Quality Engineer plans, is authorized and executes validation.
+6. **Release Readiness:** Technical Writer prepares release documentation; Quality Engineer provides the final recommendation; Engineering Manager authorizes release readiness; Repository Owner performs the approved repository operations.
+7. **Engineering Audit and Sprint Closure:** after repository operations are complete, the AI Engineering Orchestrator performs the lightweight institutional audit using the [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md). The Engineering Manager decides closure only after the audit result and the process retrospective are recorded.
+
+## Sprint Execution Protocol
+
+Every Sprint uses a workspace at `docs/team/sprints/sprint-<number>/` containing a living `STATUS.md`, `REPORTS/`, `AUDIT/` and `RETROSPECTIVE/`. `STATUS.md` is the authoritative operational state: it identifies the Sprint, current Story, current/previous/next step, responsible role, visual flow state, branch, Pull Request, gate, latest published handoff, blockers and last update.
+
+When explicitly invoked to act, every role must:
+
+1. read the current Sprint `STATUS.md`, this workflow, its role playbook and the applicable inbound handoff section;
+2. confirm that `Role responsible` and `Current step` authorize it; otherwise identify the authorized role and stop without changing artifacts;
+3. stop and return to the producing role if the inbound handoff is absent, unpublished or inconsistent;
+4. execute only its authorized activity;
+5. update `STATUS.md` with the completed state, evidence and next authorized action;
+6. add an **Institutional Handoff** Markdown section to its own existing institutional artifact or PR, including source/destination roles, branch, commit, artifacts, scope, constraints, evidence, risks, pending items, next action and acceptance/stop criteria;
+7. publish its own artifact through the Versioned Handoff; and
+8. end after identifying the next role and published artifact.
+
+An Institutional Handoff is never a standalone document or parallel tracker. A receiving role never publishes or amends another role's unpublished artifact. The Repository Owner remains exclusively responsible for the authorized GitHub administrative operations and publishes only its own administrative evidence.
 
 ## Official Handoffs
 
@@ -111,7 +128,8 @@ Roles publish their own artifacts. No role may take authorship of, commit, or pu
 
 | From | To | Required handoff |
 | --- | --- | --- |
-| Product Owner | Engineering Manager | Sprint Plan with scope, priorities, risks and functional criteria. |
+| Program Management Office | Product Owner | Official GitHub Story materialization and PMO → PO handoff section before Product refinement. |
+| Product Owner | Engineering Manager | Sprint Plan with scope, priorities, risks and functional criteria, including PO → EM handoff section. |
 | Engineering Manager | Product Owner | Approved or refined planning, including constraints and capacity decisions. |
 | Product Owner | Technical Writer | Materialized backlog and approved planning references. |
 | Technical Writer | Architecture Gate | Documentation baseline, cross-references and identified decision gaps. |
@@ -175,6 +193,7 @@ An Administrative Merge does not replace technical approval, remove any workflow
 | Release Notes and Changelog | Technical Writer | Engineering Manager | Technical Writer |
 | Project History | Technical Writer | Engineering Manager when closure-related | Technical Writer |
 | Engineering Roadmap | Technical Writer | Engineering Manager for strategic changes | Technical Writer |
+| Sprint workspace and STATUS.md | Current responsible role | Engineering Manager for Organizational Validation / emergency exception | AEO maintains structure; current role maintains state |
 
 ## Institutional Naming and Traceability
 
@@ -235,12 +254,13 @@ The **Sprint Closing Workflow** verifies that the completed set of Stories produ
 | Run audit and retrospective | AI Engineering Orchestrator | Records evidence, exceptions and proposals; does not approve other roles' work. |
 | Decide exceptions, improvements and closure | Engineering Manager | Sole closure authority. |
 
-1. **Evidence assembly — Technical Writer, Quality Engineer and Repository Owner:** provide the existing documentation, quality and GitHub/release evidence; no role repeats another role's review.
-2. **Engineering audit — AI Engineering Orchestrator:** checks the expected artifacts and their cross-consistency through the [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md), including separation of Story, Release and Sprint Closing Workflows and explicit operational authority for required closing operations. Each item is marked verified, not applicable with rationale, or exception with evidence.
-3. **Process retrospective — AI Engineering Orchestrator:** records what escaped the process, the expected detection point, whether accountability was explicit, proportionality of a change and the institutional document that should evolve. It is a retrospective of engineering process, not product scope.
-4. **Improvement decision — Engineering Manager:** accepts the audit result, decides whether an exception blocks closure, and approves any process change. Accepted improvements are recorded in the [Process Improvement Backlog](PROCESS_IMPROVEMENT_BACKLOG.md).
-5. **Closure decision — Engineering Manager:** closes the Sprint only when there are no unaccepted blocking exceptions, mandatory audit items are verified or justified as not applicable, and all accepted improvements have an owner, status and validation Sprint.
-6. **Publication — Technical Writer:** updates the appropriate history, roadmap and governance references after closure. The Repository Owner makes only the GitHub operations authorized by the Engineering Manager.
+1. **Closure readiness — Repository Owner:** publishes its closure-readiness handoff section containing authorized release, milestone, Issue, Board, branch, `main` and worktree evidence before audit begins.
+2. **Evidence assembly — Technical Writer, Quality Engineer and Repository Owner:** provide the existing documentation, quality and GitHub/release evidence; no role repeats another role's review.
+3. **Engineering audit — AI Engineering Orchestrator:** checks the expected artifacts and their cross-consistency through the [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md), including separation of Story, Release and Sprint Closing Workflows and explicit operational authority for required closing operations. Each item is marked verified, not applicable with rationale, or exception with evidence.
+4. **Process retrospective — AI Engineering Orchestrator:** records what escaped the process, the expected detection point, whether accountability was explicit, proportionality of a change and the institutional document that should evolve. It is a retrospective of engineering process, not product scope.
+5. **Improvement decision — Engineering Manager:** accepts the audit result, decides whether an exception blocks closure, and approves any process change. Accepted improvements are recorded in the [Process Improvement Backlog](PROCESS_IMPROVEMENT_BACKLOG.md).
+6. **Closure decision — Engineering Manager:** closes the Sprint only when there are no unaccepted blocking exceptions, mandatory audit items are verified or justified as not applicable, and all accepted improvements have an owner, status and validation Sprint.
+7. **Publication — Technical Writer:** updates the appropriate history, roadmap and governance references after closure. The Repository Owner makes only the GitHub operations authorized by the Engineering Manager.
 
 The AI Engineering Orchestrator coordinates and records the audit; it does not approve documentation, quality, architecture, releases or GitHub operations. An audit finding never silently changes product scope or the product backlog.
 
@@ -249,5 +269,11 @@ The AI Engineering Orchestrator coordinates and records the audit; it does not a
 The Engineering Manager reviews this workflow at Sprint boundaries or when process gaps are discovered. Ideas observed during a Sprint are recorded first in the [Candidate Improvement Backlog](CANDIDATE_IMPROVEMENT_BACKLOG.md); they do not alter the process until the Sprint Retrospective explicitly rejects, retains or converts them to a PI. The AI Engineering Orchestrator maintains the process-improvement cycle and the [Process Improvement Backlog](PROCESS_IMPROVEMENT_BACKLOG.md); its identifiers use `PI-<sequence>` solely within that backlog and are not product backlog identifiers. Each improvement records the observed problem, root cause, decision, status, evidence and validation Sprint. The Engineering Manager approves changes to institutional naming and traceability conventions and prevents parallel nomenclatures. The Technical Writer maintains this document, validates inherited-document consistency and cross-references, and updates a playbook only when its role-specific responsibilities are affected.
 
 Roadmap review is part of each Sprint closure. The Technical Writer updates the [Engineering Roadmap](ENGINEERING_ROADMAP.md) with completed evolution and the current directional view; the Engineering Manager approves strategic changes.
+
+## Organizational Freeze
+
+From Sprint kickoff through institutional closure, this workflow, role playbooks, the Engineering Audit Checklist, mandatory Sprint templates and Sprint workspace conventions are frozen. `STATUS.md`, published handoff sections, Story artifacts and closure evidence remain living artifacts under their existing owners.
+
+New process ideas are recorded in the [Candidate Improvement Backlog](CANDIDATE_IMPROVEMENT_BACKLOG.md) and are evaluated only in the Engineering Retrospective; they cannot change active Sprint rules. An emergency exception requires Engineering Manager authorization and a published `STATUS.md` record with rationale, scope and effective date.
 
 Process changes must be documented before they become mandatory. Role playbooks may add operational detail but cannot override this workflow.

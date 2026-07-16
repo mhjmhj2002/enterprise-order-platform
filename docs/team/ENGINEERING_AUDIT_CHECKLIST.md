@@ -1,6 +1,6 @@
 # Engineering Audit Checklist
 
-**Version:** 1.3
+**Version:** 1.4
 **Status:** Institutional baseline  
 **Owner:** AI Engineering Orchestrator  
 **Closure authority:** Engineering Manager
@@ -40,6 +40,11 @@ For each applicable line, link the evidence and record one result: `Verified`, `
 | Governance | **Versioned handoffs:** applicable producing roles made progressive commits and handed off only artifacts published on the official Story branch; their existing records contain the branch, commit hash and published artifacts. | |
 | Governance | **Versioned-handoff chronology:** using only the official Story-branch history and the existing handoff records, each applicable mandatory handoff has at least one published commit, and that commit precedes the start of the next institutional stage. Record only a confirmed sequence, an exception and its owner, or N/A with rationale; do not perform a detailed Git-history inspection. | |
 | Governance | **No local-only obligatory deliverables:** no required Story artifact exists solely in a workspace; any exception identifies its owner and Engineering Manager decision. | |
+| Governance | **Sprint state:** the published `STATUS.md` is current and names the correct Sprint, Story, previous/current/next step, responsible role, branch, Pull Request, gate, blockers and next action. | |
+| Governance | **Startup Protocol:** each applicable role acted only when the published STATUS state authorized it and after its inbound handoff section was published. | |
+| Governance | **Institutional Handoff sections:** each applicable producing role published a handoff section in its own existing artifact or PR; source/destination, branch, commit, artifacts, constraints, evidence, pending items and stop criteria are complete. | |
+| Governance | **Closure-readiness handoff:** before audit, the Repository Owner published its own evidence for release, milestone, Issues, Board, branch, `main` and worktree state. | |
+| Governance | **Organizational Freeze:** no frozen institutional artifact changed during the Sprint, unless an Engineering Manager emergency exception is published in STATUS.md with rationale, scope and effective date. | |
 | GitHub | Issues have the approved final disposition and traceability. | |
 | GitHub | Labels and Project Board reflect that disposition. | |
 | GitHub | Milestone and release/tag reflect the authorized Sprint state. | |

@@ -299,3 +299,9 @@ O Architecture Gate permaneceu **APPROVED WITH CONDITIONS** e suas condições f
 A Story #44 adicionou ao Inventory uma observação operacional local de `OrderConfirmed` v1 consultável por `orderId`. A visão relaciona o fato recebido, o estado de processamento, a evidência de reconhecimento e os marcos `REGISTERED`, `TEMPORARY_FAILURE` e `COMPLETED`, permitindo demonstrar uma interrupção temporária já recuperada sem duplicar o resultado funcional.
 
 A entrega preserva as fronteiras institucionais: Inventory não consulta o Order, não há banco compartilhado, novo evento, tópico, consumer ou infraestrutura. A consulta não expõe payload, credenciais, stack traces ou detalhes brutos de exceção e não representa observabilidade corporativa, dashboards, alertas, métricas centralizadas ou tracing distribuído. O Quality Gate foi **APPROVED WITH OBSERVATIONS**; a atualização futura do Testcontainers do Order permanece acompanhamento não bloqueante porque o fluxo equivalente foi validado ao vivo.
+
+## 2026-07-16 - Implementação organizacional pré-Sprint 5
+
+As decisões organizacionais aprovadas na retrospectiva da Sprint 4 foram implementadas, pendentes apenas da Organizational Validation do Engineering Manager. O workflow agora estabelece o Sprint Execution Protocol, o workspace previsível por Sprint, o `STATUS.md` vivo, as seções obrigatórias de Institutional Handoff nos artefatos existentes e o Organizational Freeze.
+
+PI-004 e PI-005 foram registrados como implementados e terão validação prática na Sprint 5. O workspace `sprint-005` foi criado em estado bloqueado: nenhuma Story ou trabalho da Sprint pode iniciar antes da confirmação formal do Engineering Manager.

@@ -58,6 +58,10 @@ The Repository Owner is responsible for:
 -   Repository health verification.
 -   Confirmation that `main` is synchronized.
 -   Confirmation that the worktree is clean.
+
+## Sprint Execution Responsibility
+
+The Repository Owner acts only when `STATUS.md` and the published Engineering Manager authorization permit the assigned GitHub administration. It records the Repository Owner → AEO closure-readiness handoff section in its own existing administrative evidence, covering release, milestone, Issues, Board, branch, `main` and worktree state. It never publishes or takes ownership of another role's artifact.
 -   Supply GitHub, milestone, release and `main`-synchronization evidence to the AI Engineering Orchestrator after authorized Sprint operations.
 -   Block administrative closure when an obligatory deliverable is only in a local workspace or has no published reference on the official Story branch.
 

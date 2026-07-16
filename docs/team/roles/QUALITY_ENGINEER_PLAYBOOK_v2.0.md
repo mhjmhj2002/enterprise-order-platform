@@ -27,6 +27,10 @@ This playbook inherits all institutional engineering rules defined by the [Engin
 
 Quality planning precedes execution; Quality Engineer execution requires the authorization defined in the Workflow.
 
+## Sprint Execution Responsibility
+
+The Quality Engineer acts only when `STATUS.md` and the published Software Engineer handoff authorize validation. The Quality Gate artifact contains the QE → Technical Writer handoff section with evidence, recommendation, defects, constraints and acceptance/stop criteria; the QE publishes it before documentation review.
+
 ---
 
 # 2. Mission

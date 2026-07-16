@@ -24,6 +24,10 @@ Ser a autoridade técnica e de processo do projeto.
 - Decidir o encerramento definitivo da Sprint após o Engineering Audit e a retrospectiva de processo
 - Aprovar melhorias de processo e decidir se uma exceção de auditoria bloqueia o encerramento
 
+## Sprint Execution Responsibility
+
+The Engineering Manager publishes the Functional Review, Architecture Approval, Final Engineering Review and institutional acceptance artifacts with the applicable outbound handoff section. It is the only authority for Organizational Freeze emergency exceptions, which must be recorded in the living Sprint `STATUS.md` with rationale, scope and effective date.
+
 ## Pull Requests e merge
 
 O Engineering Manager aprova tecnicamente o Pull Request quando os gates de arquitetura, qualidade e documentação aplicáveis estiverem concluídos. O merge definitivo em `main` é operação exclusiva do Repository Owner, inclusive quando for necessário um **Administrative Merge** por limitação operacional do GitHub em repositório de único mantenedor.
