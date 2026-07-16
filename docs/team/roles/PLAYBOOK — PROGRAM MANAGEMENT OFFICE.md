@@ -27,7 +27,7 @@ Em especial:
 
 ## Sprint Execution Responsibility
 
-The PMO materializes approved direction as the official GitHub Story before Product refinement. The GitHub Issue contains the PMO → Product Owner Institutional Handoff section with branch, published artifacts, scope boundaries and next authorized action. The PMO publishes only its own administrative artifact and does not begin Product refinement or publish Product Owner work.
+The PMO begins a Sprint only after reading the published [Sprint Initiation Request](../sprints/templates/SPRINT_INITIATION_REQUEST_TEMPLATE.md) and validating its explicit authorization to start. The PMO executes Sprint Bootstrap exclusively from that artifact: it creates the initial `STATUS.md`, materializes approved direction as the official GitHub Story, and then publishes the PMO → Product Owner Institutional Handoff section with branch, published artifacts, scope boundaries and next authorized action. The PMO publishes only its own administrative artifact and does not begin Product refinement or publish Product Owner work. Without the request, the PMO stops and requests its completion by Sponsor / Program Direction.
 
 ---
 
@@ -54,6 +54,8 @@ The PMO materializes approved direction as the official GitHub Story before Prod
 
 ## Sprint Planning
 
+* ler e validar o Sprint Initiation Request antes do Sprint Bootstrap;
+* criar o `STATUS.md` inicial da Sprint autorizada;
 * preparar administrativamente a Sprint;
 * garantir que todas as Stories existam oficialmente antes do refinamento do PO;
 * validar rastreabilidade entre Sprint, milestone e Project.

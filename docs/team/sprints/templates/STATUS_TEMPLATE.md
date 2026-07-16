@@ -18,6 +18,8 @@
 
 | Step | Role | State | Published handoff |
 | --- | --- | --- | --- |
+| Sprint initiation | Sponsor / Program Direction | TODO | Sprint Initiation Request → PMO |
+| Sprint Bootstrap | PMO | TODO | PMO → Product Owner |
 | PMO materialization | PMO | TODO | |
 | Product refinement | Product Owner | TODO | |
 | Functional review | Engineering Manager | TODO | |

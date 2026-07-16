@@ -18,6 +18,8 @@
 
 | Step | Role | State | Published handoff |
 | --- | --- | --- | --- |
+| Sprint initiation | Sponsor / Program Direction | TODO | N/A — Sprint Initiation Request has not been published. |
+| Sprint Bootstrap | PMO | TODO | N/A — blocked until an authorized Sprint Initiation Request is published. |
 | PMO materialization | PMO | TODO | N/A — no Sprint 5 Story authorized. |
 | Product refinement | Product Owner | TODO | N/A |
 | Functional review | Engineering Manager | TODO | N/A |

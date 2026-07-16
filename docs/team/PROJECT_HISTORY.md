@@ -305,3 +305,9 @@ A entrega preserva as fronteiras institucionais: Inventory não consulta o Order
 As decisões organizacionais aprovadas na retrospectiva da Sprint 4 foram implementadas, pendentes apenas da Organizational Validation do Engineering Manager. O workflow agora estabelece o Sprint Execution Protocol, o workspace previsível por Sprint, o `STATUS.md` vivo, as seções obrigatórias de Institutional Handoff nos artefatos existentes e o Organizational Freeze.
 
 PI-004 e PI-005 foram registrados como implementados e terão validação prática na Sprint 5. O workspace `sprint-005` foi criado em estado bloqueado: nenhuma Story ou trabalho da Sprint pode iniciar antes da confirmação formal do Engineering Manager.
+
+## 2026-07-16 - Sprint Initiation Request institucionalizado
+
+O Sprint Initiation Request foi incorporado como o primeiro Versioned Handoff de cada Sprint, de Sponsor / Program Direction para o PMO. O pedido fornece o contexto mínimo e a autorização explícita para o Sprint Bootstrap; sem ele, o PMO não inicia a Sprint, não cria o `STATUS.md` inicial nem materializa Stories.
+
+O workflow, o playbook do PMO, o template institucional e o Engineering Audit foram alinhados para manter a rastreabilidade entre autorização, bootstrap, estado inicial e handoff do PMO para o Product Owner. A vigência permanece sujeita à Organizational Validation do Engineering Manager antes do Organizational Freeze da Sprint 5.

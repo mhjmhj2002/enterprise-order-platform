@@ -48,7 +48,9 @@ When documents conflict, the highest applicable level prevails. Future instituti
 ```text
 Program Director
         ↓
-Program Management Office — Story Materialization
+Sprint Initiation Request — Sponsor / Program Direction → PMO
+        ↓
+Program Management Office — Sprint Bootstrap and Story Materialization
         ↓
 Product Owner
         ↓
@@ -89,7 +91,7 @@ No implementation begins before the applicable approval gate. The Software Engin
 
 ## Sprint Lifecycle
 
-1. **Direction and Materialization:** Program direction is materialized by the Program Management Office as the official Story, labels, milestone and Project Board state before Product refinement. The Product Owner owns the resulting product backlog content.
+1. **Sprint Initiation and Materialization:** Sponsor / Program Direction publishes a [Sprint Initiation Request](sprints/templates/SPRINT_INITIATION_REQUEST_TEMPLATE.md) as the first Versioned Handoff of the Sprint to the Program Management Office. It records the authorized Sprint, macro objective, initial Story or materialization direction, base branch, boundaries, institutional references and explicit authorization to begin. The PMO reads and validates this request before running Sprint Bootstrap; only then may it materialize the official Story, labels, milestone and Project Board state before Product refinement. The Product Owner owns the resulting product backlog content.
 2. **Product and Engineering Review:** Product Owner planning defines value, scope, priorities, risks and acceptance criteria; Engineering Manager validates readiness, capacity and unresolved decisions.
 3. **Documentation Baseline:** Technical Writer synchronizes planning, architecture references, ADRs, catalogs and governance documents.
 4. **Architecture Gate:** Required when infrastructure, cross-service contracts, technology choices or other unresolved technical decisions affect implementation.
@@ -114,6 +116,10 @@ When explicitly invoked to act, every role must:
 
 An Institutional Handoff is never a standalone document or parallel tracker. A receiving role never publishes or amends another role's unpublished artifact. The Repository Owner remains exclusively responsible for the authorized GitHub administrative operations and publishes only its own administrative evidence.
 
+### PMO Sprint Bootstrap
+
+Before Sprint Bootstrap, the PMO must: (1) read the published Sprint Initiation Request; (2) validate its explicit authorization to start the Sprint; (3) execute only the authorized Sprint Bootstrap; (4) create the initial `STATUS.md` from the institutional template; and (5) publish its administrative artifacts and PMO → Product Owner Institutional Handoff. Without a published, authorized Sprint Initiation Request, the PMO must stop and request Sponsor / Program Direction completion; it cannot initialize the Sprint from informal direction.
+
 ## Official Handoffs
 
 ### Versioned Handoff
@@ -128,6 +134,7 @@ Roles publish their own artifacts. No role may take authorship of, commit, or pu
 
 | From | To | Required handoff |
 | --- | --- | --- |
+| Sponsor / Program Direction | Program Management Office | Published Sprint Initiation Request, using the institutional template, with explicit authorization for Sprint Bootstrap. |
 | Program Management Office | Product Owner | Official GitHub Story materialization and PMO → PO handoff section before Product refinement. |
 | Product Owner | Engineering Manager | Sprint Plan with scope, priorities, risks and functional criteria, including PO → EM handoff section. |
 | Engineering Manager | Product Owner | Approved or refined planning, including constraints and capacity decisions. |
@@ -183,6 +190,7 @@ An Administrative Merge does not replace technical approval, remove any workflow
 
 | Artifact | Created by | Approved by | Maintained by |
 | --- | --- | --- | --- |
+| Sprint Initiation Request | Sponsor / Program Direction | Sponsor / Program Direction | Sponsor / Program Direction until PMO acknowledges it through Sprint Bootstrap |
 | Sprint Plan | Product Owner | Engineering Manager | Product Owner |
 | Technical Contract | Engineering Manager / Technical Lead | Engineering Manager | Technical Writer |
 | Event Catalog | Product Owner with Technical Writer | Engineering Manager | Technical Writer |

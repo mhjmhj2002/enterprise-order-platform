@@ -8,6 +8,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Changed
 
+- O ciclo institucional de Sprint passa a iniciar com o Sprint Initiation Request versionado de Sponsor / Program Direction para o PMO; o Sprint Bootstrap exige esse artefato autorizado, cria o `STATUS.md` inicial e deixa evidência para auditoria.
 - Organizational implementation of PI-004 and PI-005 completed pending Engineering Manager validation: Sprint Execution Protocol, Organizational Freeze, Sprint workspace, STATUS.md, embedded Institutional Handoff sections, role responsibilities and audit controls are now documented for Sprint 5 use.
 - `ENGINEERING_WORKFLOW.md` foi formalizado como documento raiz da engenharia; os playbooks passaram a declarar herança institucional e a evitar duplicação de regras compartilhadas.
 - Engineering Audit v1.1 implementado com verificações de separação entre Story, Release e Sprint Closing Workflows e de autoridade operacional para operações de encerramento.

@@ -17,7 +17,7 @@ The target model makes the authorized next action visible and published at every
 
 ```text
 Approved Sprint direction
-  → PMO materialization → Product Owner → EM functional review
+  → Sprint Initiation Request → PMO Sprint Bootstrap / materialization → Product Owner → EM functional review
   → Technical Lead / Architecture Gate → EM architecture approval
   → Software Engineer → Quality Engineer → Technical Writer
   → EM final review → Repository Owner → AEO audit → EM closure
@@ -112,6 +112,8 @@ The template should show the institutional chain in a compact table. A recommend
 
 The status file is a living operational artifact and is expressly excluded from the Organizational Freeze.
 
+The PMO creates the initial status only after receiving the authorized Sprint Initiation Request; its first two flow entries record Sprint initiation and PMO Sprint Bootstrap before the normal Story stages.
+
 ## 6. Institutional Handoff Package standard
 
 Every package is Markdown and uses the same section template embedded in the producing role's existing institutional artifact or PR. A package is never a standalone document.
@@ -203,6 +205,7 @@ These checks validate evidence already produced by roles; they do not cause the 
 | Proposed location | Template | Purpose |
 | --- | --- | --- |
 | `docs/team/sprints/templates/STATUS_TEMPLATE.md` | Sprint status | Creates the living state and visual flow for each new Sprint. |
+| `docs/team/sprints/templates/SPRINT_INITIATION_REQUEST_TEMPLATE.md` | Sprint Initiation Request | First Versioned Handoff from Sponsor / Program Direction to PMO; authorizes and bounds Sprint Bootstrap. |
 | `docs/team/sprints/templates/INSTITUTIONAL_HANDOFF_SECTION.md` | Handoff section | Provides the common Markdown package section for existing artifacts/PRs. |
 | `docs/team/sprints/templates/ARCHITECTURE_GATE_TEMPLATE.md` | Architecture Gate extension | Adds the standard inbound/outbound package section to the existing gate format. |
 | `docs/team/sprints/templates/QUALITY_GATE_TEMPLATE.md` | Quality Gate extension | Adds the standard handoff section to Test Plan/Report or quality consolidation. |
