@@ -40,3 +40,21 @@ Nenhuma implementação organizacional está autorizada enquanto o plano não fo
 revisado e republicado com os dois ajustes obrigatórios. Após a revisão, o AEO
 deve realizar novo Versioned Handoff do plano para uma reavaliação do Engineering
 Manager.
+
+## Revalidação — 2026-07-16
+
+**Plano reavaliado:** `main` / `c9d95e0284bd0e339fd6766561e56817f3a1abd9`
+
+O primeiro ajuste obrigatório foi atendido: o plano removeu o diretório e índice
+`HANDOFFS/`, eliminou a exceção de pacote autônomo e exige que todo pacote seja
+uma seção do artefato, PR ou registro institucional existente.
+
+O segundo ajuste foi atendido nas regras gerais de ownership, mas permanece uma
+instrução contraditória na seção 12, ordem 10: ela ainda atribui ao Repository
+Owner a publicação da implementação organizacional em `main`. Essa formulação
+deve ser substituída por uma sequência que preserve a publicação dos artefatos
+por AEO, Technical Writer e demais roles produtoras; o Repository Owner poderá
+somente executar a operação administrativa autorizada após a validação do EM.
+
+**Resultado da revalidação: CHANGES REQUIRED.** Até essa correção textual, o
+plano não está autorizado para implementação.
