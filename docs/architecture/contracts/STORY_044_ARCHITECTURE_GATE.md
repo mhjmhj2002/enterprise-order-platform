@@ -1,6 +1,6 @@
 # Story #44 — Architecture Gate: Visibilidade Operacional de `OrderConfirmed` v1
 
-**Status:** PROPOSED — awaiting explicit Engineering Manager approval
+**Status:** APPROVED WITH CONDITIONS — Engineering Manager authorization recorded on 2026-07-16
 
 **Data:** 2026-07-16
 
@@ -146,4 +146,51 @@ Technical Lead — proposta RECOMMENDED
 Engineering Manager — aprovação explícita do Architecture Gate
         ↓
 Software Engineer — implementação autorizada somente se aprovada
+```
+
+## 11. Decisão do Engineering Manager
+
+**Parecer final: APPROVED WITH CONDITIONS**
+
+O Architecture Gate está aprovado para implementação. A proposta atende ao
+refinamento funcional publicado da Story #44 e entrega um recorte aditivo de
+visibilidade operacional para o `OrderConfirmed` v1, sem alterar seu significado
+de negócio. A decisão foi tomada sobre os artefatos publicados na branch
+`feature/story-044-platform-observability`: Sprint 4 Product Plan, Functional
+Review e este Architecture Gate.
+
+### Aderência confirmada
+
+| Item | Decisão | Fundamentação |
+| --- | --- | --- |
+| Refinamento funcional | Aprovado | A visão relaciona pedido, fato recebido, estado de processamento e recuperação quando aplicável, exatamente no recorte observável solicitado. |
+| Natureza aditiva | Aprovado | A consulta e o histórico local acrescentam visibilidade sem mudar pedido, estoque, reservas, processamento funcional ou endpoints existentes. |
+| Responsabilidades | Aprovado | Inventory continua owner exclusivo da sua projeção e resultado de processamento; Order permanece owner do estado comercial e producer do evento. Não há dependência Inventory → Order. |
+| Contratos e plataforma | Aprovado | `OrderConfirmed` v1, tópico, envelope, grupo, Event Catalog e Event Platform Technical Contract permanecem preservados; não há novo evento, consumer ou infraestrutura. |
+| Limites da Sprint | Aprovado | A proposta não introduz tracing distribuído, OpenTelemetry, métricas centralizadas, dashboards externos, alertas ou observabilidade corporativa. |
+
+### Riscos aceitos e condições antes do Quality Gate
+
+| Risco aceito | Condição verificável |
+| --- | --- |
+| Perda ou ambiguidade do marco de interrupção durante rollback, reentrega ou concorrência | A evidência de qualidade deve demonstrar que uma falha temporária posterior ao registro durável é consultável, a recuperação chega a `COMPLETED` e o mesmo `eventId` preserva um único resultado funcional. |
+| Exposição excessiva de dados internos | A resposta e o histórico demonstrados não podem expor payload completo, credenciais, stack traces ou detalhes brutos de exceção; a ausência de observação deve manter o significado limitado definido neste contrato. |
+| Divergência da baseline funcional e contratual | A validação deve demonstrar preservação dos endpoints existentes, de `OrderConfirmed` v1 e do fluxo REST/Kafka aprovado, sem nova dependência runtime do Inventory em relação ao Order. |
+| Crescimento do histórico local | O histórico permanece limitado ao escopo do evento v1 e aos marcos aprovados. Política corporativa de retenção e observabilidade ampla permanecem fora da Story e são riscos aceitos para evolução futura. |
+
+Nenhuma condição autoriza alteração de contrato de negócio, producer, tópico,
+evento, responsabilidade de serviço ou escopo funcional. Qualquer necessidade
+dessa natureza requer novo refinamento e Architecture Gate.
+
+### Autorização e handoff
+
+**Autorização explícita:** o Software Engineer pode iniciar a implementação da
+Story #44 sob as condições deste parecer.
+
+```text
+Engineering Manager — Architecture Gate approved with conditions
+        ↓
+Software Engineer — implementação da Story #44
+        ↓
+Quality Engineer — validação das condições antes do Quality Gate
 ```
