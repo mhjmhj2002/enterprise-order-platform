@@ -261,28 +261,28 @@ Implementation is ready for Engineering Manager validation only when every item 
 
 ### Executive summary
 
-The approved Organizational Implementation Plan is implemented and published. PI-004 and PI-005, the Sprint Execution Protocol, Organizational Freeze, templates, Sprint 5 workspace, audit controls and role-specific responsibilities are ready for Organizational Validation.
+The approved Organizational Implementation Plan, including the approved Sprint Initiation Request, is implemented and published. PI-004 and PI-005, the Sprint Execution Protocol, Organizational Freeze, templates, Sprint 5 workspace, audit controls and role-specific responsibilities are ready for Organizational Validation.
 
 ### Objective completed
 
-Implemented the approved organizational decisions before Sprint 5 kickoff without starting Sprint 5 or changing product scope.
+Implemented the approved organizational decisions and Sprint Initiation Request before Sprint 5 kickoff without starting Sprint 5 or changing product scope.
 
 ### Published artifacts
 
 - [Engineering Workflow](ENGINEERING_WORKFLOW.md), Engineering Audit Checklist, PI/Candidate backlogs and institutional history;
 - role playbooks and PMO role index;
-- Sprint templates under `sprints/templates/`; and
+- Sprint templates under `sprints/templates/`, including the Sprint Initiation Request template; and
 - Sprint 5 workspace and blocked [STATUS.md](sprints/sprint-005/STATUS.md).
 
 ### Versioned reference
 
 - Branch: `main`
-- Commit: `48800b7`
-- Full hash: `48800b7ba3fb42e791d85f93a4601af76b70eb82`
+- Commit: `42e929a`
+- Full hash: `42e929a4c3743b403326785d85b50ca942038985`
 
 ### Evidence and constraints
 
-The implementation follows the [Sprint 4 Engineering Retrospective](SPRINT_4_ENGINEERING_RETROSPECTIVE.md) and this approved plan. The Sprint 5 workspace remains blocked pending Engineering Manager Organizational Validation; no Story materialization, Product refinement or Sprint execution is authorized.
+The implementation follows the [Sprint 4 Engineering Retrospective](SPRINT_4_ENGINEERING_RETROSPECTIVE.md), this approved plan and the approved Sprint Initiation Request decision. The Sprint 5 workspace remains blocked pending Engineering Manager Organizational Validation; no Sprint Bootstrap, Story materialization, Product refinement or Sprint execution is authorized.
 
 ### Pending items
 
@@ -293,4 +293,4 @@ Engineering Manager Organizational Validation and effective-date confirmation fo
 - Next role: Engineering Manager
 - Required action: perform Organizational Validation and either approve the effective date or identify required corrections.
 - Acceptance / stop criteria: do not authorize Sprint 5 kickoff unless the implemented artifacts are approved.
-- Operational command: review the published `main` commit `48800b7ba3fb42e791d85f93a4601af76b70eb82` and the blocked Sprint 5 STATUS.
+- Operational command: review the published `main` commit `42e929a4c3743b403326785d85b50ca942038985` and the blocked Sprint 5 STATUS.

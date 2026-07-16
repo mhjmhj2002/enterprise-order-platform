@@ -10,9 +10,9 @@
 **Current branch:** `main` (base: `main`)  
 **Pull Request:** N/A — organizational implementation is awaiting validation.  
 **Current gate:** Organizational Validation; Sprint kickoff remains blocked.  
-**Latest published handoff:** AI Engineering Orchestrator Organizational Implementation — `main` / `48800b7ba3fb42e791d85f93a4601af76b70eb82`.
-**Blockers:** Engineering Manager approval and effective-date confirmation for PI-004, PI-005, Sprint Execution Protocol and Organizational Freeze.  
-**Last updated:** 2026-07-16 — AI Engineering Orchestrator — published implementation `48800b7ba3fb42e791d85f93a4601af76b70eb82`.
+**Latest published handoff:** AI Engineering Orchestrator Organizational Implementation — `main` / `42e929a4c3743b403326785d85b50ca942038985`.
+**Blockers:** Engineering Manager approval and effective-date confirmation for PI-004, PI-005, Sprint Execution Protocol, Sprint Initiation Request and Organizational Freeze.
+**Last updated:** 2026-07-16 — AI Engineering Orchestrator — published Sprint Initiation Request implementation `42e929a4c3743b403326785d85b50ca942038985`.
 
 ## Flow
 
@@ -33,4 +33,4 @@
 | Engineering Audit | AEO | TODO | N/A |
 | Institutional acceptance | Engineering Manager | DOING | Organizational implementation awaiting validation. |
 
-No role may begin Sprint 5 work until the Engineering Manager changes this status to authorize PMO materialization.
+No role may begin Sprint 5 work until the Engineering Manager changes this status to authorize PMO Sprint Bootstrap.
