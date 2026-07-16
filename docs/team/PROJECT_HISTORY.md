@@ -311,3 +311,7 @@ PI-004 e PI-005 foram registrados como implementados e terão validação práti
 O Sprint Initiation Request foi incorporado como o primeiro Versioned Handoff de cada Sprint, de Sponsor / Program Direction para o PMO. O pedido fornece o contexto mínimo e a autorização explícita para o Sprint Bootstrap; sem ele, o PMO não inicia a Sprint, não cria o `STATUS.md` inicial nem materializa Stories.
 
 O workflow, o playbook do PMO, o template institucional e o Engineering Audit foram alinhados para manter a rastreabilidade entre autorização, bootstrap, estado inicial e handoff do PMO para o Product Owner. A vigência permanece sujeita à Organizational Validation do Engineering Manager antes do Organizational Freeze da Sprint 5.
+
+## 2026-07-16 - Ordem institucional de abertura da Sprint revisada
+
+Por aprovação do Engineering Manager, a abertura da Sprint passa a obedecer estritamente à sequência: Organizational Validation, Organizational Freeze, Sprint Initiation Request, Sprint Bootstrap do PMO, `STATUS.md` inicial e Product Owner. O PMO somente cria o estado operacional inicial depois de validar os três artefatos antecedentes; o checklist de auditoria verifica a ordem completa com evidência publicada.

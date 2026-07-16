@@ -16,8 +16,8 @@ The planned organizational artifacts are implemented; the Engineering Manager mu
 The target model makes the authorized next action visible and published at every institutional stage:
 
 ```text
-Approved Sprint direction
-  → Sprint Initiation Request → PMO Sprint Bootstrap / materialization → Product Owner → EM functional review
+Organizational Validation → Organizational Freeze
+  → Sprint Initiation Request → PMO Sprint Bootstrap → initial STATUS.md / materialization → Product Owner → EM functional review
   → Technical Lead / Architecture Gate → EM architecture approval
   → Software Engineer → Quality Engineer → Technical Writer
   → EM final review → Repository Owner → AEO audit → EM closure
@@ -112,7 +112,7 @@ The template should show the institutional chain in a compact table. A recommend
 
 The status file is a living operational artifact and is expressly excluded from the Organizational Freeze.
 
-The PMO creates the initial status only after receiving the authorized Sprint Initiation Request; its first two flow entries record Sprint initiation and PMO Sprint Bootstrap before the normal Story stages.
+The PMO creates the initial status only after Organizational Validation, Organizational Freeze and the authorized Sprint Initiation Request. Its flow records that sequence before PMO Sprint Bootstrap and the normal Story stages.
 
 ## 6. Institutional Handoff Package standard
 
@@ -246,8 +246,8 @@ New process ideas are recorded in the Candidate Improvement Backlog, reviewed ex
 | 6 | Update role playbooks only with role-specific handoff duties. | AEO; TW consistency review | Makes execution responsibility explicit without duplicating workflow. | Order 4. |
 | 7 | Update Candidate Improvement Backlog decisions and link PI-004/PI-005. | AEO | Closes retrospective decision traceability. | Order 2. |
 | 8 | Produce a Sprint-5 workspace from templates and validate the STATUS.md plus handoff sections in existing artifacts before kickoff. | AEO + TW | Proves the structure is usable before it becomes mandatory. | Orders 3–6. |
-| 9 | Engineering Manager organizational validation. | EM | Authorizes effective date and freeze. | Orders 1–8. |
-| 10 | Each producing role publishes its approved artifact on `main` through its Versioned Handoff; Repository Owner performs only the authorized GitHub administrative operation. Begin Sprint 5 only after validation. | Producing roles; Repository Owner for administrative operation only, after EM authorization | Makes the protocol official without transferring artifact ownership. | Order 9. |
+| 9 | Engineering Manager Organizational Validation. | EM | Authorizes application of Organizational Freeze. | Orders 1–8. |
+| 10 | Apply Organizational Freeze, publish Sprint Initiation Request, execute PMO Sprint Bootstrap, create initial `STATUS.md`, then authorize Product Owner entry. | EM; Sponsor / Program Direction; PMO | Establishes the approved opening order without transferring artifact ownership. | Order 9. |
 
 ## 13. Acceptance evidence for this plan
 
@@ -286,11 +286,11 @@ The implementation follows the [Sprint 4 Engineering Retrospective](SPRINT_4_ENG
 
 ### Pending items
 
-Engineering Manager Organizational Validation and effective-date confirmation for PI-004, PI-005, the Sprint Execution Protocol and Organizational Freeze.
+Engineering Manager Organizational Validation and application of Organizational Freeze, followed by the Sprint Initiation Request, PMO Sprint Bootstrap, initial `STATUS.md` and Product Owner entry in that order.
 
 ### Next authorized action
 
 - Next role: Engineering Manager
-- Required action: perform Organizational Validation and either approve the effective date or identify required corrections.
-- Acceptance / stop criteria: do not authorize Sprint 5 kickoff unless the implemented artifacts are approved.
+- Required action: perform Organizational Validation and, if approved, apply Organizational Freeze before any Sprint Initiation Request is published.
+- Acceptance / stop criteria: do not authorize Sprint 5 initiation unless Validation and Freeze are complete; do not authorize PMO Bootstrap before the published Request.
 - Operational command: review the published `main` commit `42e929a4c3743b403326785d85b50ca942038985` and the blocked Sprint 5 STATUS.

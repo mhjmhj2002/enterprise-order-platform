@@ -46,11 +46,15 @@ When documents conflict, the highest applicable level prevails. Future instituti
 ## Official Engineering Flow
 
 ```text
-Program Director
+Engineering Manager — Organizational Validation
+        ↓
+Engineering Manager — Organizational Freeze
         ↓
 Sprint Initiation Request — Sponsor / Program Direction → PMO
         ↓
-Program Management Office — Sprint Bootstrap and Story Materialization
+Program Management Office — Sprint Bootstrap
+        ↓
+Program Management Office — Initial STATUS.md and Story Materialization
         ↓
 Product Owner
         ↓
@@ -91,13 +95,15 @@ No implementation begins before the applicable approval gate. The Software Engin
 
 ## Sprint Lifecycle
 
-1. **Sprint Initiation and Materialization:** Sponsor / Program Direction publishes a [Sprint Initiation Request](sprints/templates/SPRINT_INITIATION_REQUEST_TEMPLATE.md) as the first Versioned Handoff of the Sprint to the Program Management Office. It records the authorized Sprint, macro objective, initial Story or materialization direction, base branch, boundaries, institutional references and explicit authorization to begin. The PMO reads and validates this request before running Sprint Bootstrap; only then may it materialize the official Story, labels, milestone and Project Board state before Product refinement. The Product Owner owns the resulting product backlog content.
-2. **Product and Engineering Review:** Product Owner planning defines value, scope, priorities, risks and acceptance criteria; Engineering Manager validates readiness, capacity and unresolved decisions.
-3. **Documentation Baseline:** Technical Writer synchronizes planning, architecture references, ADRs, catalogs and governance documents.
-4. **Architecture Gate:** Required when infrastructure, cross-service contracts, technology choices or other unresolved technical decisions affect implementation.
-5. **Implementation and Quality:** Software Engineer implements approved work; Quality Engineer plans, is authorized and executes validation.
-6. **Release Readiness:** Technical Writer prepares release documentation; Quality Engineer provides the final recommendation; Engineering Manager authorizes release readiness; Repository Owner performs the approved repository operations.
-7. **Engineering Audit and Sprint Closure:** after repository operations are complete, the AI Engineering Orchestrator performs the lightweight institutional audit using the [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md). The Engineering Manager decides closure only after the audit result and the process retrospective are recorded.
+1. **Organizational Validation:** the Engineering Manager validates the organizational implementation and authorizes its effective date before the Sprint may be initiated.
+2. **Organizational Freeze:** after validation, the Engineering Manager applies the Organizational Freeze that governs the Sprint; no Sprint Initiation Request may be published before this step.
+3. **Sprint Initiation and Bootstrap:** Sponsor / Program Direction publishes a [Sprint Initiation Request](sprints/templates/SPRINT_INITIATION_REQUEST_TEMPLATE.md) as the first Versioned Handoff of the Sprint to the Program Management Office. It records the authorized Sprint, macro objective, initial Story or materialization direction, base branch, boundaries, institutional references and explicit authorization to begin. The PMO reads and validates the request, executes Sprint Bootstrap, then creates the initial `STATUS.md` from the institutional template and materializes the official Story, labels, milestone and Project Board state before Product refinement. The Product Owner owns the resulting product backlog content.
+4. **Product and Engineering Review:** Product Owner planning defines value, scope, priorities, risks and acceptance criteria; Engineering Manager validates readiness, capacity and unresolved decisions.
+5. **Documentation Baseline:** Technical Writer synchronizes planning, architecture references, ADRs, catalogs and governance documents.
+6. **Architecture Gate:** Required when infrastructure, cross-service contracts, technology choices or other unresolved technical decisions affect implementation.
+7. **Implementation and Quality:** Software Engineer implements approved work; Quality Engineer plans, is authorized and executes validation.
+8. **Release Readiness:** Technical Writer prepares release documentation; Quality Engineer provides the final recommendation; Engineering Manager authorizes release readiness; Repository Owner performs the approved repository operations.
+9. **Engineering Audit and Sprint Closure:** after repository operations are complete, the AI Engineering Orchestrator performs the lightweight institutional audit using the [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md). The Engineering Manager decides closure only after the audit result and the process retrospective are recorded.
 
 ## Sprint Execution Protocol
 
@@ -114,11 +120,11 @@ When explicitly invoked to act, every role must:
 7. publish its own artifact through the Versioned Handoff; and
 8. end after identifying the next role and published artifact.
 
-An Institutional Handoff is never a standalone document or parallel tracker. A receiving role never publishes or amends another role's unpublished artifact. The Repository Owner remains exclusively responsible for the authorized GitHub administrative operations and publishes only its own administrative evidence.
+An Institutional Handoff is never a standalone document or parallel tracker. A receiving role never publishes or amends another role's unpublished artifact. The Repository Owner remains exclusively responsible for the authorized GitHub administrative operations and publishes only its own administrative evidence. The PMO Sprint Bootstrap is the only startup exception: because it creates the initial `STATUS.md`, the PMO first reads the published Organizational Validation and Organizational Freeze evidence, then the Sprint Initiation Request, and creates that status before the general role sequence applies.
 
 ### PMO Sprint Bootstrap
 
-Before Sprint Bootstrap, the PMO must: (1) read the published Sprint Initiation Request; (2) validate its explicit authorization to start the Sprint; (3) execute only the authorized Sprint Bootstrap; (4) create the initial `STATUS.md` from the institutional template; and (5) publish its administrative artifacts and PMO → Product Owner Institutional Handoff. Without a published, authorized Sprint Initiation Request, the PMO must stop and request Sponsor / Program Direction completion; it cannot initialize the Sprint from informal direction.
+Before Sprint Bootstrap, the PMO must: (1) read the published Organizational Validation; (2) confirm that Organizational Freeze is in effect; (3) read the published Sprint Initiation Request; (4) validate its explicit authorization to start the Sprint; (5) execute only the authorized Sprint Bootstrap; (6) create the initial `STATUS.md` from the institutional template; and (7) publish its administrative artifacts and PMO → Product Owner Institutional Handoff. Without a published validation, effective freeze and authorized request, the PMO must stop and request completion by the accountable prior authority; it cannot initialize the Sprint from informal direction.
 
 ## Official Handoffs
 

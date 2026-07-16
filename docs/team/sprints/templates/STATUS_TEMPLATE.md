@@ -18,9 +18,11 @@
 
 | Step | Role | State | Published handoff |
 | --- | --- | --- | --- |
+| Organizational Validation | Engineering Manager | TODO | Organizational Validation decision |
+| Organizational Freeze | Engineering Manager | TODO | Effective freeze record |
 | Sprint initiation | Sponsor / Program Direction | TODO | Sprint Initiation Request → PMO |
 | Sprint Bootstrap | PMO | TODO | PMO → Product Owner |
-| PMO materialization | PMO | TODO | |
+| Initial STATUS and Story materialization | PMO | TODO | PMO → Product Owner |
 | Product refinement | Product Owner | TODO | |
 | Functional review | Engineering Manager | TODO | |
 | Architecture Gate | Technical Lead | TODO / N/A | |

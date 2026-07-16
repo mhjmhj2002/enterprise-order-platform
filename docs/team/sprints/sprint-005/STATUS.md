@@ -18,9 +18,11 @@
 
 | Step | Role | State | Published handoff |
 | --- | --- | --- | --- |
+| Organizational Validation | Engineering Manager | DOING | Organizational implementation awaiting final validation. |
+| Organizational Freeze | Engineering Manager | TODO | N/A — applied only after Organizational Validation. |
 | Sprint initiation | Sponsor / Program Direction | TODO | N/A — Sprint Initiation Request has not been published. |
 | Sprint Bootstrap | PMO | TODO | N/A — blocked until an authorized Sprint Initiation Request is published. |
-| PMO materialization | PMO | TODO | N/A — no Sprint 5 Story authorized. |
+| Initial STATUS and Story materialization | PMO | TODO | N/A — no Sprint 5 Story authorized. |
 | Product refinement | Product Owner | TODO | N/A |
 | Functional review | Engineering Manager | TODO | N/A |
 | Architecture Gate | Technical Lead | N/A | N/A |
@@ -31,6 +33,6 @@
 | Final review | Engineering Manager | TODO | N/A |
 | Administrative closure | Repository Owner | TODO | N/A |
 | Engineering Audit | AEO | TODO | N/A |
-| Institutional acceptance | Engineering Manager | DOING | Organizational implementation awaiting validation. |
+| Institutional acceptance | Engineering Manager | TODO | N/A |
 
-No role may begin Sprint 5 work until the Engineering Manager changes this status to authorize PMO Sprint Bootstrap.
+This is a pre-initiation coordination record, not the initial operational `STATUS.md`. The PMO creates the initial operational status only after Organizational Validation, Organizational Freeze and the published Sprint Initiation Request. No role may begin Sprint 5 work until the Engineering Manager completes Validation and Freeze, Sponsor / Program Direction publishes the Request, and the PMO is authorized to execute Sprint Bootstrap.

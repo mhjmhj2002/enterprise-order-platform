@@ -5,6 +5,13 @@
 **To:** Program Management Office  
 **Sprint:** <identifier and intended timeframe>
 
+## Opening preconditions
+
+- Organizational Validation: <published decision reference>
+- Organizational Freeze: <effective-date/reference>
+
+Do not publish this request until both preconditions are complete.
+
 ## Macro objective
 
 <The approved Sprint-level outcome.>
@@ -64,7 +71,6 @@
 ### Next authorized action
 
 - Next role: Program Management Office
-- Required action: read this request, validate the authorization, execute Sprint Bootstrap, create the initial `STATUS.md`, and publish the PMO → Product Owner handoff.
-- Acceptance / stop criteria: stop if explicit authorization, Sprint identity, boundaries or base branch are absent or inconsistent.
+- Required action: confirm the Organizational Validation and effective Organizational Freeze, read this request, validate the authorization, execute Sprint Bootstrap, create the initial `STATUS.md`, and publish the PMO → Product Owner handoff.
+- Acceptance / stop criteria: stop if validation, freeze, explicit authorization, Sprint identity, boundaries or base branch are absent or inconsistent.
 - Operational command: initiate only the Sprint Bootstrap authorized by this published request.
-

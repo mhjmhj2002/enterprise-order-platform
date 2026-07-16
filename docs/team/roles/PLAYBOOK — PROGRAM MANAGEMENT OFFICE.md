@@ -27,7 +27,7 @@ Em especial:
 
 ## Sprint Execution Responsibility
 
-The PMO begins a Sprint only after reading the published [Sprint Initiation Request](../sprints/templates/SPRINT_INITIATION_REQUEST_TEMPLATE.md) and validating its explicit authorization to start. The PMO executes Sprint Bootstrap exclusively from that artifact: it creates the initial `STATUS.md`, materializes approved direction as the official GitHub Story, and then publishes the PMO → Product Owner Institutional Handoff section with branch, published artifacts, scope boundaries and next authorized action. The PMO publishes only its own administrative artifact and does not begin Product refinement or publish Product Owner work. Without the request, the PMO stops and requests its completion by Sponsor / Program Direction.
+The PMO begins a Sprint only after reading the published Organizational Validation, confirming that the Organizational Freeze is effective, and reading the published [Sprint Initiation Request](../sprints/templates/SPRINT_INITIATION_REQUEST_TEMPLATE.md). The PMO validates the Request's explicit authorization, then executes Sprint Bootstrap exclusively from that evidence: it creates the initial `STATUS.md`, materializes approved direction as the official GitHub Story, and publishes the PMO → Product Owner Institutional Handoff section with branch, published artifacts, scope boundaries and next authorized action. The PMO publishes only its own administrative artifact and does not begin Product refinement or publish Product Owner work. If validation, freeze or request is absent, the PMO stops and requests completion by the accountable prior authority.
 
 ---
 
@@ -54,6 +54,7 @@ The PMO begins a Sprint only after reading the published [Sprint Initiation Requ
 
 ## Sprint Planning
 
+* confirmar Organizational Validation e Organizational Freeze antes do Sprint Bootstrap;
 * ler e validar o Sprint Initiation Request antes do Sprint Bootstrap;
 * criar o `STATUS.md` inicial da Sprint autorizada;
 * preparar administrativamente a Sprint;
