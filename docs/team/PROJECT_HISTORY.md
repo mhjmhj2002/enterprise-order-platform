@@ -282,6 +282,12 @@ O `ENGINEERING_WORKFLOW.md` foi formalizado como o documento raiz da engenharia.
 
 Esse modelo reduz manutenção e divergência: mudanças institucionais futuras são feitas primeiro no workflow raiz; um playbook só é alterado quando sua responsabilidade própria for impactada. O fluxo e a matriz globais que estavam repetidos no playbook do Engineering Manager foram substituídos pela referência herdada.
 
+## 2026-07-16 - Candidate Improvement Backlog institucionalizado
+
+Foi criado um backlog separado para sugestões de melhoria observadas durante a Sprint. Candidatos não alteram a engenharia ao serem registrados: o AEO mantém a fila e o Engineering Manager decide cada item exclusivamente na Sprint Retrospective, rejeitando-o, mantendo-o pendente ou convertendo-o em Process Improvement.
+
+O primeiro candidato, `CI-001`, registra a sugestão de esclarecer a materialização de novas Stories pelo Product Owner no GitHub, observada no início da Sprint 4. A observação não é tratada como falha de processo e permanece `Pending Retro` até a retrospectiva correspondente.
+
 ## 2026-07-15 - Story #34: confiabilidade inicial do processamento
 
 A Story #34 implementou no Inventory Service a recuperação local do processamento de `OrderConfirmed` v1 após falha temporária. Cada fato passa a ter pendência durável e idempotente por `eventId` antes do reconhecimento; o worker local retoma pendências elegíveis e a consulta aditiva permite demonstrar `PENDING` e `COMPLETED` com rastreabilidade.

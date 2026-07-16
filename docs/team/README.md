@@ -7,6 +7,7 @@ Documentos de organizacao do time, alinhamento de trabalho e historico do projet
 - [Workflow](WORKFLOW.md)
 - [Engineering Workflow](ENGINEERING_WORKFLOW.md)
 - [Engineering Audit Checklist](ENGINEERING_AUDIT_CHECKLIST.md)
+- [Candidate Improvement Backlog](CANDIDATE_IMPROVEMENT_BACKLOG.md)
 - [Process Improvement Backlog](PROCESS_IMPROVEMENT_BACKLOG.md)
 - [Engineering Roadmap](ENGINEERING_ROADMAP.md)
 - [Playbooks de papeis](roles/README.md)

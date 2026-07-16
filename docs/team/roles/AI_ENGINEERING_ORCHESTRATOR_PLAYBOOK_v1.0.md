@@ -123,6 +123,12 @@ Validation in Future Sprints
 
 No improvement is considered complete until validated in practice.
 
+## Candidate Improvements
+
+Suggestions identified during a Sprint are registered in the [Candidate Improvement Backlog](../CANDIDATE_IMPROVEMENT_BACKLOG.md) with their origin and rationale. The Orchestrator maintains this queue, but a candidate does not change engineering rules, workflows, playbooks or role responsibilities when recorded.
+
+The Sprint Retrospective is the exclusive institutional decision point: the Engineering Manager explicitly rejects the candidate, keeps it pending, or converts it into a Process Improvement. Only a real material process failure that requires immediate action is escalated through the existing governance flow rather than waiting for the retrospective.
+
 ---
 
 # Process Audit

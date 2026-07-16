@@ -32,6 +32,7 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Added
 
+- Candidate Improvement Backlog institucional para registrar ideias de melhoria durante a Sprint e submetê-las à decisão da Retrospectiva antes de qualquer alteração do processo.
 - Story #34 concluída: Inventory Service registra pendências duráveis de `OrderConfirmed` v1, recupera falhas temporárias localmente e expõe o estado `PENDING`/`COMPLETED` sem alterar o contrato de evento, o producer, o tópico ou o fluxo REST.
 - Checklist institucional de Engineering Audit e Process Improvement Backlog, com evidências, exceções, decisão de autoridade e validação em Sprint futura.
 - Story #33 concluída: Inventory Service consome `OrderConfirmed` v1, persiste evidência idempotente por `eventId` e preserva estoque, reservas e integração REST sem alterações.
