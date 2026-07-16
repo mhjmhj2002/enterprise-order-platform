@@ -3,7 +3,7 @@
 **Status:** Living institutional document
 **Owner:** Engineering Manager
 **Maintainer:** Technical Writer
-**Last reviewed:** 2026-07-15
+**Last reviewed:** 2026-07-16
 
 ## Purpose
 
@@ -80,7 +80,7 @@ References: [Sprint 2 Product Plan](sprints/SPRINT_2_PRODUCT_PLAN.md), [Event Ca
 
 The Repository Owner responsibilities and the Administrative Merge concept were institutionalized during Sprint 2. Technical approval remains with the engineering roles defined in the [Engineering Workflow](ENGINEERING_WORKFLOW.md); repository administration and the definitive GitHub merge belong exclusively to the Repository Owner.
 
-## Current Sprint
+## Previous Sprint
 
 ### Sprint 3 — Initial Reliability
 
@@ -94,13 +94,26 @@ The Repository Owner responsibilities and the Administrative Merge concept were 
 
 References: [Sprint 3 Product Plan](sprints/SPRINT_3_PRODUCT_PLAN.md), [Story #34 Architecture Gate](../architecture/contracts/STORY_034_ARCHITECTURE_GATE.md), [Sprint 3 Quality Evidence](../quality/SPRINT_3_QUALITY_EVIDENCE.md) and [Final Engineering Review](sprints/SPRINT_3_FINAL_ENGINEERING_REVIEW.md).
 
+## Current Sprint
+
+### Sprint 4 — Platform Observability
+
+**Status:** In progress — Story #44 implementation and Quality Gate completed; Documentation Gate awaiting Final Engineering Review.
+
+**Objective:** Provide safe, consultable operational visibility of the `OrderConfirmed` v1 processing lifecycle without turning the platform into a centralized observability solution.
+
+**Delivered increment:** Inventory exposes a local observation by `orderId` that relates the received fact, processing state, final evidence and the safe lifecycle milestones `REGISTERED`, `TEMPORARY_FAILURE` and `COMPLETED`. It neither queries the Order Service nor exposes payloads, credentials, stack traces or raw exceptions.
+
+**Quality evidence:** the Quality Gate is **APPROVED WITH OBSERVATIONS**. The non-blocking observation remains the Order Service Testcontainers follow-up; equivalent Order → Kafka → Inventory and REST behavior passed live.
+
+References: [Sprint 4 Product Plan](sprints/SPRINT_4_PRODUCT_PLAN.md), [Story #44 Architecture Gate](../architecture/contracts/STORY_044_ARCHITECTURE_GATE.md) and [Sprint 4 Quality Evidence](../quality/SPRINT_4_QUALITY_EVIDENCE.md).
+
 ## Current Engineering Outlook
 
 The following Sprints are directional only. Their order and scope will be reviewed after each delivered increment.
 
 | Sprint | Direction | High-level objective |
 | --- | --- | --- |
-| Sprint 4 | Observability | Improve visibility of platform behavior, dependencies and operational evidence. |
 | Sprint 5 | Security | Establish the next security baseline appropriate to the evolved platform. |
 | Sprint 6 | API Gateway | Evaluate and introduce an API entry-point strategy when justified by platform needs. |
 | Sprint 7 | Payment Service | Explore an independent payment bounded context after the supporting platform capabilities are mature enough. |

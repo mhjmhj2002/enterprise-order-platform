@@ -56,6 +56,11 @@ em uma pendência durável antes do reconhecimento. Um worker local recupera pen
 temporárias e, ao concluir, gera uma única evidência consultável em
 `GET /api/v1/inventory/order-confirmations/{orderId}`. O estado `PENDING` ou `COMPLETED` e sua
 rastreabilidade podem ser consultados em `GET /api/v1/inventory/order-confirmation-processings/{orderId}`.
+Para interpretação operacional, `GET /api/v1/inventory/order-confirmation-observations/{orderId}` reúne o fato
+`OrderConfirmed` v1, o estado atual, a evidência final e os marcos locais `REGISTERED`,
+`TEMPORARY_FAILURE` e `COMPLETED`. A consulta é local ao Inventory: ela não confirma o estado comercial do pedido,
+não expõe payload, exceções ou credenciais, e a ausência de observação significa somente que o Inventory ainda não
+possui fato observável para o pedido.
 O consumo não reserva, baixa ou altera estoque. Não há DLT nesta Story.
 
 ## Como testar
@@ -79,6 +84,7 @@ mvn -Pkafka test
 - `GET /api/v1/inventory/{skuId}/{warehouseId}`
 - `GET /api/v1/inventory/order-confirmations/{orderId}`
 - `GET /api/v1/inventory/order-confirmation-processings/{orderId}`
+- `GET /api/v1/inventory/order-confirmation-observations/{orderId}`
 
 Swagger UI:
 

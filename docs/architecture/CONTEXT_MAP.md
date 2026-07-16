@@ -2,7 +2,7 @@
 
 ## Status
 
-Baseline REST implementada na Sprint 1, evolução assíncrona implementada na Sprint 2 e confiabilidade inicial de processamento entregue na Sprint 3.
+Baseline REST implementada na Sprint 1, evolução assíncrona implementada na Sprint 2, confiabilidade inicial entregue na Sprint 3 e visibilidade operacional local entregue na Sprint 4.
 
 ## Bounded Contexts mapeados
 
@@ -24,10 +24,11 @@ Baseline REST implementada na Sprint 1, evolução assíncrona implementada na S
 4. Pedido integra-se ao Inventory Service por REST sincrono para reservar, confirmar e liberar estoque.
 5. Pagamento real nao esta implementado; o Order Service utiliza um `PaymentFakeAdapter` interno.
 
-## Comunicação assíncrona implementada (Sprint 2) e confiabilidade (Sprint 3)
+## Comunicação assíncrona, confiabilidade e visibilidade local (Sprints 2 a 4)
 
 - Order é o owner do fato `OrderConfirmed` v1 e producer desse evento.
 - Inventory é o consumidor inicial por meio de Kafka; registra pendência durável, recupera falhas temporárias localmente e não assume nova regra de reserva ou baixa de estoque.
+- A observação operacional do Inventory associa `orderId`, `eventId`, estado, evidência e marcos seguros do processamento; não confirma o estado comercial no Order nem cria dependência Inventory → Order.
 - A comunicacao assincrona complementa, e nao substitui, as chamadas REST ja existentes entre Order e Inventory.
 - Catalog, Payment Service, Gateway e Saga nao entram nessa evolucao.
 

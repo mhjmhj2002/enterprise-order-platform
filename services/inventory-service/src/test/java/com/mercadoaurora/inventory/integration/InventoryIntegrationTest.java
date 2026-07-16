@@ -5,9 +5,11 @@ import com.mercadoaurora.inventory.api.dto.CreateInventoryItemRequest;
 import com.mercadoaurora.inventory.api.dto.InventoryItemResponse;
 import com.mercadoaurora.inventory.api.dto.ReserveStockRequest;
 import com.mercadoaurora.inventory.api.dto.OrderConfirmationProcessingResponse;
+import com.mercadoaurora.inventory.api.dto.OrderConfirmationObservationResponse;
 import com.mercadoaurora.inventory.application.command.RecognizeOrderConfirmationCommand;
 import com.mercadoaurora.inventory.application.usecase.RecoverOrderConfirmationProcessingUseCase;
 import com.mercadoaurora.inventory.application.usecase.RegisterOrderConfirmationProcessingUseCase;
+import com.mercadoaurora.inventory.application.usecase.RecordOrderConfirmationTemporaryFailureUseCase;
 import com.mercadoaurora.inventory.domain.OrderConfirmationProcessing;
 import com.mercadoaurora.inventory.infrastructure.persistence.entity.OrderConfirmationProcessingEntity;
 import com.mercadoaurora.inventory.infrastructure.persistence.repository.SpringDataOrderConfirmationEvidenceRepository;
@@ -29,6 +31,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.time.Instant;
 import java.util.UUID;
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -72,6 +75,9 @@ class InventoryIntegrationTest {
 
     @Autowired
     RecoverOrderConfirmationProcessingUseCase recoverProcessing;
+
+    @Autowired
+    RecordOrderConfirmationTemporaryFailureUseCase recordTemporaryFailure;
 
     @BeforeEach
     void configureHttpClientThatSupportsPatch() {
@@ -269,6 +275,30 @@ class InventoryIntegrationTest {
 
         assertEquals(OrderConfirmationProcessing.Status.COMPLETED, processingRepository.findById(eventId).orElseThrow().getStatus());
         assertTrue(evidenceRepository.existsById(eventId));
+    }
+
+    @Test
+    void shouldExposeOperationalObservationWithTemporaryFailureAndRecovery() {
+        UUID eventId = UUID.randomUUID();
+        UUID orderId = UUID.randomUUID();
+        registerProcessing.execute(new RecognizeOrderConfirmationCommand(eventId, UUID.randomUUID(), orderId,
+                Instant.now(), "mercadoaurora.order.order-confirmed.v1", 0, 22L));
+        recordTemporaryFailure.execute(eventId);
+        recoverProcessing.execute(eventId);
+
+        ResponseEntity<OrderConfirmationObservationResponse[]> response = restTemplate.getForEntity(
+                baseUrl("/api/v1/inventory/order-confirmation-observations/" + orderId), OrderConfirmationObservationResponse[].class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals(1, response.getBody().length);
+        OrderConfirmationObservationResponse observation = response.getBody()[0];
+        assertEquals(eventId, observation.eventId());
+        assertEquals(OrderConfirmationProcessing.Status.COMPLETED, observation.status());
+        assertTrue(observation.uniqueFunctionalResult());
+        assertEquals(List.of("REGISTERED", "TEMPORARY_FAILURE", "COMPLETED"),
+                observation.lifecycle().stream().map(item -> item.milestone().name()).toList());
+        assertEquals("TEMPORARY_PROCESSING_FAILURE", observation.lifecycle().get(1).failureCategory());
     }
 
     private void recoverAfterStart(CountDownLatch start, UUID eventId) {
