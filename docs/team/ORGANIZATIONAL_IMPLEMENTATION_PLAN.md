@@ -244,7 +244,7 @@ New process ideas are recorded in the Candidate Improvement Backlog, reviewed ex
 | 7 | Update Candidate Improvement Backlog decisions and link PI-004/PI-005. | AEO | Closes retrospective decision traceability. | Order 2. |
 | 8 | Produce a Sprint-5 workspace from templates and validate the STATUS.md plus handoff sections in existing artifacts before kickoff. | AEO + TW | Proves the structure is usable before it becomes mandatory. | Orders 3–6. |
 | 9 | Engineering Manager organizational validation. | EM | Authorizes effective date and freeze. | Orders 1–8. |
-| 10 | Publish the approved implementation on `main`; begin Sprint 5 only after validation. | Repository Owner, after EM authorization | Makes the protocol official. | Order 9. |
+| 10 | Each producing role publishes its approved artifact on `main` through its Versioned Handoff; Repository Owner performs only the authorized GitHub administrative operation. Begin Sprint 5 only after validation. | Producing roles; Repository Owner for administrative operation only, after EM authorization | Makes the protocol official without transferring artifact ownership. | Order 9. |
 
 ## 13. Acceptance evidence for this plan
 
