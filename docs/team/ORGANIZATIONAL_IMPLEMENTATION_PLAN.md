@@ -23,7 +23,7 @@ Approved Sprint direction
   → EM final review → Repository Owner → AEO audit → EM closure
 ```
 
-Before acting, a role reads the current Sprint state and its inbound published handoff. After acting, it updates the state, publishes its own handoff package and stops. This adds operational clarity to the existing workflow; it does not add product gates, parallel trackers or new roles.
+Before acting, a role reads the current Sprint state and its inbound published handoff section. After acting, it updates the state, publishes its own artifact containing the outbound handoff section and stops. This adds operational clarity to the existing workflow; it does not add product gates, parallel trackers or new roles.
 
 ## 3. Sprint workspace
 
@@ -34,8 +34,6 @@ For each new Sprint, create a predictable documentation package at `docs/team/sp
 ```text
 sprint-<number>/
 ├── STATUS.md
-├── HANDOFFS/
-│   └── README.md
 ├── REPORTS/
 ├── AUDIT/
 └── RETROSPECTIVE/
@@ -46,12 +44,11 @@ Existing Sprint 0–4 documents remain where they are; no historical migration i
 | Location | Purpose | Updating / use responsibility |
 | --- | --- | --- |
 | `STATUS.md` | Living, authoritative operational state for the current Sprint and Story. | Current responsible role updates it before publishing its handoff; every receiving role reads it at startup. |
-| `HANDOFFS/README.md` | Index of published handoffs: source/destination, artifact location, branch, commit and current applicability. | AEO maintains the structure; each producing role adds or updates its own index entry with its Versioned Handoff. |
 | `REPORTS/` | Sprint-level reports that do not belong to a role-owned gate artifact, such as closure-readiness evidence. | Producing role; TW validates links and document consistency. |
 | `AUDIT/` | Engineering Audit report, acceptance and supporting audit evidence. | AEO produces audit artifacts; EM records acceptance. |
 | `RETROSPECTIVE/` | Engineering Retrospective and its decision record. | AEO prepares process evidence; EM records decisions. |
 
-`HANDOFFS/` is an index, not a parallel record system. A package is a standardized Markdown section in the existing plan, review, gate, report or PR whenever such an artifact already exists. A standalone Markdown package is permitted only if the workflow has no existing handoff artifact for that transition; the index must link to it.
+Every Institutional Handoff Package is a standardized Markdown section of the role's existing institutional artifact or PR: for example, the Product Plan, Engineering Review, Architecture Gate, Test Report, Documentation Review, Final Engineering Review, Engineering Audit or GitHub Issue/PR. No `HANDOFFS/` directory, standalone handoff document or parallel handoff record is created.
 
 ## 4. Sprint Execution Protocol
 
@@ -62,15 +59,19 @@ On an explicit invocation such as “Sua vez”, “Start” or “Iniciar”, e
 1. read the current Sprint `STATUS.md`;
 2. confirm that the `Role responsible` and `Current step` authorize that role to act;
 3. if not authorized, state the role and step that must act next, then end execution without changing artifacts;
-4. read the applicable inbound Institutional Handoff Package and its published reference;
+4. read the applicable inbound Institutional Handoff Package section and its published reference;
 5. if the handoff is absent, unpublished or inconsistent, stop and request return to the producing role;
 6. execute only the authorized activity within the inherited Engineering Workflow and role playbook;
 7. update `STATUS.md` with the resulting state, evidence and next authorized action;
-8. produce the outbound Institutional Handoff Package in Markdown;
+8. add the outbound Institutional Handoff Package section in Markdown to the role's own institutional artifact or PR;
 9. complete the Versioned Handoff by committing, pushing and recording the published branch and commit; and
 10. end execution after naming the next role and handoff location.
 
 The implementation must place this protocol once in the Engineering Workflow. Each playbook receives only the role-specific outbound and inbound handoff obligations that differ from the shared protocol.
+
+### Publication ownership
+
+Every role produces, versions, publishes and records the Versioned Handoff for its **own** artifact. A receiving role must not publish, amend or take ownership of another role's unpublished deliverable. The Repository Owner remains exclusively responsible for the GitHub administrative operations assigned by the Engineering Workflow; it publishes only its own administrative evidence and never publishes an artifact on another role's behalf.
 
 ## 5. STATUS.md standard
 
@@ -113,7 +114,7 @@ The status file is a living operational artifact and is expressly excluded from 
 
 ## 6. Institutional Handoff Package standard
 
-Every package is Markdown and uses the same section template, whether embedded in an existing artifact/PR or published as the permitted standalone package.
+Every package is Markdown and uses the same section template embedded in the producing role's existing institutional artifact or PR. A package is never a standalone document.
 
 ```markdown
 ## Institutional Handoff — <source role> → <destination role>
@@ -153,11 +154,11 @@ The implementation should update only the following workflow areas:
 
 | Workflow area | Planned change |
 | --- | --- |
-| Institutional Artifacts | Add the Sprint workspace, STATUS.md and handoff-index concepts with ownership; retain existing artifact ownership. |
+| Institutional Artifacts | Add the Sprint workspace and STATUS.md concepts with ownership; retain existing artifact ownership and embed handoffs in those artifacts. |
 | Sprint Lifecycle | Add the PMO materialization / entry-state prerequisite before Product refinement. |
-| Official Handoffs / Versioned Handoff | Require the startup check, outbound package content and package reference in the existing handoff record. |
+| Official Handoffs / Versioned Handoff | Require the startup check and an outbound handoff section in the producing role's existing artifact or PR. Require every role to publish and record its own artifact. |
 | Pull Request Workflow | Require the active `STATUS.md` and applicable published handoffs in the PR evidence; do not create a new review gate. |
-| Sprint Closing Workflow | Add the closure-readiness state and Repository Owner package as required evidence before audit starts. |
+| Sprint Closing Workflow | Add the closure-readiness state and Repository Owner handoff section as required evidence before audit starts. |
 | Continuous Improvement | Add Organizational Freeze and the Candidate Improvement route for ideas discovered during a Sprint. |
 
 The workflow must define the common protocol once. It must not repeat role-specific operational detail or create a separate approval sequence.
@@ -168,15 +169,15 @@ All existing playbooks continue to inherit the common protocol. Update a playboo
 
 | Role | Planned role-specific addition |
 | --- | --- |
-| PMO | Materialize the official Issue and provide the PMO → PO package before any Product refinement. |
-| Product Owner | Confirm entry state; publish the refined plan and PO → EM package. |
-| Engineering Manager | Publish separate Functional Review, Architecture Approval, Final Review and closure/acceptance packages as applicable; decide emergency freeze exceptions. |
-| Technical Lead | Publish Architecture Gate package with the recommendation, conditions and stop criteria. |
-| Software Engineer | Publish implementation/PR package with scope, tests, constraints and QE start conditions. |
-| Quality Engineer | Publish Quality Gate package with evidence, recommendation, defects and TW requirements. |
-| Technical Writer | Publish Documentation Gate package with synchronization result, remaining documentation limits and EM requirements. |
-| Repository Owner | Publish closure-readiness package with PR, issue, Board, milestone, release, branch, `main` and worktree evidence for AEO. |
-| AI Engineering Orchestrator | Maintain workspace conventions; validate startup/handoff evidence in the audit; publish AEO → EM audit package. |
+| PMO | Materialize the official Issue and publish its PMO → PO handoff section before any Product refinement. |
+| Product Owner | Confirm entry state; publish the refined plan with its PO → EM handoff section. |
+| Engineering Manager | Publish Functional Review, Architecture Approval, Final Review and closure/acceptance artifacts with the applicable outbound handoff section; decide emergency freeze exceptions. |
+| Technical Lead | Publish Architecture Gate with its handoff section containing recommendation, conditions and stop criteria. |
+| Software Engineer | Publish implementation/PR with its handoff section containing scope, tests, constraints and QE start conditions. |
+| Quality Engineer | Publish Quality Gate artifact with its handoff section containing evidence, recommendation, defects and TW requirements. |
+| Technical Writer | Publish Documentation Gate with its handoff section containing synchronization result, remaining documentation limits and EM requirements. |
+| Repository Owner | Perform only assigned GitHub administration and publish its own closure-readiness evidence section with PR, issue, Board, milestone, release, branch, `main` and worktree state for AEO. |
+| AI Engineering Orchestrator | Maintain workspace conventions; validate startup/handoff evidence in the audit; publish the Engineering Audit with its AEO → EM handoff section. |
 | Program / TM role, if represented by a playbook | Provide approved strategic direction to PMO before Story materialization. |
 
 The implementation should also add the PMO playbook to the role index if it is intended to remain an active institutional role, but must not invent any new role.
@@ -188,11 +189,11 @@ Extend the existing checklist with only the following verifications:
 | Audit verification | Evidence source |
 | --- | --- |
 | `STATUS.md` exists, is published, current and names the correct responsible role and next action. | Sprint workspace status and commit reference. |
-| Each applicable institutional transition has a published handoff package. | Handoff index plus linked plan/review/gate/report/PR. |
-| Package source/destination, branch, commit and artifacts match the Versioned Handoff. | Package and official Git history. |
-| Receiving role acted only after the inbound package was published. | Package timestamp/commit and existing handoff chronology evidence. |
-| Startup Protocol is evidenced by the status transition and inbound-package reference. | STATUS.md stage record and package. |
-| Repository Owner closure package records required release, milestone, `main`, branch and worktree state before audit. | Closure-readiness package and GitHub evidence. |
+| Each applicable institutional transition has a published handoff section in the producing role's existing artifact or PR. | Linked Issue, plan, review, gate, report, audit or PR. |
+| Section source/destination, branch, commit and artifacts match the Versioned Handoff. | Existing artifact/PR and official Git history. |
+| Receiving role acted only after the inbound section was published. | Section timestamp/commit and existing handoff chronology evidence. |
+| Startup Protocol is evidenced by the status transition and inbound-section reference. | STATUS.md stage record and source artifact/PR. |
+| Repository Owner closure-readiness section records required release, milestone, `main`, branch and worktree state before audit. | Repository Owner's existing closure-readiness artifact and GitHub evidence. |
 | Organizational Freeze was observed, or any EM emergency exception is recorded with rationale, scope and effective date. | STATUS.md and Candidate Improvement Backlog / exception record. |
 
 These checks validate evidence already produced by roles; they do not cause the AEO to reperform reviews, quality validation or repository administration.
@@ -202,7 +203,6 @@ These checks validate evidence already produced by roles; they do not cause the 
 | Proposed location | Template | Purpose |
 | --- | --- | --- |
 | `docs/team/sprints/templates/STATUS_TEMPLATE.md` | Sprint status | Creates the living state and visual flow for each new Sprint. |
-| `docs/team/sprints/templates/HANDOFF_INDEX_TEMPLATE.md` | Handoff index | Lists published package locations without duplicating their content. |
 | `docs/team/sprints/templates/INSTITUTIONAL_HANDOFF_SECTION.md` | Handoff section | Provides the common Markdown package section for existing artifacts/PRs. |
 | `docs/team/sprints/templates/ARCHITECTURE_GATE_TEMPLATE.md` | Architecture Gate extension | Adds the standard inbound/outbound package section to the existing gate format. |
 | `docs/team/sprints/templates/QUALITY_GATE_TEMPLATE.md` | Quality Gate extension | Adds the standard handoff section to Test Plan/Report or quality consolidation. |
@@ -242,13 +242,13 @@ New process ideas are recorded in the Candidate Improvement Backlog, reviewed ex
 | 5 | Update Engineering Audit Checklist with protocol/freeze evidence checks. | AEO | Enables Sprint-5 validation. | Order 4. |
 | 6 | Update role playbooks only with role-specific handoff duties. | AEO; TW consistency review | Makes execution responsibility explicit without duplicating workflow. | Order 4. |
 | 7 | Update Candidate Improvement Backlog decisions and link PI-004/PI-005. | AEO | Closes retrospective decision traceability. | Order 2. |
-| 8 | Produce a Sprint-5 workspace from templates and validate links before kickoff. | AEO + TW | Proves the structure is usable before it becomes mandatory. | Orders 3–6. |
+| 8 | Produce a Sprint-5 workspace from templates and validate the STATUS.md plus handoff sections in existing artifacts before kickoff. | AEO + TW | Proves the structure is usable before it becomes mandatory. | Orders 3–6. |
 | 9 | Engineering Manager organizational validation. | EM | Authorizes effective date and freeze. | Orders 1–8. |
 | 10 | Publish the approved implementation on `main`; begin Sprint 5 only after validation. | Repository Owner, after EM authorization | Makes the protocol official. | Order 9. |
 
 ## 13. Acceptance evidence for this plan
 
-Implementation is ready for Engineering Manager validation only when every item in the sequential checklist is published, the Sprint 5 workspace has a valid STATUS.md and handoff index, no shared institutional rule is duplicated in playbooks, and the audit checklist can verify the new protocol using published evidence.
+Implementation is ready for Engineering Manager validation only when every item in the sequential checklist is published, the Sprint 5 workspace has a valid STATUS.md, each applicable existing artifact/PR contains its handoff section, no shared institutional rule is duplicated in playbooks, and the audit checklist can verify the new protocol using published evidence.
 
 ## 14. Handoff
 
