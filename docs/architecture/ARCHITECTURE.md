@@ -2,7 +2,7 @@
 
 Este documento consolida a visao geral da arquitetura do projeto.
 
-## Estado atual (Sprint 3)
+## Estado atual (Sprint 4)
 
 - Monorepo com servicos em `services/`.
 - Comunicacao inicial via REST sincrono.
@@ -19,6 +19,8 @@ A Sprint 2 realiza a evolucao incremental para arquitetura orientada a eventos. 
 O consumer inicial do Inventory Service reconhece o evento e persiste evidência idempotente por `eventId`, sem alterar estoque, reservas ou pedidos. Não há migração integral de REST, Payment Service, Saga distribuída, API Gateway ou novos serviços no escopo da Sprint 2.
 
 Na Story #34 (Sprint 3), o Inventory passou a registrar uma pendência durável antes do reconhecimento e a retomá-la localmente quando uma falha temporária cessa. A consulta aditiva de processamento torna demonstrável o estado `PENDING` ou `COMPLETED`; o contrato `OrderConfirmed` v1, tópico, producer, grupo de consumo e integração REST permanecem inalterados.
+
+Na Story #44 (Sprint 4), o Inventory passou a expor uma visão operacional local e aditiva por `orderId`. Ela associa o fato recebido ao estado atual, à evidência final e aos marcos seguros `REGISTERED`, `TEMPORARY_FAILURE` e `COMPLETED`. A visão não consulta o Order, não expõe payload, credenciais, stack traces ou exceções brutas, e não constitui observabilidade corporativa, tracing distribuído, métricas centralizadas ou dashboards.
 
 O fluxo entregue publica o fato de domínio de que um pedido foi confirmado depois das regras vigentes de pagamento aprovado e estoque reservado. O Inventory registra a ciência rastreável do fato; a publicação e o consumo não alteram a semântica da confirmação nem a integração REST com Inventory.
 
@@ -75,3 +77,4 @@ Implementacao do contexto de Pedido com foco no compromisso comercial:
 - [Context Map](CONTEXT_MAP.md)
 - [Service Boundaries](SERVICE_BOUNDARIES.md)
 - [Story #34 Architecture Gate](contracts/STORY_034_ARCHITECTURE_GATE.md)
+- [Story #44 Architecture Gate](contracts/STORY_044_ARCHITECTURE_GATE.md)

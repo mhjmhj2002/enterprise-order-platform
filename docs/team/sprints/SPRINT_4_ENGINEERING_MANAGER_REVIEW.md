@@ -28,7 +28,7 @@ O plano está aderente ao Roadmap, que define a Sprint 4 como a evolução de ob
 
 ## Observação de rastreabilidade
 
-O identificador institucional desta entrega é a GitHub Issue **#44**. A denominação adicional `Story-021` no título de referência do plano deve ser normalizada pelo Product Owner na materialização do backlog, para evitar identificadores paralelos. Esta é uma correção editorial não bloqueante e não altera escopo, prioridade ou critérios funcionais.
+O identificador institucional desta entrega é a GitHub Issue **#44**. A denominação adicional `Story-021` identificada na primeira versão do plano foi normalizada no [Sprint 4 Product Plan](SPRINT_4_PRODUCT_PLAN.md); não há identificador paralelo remanescente. A correção foi editorial e não alterou escopo, prioridade ou critérios funcionais.
 
 ## Handoff para Architecture Gate
 

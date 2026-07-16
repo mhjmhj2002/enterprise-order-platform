@@ -29,7 +29,7 @@ Como portfólio técnico, evidencia decisões e entregas rastreáveis: DDD, arqu
 
 ## Arquitetura
 
-Cada serviço possui domínio, casos de uso e persistência próprios. Na baseline atual, o Order Service orquestra reservas de estoque por REST síncrono, publica assincronamente `OrderConfirmed` v1 com o perfil Kafka e o Inventory Service registra e recupera localmente seu processamento idempotente, sem alterar estoque ou reservas.
+Cada serviço possui domínio, casos de uso e persistência próprios. Na baseline atual, o Order Service orquestra reservas de estoque por REST síncrono, publica assincronamente `OrderConfirmed` v1 com o perfil Kafka e o Inventory Service registra, recupera e expõe uma observação operacional local do processamento idempotente, sem alterar estoque ou reservas.
 
 ```mermaid
 flowchart LR
@@ -159,7 +159,7 @@ A estratégia combina verificações em diferentes níveis:
 - smoke tests, cenários negativos e regressão;
 - revisão técnica e validação funcional independente pelo Quality Engineer.
 
-Na validação da Story-009, o quality gate registrou 34 requests, 109 assertions e nenhuma falha. Para evitar divergência futura, a fonte oficial dos resultados é o [relatório de testes da Story-009](docs/quality/story-009/TEST_REPORT.md), acompanhado das [evidências](docs/quality/story-009/EVIDENCE.md) e do [plano de testes](docs/quality/story-009/TEST_PLAN.md).
+Para a Story #44, a fonte oficial é o [Test Report](docs/quality/story-044/TEST_REPORT.md) e a [Sprint 4 Quality Evidence](docs/quality/SPRINT_4_QUALITY_EVIDENCE.md): a visibilidade operacional local, a falha temporária/recovery e a regressão Order → Kafka → Inventory/REST foram aprovadas com observação não bloqueante sobre os testes Testcontainers do Order.
 
 ## Documentação
 
@@ -169,7 +169,7 @@ Na validação da Story-009, o quality gate registrou 34 requests, 109 assertion
 | Decisões | [Architecture Decision Records](docs/architecture/ADR/README.md) · [Architecture Notes](docs/architecture/ARCHITECTURE_NOTES.md) |
 | Domínio | [Business Discovery](docs/business/BUSINESS_DISCOVERY.md) · [Business Flow](docs/business/BUSINESS_FLOW.md) · [Glossário](docs/business/GLOSSARY.md) |
 | APIs | [Collections Postman](docs/api/postman/README.md) · READMEs de [Catalog](services/catalog-service/README.md), [Inventory](services/inventory-service/README.md) e [Order](services/order-service/README.md) |
-| Qualidade | [Story-009 Quality Gate](docs/quality/story-009/TEST_REPORT.md) |
+| Qualidade | [Story #44 Quality Gate](docs/quality/story-044/TEST_REPORT.md) · [Sprint 4 Quality Evidence](docs/quality/SPRINT_4_QUALITY_EVIDENCE.md) |
 | Governança | [Team Charter](docs/team/TEAM_CHARTER.md) · [Workflow](docs/team/WORKFLOW.md) · [Playbooks](docs/team/roles/README.md) |
 | Histórico | [Project History](docs/team/PROJECT_HISTORY.md) · [Changelog](CHANGELOG.md) · [Release notes](docs/releases) |
 
@@ -187,16 +187,16 @@ A direção evolutiva da plataforma está registrada no [Engineering Roadmap](do
 | ✅ | Inventory Service |
 | ✅ | Order Service e PaymentFakeAdapter |
 | 🗓️ | Payment, Fulfillment e Notification Services |
-| 🗓️ | Sprint 2: evolução incremental para eventos com Kafka (`OrderConfirmed` v1); REST permanece suportado |
+| ✅ | Sprint 2–4: eventos, confiabilidade e visibilidade operacional local de `OrderConfirmed` v1; REST permanece suportado |
 | 🗓️ | Saga Pattern, após validação do primeiro fluxo assíncrono |
-| 🗓️ | Resiliência, observabilidade e rastreamento distribuído |
+| 🗓️ | Observabilidade corporativa e rastreamento distribuído |
 | 🗓️ | Autenticação, autorização e API Gateway |
 | 🗓️ | Ambiente completo com Docker Compose |
 | 🗓️ | CI/CD e implantação em Kubernetes |
 
 Consulte o [roadmap detalhado](docs/roadmap/Roadmap_Estudos_Portfolio_Java_TechLead_v2.md) para o plano de evolução.
 
-O planejamento aprovado da Sprint 2 e as convenções institucionais estão no [Sprint 2 Product Plan](docs/team/sprints/SPRINT_2_PRODUCT_PLAN.md) e no [Event Catalog](docs/architecture/events/EVENT_CATALOG.md). A infraestrutura Kafka local está operacional; `OrderConfirmed` v1 é publicado pelo Order Service e reconhecido de forma idempotente pelo Inventory Service.
+Os planos aprovados das Sprints 2 a 4 e as convenções institucionais estão no [Event Catalog](docs/architecture/events/EVENT_CATALOG.md). A infraestrutura Kafka local está operacional; `OrderConfirmed` v1 é publicado pelo Order, processado de forma idempotente pelo Inventory e possui observação operacional local segura por pedido.
 
 ## Releases
 

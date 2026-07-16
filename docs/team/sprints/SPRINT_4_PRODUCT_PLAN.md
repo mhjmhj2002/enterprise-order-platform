@@ -1,12 +1,12 @@
 # Sprint 4 — Product Plan: Observabilidade da Plataforma
 
-**Status:** PROPOSED — awaiting Engineering Manager review
+**Status:** APPROVED — Engineering Manager functional review completed on 2026-07-16
 
 **Responsável pela proposta:** Product Owner
 
 **Data:** 2026-07-16
 
-**Story:** [#44 — Story-021: Observabilidade da Plataforma](https://github.com/mhjmhj2002/enterprise-order-platform/issues/44)
+**Story:** [#44 — Observabilidade da Plataforma](https://github.com/mhjmhj2002/enterprise-order-platform/issues/44)
 
 **Baseline de partida:** a plataforma já permite demonstrar o fluxo de pedido
 confirmado até seu processamento no Inventory, incluindo a recuperação funcional
