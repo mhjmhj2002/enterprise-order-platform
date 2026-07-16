@@ -23,9 +23,10 @@ During each Sprint Retrospective, the Engineering Manager decides each pending c
 
 ## Candidates
 
-| ID | Origin | Summary | Justification | Registered | Status | Retrospective decision / PI reference |
-| --- | --- | --- | --- | --- | --- | --- |
-| CI-001 | CTI | Product Owner materialization of new Stories in GitHub. | At the start of Sprint 4, an operational ambiguity was observed about who materializes new Stories in GitHub. It is a suggestion for clarification, not a process failure. | 2026-07-16 | Pending Retro | Review in Sprint 4 Retrospective. |
+| ID | Origin | Summary | Justification | Expected benefits | Registered | Status | Retrospective decision / PI reference |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| CI-001 | CTI | Product Owner materialization of new Stories in GitHub. | At the start of Sprint 4, an operational ambiguity was observed about who materializes new Stories in GitHub. It is a suggestion for clarification, not a process failure. | Clear materialization ownership and fewer external direction requests. | 2026-07-16 | Pending Retro | Review in Sprint 4 Retrospective. |
+| CI-002 | CTI | Evaluate Institutional Handoff Packages between consecutive Story-flow roles. | Roles currently report completion, while the next role still depends on external direction. Assess whether a handoff artifact containing scope, limits, evidence, risks and validation guidance would improve the institutional transition without replacing existing technical documentation. | Less external coordination; standardized handoffs; clearer communication and Story traceability; stronger future audit evidence. | 2026-07-16 | Pending Retro | Review in Sprint 4 Retrospective; no process change before an explicit Engineering Manager decision. |
 
 ## Operating boundary
 
