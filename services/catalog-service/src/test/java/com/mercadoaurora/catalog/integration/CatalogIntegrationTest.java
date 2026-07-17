@@ -17,6 +17,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -57,6 +58,7 @@ class CatalogIntegrationTest {
 
     @BeforeEach
     void authenticateRequests() {
+        restTemplate.getRestTemplate().setRequestFactory(new JdkClientHttpRequestFactory());
         restTemplate.getRestTemplate().getInterceptors()
                 .add(new BasicAuthenticationInterceptor("test-api-consumer", "test-api-password"));
     }

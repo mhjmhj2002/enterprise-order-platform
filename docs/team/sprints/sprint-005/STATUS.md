@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Implementation remediation
-**Previous step:** Engineering Manager manteve a Quality `REJECTED`, decidiu que os achados permanecem rastreados na Story #46 e autorizou somente a remediação técnica.
-**Next step:** Software Engineer corrige a regressão de classpath Kafka do Inventory e a compatibilidade Testcontainers/Docker do Catalog, publicando novo handoff técnico.
-**Role responsible:** Software Engineer
+**Current step:** Quality Planning update
+**Previous step:** Software Engineer corrigiu a regressão de classpath Kafka e a compatibilidade das integrações Testcontainers, com regressão automatizada sem falhas ou skips.
+**Next step:** Quality Engineer atualiza o Test Plan para a remediação publicada e solicita nova autorização explícita do Engineering Manager antes de reexecutar Quality.
+**Role responsible:** Quality Engineer
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Quality permanece `REJECTED`. Remediação de implementação autorizada; nova execução de Quality requer handoff técnico publicado, plano atualizado se necessário e nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `c268aaee7a4ea5957ea13da48a60ec2db0c73048`.
-**Blockers:** `mvn test` do Inventory falha na descoberta de teste Kafka sem o classpath Kafka; as integrações Catalog são bloqueadas pela incompatibilidade Testcontainers 1.20.1/Docker API 1.54. Evidências HTTP, de integração e Kafka end-to-end permanecem pendentes. Os achados ficam rastreados na Story #46; não há Issue adicional. Itens fora de escopo permanecem bloqueados por escopo.
-**Last updated:** 2026-07-17 — Engineering Manager — Quality Rejection Review concluída; remediação técnica devolvida ao Software Engineer.
+**Current gate:** Quality permanece `REJECTED` até nova execução autorizada. Remediação publicada; Quality deve atualizar o plano se necessário e obter nova autorização explícita do Engineering Manager.
+**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline`; commit de remediação será registrado após publicação.
+**Blockers:** Nenhum bloqueio de regressão automatizada. Evidências HTTP, de integração Order → Inventory e Kafka end-to-end permanecem pendentes de novo ciclo de Quality. Os achados continuam rastreados na Story #46; itens fora de escopo permanecem bloqueados.
+**Last updated:** 2026-07-17 — Software Engineer — remediação técnica concluída; handoff preparado para atualização do planejamento de Quality.
 
 ## Flow
 
@@ -33,7 +33,7 @@
 | Quality Authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); execução do Test Plan autorizada. |
 | Quality Execution | Quality Engineer | DONE — REJECTED | [Story #46 Test Report](../../../quality/story-046/TEST_REPORT.md); regressão falha e cenários obrigatórios bloqueados. |
 | Quality Rejection Review | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); remediação na Story #46, sem Issue adicional. |
-| Implementation remediation | Software Engineer | DOING | Corrigir bloqueios de regressão e integração antes de novo planejamento/autorização de Quality. |
+| Implementation remediation | Software Engineer | DONE | Regressão Kafka e compatibilidade Testcontainers corrigidas; aguarda atualização do planejamento de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Final review | Engineering Manager | TODO | N/A |
 | Administrative closure | Repository Owner | TODO | N/A |
