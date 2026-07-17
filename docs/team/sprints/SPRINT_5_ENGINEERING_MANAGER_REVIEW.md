@@ -332,6 +332,93 @@ reproduzível dos resultados.
 - Operational command: iniciar exclusivamente a execução de Quality da Story
   #46.
 
+## Quality Rejection Review — Story #46
+
+**Decisão:** `CHANGES REQUIRED`.
+
+O [Test Report](../../quality/story-046/TEST_REPORT.md) rejeitou corretamente
+a validação. A Story não possui evidência executada para os cenários HTTP,
+mudança de estado, integração Order → Inventory e fluxo Kafka; além disso, o
+comando obrigatório de regressão do Inventory falha ao descobrir um teste Kafka
+sem o classpath correspondente. A incompatibilidade entre Testcontainers 1.20.1
+do Catalog e o Docker API 1.54 impede sua suíte de integração. Nenhum desses
+bloqueios pode ser aceito como resultado de Quality ou compensado por testes
+seletivos.
+
+### Decisão de rastreabilidade
+
+Não será criada uma Issue adicional. Os dois achados bloqueiam diretamente os
+critérios de aceite e a Quality da própria Story #46, que é o identificador
+institucional suficiente para sua correção e revalidação. Esta decisão evita
+um rastreador paralelo sem remover a obrigatoriedade de evidência.
+
+### Correção autorizada
+
+O Software Engineer deve, na branch oficial da Story:
+
+1. ajustar a classificação/dependência dos testes Kafka do Inventory para que
+   o comando de regressão padrão não tente executar teste sem o classpath
+   necessário, preservando a cobertura Kafka no perfil aplicável; e
+2. tornar executável a integração do Catalog no ambiente Docker suportado,
+   atualizando a compatibilidade de Testcontainers de maneira proporcional e
+   sem alterar comportamento de negócio, contrato ou escopo de segurança.
+
+Depois da correção, deve publicar novo handoff técnico. O Quality Engineer
+atualiza o plano se os comandos ou pré-condições mudarem e retorna ao EM para
+nova autorização de execução. Não há autorização de merge, release ou avanço
+documental enquanto todos os cenários obrigatórios não forem executados com
+sucesso.
+
+## Institutional Handoff — Engineering Manager → Software Engineer
+
+### Executive summary
+
+Quality rejeitou a Story #46 por bloqueios reprodutíveis de regressão e
+ambiente de integração. A implementação deve ser corrigida e republicada antes
+de qualquer nova execução de Quality.
+
+### Objective completed
+
+Foi concluída a avaliação da rejeição, com decisão de manter o rastreamento na
+Issue #46 e autorização limitada de correção técnica na branch oficial.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_REPORT.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: pendente da publicação desta revisão.
+
+### Evidence and constraints
+
+- Test Report: `feature/story-046-security-baseline` /
+  `51edd295f1691fd7a2f908cfaa9495cfb6fb781b`.
+- Inventory falha na descoberta Kafka do comando padrão; Catalog não executa
+  integração devido à incompatibilidade Testcontainers/Docker API.
+- A correção não autoriza novas capacidades de segurança, mudança de contratos
+  REST/Kafka, segredos versionados ou itens fora do escopo aprovado.
+
+### Pending items
+
+- Software Engineer: corrigir os dois bloqueios e publicar handoff técnico.
+- Quality Engineer: revisar o plano quando necessário e solicitar nova
+  autorização antes de reexecutar a validação.
+
+### Next authorized action
+
+- Next role: Software Engineer
+- Required action: implementar exclusivamente as correções de regressão e
+  compatibilidade de teste descritas nesta revisão, na branch oficial.
+- Acceptance / stop criteria: parar e escalar se a correção exigir mudança de
+  contrato, infraestrutura remota, escopo de produto ou nova dependência de
+  runtime; não reexecutar Quality sem novo handoff e autorização do EM.
+- Operational command: iniciar exclusivamente a remediação técnica da Story
+  #46.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
