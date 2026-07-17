@@ -10,7 +10,7 @@
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Architecture Approval `CHANGES REQUIRED` permanece pendente apenas da publicação do ADR obrigatório pelo Technical Writer; não há autorização para branch, implementação ou Quality.
-**Latest published handoff:** Technical Lead → Technical Writer — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `PENDING_COMMIT`; indicação de ADR obrigatório e insumo técnico para a decisão compartilhada de segurança publicados.
+**Latest published handoff:** Technical Lead → Technical Writer — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `328a1392ac108270804b60c8a7d4e9ee69df77f2`; indicação de ADR obrigatório e insumo técnico para a decisão compartilhada de segurança publicados.
 **Blockers:** Aguardando o ADR oficial da baseline de autenticação, a ser publicado pelo Technical Writer antes da nova Architecture Approval.
 **Last updated:** 2026-07-17 — Technical Lead — rastreabilidade de ADR registrada e encaminhada ao Technical Writer.
 
@@ -27,7 +27,7 @@
 | Functional review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 validados como equivalentes. |
 | Architecture Gate | Technical Lead | DONE — RECOMMENDED | [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `09af854336f86e2d3ffdf07411cb744a62368132`. |
 | Architecture approval | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); aguarda ADR oficial antes de nova aprovação. |
-| ADR documentation | Technical Writer | DOING | Technical Lead → Technical Writer — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `PENDING_COMMIT`. |
+| ADR documentation | Technical Writer | DOING | Technical Lead → Technical Writer — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `328a1392ac108270804b60c8a7d4e9ee69df77f2`. |
 | Implementation | Software Engineer | TODO | N/A |
 | Quality | Quality Engineer | TODO | N/A |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
