@@ -1,6 +1,6 @@
 # Sprint 5 — Product Plan: Baseline Inicial de Segurança
 
-**Status:** PROPOSED — aguardando Functional Review do Engineering Manager
+**Status:** PROPOSED — reenviado para nova Functional Review do Engineering Manager
 
 **Responsável pela proposta:** Product Owner
 
@@ -188,6 +188,25 @@ política de perfis ou uma solução completa de identidade.
   compatível com as dependências operacionais aprovadas, ou há uma exceção que
   precise ser explicitamente encaminhada ao Product Owner?
 
+## 10. Correção de rastreabilidade do backlog
+
+Em atendimento ao parecer `CHANGES REQUIRED` da [Sprint 5 Engineering Manager
+Review](SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), o Product Owner sincronizou a
+fonte oficial de backlog em 2026-07-17:
+
+- a Issue [#46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46)
+  contém integralmente o conteúdo vigente deste plano, incluindo escopo,
+  critérios, limites, riscos e handoff;
+- o rótulo de estado foi alterado de `status:backlog` para o rótulo institucional
+  existente `status:review`; os rótulos `type:story` e `sprint:5` foram
+  preservados;
+- o milestone `Sprint 5 — Security` foi preservado; e
+- o card do Project `Enterprise Order Platform Roadmap` permanece em `Todo`.
+
+O card não foi movido porque a Story ainda aguarda Functional Review; a presente
+correção não autoriza Documentation Baseline, Architecture Gate ou
+implementação.
+
 ## Institutional Handoff — Product Owner → Engineering Manager
 
 ### Executive summary
@@ -206,13 +225,14 @@ evidências de sucesso da Story #46 foram definidos para Functional Review.
 
 - `docs/team/sprints/SPRINT_5_PRODUCT_PLAN.md`
 - `docs/team/sprints/sprint-005/STATUS.md`
-- GitHub Issue #46, sincronizada com este refinamento no GitHub.
+- GitHub Issue [#46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46),
+  sincronizada com este plano e com `status:review`.
 
 ### Versioned reference
 
 - Branch: `main`
-- Commit: `7f90aad`
-- Full hash: `7f90aad11a02955e239658779a4b274c44c6990e`
+- Commit: pendente da publicação da correção de rastreabilidade pelo Product Owner
+- Full hash: pendente da publicação da correção de rastreabilidade pelo Product Owner
 
 ### Evidence and constraints
 
@@ -220,6 +240,9 @@ evidências de sucesso da Story #46 foram definidos para Functional Review.
   comportamento funcional existente.
 - Esta proposta exige autenticação para acesso de negócio, mas não define
   arquitetura, tecnologia, protocolo ou política granular de autorização.
+- A evidência de backlog foi verificada em 2026-07-17: conteúdo integral do
+  plano, `status:review`, `type:story`, `sprint:5`, milestone Sprint 5 e card
+  `Todo`.
 - Não há período de Sprint autorizado pelo Sponsor; ele não deve ser presumido.
 
 ### Risks
@@ -231,8 +254,8 @@ evidências de sucesso da Story #46 foram definidos para Functional Review.
 
 ### Pending items
 
-- Engineering Manager: executar Functional Review, validar DoR e capacidade e
-  determinar os próximos gates aplicáveis.
+- Engineering Manager: executar nova Functional Review, validar a correção de
+  rastreabilidade, DoR e capacidade e determinar os próximos gates aplicáveis.
 
 ### Next authorized action
 
