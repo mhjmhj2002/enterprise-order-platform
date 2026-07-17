@@ -4,15 +4,15 @@
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
 **Current step:** Functional review
-**Previous step:** Product Owner corrigiu a sincronização da Issue #46 conforme a [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); republicação do handoff pendente.
+**Previous step:** Product Owner corrigiu a sincronização da Issue #46 conforme a [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), publicado em `main` / `1122eea74d59cb9ee3611cd3156647fc65e497bd`.
 **Next step:** Engineering Manager valida a correção de rastreabilidade e conclui nova Functional Review.
 **Role responsible:** Engineering Manager
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Nova Functional Review obrigatória após a correção de rastreabilidade. Documentation Baseline, Architecture Gate, implementação e Quality permanecem bloqueados até parecer `APPROVED`; o Architecture Gate já foi determinado como obrigatório para a etapa posterior.
-**Latest published handoff:** Product Owner → Engineering Manager — correção de rastreabilidade no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md); publicação pendente.
+**Latest published handoff:** Product Owner → Engineering Manager — correção de rastreabilidade no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `1122eea74d59cb9ee3611cd3156647fc65e497bd`.
 **Blockers:** Nenhum para nova Functional Review. A Issue #46 está sincronizada e com `status:review`; o período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
-**Last updated:** 2026-07-17 — Product Owner — correção de rastreabilidade concluída; publicação pendente para nova Functional Review.
+**Last updated:** 2026-07-17 — Product Owner — correção de rastreabilidade publicada para nova Functional Review.
 
 ## Flow
 
@@ -24,7 +24,7 @@
 | Sprint Bootstrap | PMO | DONE | Story #46, milestone `Sprint 5 — Security`, label `sprint:5` e Project Board materializados. |
 | Initial STATUS and Story materialization | PMO | DONE | Este `STATUS.md` e [Issue #46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46). |
 | Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`. |
-| Functional review | Engineering Manager | DOING | Nova revisão autorizada após a correção do Product Owner no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md); publicação pendente. |
+| Functional review | Engineering Manager | DOING | Nova revisão autorizada após a correção do Product Owner no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `1122eea74d59cb9ee3611cd3156647fc65e497bd`. |
 | Architecture Gate | Technical Lead | TODO / N/A | N/A |
 | Architecture approval | Engineering Manager | TODO / N/A | N/A |
 | Implementation | Software Engineer | TODO | N/A |

@@ -231,8 +231,8 @@ evidências de sucesso da Story #46 foram definidos para Functional Review.
 ### Versioned reference
 
 - Branch: `main`
-- Commit: pendente da publicação da correção de rastreabilidade pelo Product Owner
-- Full hash: pendente da publicação da correção de rastreabilidade pelo Product Owner
+- Commit: `1122eea`
+- Full hash: `1122eea74d59cb9ee3611cd3156647fc65e497bd`
 
 ### Evidence and constraints
 
