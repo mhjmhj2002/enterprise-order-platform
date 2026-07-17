@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Architecture Gate
-**Previous step:** Technical Writer publicou a Documentation Baseline e as lacunas técnicas da Story #46.
-**Next step:** Technical Lead produz o Architecture Gate e o contrato técnico; a aprovação explícita do Engineering Manager continua obrigatória antes da implementação.
-**Role responsible:** Technical Lead
+**Current step:** Architecture approval
+**Previous step:** Technical Lead publicou o Architecture Gate e o contrato técnico recomendado para a Story #46.
+**Next step:** Engineering Manager revisa o Architecture Gate e registra aprovação explícita, condições ou bloqueio; implementação permanece proibida até esse parecer.
+**Role responsible:** Engineering Manager
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
-**Current gate:** Documentation Baseline concluída. Architecture Gate é obrigatório e deve registrar as decisões de mecanismo, fronteiras de superfície, compatibilidade e evidência antes de implementação; Implementation e Quality permanecem bloqueadas.
-**Latest published handoff:** Technical Writer → Architecture Gate — [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`; referências de produto, arquitetura, limites e contratos sincronizadas; lacunas técnicas encaminhadas.
+**Current gate:** Architecture Gate concluído com recomendação. A aprovação explícita do Engineering Manager é obrigatória antes de criar branch, implementar ou iniciar Quality.
+**Latest published handoff:** Technical Lead → Engineering Manager — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `PENDING_COMMIT`; autenticação HTTP Basic stateless por ambiente proposta para `/api/v1/**`, com exceções técnicas explícitas e compatibilidade Order → Inventory condicionada à evidência.
 **Blockers:** Nenhum para Architecture Gate. O período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
-**Last updated:** 2026-07-17 — Technical Writer — Documentation Baseline concluída; Architecture Gate autorizado.
+**Last updated:** 2026-07-17 — Technical Lead — Architecture Gate e contrato técnico publicados para aprovação do Engineering Manager.
 
 ## Flow
 
@@ -25,8 +25,8 @@
 | Initial STATUS and Story materialization | PMO | DONE | Este `STATUS.md` e [Issue #46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46). |
 | Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`. |
 | Functional review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 validados como equivalentes. |
-| Architecture Gate | Technical Lead | DOING | Technical Writer → Architecture Gate — [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
-| Architecture approval | Engineering Manager | TODO / N/A | N/A |
+| Architecture Gate | Technical Lead | DONE — RECOMMENDED | [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `PENDING_COMMIT`. |
+| Architecture approval | Engineering Manager | TODO | Technical Lead → Engineering Manager — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md). |
 | Implementation | Software Engineer | TODO | N/A |
 | Quality | Quality Engineer | TODO | N/A |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
