@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Quality permanece `REJECTED`. Remediação de implementação autorizada; nova execução de Quality requer handoff técnico publicado, plano atualizado se necessário e nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação desta revisão.
+**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `c268aaee7a4ea5957ea13da48a60ec2db0c73048`.
 **Blockers:** `mvn test` do Inventory falha na descoberta de teste Kafka sem o classpath Kafka; as integrações Catalog são bloqueadas pela incompatibilidade Testcontainers 1.20.1/Docker API 1.54. Evidências HTTP, de integração e Kafka end-to-end permanecem pendentes. Os achados ficam rastreados na Story #46; não há Issue adicional. Itens fora de escopo permanecem bloqueados por escopo.
 **Last updated:** 2026-07-17 — Engineering Manager — Quality Rejection Review concluída; remediação técnica devolvida ao Software Engineer.
 

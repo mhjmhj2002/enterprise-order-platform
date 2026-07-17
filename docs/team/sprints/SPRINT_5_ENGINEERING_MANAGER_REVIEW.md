@@ -391,7 +391,8 @@ Issue #46 e autorização limitada de correção técnica na branch oficial.
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Commit: pendente da publicação desta revisão.
+- Commit: `c268aae`
+- Full hash: `c268aaee7a4ea5957ea13da48a60ec2db0c73048`
 
 ### Evidence and constraints
 
