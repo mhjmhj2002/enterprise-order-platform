@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Product Owner backlog materialization handoff
-**Previous step:** Functional Review concluída com parecer `APPROVED` no [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 foram validados como equivalentes.
-**Next step:** Product Owner publica o handoff de backlog materializado para o Technical Writer executar a Documentation Baseline.
-**Role responsible:** Product Owner
+**Current step:** Documentation Baseline
+**Previous step:** Product Owner publicou o handoff de backlog materializado no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md); plano e Issue #46 permanecem equivalentes.
+**Next step:** Technical Writer estabelece a Documentation Baseline e identifica lacunas para o Architecture Gate obrigatório.
+**Role responsible:** Technical Writer
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
-**Current gate:** Functional Review `APPROVED`. Documentation Baseline é a próxima etapa; Architecture Gate permanece obrigatório depois dela e antes de implementação. Implementation e Quality permanecem bloqueadas até os handoffs e aprovações aplicáveis.
-**Latest published handoff:** Engineering Manager → Product Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / `0b03f25c385771c6a5e33b1db65a419dcff19865`.
-**Blockers:** Nenhum para o handoff Product Owner → Technical Writer. O período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
-**Last updated:** 2026-07-17 — Engineering Manager — Functional Review aprovada; handoff de backlog autorizado ao Product Owner.
+**Current gate:** Documentation Baseline autorizada. Architecture Gate permanece obrigatório depois dela e antes de implementação; Implementation e Quality permanecem bloqueadas até os handoffs e aprovações aplicáveis.
+**Latest published handoff:** Product Owner → Technical Writer — [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `c6d6a807e9a598f058ec6e4645c47b310eed2af0`; Issue #46 verificada idêntica ao plano.
+**Blockers:** Nenhum para Documentation Baseline. O período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
+**Last updated:** 2026-07-17 — Product Owner — backlog materializado e publicado para Documentation Baseline.
 
 ## Flow
 
@@ -29,7 +29,7 @@
 | Architecture approval | Engineering Manager | TODO / N/A | N/A |
 | Implementation | Software Engineer | TODO | N/A |
 | Quality | Quality Engineer | TODO | N/A |
-| Documentation | Technical Writer | TODO | N/A |
+| Documentation | Technical Writer | DOING | Product Owner → Technical Writer no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `c6d6a807e9a598f058ec6e4645c47b310eed2af0`. |
 | Final review | Engineering Manager | TODO | N/A |
 | Administrative closure | Repository Owner | TODO | N/A |
 | Engineering Audit | AEO | TODO | N/A |
