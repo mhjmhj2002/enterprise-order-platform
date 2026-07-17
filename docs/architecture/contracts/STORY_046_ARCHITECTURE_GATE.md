@@ -131,27 +131,63 @@ auditoria nem uma solução completa de gestão de identidade.
 | Basic Auth usado sem transporte seguro em futuro ambiente remoto | Parar e escalar: TLS/terminação de transporte e gestão de credenciais exigem decisão de infraestrutura/segurança adicional. |
 | Necessidade de identidade individual, roles, acesso por recurso ou auditoria | Parar e devolver ao Product Owner como nova descoberta de produto. |
 
-## 9. Parecer e handoff
+## 9. Rastreabilidade de ADR e insumo ao Technical Writer
+
+Esta decisão é transversal aos serviços Catalog, Inventory e Order e altera a
+fronteira compartilhada de segurança e a configuração de execução. Portanto,
+**um ADR é obrigatório** antes da nova Architecture Approval. O Technical
+Writer deverá criar o próximo ADR disponível no índice oficial, usando o
+conteúdo técnico abaixo; a numeração, o arquivo e a manutenção do índice são
+de sua responsabilidade.
+
+### Insumo técnico obrigatório para o ADR
+
+- **Contexto:** a Story #46 exige autenticação antes de qualquer operação ou
+  leitura de negócio nos três serviços, preservando contratos de negócio,
+  `OrderConfirmed` v1 e a integração REST Order → Inventory.
+- **Decisão:** HTTP Basic stateless com uma única credencial técnica por
+  ambiente; Spring Security protege `/api/v1/**`; sessão é stateless e CSRF é
+  desabilitado para a API sem cookies.
+- **Fronteiras:** `/api/v1/**` é negócio e exige autenticação; somente
+  `GET /actuator/health`, OpenAPI e Swagger UI são exceções técnicas públicas.
+  Kafka e seus workers ficam fora da fronteira HTTP.
+- **Configuração e compatibilidade:** `SECURITY_API_USERNAME` e
+  `SECURITY_API_PASSWORD` são obrigatórias, não possuem default e não são
+  versionadas. Order envia a mesma credencial configurada ao Inventory, sem
+  propagar a credencial recebida, preservando `X-Correlation-Id`, paths,
+  métodos, payloads e semântica dos erros autenticados.
+- **Trade-offs e limites:** a credencial compartilhada não fornece identidade
+  individual, rotação granular, auditoria, roles ou autorização por recurso.
+  HTTP Basic requer canal HTTPS confiável fora do ambiente local; TLS remoto,
+  gateway, IdP, tokens e gestão de identidade são decisões futuras e não são
+  autorizadas por esta Story.
+
+O ADR deverá referenciar este Architecture Gate e, após publicado, este gate
+deverá ser devolvido junto com ele ao Engineering Manager. Qualquer divergência
+do insumo que introduza TLS/infraestrutura remota, gestão de identidade,
+autorização granular ou escopo de produto deve parar e ser escalada.
+
+## 10. Parecer e handoff
 
 **RECOMMENDED.** A decisão cobre de maneira uniforme as superfícies de negócio
 identificadas, preserva contratos REST e Kafka existentes e mantém a solução
 proporcional ao recorte aprovado. O Engineering Manager deve aprovar este
 contrato antes de criar a branch de implementação.
 
-## Institutional Handoff — Technical Lead → Engineering Manager
+## Institutional Handoff — Technical Lead → Technical Writer
 
 ### Executive summary
 
-O Architecture Gate da Story #46 recomenda autenticação HTTP Basic stateless,
-configurada por ambiente, para todas as APIs de negócio dos serviços Catalog,
-Inventory e Order. A fronteira, as exceções técnicas, a compatibilidade Order →
-Inventory e a evidência foram explicitadas sem ampliar o escopo funcional.
+O Architecture Gate da Story #46 foi complementado com a rastreabilidade de ADR
+obrigatória e com o insumo técnico para sua publicação. A decisão continua
+recomendando HTTP Basic stateless, configurado por ambiente, para as APIs de
+negócio dos serviços Catalog, Inventory e Order.
 
 ### Objective completed
 
-Foram decididos o mecanismo, a superfície protegida, a configuração, as
-restrições operacionais, a compatibilidade e os critérios técnicos de evidência
-necessários antes de implementação.
+Foi registrado que a decisão transversal exige ADR e foi fornecido ao Technical
+Writer o conteúdo técnico delimitado para publicá-lo, sem alterar mecanismo,
+superfícies, compatibilidade ou escopo previamente recomendados.
 
 ### Published artifacts
 
@@ -165,20 +201,20 @@ necessários antes de implementação.
 - Mantém íntegros os contratos REST de negócio após autenticação válida e o
   contrato `OrderConfirmed` v1.
 - Não autoriza implementação, criação de branch, Quality ou mudanças de escopo
-  até a aprovação explícita do Engineering Manager.
+  até o ADR ser publicado e a nova aprovação explícita do Engineering Manager.
 
 ### Pending items
 
-- Engineering Manager: aprovar, condicionar ou devolver o contrato técnico.
+- Technical Writer: publicar o ADR no diretório e índice oficiais e devolver o
+  ADR juntamente com este gate ao Engineering Manager.
 
 ### Next authorized action
 
-- Next role: Engineering Manager.
-- Required action: revisar este Architecture Gate e registrar aprovação
-  explícita, condições ou bloqueio no artefato institucional aplicável.
-- Acceptance / stop criteria: aprovar apenas se a proteção uniforme de
-  `/api/v1/**`, as exceções técnicas, a compatibilidade Order → Inventory e a
-  evidência obrigatória forem suficientes; parar e escalar se a decisão exigir
-  novo escopo funcional, TLS/infraestrutura remota ou identidade granular.
-- Operational command: iniciar exclusivamente a Architecture approval da Story
-  #46; não autorizar implementação antes do parecer publicado.
+- Next role: Technical Writer.
+- Required action: publicar exclusivamente o ADR da baseline de autenticação a
+  partir do insumo da seção 9 e atualizar o índice oficial de ADRs.
+- Acceptance / stop criteria: parar e escalar se a documentação do ADR exigir
+  mudança de escopo, TLS/infraestrutura remota, gestão de identidade ou
+  autorização granular; não iniciar implementação ou Quality.
+- Operational command: iniciar exclusivamente a publicação do ADR e o handoff
+  Technical Writer → Engineering Manager para nova Architecture Approval.

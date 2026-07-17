@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Architecture Gate traceability completion
-**Previous step:** Engineering Manager revisou o contrato e identificou ADR obrigatório ausente para a decisão transversal de segurança.
-**Next step:** Technical Lead complementa o Architecture Gate com o ADR requerido e o encaminha ao Technical Writer; o gate completo retorna ao Engineering Manager para nova Architecture Approval.
-**Role responsible:** Technical Lead
+**Current step:** ADR documentation
+**Previous step:** Technical Lead complementou o Architecture Gate com a indicação de ADR obrigatório e o insumo técnico para sua publicação.
+**Next step:** Technical Writer publica o ADR da baseline de autenticação e devolve o ADR e o gate completo ao Engineering Manager para nova Architecture Approval.
+**Role responsible:** Technical Writer
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
-**Current gate:** Architecture Approval `CHANGES REQUIRED`. O contrato técnico precisa indicar e encaminhar o ADR obrigatório para a decisão compartilhada de segurança; não há autorização para branch, implementação ou Quality.
-**Latest published handoff:** Engineering Manager → Technical Lead — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / `29f0f18cda558e9e2a170433cc04fd8e7c5d5546`.
-**Blockers:** O [Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md) não indica nem referencia ADR para a fronteira de segurança e configuração compartilhadas entre Catalog, Inventory e Order.
-**Last updated:** 2026-07-17 — Engineering Manager — Architecture Approval concluída com `CHANGES REQUIRED`; rastreabilidade arquitetural devolvida ao Technical Lead.
+**Current gate:** Architecture Approval `CHANGES REQUIRED` permanece pendente apenas da publicação do ADR obrigatório pelo Technical Writer; não há autorização para branch, implementação ou Quality.
+**Latest published handoff:** Technical Lead → Technical Writer — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `PENDING_COMMIT`; indicação de ADR obrigatório e insumo técnico para a decisão compartilhada de segurança publicados.
+**Blockers:** Aguardando o ADR oficial da baseline de autenticação, a ser publicado pelo Technical Writer antes da nova Architecture Approval.
+**Last updated:** 2026-07-17 — Technical Lead — rastreabilidade de ADR registrada e encaminhada ao Technical Writer.
 
 ## Flow
 
@@ -26,7 +26,8 @@
 | Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`. |
 | Functional review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 validados como equivalentes. |
 | Architecture Gate | Technical Lead | DONE — RECOMMENDED | [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `09af854336f86e2d3ffdf07411cb744a62368132`. |
-| Architecture approval | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); ADR obrigatório ausente no Architecture Gate. |
+| Architecture approval | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); aguarda ADR oficial antes de nova aprovação. |
+| ADR documentation | Technical Writer | DOING | Technical Lead → Technical Writer — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `PENDING_COMMIT`. |
 | Implementation | Software Engineer | TODO | N/A |
 | Quality | Quality Engineer | TODO | N/A |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
