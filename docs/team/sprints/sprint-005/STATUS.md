@@ -10,7 +10,7 @@
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Architecture Gate concluído com recomendação. A aprovação explícita do Engineering Manager é obrigatória antes de criar branch, implementar ou iniciar Quality.
-**Latest published handoff:** Technical Lead → Engineering Manager — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `PENDING_COMMIT`; autenticação HTTP Basic stateless por ambiente proposta para `/api/v1/**`, com exceções técnicas explícitas e compatibilidade Order → Inventory condicionada à evidência.
+**Latest published handoff:** Technical Lead → Engineering Manager — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `09af854336f86e2d3ffdf07411cb744a62368132`; autenticação HTTP Basic stateless por ambiente proposta para `/api/v1/**`, com exceções técnicas explícitas e compatibilidade Order → Inventory condicionada à evidência.
 **Blockers:** Nenhum para Architecture Gate. O período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
 **Last updated:** 2026-07-17 — Technical Lead — Architecture Gate e contrato técnico publicados para aprovação do Engineering Manager.
 
@@ -25,7 +25,7 @@
 | Initial STATUS and Story materialization | PMO | DONE | Este `STATUS.md` e [Issue #46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46). |
 | Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`. |
 | Functional review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 validados como equivalentes. |
-| Architecture Gate | Technical Lead | DONE — RECOMMENDED | [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `PENDING_COMMIT`. |
+| Architecture Gate | Technical Lead | DONE — RECOMMENDED | [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `09af854336f86e2d3ffdf07411cb744a62368132`. |
 | Architecture approval | Engineering Manager | TODO | Technical Lead → Engineering Manager — [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md). |
 | Implementation | Software Engineer | TODO | N/A |
 | Quality | Quality Engineer | TODO | N/A |
