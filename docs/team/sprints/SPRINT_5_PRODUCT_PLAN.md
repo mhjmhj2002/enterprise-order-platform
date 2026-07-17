@@ -206,8 +206,7 @@ evidências de sucesso da Story #46 foram definidos para Functional Review.
 
 - `docs/team/sprints/SPRINT_5_PRODUCT_PLAN.md`
 - `docs/team/sprints/sprint-005/STATUS.md`
-- GitHub Issue #46, a ser sincronizada com este refinamento pelo fluxo de
-  backlog aplicável.
+- GitHub Issue #46, sincronizada com este refinamento no GitHub.
 
 ### Versioned reference
 
