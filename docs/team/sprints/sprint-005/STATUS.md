@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Documentation Baseline
-**Previous step:** Product Owner publicou o handoff de backlog materializado no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md); plano e Issue #46 permanecem equivalentes.
-**Next step:** Technical Writer estabelece a Documentation Baseline e identifica lacunas para o Architecture Gate obrigatório.
-**Role responsible:** Technical Writer
+**Current step:** Architecture Gate
+**Previous step:** Technical Writer publicou a Documentation Baseline e as lacunas técnicas da Story #46.
+**Next step:** Technical Lead produz o Architecture Gate e o contrato técnico; a aprovação explícita do Engineering Manager continua obrigatória antes da implementação.
+**Role responsible:** Technical Lead
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
-**Current gate:** Documentation Baseline autorizada. Architecture Gate permanece obrigatório depois dela e antes de implementação; Implementation e Quality permanecem bloqueadas até os handoffs e aprovações aplicáveis.
-**Latest published handoff:** Product Owner → Technical Writer — [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `c6d6a807e9a598f058ec6e4645c47b310eed2af0`; Issue #46 verificada idêntica ao plano.
-**Blockers:** Nenhum para Documentation Baseline. O período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
-**Last updated:** 2026-07-17 — Product Owner — backlog materializado e publicado para Documentation Baseline.
+**Current gate:** Documentation Baseline concluída. Architecture Gate é obrigatório e deve registrar as decisões de mecanismo, fronteiras de superfície, compatibilidade e evidência antes de implementação; Implementation e Quality permanecem bloqueadas.
+**Latest published handoff:** Technical Writer → Architecture Gate — [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `PENDING_COMMIT`; referências de produto, arquitetura, limites e contratos sincronizadas; lacunas técnicas encaminhadas.
+**Blockers:** Nenhum para Architecture Gate. O período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
+**Last updated:** 2026-07-17 — Technical Writer — Documentation Baseline concluída; Architecture Gate autorizado.
 
 ## Flow
 
@@ -25,11 +25,11 @@
 | Initial STATUS and Story materialization | PMO | DONE | Este `STATUS.md` e [Issue #46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46). |
 | Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`. |
 | Functional review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 validados como equivalentes. |
-| Architecture Gate | Technical Lead | TODO / N/A | N/A |
+| Architecture Gate | Technical Lead | DOING | Technical Writer → Architecture Gate — [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `PENDING_COMMIT`. |
 | Architecture approval | Engineering Manager | TODO / N/A | N/A |
 | Implementation | Software Engineer | TODO | N/A |
 | Quality | Quality Engineer | TODO | N/A |
-| Documentation | Technical Writer | DOING | Product Owner → Technical Writer no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `c6d6a807e9a598f058ec6e4645c47b310eed2af0`. |
+| Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `PENDING_COMMIT`. |
 | Final review | Engineering Manager | TODO | N/A |
 | Administrative closure | Repository Owner | TODO | N/A |
 | Engineering Audit | AEO | TODO | N/A |

@@ -12,4 +12,5 @@ Documentacao de arquitetura do projeto, incluindo visao geral, limites de domini
 - [Event Platform Technical Contract](contracts/EVENT_PLATFORM_TECHNICAL_CONTRACT.md)
 - [Story #34 — Architecture Gate: Confiabilidade Inicial do Processamento](contracts/STORY_034_ARCHITECTURE_GATE.md)
 - [Story #44 — Architecture Gate: Visibilidade Operacional de `OrderConfirmed` v1](contracts/STORY_044_ARCHITECTURE_GATE.md)
+- [Story #46 — Documentation Baseline: Segurança Inicial](contracts/STORY_046_DOCUMENTATION_BASELINE.md)
 - [ADRs](ADR)
