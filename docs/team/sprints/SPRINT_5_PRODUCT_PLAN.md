@@ -298,8 +298,8 @@ regras de negócio, dependências, riscos, limites e evidências de sucesso.
 ### Versioned reference
 
 - Branch: `main`
-- Commit: pendente da publicação deste handoff pelo Product Owner
-- Full hash: pendente da publicação deste handoff pelo Product Owner
+- Commit: `c6d6a80`
+- Full hash: `c6d6a807e9a598f058ec6e4645c47b310eed2af0`
 
 ### Evidence and constraints
 
