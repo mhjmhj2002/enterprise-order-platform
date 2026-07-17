@@ -36,6 +36,8 @@ Erros previsiveis de entrada, incluindo JSON malformado e UUID invalido, retorna
 mvn spring-boot:run
 ```
 Variaveis principais:
+- `SECURITY_API_USERNAME` (obrigatoria)
+- `SECURITY_API_PASSWORD` (obrigatoria)
 - `ORDER_DB_URL` (default `jdbc:postgresql://localhost:5432/order`)
 - `ORDER_DB_USERNAME` (default `order`)
 - `ORDER_DB_PASSWORD` (default `order`)
@@ -44,6 +46,8 @@ Variaveis principais:
 - `ORDER_DEFAULT_WAREHOUSE_ID` (default `00000000-0000-0000-0000-000000000001`)
 - `PAYMENT_FAKE_FAIL` (default `false`)
 - `KAFKA_BOOTSTRAP_SERVERS` (profile Spring `kafka`; default `localhost:9094`)
+
+As rotas de negocio em `/api/v1/**` exigem HTTP Basic. O Order usa as mesmas credenciais configuradas localmente ao chamar o Inventory, sem repassar a credencial do consumidor. Nao versione nem exponha esses valores; HTTP Basic requer HTTPS confiavel fora do ambiente local. `GET /actuator/health`, OpenAPI e Swagger UI sao as unicas excecoes tecnicas publicas.
 
 Para habilitar a publicacao localmente:
 

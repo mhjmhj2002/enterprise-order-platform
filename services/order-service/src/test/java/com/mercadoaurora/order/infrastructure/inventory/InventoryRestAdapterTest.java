@@ -1,6 +1,7 @@
 package com.mercadoaurora.order.infrastructure.inventory;
 
 import com.mercadoaurora.order.application.exception.OrderIntegrationException;
+import com.mercadoaurora.order.config.SecurityApiProperties;
 import com.mercadoaurora.order.domain.Order;
 import com.mercadoaurora.order.domain.OrderItem;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import org.springframework.boot.test.context.runner.ApplicationContextRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.client.RestClient;
 
 import java.math.BigDecimal;
@@ -27,7 +29,9 @@ class InventoryRestAdapterTest {
             .withUserConfiguration(InventoryRestAdapterConfig.class)
             .withPropertyValues(
                     "order.integrations.inventory.base-url=http://localhost:8082",
-                    "order.integrations.inventory.default-warehouse-id=00000000-0000-0000-0000-000000000001"
+                    "order.integrations.inventory.default-warehouse-id=00000000-0000-0000-0000-000000000001",
+                    "security.api.username=test-api-consumer",
+                    "security.api.password=test-api-password"
             );
 
     @Test
@@ -98,6 +102,7 @@ class InventoryRestAdapterTest {
 
     @Configuration
     @Import(InventoryRestAdapter.class)
+    @EnableConfigurationProperties(SecurityApiProperties.class)
     static class InventoryRestAdapterConfig {
         @Bean
         RestClient.Builder restClientBuilder() {

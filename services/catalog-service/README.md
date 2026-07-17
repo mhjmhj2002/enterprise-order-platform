@@ -24,7 +24,7 @@ Gerencia produtos e SKUs do catalogo, incluindo criacao, atualizacao, ativacao/d
 - Estoque e reserva.
 - Pedido e checkout.
 - Pagamento.
-- Autenticacao e autorizacao.
+- Autorizacao granular, usuarios e gestao de credenciais.
 
 ## Como rodar localmente
 
@@ -32,6 +32,13 @@ Gerencia produtos e SKUs do catalogo, incluindo criacao, atualizacao, ativacao/d
 cd services/catalog-service
 mvn spring-boot:run
 ```
+
+Variaveis de ambiente obrigatorias:
+
+- `SECURITY_API_USERNAME`
+- `SECURITY_API_PASSWORD`
+
+As rotas de negocio em `/api/v1/**` exigem HTTP Basic. Nao versione nem exponha essas credenciais; para ambiente remoto, HTTP Basic requer HTTPS confiavel.
 
 Variaveis opcionais:
 
@@ -64,6 +71,8 @@ mvn test
 Swagger UI:
 
 - `http://localhost:8081/swagger-ui/index.html`
+
+`GET /actuator/health`, OpenAPI e Swagger UI sao as unicas excecoes tecnicas publicas.
 
 ## Dependencias
 

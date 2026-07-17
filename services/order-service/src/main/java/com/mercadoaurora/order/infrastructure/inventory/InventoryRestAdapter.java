@@ -2,6 +2,7 @@ package com.mercadoaurora.order.infrastructure.inventory;
 
 import com.mercadoaurora.order.application.exception.OrderIntegrationException;
 import com.mercadoaurora.order.application.port.out.InventoryReservationPort;
+import com.mercadoaurora.order.config.SecurityApiProperties;
 import com.mercadoaurora.order.domain.Order;
 import com.mercadoaurora.order.domain.OrderItem;
 import com.mercadoaurora.order.infrastructure.web.CorrelationIdContext;
@@ -24,7 +25,8 @@ public class InventoryRestAdapter implements InventoryReservationPort {
     public InventoryRestAdapter(
             RestClient.Builder restClientBuilder,
             @Value("${order.integrations.inventory.base-url}") String inventoryBaseUrl,
-            @Value("${order.integrations.inventory.default-warehouse-id}") UUID defaultWarehouseId
+            @Value("${order.integrations.inventory.default-warehouse-id}") UUID defaultWarehouseId,
+            SecurityApiProperties credentials
     ) {
         this(new RestClientInventoryHttpClient(restClientBuilder
                 .baseUrl(inventoryBaseUrl)
@@ -33,6 +35,7 @@ public class InventoryRestAdapter implements InventoryReservationPort {
                     if (correlationId != null) {
                         request.getHeaders().set(CorrelationIdFilter.HEADER_NAME, correlationId);
                     }
+                    request.getHeaders().setBasicAuth(credentials.username(), credentials.password());
                     return execution.execute(request, body);
                 })
                 .build()), defaultWarehouseId);

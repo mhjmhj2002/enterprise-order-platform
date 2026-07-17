@@ -39,6 +39,13 @@ cd services/inventory-service
 mvn spring-boot:run
 ```
 
+Variaveis de ambiente obrigatorias:
+
+- `SECURITY_API_USERNAME`
+- `SECURITY_API_PASSWORD`
+
+As rotas de negocio em `/api/v1/**` exigem HTTP Basic. Nao versione nem exponha essas credenciais; para ambiente remoto, HTTP Basic requer HTTPS confiavel.
+
 Variaveis opcionais:
 
 - `INVENTORY_DB_URL` (default `jdbc:postgresql://localhost:5432/inventory`)
@@ -89,3 +96,5 @@ mvn -Pkafka test
 Swagger UI:
 
 - `http://localhost:8082/swagger-ui/index.html`
+
+`GET /actuator/health`, OpenAPI e Swagger UI sao as unicas excecoes tecnicas publicas.
