@@ -261,6 +261,76 @@ o contrato aprovado sob as condições verificáveis deste parecer.
 - Operational command: iniciar exclusivamente a implementação autorizada da
   Story #46.
 
+## Quality Authorization — Story #46
+
+**Decisão:** `APPROVED` para execução de Quality.
+
+O [Test Plan da Story #46](../../quality/story-046/TEST_PLAN.md) está aderente
+ao Product Plan, ao Architecture Gate e ao ADR-008. Ele cobre recusa `401`
+para credenciais ausentes, malformadas e inválidas; ausência de efeito de
+negócio nas escritas recusadas; regressão autenticada nos três serviços;
+compatibilidade Order → Inventory e `X-Correlation-Id`; e a regressão Kafka de
+`OrderConfirmed` v1. O plano também preserva as exceções técnicas públicas e
+proíbe a exposição de credenciais nas evidências.
+
+O PR [#47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47)
+está publicado na branch oficial
+`feature/story-046-security-baseline`; sua ponta publicada é
+`3b4b8a9a53391f0877d38a3ca1b752eaa1b5c662`. Não há check remoto pendente no
+momento da autorização. Esta decisão autoriza somente a execução do plano e
+não constitui recomendação de release, aprovação técnica final ou autorização
+de merge.
+
+## Institutional Handoff — Engineering Manager → Quality Engineer
+
+### Executive summary
+
+O Test Plan da Story #46 foi revisado e está autorizado para execução na branch
+oficial publicada.
+
+### Objective completed
+
+Foi concluída a autorização explícita de Quality, condicionada ao plano
+publicado, à injeção de credenciais somente em runtime e ao registro
+reproduzível dos resultados.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_PLAN.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: pendente da publicação desta autorização.
+
+### Evidence and constraints
+
+- Test Plan: `feature/story-046-security-baseline` /
+  `2ab78a5245a944d7053145419e98b188773a5363`.
+- Branch oficial e PR #47 publicados em
+  `3b4b8a9a53391f0877d38a3ca1b752eaa1b5c662`.
+- Credenciais devem ser injetadas somente no ambiente de execução e omitidas de
+  terminal, coleções, relatórios e demais evidências.
+
+### Pending items
+
+- Quality Engineer: executar os cenários autorizados e publicar Test Report,
+  defeitos (se houver) e recomendação de release ao Engineering Manager.
+
+### Next authorized action
+
+- Next role: Quality Engineer
+- Required action: executar exclusivamente o Test Plan publicado e registrar
+  evidência reproduzível, limitações e recomendação no Test Report.
+- Acceptance / stop criteria: parar e reportar como bloqueio qualquer falha de
+  ambiente, incapacidade de injetar credenciais sem expô-las, desvio de contrato
+  ou necessidade de escopo bloqueado; não tratar cenário não executado como
+  aprovado.
+- Operational command: iniciar exclusivamente a execução de Quality da Story
+  #46.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
