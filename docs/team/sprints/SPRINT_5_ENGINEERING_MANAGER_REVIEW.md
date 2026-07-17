@@ -71,7 +71,8 @@ obrigatório.
 ### Versioned reference
 
 - Branch: `main`
-- Commit: pendente da publicação deste parecer.
+- Commit: `d06ddab`
+- Full hash: `d06ddabcdcee5f88afc01b96ad55a2d0e96e5995`
 
 ### Evidence and constraints
 

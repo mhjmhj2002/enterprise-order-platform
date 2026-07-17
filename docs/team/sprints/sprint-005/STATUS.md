@@ -10,7 +10,7 @@
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Functional Review concluída com `CHANGES REQUIRED`. Documentation Baseline, Architecture Gate, implementação e Quality permanecem bloqueados até o Product Owner corrigir a divergência do backlog e receber parecer `APPROVED`.
-**Latest published handoff:** Engineering Manager → Product Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / pendente da publicação deste parecer.
+**Latest published handoff:** Engineering Manager → Product Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / `d06ddabcdcee5f88afc01b96ad55a2d0e96e5995`.
 **Blockers:** A Issue #46 no GitHub ainda contém o handoff anterior e `status:backlog`, divergindo do plano que declara sincronização concluída. O período da Sprint não foi especificado pelo Sponsor; não altera esta devolução.
 **Last updated:** 2026-07-17 — Engineering Manager — Functional Review concluída; correção de rastreabilidade devolvida ao Product Owner.
 
