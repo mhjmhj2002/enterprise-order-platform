@@ -1,6 +1,6 @@
 # Sprint 5 — Engineering Manager Review: Story #46
 
-**Parecer:** CHANGES REQUIRED
+**Parecer:** APPROVED
 
 **Data:** 2026-07-17
 
@@ -70,19 +70,43 @@ não satisfaz o handoff requerido.
 **Referência publicada desta verificação:** `main` /
 `513220c31ea2749b85f389942b2629474104bb31`.
 
+## Decisão final da nova Functional Review — 2026-07-17
+
+**Resultado:** `APPROVED`.
+
+O Product Owner corrigiu a divergência remanescente. A comparação direta entre
+o [Sprint 5 Product Plan](SPRINT_5_PRODUCT_PLAN.md) publicado e o corpo remoto
+da Issue #46 confirmou conteúdo equivalente; a única diferença é uma linha em
+branco final sem impacto semântico. A verificação também confirmou `status:review`,
+`type:story`, `sprint:5`, milestone `Sprint 5 — Security` e card `Todo`.
+
+O incremento atende à Definition of Ready funcional: valor, escopo, critérios
+de aceite, limites, riscos e dependências são claros e não há decisão de
+produto pendente. A capacidade é compatível com a baseline existente, sujeita
+ao Architecture Gate obrigatório antes de qualquer implementação.
+
+## Encaminhamento após aprovação
+
+O Product Owner deve publicar no artefato de sua propriedade o handoff para o
+Technical Writer, com a referência deste parecer aprovado e do backlog
+materializado. O Technical Writer então executará a Documentation Baseline e
+identificará as lacunas a serem tratadas no Architecture Gate. Esta aprovação
+não autoriza implementação, seleção de tecnologia, mudança de contrato de
+negócio nem expansão para autorização granular.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
 
-O refinamento funcional é suficiente em conteúdo, mas sua publicação no
-backlog oficial diverge do plano. A correção é necessária antes da aprovação
-funcional e do encaminhamento à documentação e arquitetura.
+O refinamento funcional e o backlog oficial foram validados como consistentes.
+A Story #46 está aprovada para o handoff de Product Owner à Documentation
+Baseline, preservando o Architecture Gate obrigatório antes de implementação.
 
 ### Objective completed
 
-Foi concluída a Functional Review da Story #46, com validação de valor, escopo,
-critérios, capacidade direcional e identificação do Architecture Gate
-obrigatório.
+Foi concluída e aprovada a Functional Review da Story #46, incluindo a
+validação final de rastreabilidade, valor, escopo, critérios, capacidade
+direcional e Architecture Gate obrigatório.
 
 ### Published artifacts
 
@@ -97,23 +121,31 @@ obrigatório.
 
 ### Evidence and constraints
 
-- Plano local publicado: `main` / `1a8d047b83f4f25e2356001535b006961382ce16`.
-- A consulta à Issue #46 em 2026-07-17 mostrou conteúdo anterior ao registro de sincronização e rótulo `status:backlog`.
-- Não há autorização para implementação, escolha técnica ou expansão do escopo durante esta devolução.
+- Plano e evidência final de reenvio: `main` /
+  `183deef94c309f1a5e9684c72bc0219f5bb65e1d`.
+- A consulta final à Issue #46 em 2026-07-17 confirmou conteúdo equivalente
+  ao plano; a diferença física é somente uma linha em branco final.
+- Não há autorização para implementação, escolha técnica ou expansão do escopo
+  antes de Architecture Gate, aprovação arquitetural e demais gates aplicáveis.
 
 ### Risks
 
-- Prosseguir com fontes de backlog divergentes comprometeria a rastreabilidade e permitiria que o Architecture Gate trabalhasse sobre um escopo desatualizado.
+- A autenticação transversal pode afetar fronteiras de segurança, serviços
+  expostos, configuração e contratos; o Architecture Gate deve explicitar tais
+  decisões sem ampliar o escopo funcional.
 
 ### Pending items
 
-- Product Owner: substituir o corpo desatualizado da Issue #46 pelo plano
-  vigente e publicar nova evidência de sincronização.
+- Product Owner: publicar o handoff Product Owner → Technical Writer com o
+  backlog materializado e este parecer aprovado.
 
 ### Next authorized action
 
 - Next role: Product Owner
-- Required action: executar somente a correção do corpo da Issue #46 e
-  republicar o handoff para nova Functional Review.
-- Acceptance / stop criteria: parar e escalar se a Issue #46 não puder representar integralmente o plano vigente; não iniciar Documentation Baseline, Architecture Gate ou implementação antes de um novo parecer `APPROVED`.
-- Operational command: iniciar exclusivamente a correção do corpo da Issue #46.
+- Required action: publicar exclusivamente o handoff de backlog materializado
+  para o Technical Writer, referenciando este parecer `APPROVED`.
+- Acceptance / stop criteria: parar e escalar se o backlog materializado ou o
+  plano divergirem; não iniciar Architecture Gate ou implementação antes da
+  Documentation Baseline e dos gates aplicáveis.
+- Operational command: iniciar exclusivamente o handoff Product Owner →
+  Technical Writer da Story #46.

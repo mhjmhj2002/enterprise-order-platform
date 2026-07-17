@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Functional review
-**Previous step:** Product Owner sincronizou a Issue #46 com a versão final do [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md) e confirmou igualdade exata entre o corpo remoto e o arquivo publicado.
-**Next step:** Engineering Manager valida a correção de rastreabilidade e conclui nova Functional Review.
-**Role responsible:** Engineering Manager
+**Current step:** Product Owner backlog materialization handoff
+**Previous step:** Functional Review concluída com parecer `APPROVED` no [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 foram validados como equivalentes.
+**Next step:** Product Owner publica o handoff de backlog materializado para o Technical Writer executar a Documentation Baseline.
+**Role responsible:** Product Owner
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
-**Current gate:** Nova Functional Review obrigatória após a correção de rastreabilidade. Documentation Baseline, Architecture Gate, implementação e Quality permanecem bloqueados até parecer `APPROVED`; o Architecture Gate já foi determinado como obrigatório para a etapa posterior.
-**Latest published handoff:** Product Owner → Engineering Manager — [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `183deef94c309f1a5e9684c72bc0219f5bb65e1d`; Issue #46 verificada idêntica ao plano após a referência `2da4062`.
-**Blockers:** Nenhum para nova Functional Review. A Issue #46 contém integralmente o plano vigente, está em `status:review`, mantém `type:story`, `sprint:5`, milestone Sprint 5 e card `Todo`. O período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
-**Last updated:** 2026-07-17 — Product Owner — correção final do backlog publicada para nova Functional Review.
+**Current gate:** Functional Review `APPROVED`. Documentation Baseline é a próxima etapa; Architecture Gate permanece obrigatório depois dela e antes de implementação. Implementation e Quality permanecem bloqueadas até os handoffs e aprovações aplicáveis.
+**Latest published handoff:** Engineering Manager → Product Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / pendente da publicação deste parecer aprovado.
+**Blockers:** Nenhum para o handoff Product Owner → Technical Writer. O período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
+**Last updated:** 2026-07-17 — Engineering Manager — Functional Review aprovada; handoff de backlog autorizado ao Product Owner.
 
 ## Flow
 
@@ -24,7 +24,7 @@
 | Sprint Bootstrap | PMO | DONE | Story #46, milestone `Sprint 5 — Security`, label `sprint:5` e Project Board materializados. |
 | Initial STATUS and Story materialization | PMO | DONE | Este `STATUS.md` e [Issue #46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46). |
 | Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`. |
-| Functional review | Engineering Manager | DOING | Nova revisão autorizada após a correção final do Product Owner no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `183deef94c309f1a5e9684c72bc0219f5bb65e1d`; Issue #46 verificada idêntica ao plano. |
+| Functional review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 validados como equivalentes. |
 | Architecture Gate | Technical Lead | TODO / N/A | N/A |
 | Architecture approval | Engineering Manager | TODO / N/A | N/A |
 | Implementation | Software Engineer | TODO | N/A |
