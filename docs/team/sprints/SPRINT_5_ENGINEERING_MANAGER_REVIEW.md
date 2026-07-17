@@ -49,6 +49,24 @@ divergência de backlog não for corrigida e publicada pelo Product Owner.
 2. Atualizar o estado de backlog para refletir o refinamento concluído, conforme a convenção institucional aplicável.
 3. Publicar no plano o novo commit de referência e uma evidência verificável da Issue sincronizada; não alterar este parecer de Engineering Manager.
 
+## Verificação da correção — 2026-07-17
+
+**Resultado:** `CHANGES REQUIRED` mantido.
+
+A nova consulta à Issue #46 confirmou que o rótulo foi atualizado para
+`status:review`, com `type:story`, `sprint:5`, milestone e card preservados.
+Entretanto, o corpo da Issue ainda é a versão anterior: não contém a seção
+"Correção de rastreabilidade do backlog", mantém o status antigo do plano e
+registra `7f90aad` como referência versionada. Portanto, a afirmação de que a
+Issue contém integralmente o plano vigente não é verificável e a divergência
+que bloqueou este parecer persiste.
+
+O Product Owner deve substituir o corpo da Issue pelo conteúdo vigente do
+[Sprint 5 Product Plan](SPRINT_5_PRODUCT_PLAN.md), incluindo a seção 10 e o
+handoff com a referência `1122eea74d59cb9ee3611cd3156647fc65e497bd`, e então
+publicar nova evidência para Functional Review. A atualização isolada do rótulo
+não satisfaz o handoff requerido.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
@@ -86,11 +104,13 @@ obrigatório.
 
 ### Pending items
 
-- Product Owner: corrigir e publicar a sincronização da Issue #46 e sua evidência no plano de produto.
+- Product Owner: substituir o corpo desatualizado da Issue #46 pelo plano
+  vigente e publicar nova evidência de sincronização.
 
 ### Next authorized action
 
 - Next role: Product Owner
-- Required action: executar somente o refinamento de rastreabilidade acima e republicar o handoff para nova Functional Review.
-- Acceptance / stop criteria: parar e escalar se a Issue #46 não puder representar integralmente o plano aprovado; não iniciar Documentation Baseline, Architecture Gate ou implementação antes de um novo parecer `APPROVED`.
-- Operational command: iniciar exclusivamente a correção de sincronização do backlog da Story #46.
+- Required action: executar somente a correção do corpo da Issue #46 e
+  republicar o handoff para nova Functional Review.
+- Acceptance / stop criteria: parar e escalar se a Issue #46 não puder representar integralmente o plano vigente; não iniciar Documentation Baseline, Architecture Gate ou implementação antes de um novo parecer `APPROVED`.
+- Operational command: iniciar exclusivamente a correção do corpo da Issue #46.

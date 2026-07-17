@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Functional review
-**Previous step:** Product Owner corrigiu a sincronização da Issue #46 conforme a [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), publicado em `main` / `1122eea74d59cb9ee3611cd3156647fc65e497bd`.
-**Next step:** Engineering Manager valida a correção de rastreabilidade e conclui nova Functional Review.
-**Role responsible:** Engineering Manager
+**Current step:** Product Owner backlog synchronization correction
+**Previous step:** Nova Functional Review confirmou que a Issue #46 ainda contém o corpo anterior, embora seu rótulo tenha sido atualizado para `status:review`.
+**Next step:** Product Owner substitui o corpo da Issue #46 pelo plano vigente e republica o handoff para nova Functional Review.
+**Role responsible:** Product Owner
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
-**Current gate:** Nova Functional Review obrigatória após a correção de rastreabilidade. Documentation Baseline, Architecture Gate, implementação e Quality permanecem bloqueados até parecer `APPROVED`; o Architecture Gate já foi determinado como obrigatório para a etapa posterior.
-**Latest published handoff:** Product Owner → Engineering Manager — correção de rastreabilidade no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `1122eea74d59cb9ee3611cd3156647fc65e497bd`.
-**Blockers:** Nenhum para nova Functional Review. A Issue #46 está sincronizada e com `status:review`; o período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
-**Last updated:** 2026-07-17 — Product Owner — correção de rastreabilidade publicada para nova Functional Review.
+**Current gate:** Functional Review permanece `CHANGES REQUIRED`. Documentation Baseline, Architecture Gate, implementação e Quality permanecem bloqueados até a Issue #46 refletir integralmente o plano vigente e receber parecer `APPROVED`; o Architecture Gate já foi determinado como obrigatório para a etapa posterior.
+**Latest published handoff:** Engineering Manager → Product Owner — verificação da correção em [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / pendente da publicação desta atualização.
+**Blockers:** O corpo da Issue #46 ainda é a versão anterior: não contém a seção de correção, mantém o status anterior do plano e referencia `7f90aad`; somente o rótulo foi atualizado para `status:review`.
+**Last updated:** 2026-07-17 — Engineering Manager — nova Functional Review confirmou correção parcial; devolvido ao Product Owner.
 
 ## Flow
 
@@ -24,7 +24,7 @@
 | Sprint Bootstrap | PMO | DONE | Story #46, milestone `Sprint 5 — Security`, label `sprint:5` e Project Board materializados. |
 | Initial STATUS and Story materialization | PMO | DONE | Este `STATUS.md` e [Issue #46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46). |
 | Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`. |
-| Functional review | Engineering Manager | DOING | Nova revisão autorizada após a correção do Product Owner no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `1122eea74d59cb9ee3611cd3156647fc65e497bd`. |
+| Functional review | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); a Issue #46 ainda diverge do plano vigente. |
 | Architecture Gate | Technical Lead | TODO / N/A | N/A |
 | Architecture approval | Engineering Manager | TODO / N/A | N/A |
 | Implementation | Software Engineer | TODO | N/A |
