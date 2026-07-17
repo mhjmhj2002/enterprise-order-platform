@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Quality Planning
-**Previous step:** Software Engineer implementou a baseline autorizada e publicou a branch oficial; o handoff técnico está no PR da Story.
-**Next step:** Quality Engineer elabora o Test Plan a partir do handoff publicado; a execução ainda requer autorização do Engineering Manager.
-**Role responsible:** Quality Engineer
+**Current step:** Quality Authorization
+**Previous step:** Quality Engineer concluiu e publicou o Test Plan a partir do handoff técnico publicado; nenhuma execução foi realizada.
+**Next step:** Engineering Manager revisa o Test Plan e decide a autorização explícita para execução de Quality.
+**Role responsible:** Engineering Manager
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Architecture Approval `APPROVED WITH CONDITIONS`; implementação entregue para planejamento de Quality. A execução de Quality permanece sujeita à autorização do Engineering Manager.
-**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline` / `a7dc0d5ea3e3ac7d2f5b198595a6ad4e805d735b`.
-**Blockers:** Nenhum para o planejamento de Quality. TLS remoto, gateway, IdP, tokens, rotação, usuários, roles, auditoria, autorização granular, exceções adicionais e alteração de contratos continuam bloqueados por escopo.
-**Last updated:** 2026-07-17 — Software Engineer — implementação concluída e handoff técnico preparado para Quality Planning.
+**Latest published handoff:** Quality Engineer → Engineering Manager — `docs/quality/story-046/TEST_PLAN.md`, branch `feature/story-046-security-baseline` / `2ab78a5245a944d7053145419e98b188773a5363`; execução ainda não autorizada.
+**Blockers:** A execução de Quality aguarda autorização explícita do Engineering Manager. TLS remoto, gateway, IdP, tokens, rotação, usuários, roles, auditoria, autorização granular, exceções adicionais e alteração de contratos continuam bloqueados por escopo.
+**Last updated:** 2026-07-17 — Quality Engineer — Test Plan concluído; aguardando autorização para execução.
 
 ## Flow
 
@@ -29,7 +29,8 @@
 | Architecture approval | Engineering Manager | DONE — APPROVED WITH CONDITIONS | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); implementação autorizada sob condições verificáveis. |
 | ADR documentation | Technical Writer | DONE | [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md), `main` / `3d4a4d730e4e3ef564b780976063a2caa748b9c7`. |
 | Implementation | Software Engineer | DONE | [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline` / `a7dc0d5`. |
-| Quality | Quality Engineer | TODO — PLANNING | Aguarda handoff técnico publicado no PR; execução depende de autorização do Engineering Manager. |
+| Quality Planning | Quality Engineer | DONE | [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md), branch `feature/story-046-security-baseline` / `2ab78a5`. |
+| Quality Authorization | Engineering Manager | TODO | Revisar o Test Plan e autorizar explicitamente (ou rejeitar) a execução de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Final review | Engineering Manager | TODO | N/A |
 | Administrative closure | Repository Owner | TODO | N/A |
