@@ -10,7 +10,7 @@
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Functional Review permanece `CHANGES REQUIRED`. Documentation Baseline, Architecture Gate, implementação e Quality permanecem bloqueados até a Issue #46 refletir integralmente o plano vigente e receber parecer `APPROVED`; o Architecture Gate já foi determinado como obrigatório para a etapa posterior.
-**Latest published handoff:** Engineering Manager → Product Owner — verificação da correção em [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / pendente da publicação desta atualização.
+**Latest published handoff:** Engineering Manager → Product Owner — verificação da correção em [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / `513220c31ea2749b85f389942b2629474104bb31`.
 **Blockers:** O corpo da Issue #46 ainda é a versão anterior: não contém a seção de correção, mantém o status anterior do plano e referencia `7f90aad`; somente o rótulo foi atualizado para `status:review`.
 **Last updated:** 2026-07-17 — Engineering Manager — nova Functional Review confirmou correção parcial; devolvido ao Product Owner.
 

@@ -67,6 +67,9 @@ handoff com a referência `1122eea74d59cb9ee3611cd3156647fc65e497bd`, e então
 publicar nova evidência para Functional Review. A atualização isolada do rótulo
 não satisfaz o handoff requerido.
 
+**Referência publicada desta verificação:** `main` /
+`513220c31ea2749b85f389942b2629474104bb31`.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
