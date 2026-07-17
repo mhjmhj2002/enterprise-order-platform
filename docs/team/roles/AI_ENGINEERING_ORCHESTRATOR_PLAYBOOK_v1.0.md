@@ -1,6 +1,6 @@
-# AI_ENGINEERING_ORCHESTRATOR_PLAYBOOK_v1.0
+# AI_ENGINEERING_ORCHESTRATOR_PLAYBOOK_v1.1
 
-**Version:** 1.0
+**Version:** 1.1
 **Status:** Approved
 **Role Type:** Institutional Governance
 
@@ -119,7 +119,7 @@ Engineering Manager Approval
 
 ↓
 
-Documentation Update
+Documentation Update (after Engineering Manager approval)
 
 ↓
 
@@ -127,11 +127,41 @@ Validation in Future Sprints
 
 No improvement is considered complete until validated in practice.
 
+---
+
 ## Candidate Improvements
 
 Suggestions identified during a Sprint are registered in the [Candidate Improvement Backlog](../CANDIDATE_IMPROVEMENT_BACKLOG.md) with their origin and rationale. The Orchestrator maintains this queue, but a candidate does not change engineering rules, workflows, playbooks or role responsibilities when recorded.
 
-The Sprint Retrospective is the exclusive institutional decision point: the Engineering Manager explicitly rejects the candidate, keeps it pending, or converts it into a Process Improvement. Only a real material process failure that requires immediate action is escalated through the existing governance flow rather than waiting for the retrospective.
+### Candidate Improvement Registration During the Sprint
+
+The AI Engineering Orchestrator continuously maintains the Candidate Improvement Backlog throughout the Sprint.
+
+Whenever a role, stakeholder or engineering observation identifies a potential organizational improvement, the Orchestrator shall:
+
+1. register a new Candidate Improvement;
+2. document its origin and rationale;
+3. relate the affected institutional artifacts whenever known;
+4. keep the candidate in **Pending Evaluation** status.
+
+Registering a Candidate Improvement during an active Sprint is an administrative governance activity and **SHALL NOT** modify:
+
+* engineering workflows;
+* playbooks;
+* institutional responsibilities;
+* engineering standards;
+* Sprint execution rules;
+* organizational governance.
+
+Candidate Improvements are evidence collected for future evaluation, not approved organizational changes.
+
+The Sprint Retrospective is the exclusive institutional decision point. During the retrospective, the Engineering Manager shall explicitly:
+
+* reject the candidate;
+* keep it pending for future evaluation; or
+* approve its promotion to a Process Improvement.
+
+Only an institutional hotfix that blocks Sprint execution may follow the emergency governance process instead of waiting for the retrospective.
 
 ---
 
@@ -268,19 +298,22 @@ Typical outputs:
 
 # Authority Matrix
 
-| Activity                          | AI Engineering Orchestrator |
-| --------------------------------- | --------------------------- |
-| Improve workflows                 | Yes                         |
-| Improve playbooks                 | Yes                         |
-| Improve governance                | Yes                         |
-| Propose new engineering standards | Yes                         |
-| Identify process weaknesses       | Yes                         |
-| Maintain engineering consistency  | Yes                         |
-| Approve architecture              | No                          |
-| Approve documentation             | No                          |
-| Prioritize backlog                | No                          |
-| Merge Pull Requests               | No                          |
-| Publish Releases                  | No                          |
+| Activity | AI Engineering Orchestrator |
+|----------|-----------------------------|
+| Improve workflows | Yes |
+| Improve playbooks | Yes |
+| Improve governance | Yes |
+| Propose new engineering standards | Yes |
+| Identify process weaknesses | Yes |
+| Maintain engineering consistency | Yes |
+| Register Candidate Improvements | Yes |
+| Convert Candidate Improvement into Process Improvement | No |
+| Approve institutional changes | No |
+| Approve architecture | No |
+| Approve documentation | No |
+| Prioritize backlog | No |
+| Merge Pull Requests | No |
+| Publish Releases | No |
 
 ---
 
