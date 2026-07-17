@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Quality Execution
-**Previous step:** Engineering Manager revisou e autorizou a execução do [Test Plan da Story #46](../../../quality/story-046/TEST_PLAN.md).
-**Next step:** Quality Engineer executa o plano autorizado e publica Test Report, defeitos (se houver), limitações e recomendação ao Engineering Manager.
-**Role responsible:** Quality Engineer
+**Current step:** Quality Rejection Review
+**Previous step:** Quality Engineer executou o plano autorizado e publicou Validation Rejected por regressão automatizada falha e evidências obrigatórias bloqueadas.
+**Next step:** Engineering Manager avalia os bloqueios/falhas, decide rastreabilidade formal e encaminha correção ou remediação de ambiente.
+**Role responsible:** Engineering Manager
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Quality Execution `APPROVED` pelo Engineering Manager. A execução limita-se ao Test Plan publicado e à branch oficial; Quality não autoriza release, merge ou expansão de escopo.
-**Latest published handoff:** Engineering Manager → Quality Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `72acd7cef1a6816845d8bad58b6175c7b584a3ca`.
-**Blockers:** Nenhum para execução de Quality. TLS remoto, gateway, IdP, tokens, rotação, usuários, roles, auditoria, autorização granular, exceções adicionais e alteração de contratos continuam bloqueados por escopo.
-**Last updated:** 2026-07-17 — Engineering Manager — execução de Quality autorizada.
+**Current gate:** Quality `REJECTED`. Quality não recomenda merge, release ou avanço documental enquanto a regressão e as evidências obrigatórias não forem resolvidas e reexecutadas.
+**Latest published handoff:** Quality Engineer → Engineering Manager — [Story #46 Test Report](../../../quality/story-046/TEST_REPORT.md), branch `feature/story-046-security-baseline` / commit pendente de publicação.
+**Blockers:** `mvn test` do Inventory falha na descoberta de teste Kafka sem o classpath Kafka; as integrações Catalog são bloqueadas pela incompatibilidade Testcontainers 1.20.1/Docker API 1.54. As evidências HTTP, de integração e Kafka end-to-end permanecem pendentes. Itens fora de escopo permanecem bloqueados por escopo.
+**Last updated:** 2026-07-17 — Quality Engineer — Validation Rejected publicada para revisão do Engineering Manager.
 
 ## Flow
 
@@ -31,7 +31,8 @@
 | Implementation | Software Engineer | DONE | [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline` / `a7dc0d5`. |
 | Quality Planning | Quality Engineer | DONE | [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md), branch `feature/story-046-security-baseline` / `2ab78a5`. |
 | Quality Authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); execução do Test Plan autorizada. |
-| Quality Execution | Quality Engineer | DOING | Executar o Test Plan autorizado e publicar Test Report com recomendação. |
+| Quality Execution | Quality Engineer | DONE — REJECTED | [Story #46 Test Report](../../../quality/story-046/TEST_REPORT.md); regressão falha e cenários obrigatórios bloqueados. |
+| Quality Rejection Review | Engineering Manager | TODO | Avaliar a rejeição, decidir tracking formal e encaminhar correção/remediação antes de novo Quality Gate. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Final review | Engineering Manager | TODO | N/A |
 | Administrative closure | Repository Owner | TODO | N/A |
