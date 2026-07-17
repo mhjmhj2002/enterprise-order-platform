@@ -4,15 +4,15 @@
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
 **Current step:** Functional review
-**Previous step:** Product refinement concluído no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), sujeito à publicação do handoff Product Owner → Engineering Manager.
+**Previous step:** Product refinement concluído no [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), publicado em `main` / `7f90aad11a02955e239658779a4b274c44c6990e`.
 **Next step:** Engineering Manager revisa valor, escopo, DoR, capacidade e decisões pendentes da Story #46.
 **Role responsible:** Engineering Manager
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Product refinement concluído; Functional Review do Engineering Manager é obrigatório. Architecture Gate, implementação e Quality permanecem bloqueados até os handoffs e aprovações aplicáveis.
-**Latest published handoff:** Product Owner → Engineering Manager — publicação pendente deste refinamento na `main`.
+**Latest published handoff:** Product Owner → Engineering Manager — [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`.
 **Blockers:** Nenhum para Functional Review. O período da Sprint não foi especificado pelo Sponsor; não altera esta autorização.
-**Last updated:** 2026-07-17 — Product Owner — refinamento funcional da Story #46 concluído; publicação pendente.
+**Last updated:** 2026-07-17 — Product Owner — refinamento funcional da Story #46 publicado para Functional Review.
 
 ## Flow
 
@@ -23,8 +23,8 @@
 | Sprint initiation | Sponsor / Program Direction | DONE | `main` / `50dfbc714a3f5e7ebc42c5fcbf315171690d4625` — Sprint Initiation Request aprovada. |
 | Sprint Bootstrap | PMO | DONE | Story #46, milestone `Sprint 5 — Security`, label `sprint:5` e Project Board materializados. |
 | Initial STATUS and Story materialization | PMO | DONE | Este `STATUS.md` e [Issue #46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46). |
-| Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md) — Product Owner → Engineering Manager; publicação pendente. |
-| Functional review | Engineering Manager | DOING | Product Owner → Engineering Manager no Sprint 5 Product Plan; aguardando publicação. |
+| Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`. |
+| Functional review | Engineering Manager | DOING | Product Owner → Engineering Manager no Sprint 5 Product Plan. |
 | Architecture Gate | Technical Lead | TODO / N/A | N/A |
 | Architecture approval | Engineering Manager | TODO / N/A | N/A |
 | Implementation | Software Engineer | TODO | N/A |
