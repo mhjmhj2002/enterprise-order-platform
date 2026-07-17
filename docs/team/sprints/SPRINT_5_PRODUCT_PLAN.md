@@ -1,6 +1,6 @@
 # Sprint 5 — Product Plan: Baseline Inicial de Segurança
 
-**Status:** PROPOSED — reenviado para nova Functional Review do Engineering Manager
+**Status:** APPROVED — Functional Review concluída; backlog materializado para Documentation Baseline
 
 **Responsável pela proposta:** Product Owner
 
@@ -270,3 +270,73 @@ evidências de sucesso da Story #46 foram definidos para Functional Review.
   uma regra de negócio adicional, uma exceção funcional ou uma decisão de
   produto estiver pendente.
 - Operational command: iniciar exclusivamente o Functional Review da Story #46.
+
+## Institutional Handoff — Product Owner → Technical Writer
+
+### Executive summary
+
+A Story #46 possui plano funcional aprovado e backlog oficial materializado. O
+Technical Writer deve estabelecer a baseline documental necessária para que o
+Architecture Gate obrigatório examine decisões técnicas sem reabrir ou ampliar
+o escopo de produto.
+
+### Objective completed
+
+O Product Owner entregou ao Technical Writer o backlog aprovado para
+documentação: problema, valor, objetivo, prioridade, critérios funcionais,
+regras de negócio, dependências, riscos, limites e evidências de sucesso.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_PRODUCT_PLAN.md`
+- GitHub Issue [#46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46),
+  materializada com o conteúdo deste plano e `status:review`.
+- [Sprint 5 Engineering Manager Review](SPRINT_5_ENGINEERING_MANAGER_REVIEW.md)
+  — parecer `APPROVED`.
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `main`
+- Commit: pendente da publicação deste handoff pelo Product Owner
+- Full hash: pendente da publicação deste handoff pelo Product Owner
+
+### Evidence and constraints
+
+- A Functional Review foi aprovada em `main` /
+  `0b03f25c385771c6a5e33b1db65a419dcff19865`.
+- A Issue #46 e este plano foram validados pelo Engineering Manager como
+  equivalentes; a fonte oficial de backlog mantém `type:story`, `status:review`,
+  `sprint:5`, milestone `Sprint 5 — Security` e card `Todo`.
+- O incremento limita-se à exigência de autenticação para acesso a operações e
+  informações de negócio, com preservação dos comportamentos existentes para
+  consumidor autenticado.
+- Papéis, autorização granular, gestão de identidade, auditoria de acesso,
+  API Gateway e escolhas de arquitetura ou tecnologia não integram o escopo.
+- O Architecture Gate é obrigatório após a Documentation Baseline e antes de
+  qualquer implementação; este handoff não o inicia nem autoriza implementação.
+
+### Risks
+
+- Documentação que apresente mecanismo técnico como requisito de produto pode
+  ampliar indevidamente a Story.
+- Uma lacuna documental sobre fronteiras, superfícies expostas ou contratos deve
+  ser encaminhada como ponto de decisão para o Architecture Gate, sem modificar
+  os critérios funcionais aprovados.
+
+### Pending items
+
+- Technical Writer: produzir a Documentation Baseline, sincronizar referências
+  institucionais aplicáveis e identificar lacunas para o Architecture Gate.
+
+### Next authorized action
+
+- Next role: Technical Writer
+- Required action: executar exclusivamente a Documentation Baseline da Story
+  #46 a partir deste plano, da Issue materializada e do parecer `APPROVED`.
+- Acceptance / stop criteria: interromper e devolver ao Product Owner se
+  houver divergência de escopo funcional; encaminhar ao Architecture Gate toda
+  decisão técnica, contratual ou de infraestrutura necessária. Não autorizar
+  implementação.
+- Operational command: iniciar exclusivamente a Documentation Baseline da
+  Story #46.
