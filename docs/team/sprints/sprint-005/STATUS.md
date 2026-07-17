@@ -10,7 +10,7 @@
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** ADR obrigatório publicado. Nova Architecture Approval é obrigatória antes de branch, implementação ou Quality.
-**Latest published handoff:** Technical Writer → Engineering Manager — [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md) e [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `PENDING_COMMIT`; decisão, limites e compatibilidade documentados para revisão.
+**Latest published handoff:** Technical Writer → Engineering Manager — [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md) e [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `3d4a4d730e4e3ef564b780976063a2caa748b9c7`; decisão, limites e compatibilidade documentados para revisão.
 **Blockers:** Nenhum para nova Architecture Approval. Branch, implementação e Quality aguardam parecer `APPROVED` do Engineering Manager.
 **Last updated:** 2026-07-17 — Technical Writer — ADR-008 publicado para nova Architecture Approval.
 
@@ -27,7 +27,7 @@
 | Functional review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 validados como equivalentes. |
 | Architecture Gate | Technical Lead | DONE — RECOMMENDED | [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `09af854336f86e2d3ffdf07411cb744a62368132`. |
 | Architecture approval | Engineering Manager | DOING | ADR-008 publicado; nova revisão obrigatória antes de implementação. |
-| ADR documentation | Technical Writer | DONE | [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md), `main` / `PENDING_COMMIT`. |
+| ADR documentation | Technical Writer | DONE | [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md), `main` / `3d4a4d730e4e3ef564b780976063a2caa748b9c7`. |
 | Implementation | Software Engineer | TODO | N/A |
 | Quality | Quality Engineer | TODO | N/A |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
