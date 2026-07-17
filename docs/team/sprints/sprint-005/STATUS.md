@@ -10,7 +10,7 @@
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Architecture Approval `APPROVED WITH CONDITIONS`. Branch e implementação estão autorizadas somente conforme o [Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md) e o parecer do Engineering Manager; Quality aguarda handoff de implementação.
-**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / pendente da publicação desta aprovação.
+**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / `4c56a04a26dac4bf36e3fb8c70e6323a25246cd0`.
 **Blockers:** Nenhum para implementação autorizada. TLS remoto, gateway, IdP, tokens, rotação, usuários, roles, auditoria, autorização granular, exceções adicionais e alteração de contratos continuam bloqueados por escopo.
 **Last updated:** 2026-07-17 — Engineering Manager — Architecture Approval aprovada com condições; implementação autorizada.
 

@@ -231,7 +231,8 @@ o contrato aprovado sob as condições verificáveis deste parecer.
 ### Versioned reference
 
 - Branch: `main`
-- Commit: pendente da publicação desta aprovação.
+- Commit: `4c56a04`
+- Full hash: `4c56a04a26dac4bf36e3fb8c70e6323a25246cd0`
 
 ### Evidence and constraints
 
