@@ -148,7 +148,8 @@ obrigatório como condição pendente para aprovação de implementação.
 ### Versioned reference
 
 - Branch: `main`
-- Commit: pendente da publicação desta revisão.
+- Commit: `29f0f18`
+- Full hash: `29f0f18cda558e9e2a170433cc04fd8e7c5d5546`
 
 ### Evidence and constraints
 

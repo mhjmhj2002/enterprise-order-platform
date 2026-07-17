@@ -10,7 +10,7 @@
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Architecture Approval `CHANGES REQUIRED`. O contrato técnico precisa indicar e encaminhar o ADR obrigatório para a decisão compartilhada de segurança; não há autorização para branch, implementação ou Quality.
-**Latest published handoff:** Engineering Manager → Technical Lead — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / pendente da publicação desta revisão.
+**Latest published handoff:** Engineering Manager → Technical Lead — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / `29f0f18cda558e9e2a170433cc04fd8e7c5d5546`.
 **Blockers:** O [Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md) não indica nem referencia ADR para a fronteira de segurança e configuração compartilhadas entre Catalog, Inventory e Order.
 **Last updated:** 2026-07-17 — Engineering Manager — Architecture Approval concluída com `CHANGES REQUIRED`; rastreabilidade arquitetural devolvida ao Technical Lead.
 
