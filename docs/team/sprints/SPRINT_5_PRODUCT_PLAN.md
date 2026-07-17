@@ -243,6 +243,9 @@ evidências de sucesso da Story #46 foram definidos para Functional Review.
 - A evidência de backlog foi verificada em 2026-07-17: conteúdo integral do
   plano, `status:review`, `type:story`, `sprint:5`, milestone Sprint 5 e card
   `Todo`.
+- Após a publicação da correção, o Product Owner fará a leitura final da Issue
+  #46 contra este arquivo e a registrará como evidência do reenvio; nenhum
+  novo conteúdo de produto será acrescentado depois dessa verificação.
 - Não há período de Sprint autorizado pelo Sponsor; ele não deve ser presumido.
 
 ### Risks
