@@ -10,7 +10,7 @@
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Documentation Baseline concluída. Architecture Gate é obrigatório e deve registrar as decisões de mecanismo, fronteiras de superfície, compatibilidade e evidência antes de implementação; Implementation e Quality permanecem bloqueadas.
-**Latest published handoff:** Technical Writer → Architecture Gate — [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `PENDING_COMMIT`; referências de produto, arquitetura, limites e contratos sincronizadas; lacunas técnicas encaminhadas.
+**Latest published handoff:** Technical Writer → Architecture Gate — [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`; referências de produto, arquitetura, limites e contratos sincronizadas; lacunas técnicas encaminhadas.
 **Blockers:** Nenhum para Architecture Gate. O período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
 **Last updated:** 2026-07-17 — Technical Writer — Documentation Baseline concluída; Architecture Gate autorizado.
 
@@ -25,11 +25,11 @@
 | Initial STATUS and Story materialization | PMO | DONE | Este `STATUS.md` e [Issue #46](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46). |
 | Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`. |
 | Functional review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 validados como equivalentes. |
-| Architecture Gate | Technical Lead | DOING | Technical Writer → Architecture Gate — [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `PENDING_COMMIT`. |
+| Architecture Gate | Technical Lead | DOING | Technical Writer → Architecture Gate — [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Architecture approval | Engineering Manager | TODO / N/A | N/A |
 | Implementation | Software Engineer | TODO | N/A |
 | Quality | Quality Engineer | TODO | N/A |
-| Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `PENDING_COMMIT`. |
+| Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Final review | Engineering Manager | TODO | N/A |
 | Administrative closure | Repository Owner | TODO | N/A |
 | Engineering Audit | AEO | TODO | N/A |

@@ -150,4 +150,6 @@ lacunas técnicas registradas sem ampliar o escopo funcional aprovado.
 
 ### Versioned reference
 
-Será preenchida com branch e commit após a publicação desta baseline.
+- Branch: `main`
+- Commit: `de2dd0b`
+- Full hash: `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`
