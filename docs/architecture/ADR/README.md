@@ -9,3 +9,4 @@ Diretório oficial de Architecture Decision Records (ADRs) do projeto.
 - [ADR-005 — Inventory aggregate root](ADR-005-inventory-aggregate-root.md)
 - [ADR-006 — Order aggregate root](ADR-006-order-aggregate-root.md)
 - [ADR-007 — Incremental Event-Driven Architecture](ADR-007-incremental-event-driven-architecture.md)
+- [ADR-008 — Baseline de autenticação HTTP Basic stateless](ADR-008-http-basic-authentication-baseline.md)

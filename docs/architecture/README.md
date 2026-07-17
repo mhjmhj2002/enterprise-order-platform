@@ -14,3 +14,4 @@ Documentacao de arquitetura do projeto, incluindo visao geral, limites de domini
 - [Story #44 — Architecture Gate: Visibilidade Operacional de `OrderConfirmed` v1](contracts/STORY_044_ARCHITECTURE_GATE.md)
 - [Story #46 — Documentation Baseline: Segurança Inicial](contracts/STORY_046_DOCUMENTATION_BASELINE.md)
 - [ADRs](ADR)
+- [ADR-008 — Baseline de autenticação HTTP Basic stateless](ADR/ADR-008-http-basic-authentication-baseline.md)
