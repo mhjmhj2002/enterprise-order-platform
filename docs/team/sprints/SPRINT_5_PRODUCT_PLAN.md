@@ -231,8 +231,8 @@ evidências de sucesso da Story #46 foram definidos para Functional Review.
 ### Versioned reference
 
 - Branch: `main`
-- Commit: `1122eea`
-- Full hash: `1122eea74d59cb9ee3611cd3156647fc65e497bd`
+- Commit: `183deef`
+- Full hash: `183deef94c309f1a5e9684c72bc0219f5bb65e1d`
 
 ### Evidence and constraints
 
