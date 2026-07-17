@@ -10,7 +10,7 @@
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
 **Current gate:** Functional Review `APPROVED`. Documentation Baseline é a próxima etapa; Architecture Gate permanece obrigatório depois dela e antes de implementação. Implementation e Quality permanecem bloqueadas até os handoffs e aprovações aplicáveis.
-**Latest published handoff:** Engineering Manager → Product Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / pendente da publicação deste parecer aprovado.
+**Latest published handoff:** Engineering Manager → Product Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / `0b03f25c385771c6a5e33b1db65a419dcff19865`.
 **Blockers:** Nenhum para o handoff Product Owner → Technical Writer. O período da Sprint não foi especificado pelo Sponsor e não altera esta autorização.
 **Last updated:** 2026-07-17 — Engineering Manager — Functional Review aprovada; handoff de backlog autorizado ao Product Owner.
 

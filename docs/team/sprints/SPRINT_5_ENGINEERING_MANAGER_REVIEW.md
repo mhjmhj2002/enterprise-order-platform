@@ -74,6 +74,9 @@ não satisfaz o handoff requerido.
 
 **Resultado:** `APPROVED`.
 
+**Referência publicada desta aprovação:** `main` /
+`0b03f25c385771c6a5e33b1db65a419dcff19865`.
+
 O Product Owner corrigiu a divergência remanescente. A comparação direta entre
 o [Sprint 5 Product Plan](SPRINT_5_PRODUCT_PLAN.md) publicado e o corpo remoto
 da Issue #46 confirmou conteúdo equivalente; a única diferença é uma linha em
