@@ -303,7 +303,8 @@ reproduzível dos resultados.
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Commit: pendente da publicação desta autorização.
+- Commit: `72acd7c`
+- Full hash: `72acd7cef1a6816845d8bad58b6175c7b584a3ca`
 
 ### Evidence and constraints
 
