@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Architecture Approval
-**Previous step:** Technical Writer publicou o ADR-008 da baseline de autenticação e devolveu a decisão documental completa.
-**Next step:** Engineering Manager executa nova Architecture Approval sobre o ADR-008 e o Architecture Gate antes de qualquer implementação.
-**Role responsible:** Engineering Manager
+**Current step:** Implementation
+**Previous step:** Engineering Manager aprovou o Architecture Gate e o ADR-008 com condições verificáveis para a Story #46.
+**Next step:** Software Engineer cria a branch oficial e implementa exclusivamente a baseline de autenticação aprovada, publicando handoff técnico para Quality.
+**Role responsible:** Software Engineer
 **Current branch:** `main` (base: `main`)
 **Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
-**Current gate:** ADR obrigatório publicado. Nova Architecture Approval é obrigatória antes de branch, implementação ou Quality.
-**Latest published handoff:** Technical Writer → Engineering Manager — [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md) e [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `3d4a4d730e4e3ef564b780976063a2caa748b9c7`; decisão, limites e compatibilidade documentados para revisão.
-**Blockers:** Nenhum para nova Architecture Approval. Branch, implementação e Quality aguardam parecer `APPROVED` do Engineering Manager.
-**Last updated:** 2026-07-17 — Technical Writer — ADR-008 publicado para nova Architecture Approval.
+**Current gate:** Architecture Approval `APPROVED WITH CONDITIONS`. Branch e implementação estão autorizadas somente conforme o [Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md) e o parecer do Engineering Manager; Quality aguarda handoff de implementação.
+**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / pendente da publicação desta aprovação.
+**Blockers:** Nenhum para implementação autorizada. TLS remoto, gateway, IdP, tokens, rotação, usuários, roles, auditoria, autorização granular, exceções adicionais e alteração de contratos continuam bloqueados por escopo.
+**Last updated:** 2026-07-17 — Engineering Manager — Architecture Approval aprovada com condições; implementação autorizada.
 
 ## Flow
 
@@ -26,7 +26,7 @@
 | Product refinement | Product Owner | DONE | [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md), `main` / `7f90aad11a02955e239658779a4b274c44c6990e`. |
 | Functional review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); plano e Issue #46 validados como equivalentes. |
 | Architecture Gate | Technical Lead | DONE — RECOMMENDED | [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `09af854336f86e2d3ffdf07411cb744a62368132`. |
-| Architecture approval | Engineering Manager | DOING | ADR-008 publicado; nova revisão obrigatória antes de implementação. |
+| Architecture approval | Engineering Manager | DONE — APPROVED WITH CONDITIONS | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); implementação autorizada sob condições verificáveis. |
 | ADR documentation | Technical Writer | DONE | [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md), `main` / `3d4a4d730e4e3ef564b780976063a2caa748b9c7`. |
 | Implementation | Software Engineer | TODO | N/A |
 | Quality | Quality Engineer | TODO | N/A |

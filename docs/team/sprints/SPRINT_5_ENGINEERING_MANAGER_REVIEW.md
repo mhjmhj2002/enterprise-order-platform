@@ -178,6 +178,88 @@ obrigatório como condição pendente para aprovação de implementação.
 - Operational command: iniciar exclusivamente a complementação de
   rastreabilidade arquitetural da Story #46.
 
+## Decisão final de Architecture Approval — Story #46
+
+**Parecer:** `APPROVED WITH CONDITIONS`.
+
+O [ADR-008](../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md)
+completa a rastreabilidade da decisão compartilhada e é consistente com o
+[Architecture Gate](../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md).
+Ficam aprovadas exclusivamente a autenticação HTTP Basic stateless, a
+credencial técnica por ambiente, a proteção uniforme de `/api/v1/**`, as
+exceções técnicas documentadas e a autenticação explícita na integração Order
+→ Inventory.
+
+### Condições obrigatórias para implementação e Quality
+
+1. Nenhuma credencial pode ser versionada, exibida em logs, respostas, exemplos
+   ou evidências; as propriedades obrigatórias devem falhar de forma segura
+   quando ausentes ou vazias.
+2. Catalog, Inventory e Order devem rejeitar com `401` genérico toda chamada
+   não autenticada ou inválida às rotas de negócio antes de controller e sem
+   efeito de negócio; health, OpenAPI e Swagger permanecem somente nas exceções
+   explicitamente aprovadas.
+3. O adaptador Order → Inventory deve usar a credencial configurada localmente,
+   sem propagar a credencial recebida do consumidor, e preservar
+   `X-Correlation-Id` e os contratos REST existentes para chamadas autenticadas.
+4. A evidência de implementação e Quality deve cobrir os seis itens da seção 7
+   do Architecture Gate, incluindo o fluxo autenticado de pedido confirmado e
+   `OrderConfirmed` v1.
+5. TLS remoto, gateway, IdP, tokens, rotação, usuários, roles, auditoria e
+   autorização granular permanecem fora do escopo. Qualquer necessidade dessas
+   capacidades interrompe a implementação e exige novo refinamento/gate.
+
+## Institutional Handoff — Engineering Manager → Software Engineer
+
+### Executive summary
+
+O Architecture Gate e o ADR-008 estão aprovados para a implementação limitada
+da baseline inicial de autenticação da Story #46.
+
+### Objective completed
+
+Foi concluída a Architecture Approval, com autorização técnica para implementar
+o contrato aprovado sob as condições verificáveis deste parecer.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/architecture/contracts/STORY_046_ARCHITECTURE_GATE.md`
+- `docs/architecture/ADR/ADR-008-http-basic-authentication-baseline.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `main`
+- Commit: pendente da publicação desta aprovação.
+
+### Evidence and constraints
+
+- Architecture Gate: `main` /
+  `09af854336f86e2d3ffdf07411cb744a62368132`.
+- ADR-008: `main` /
+  `3d4a4d730e4e3ef564b780976063a2caa748b9c7`.
+- A autorização limita-se a Catalog, Inventory e Order conforme o contrato;
+  não autoriza infraestrutura remota, nova superfície de negócio ou mudança de
+  contrato/evento.
+
+### Pending items
+
+- Software Engineer: implementar o contrato e publicar o handoff técnico para
+  Quality com evidência e ambiente testável.
+
+### Next authorized action
+
+- Next role: Software Engineer
+- Required action: criar a branch oficial da Story e implementar exclusivamente
+  o Architecture Gate e ADR-008, atendendo às condições desta aprovação.
+- Acceptance / stop criteria: parar e escalar qualquer necessidade de segredo
+  versionado, exceção adicional, alteração de contrato REST/Kafka, TLS remoto,
+  identidade, roles ou autorização granular; não iniciar Quality sem handoff de
+  implementação publicado.
+- Operational command: iniciar exclusivamente a implementação autorizada da
+  Story #46.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
