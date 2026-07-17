@@ -97,6 +97,86 @@ identificará as lacunas a serem tratadas no Architecture Gate. Esta aprovação
 não autoriza implementação, seleção de tecnologia, mudança de contrato de
 negócio nem expansão para autorização granular.
 
+## Architecture Approval — Story #46
+
+**Parecer:** `CHANGES REQUIRED`.
+
+O [Architecture Gate](../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md)
+propõe uma solução tecnicamente proporcional ao escopo aprovado: HTTP Basic
+stateless, uma credencial técnica por ambiente, proteção uniforme de
+`/api/v1/**`, exceções técnicas delimitadas e compatibilidade explícita da
+integração Order → Inventory. As condições de evidência também cobrem a recusa
+antes de efeitos de negócio, o fluxo autenticado de pedido confirmado e a não
+exposição de segredos.
+
+Entretanto, a decisão cria uma fronteira de segurança e uma configuração
+compartilhada entre Catalog, Inventory e Order. Pelo Engineering Workflow, o
+handoff do Architecture Gate para aprovação deve incluir os ADRs aplicáveis
+quando a decisão afeta arquitetura ou infraestrutura compartilhada. A
+Documentation Baseline também exige que o gate indique os ADRs necessários
+após a decisão. O contrato não contém essa indicação nem referencia um ADR
+publicado; por isso, a aprovação arquitetural não pode autorizar implementação.
+
+### Correção requerida
+
+O Technical Lead deve complementar o Architecture Gate com a indicação de ADR
+requerido e encaminhar o insumo técnico ao Technical Writer. O Technical Writer
+deve publicar o ADR da baseline de autenticação, registrando ao menos a decisão
+HTTP Basic stateless, as fronteiras protegidas e exceções, a configuração por
+ambiente, a compatibilidade Order → Inventory, os trade-offs e os limites de
+TLS/identidade. O gate revisado e o ADR devem retornar ao Engineering Manager
+para nova Architecture Approval. Nenhum código, branch de Story ou Quality é
+autorizado até esse parecer ser `APPROVED`.
+
+## Institutional Handoff — Engineering Manager → Technical Lead
+
+### Executive summary
+
+O contrato técnico da Story #46 é adequado em conteúdo, mas ainda não tem a
+rastreabilidade arquitetural exigida para uma decisão transversal de segurança.
+
+### Objective completed
+
+Foi concluída a revisão arquitetural do contrato e identificado o ADR
+obrigatório como condição pendente para aprovação de implementação.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `main`
+- Commit: pendente da publicação desta revisão.
+
+### Evidence and constraints
+
+- Architecture Gate: `main` /
+  `09af854336f86e2d3ffdf07411cb744a62368132`.
+- A decisão afeta os três serviços e sua integração REST, portanto requer ADR
+  conforme o Engineering Workflow.
+- A correção não pode alterar o escopo de produto, liberar exceções adicionais
+  nem autorizar implementação.
+
+### Pending items
+
+- Technical Lead: registrar no gate o ADR requerido e fornecer o insumo técnico
+  ao Technical Writer.
+- Technical Writer: publicar o ADR e devolver o gate completo ao Engineering
+  Manager para nova aprovação.
+
+### Next authorized action
+
+- Next role: Technical Lead
+- Required action: complementar exclusivamente o Architecture Gate com a
+  indicação do ADR obrigatório e seu encaminhamento técnico ao Technical Writer.
+- Acceptance / stop criteria: parar e escalar se o ADR exigir mudança de
+  escopo, TLS remoto, gestão de identidade, autorização granular ou nova
+  infraestrutura; não iniciar implementação ou Quality.
+- Operational command: iniciar exclusivamente a complementação de
+  rastreabilidade arquitetural da Story #46.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
