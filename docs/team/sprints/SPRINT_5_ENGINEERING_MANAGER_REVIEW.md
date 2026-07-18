@@ -551,6 +551,67 @@ implementação de integração na branch oficial da Story #46.
 - Operational command: iniciar exclusivamente a correção da integração da
   Story #46.
 
+## Quality Re-authorization — integração Order → Inventory
+
+**Decisão:** `APPROVED` para reteste final de Quality.
+
+O [Test Plan atualizado](../../quality/story-046/TEST_PLAN.md) incorpora a
+evidência publicada em `f10cc53320976bdfcc3c99b6cf2b2973815adb5b`: o adaptador
+Order envia a credencial Basic local configurada ao Inventory e a reserva
+autenticada foi reproduzida com `200`. A mudança não altera contratos,
+fronteiras de segurança, tratamento de credenciais ou critérios de aceite.
+
+O Quality Engineer está autorizado a reexecutar o plano completo, com atenção
+obrigatória a `ORD-046-003` e `E2E-046-001`, além dos cenários de regressão,
+HTTP e ausência de efeitos. A autorização não recomenda merge, release ou
+encerramento; qualquer falha, bloqueio ou evidência incompleta deve permanecer
+como resultado não aprovado.
+
+## Institutional Handoff — Engineering Manager → Quality Engineer
+
+### Executive summary
+
+O plano foi reautorizado após evidência de correção da integração autenticada
+Order → Inventory.
+
+### Objective completed
+
+Foi concluída a autorização explícita para o reteste final de Quality da Story
+#46 na branch oficial.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_PLAN.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: pendente da publicação desta reautorização.
+
+### Evidence and constraints
+
+- Test Plan atualizado: `feature/story-046-security-baseline` /
+  `795d30658f1fef79fd68d558444b2d454602ec52`.
+- Evidência de integração: `f10cc53320976bdfcc3c99b6cf2b2973815adb5b`.
+- Segredos continuam exclusivos do runtime e não podem ser registrados.
+
+### Pending items
+
+- Quality Engineer: reexecutar o plano e publicar Test Report final com
+  recomendação ao Engineering Manager.
+
+### Next authorized action
+
+- Next role: Quality Engineer
+- Required action: executar exclusivamente o Test Plan atualizado e publicar
+  evidência reproduzível e recomendação de validação.
+- Acceptance / stop criteria: reportar qualquer falha, bloqueio ou evidência
+  incompleta; não iniciar merge, release ou documentação final.
+- Operational command: iniciar exclusivamente o reteste final de Quality da
+  Story #46.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
