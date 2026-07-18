@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Administrative merge
-**Previous step:** Engineering Manager concluiu a Final Engineering Review com parecer `APPROVED` e autorização técnica da PR #47.
-**Next step:** Repository Owner executa exclusivamente o Administrative Merge da PR #47, sincroniza `main` e publica evidência administrativa.
-**Role responsible:** Repository Owner
-**Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
+**Current step:** Administrative closure — awaiting subsequent authorization
+**Previous step:** Repository Owner concluiu o Administrative Merge da PR #47 e sincronizou `main`.
+**Next step:** Engineering Manager delibera sobre qualquer autorização posterior de release ou encerramento; não há operação adicional autorizada ao Repository Owner.
+**Role responsible:** Engineering Manager
+**Current branch:** `main` / `292b40d1740b9028b611d48e64b7b7916b302dd7`
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Final Engineering Review `APPROVED`. Administrative Merge da PR #47 está tecnicamente autorizado; release, tag, GitHub Release e operações de backlog continuam sem autorização.
-**Latest published handoff:** Engineering Manager → Repository Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `1cb8f235c9d7b8a6a399c0bdb6403b66082ccdc9`.
-**Blockers:** Nenhum para o Administrative Merge autorizado. A PR #47 está aberta com `REVIEW_REQUIRED` nativo; a aprovação técnica institucional foi registrada. Release, tag, GitHub Release, Issue/milestone e Board permanecem bloqueados até nova autorização.
-**Last updated:** 2026-07-18 — Engineering Manager — Final Engineering Review aprovada; Administrative Merge autorizado ao Repository Owner.
+**Current gate:** Administrative Merge concluído. Release, tag, GitHub Release, Issue/milestone e Board continuam sem autorização.
+**Latest published handoff:** Repository Owner → AI Engineering Orchestrator — [Sprint 5 Repository Owner Administrative Evidence](REPORTS/SPRINT_5_CLOSURE_READINESS.md), `main` / `292b40d1740b9028b611d48e64b7b7916b302dd7`.
+**Blockers:** Nova autorização explícita do Engineering Manager é necessária para release, tag, GitHub Release, Issue/milestone, Board e continuidade do encerramento administrativo.
+**Last updated:** 2026-07-18 — Repository Owner — Administrative Merge da PR #47 concluído; `main` sincronizada e evidência administrativa publicada.
 
 ## Flow
 
@@ -48,8 +48,8 @@
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Release documentation | Technical Writer | DONE | [v0.4.0-security-baseline (candidate)](../../../releases/v0.4.0-security-baseline.md), `CHANGELOG.md`, `README.md` e Postman README; `1c0679ebbd507e36900591520e699fb474437411`. |
 | Final review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); PR #47 tecnicamente aprovada. |
-| Administrative merge | Repository Owner | DOING | Administrative Merge da PR #47 tecnicamente autorizado; release permanece bloqueado. |
-| Administrative closure | Repository Owner | TODO | Aguarda merge e autorizações posteriores de release/encerramento. |
+| Administrative merge | Repository Owner | DONE | PR #47 merged em `main` / `292b40d`; branch oficial removida remotamente. |
+| Administrative closure | Repository Owner | DOING | Merge concluído; aguarda autorização explícita para qualquer operação posterior de release ou backlog. |
 | Engineering Audit | AEO | TODO | N/A |
 | Institutional acceptance | Engineering Manager | TODO | N/A |
 
