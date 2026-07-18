@@ -66,6 +66,21 @@ authenticated reservation evidence. No contract changed. `ORD-046-003` and
 `E2E-046-001` remain the mandatory retest scenarios and require renewed
 Engineering Manager authorization before execution.
 
+## Kafka runtime remediation update — 2026-07-18
+
+Reviewed published commit `c9eff3f3661b9935b17d1c65252c9ba846b6fa5f`.
+Inventory now declares `spring-kafka` in its runtime classpath instead of only
+test scope; the obsolete Maven `kafka` profile dependency was removed. The
+published Software Engineer handoff records startup with the Spring `kafka`
+profile, connection to the local broker and receipt of `OrderConfirmed` v1.
+No HTTP Basic boundary, business route, REST/Kafka contract, credential rule or
+acceptance criterion changed.
+
+The complete regression set remains mandatory. The next authorized execution
+must rerun `SEC-046-002`, start Inventory with the Spring `kafka` profile, and
+execute `E2E-046-001` from authenticated order confirmation through the
+Inventory processing/observation evidence.
+
 ## Test scenarios
 
 | ID | Scenario | Acceptance criterion |
@@ -132,9 +147,11 @@ scenarios. No retest has been executed under this update.
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Remediation reviewed: `29b52645529fea0fdfb3507efbe523e2e7e1c6e1`.
+- Remediations reviewed: `29b52645529fea0fdfb3507efbe523e2e7e1c6e1`,
+  `f10cc53320976bdfcc3c99b6cf2b2973815adb5b` and
+  `c9eff3f3661b9935b17d1c65252c9ba846b6fa5f`.
 - Updated-plan commit: recorded after the Quality Engineer publishes this plan.
-- Inbound implementation: `8dbb2e2` / `a7dc0d5ea3e3ac7d2f5b198595a6ad4e805d735b`.
+- Inbound implementation: `c9eff3f3661b9935b17d1c65252c9ba846b6fa5f`.
 
 ### Evidence and constraints
 
@@ -148,8 +165,9 @@ scenarios. No retest has been executed under this update.
 ### Risks and pending items
 
 - Pending: renewed Engineering Manager authorization for Quality execution.
-- Before execution, QE will update the three Postman collections as described
-  in scope, without versioning a credential, then rerun the complete plan.
+- The three Postman collections already contain blank, non-versioned
+  `apiUsername` and `apiPassword` variables. QE will rerun the complete plan
+  only after authorization.
 
 ### Next authorized action
 
