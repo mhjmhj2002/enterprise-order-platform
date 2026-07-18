@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Kafka Quality Retest Execution
-**Previous step:** Engineering Manager revisou o Test Plan atualizado e autorizou a reexecução completa de Quality.
-**Next step:** Quality Engineer executa o plano completo, incluindo startup Kafka e `E2E-046-001`, e publica Test Report final com recomendação.
-**Role responsible:** Quality Engineer
+**Current step:** Final review
+**Previous step:** Quality Engineer concluiu o reteste Kafka, incluindo `E2E-046-001`, sem defeitos bloqueadores.
+**Next step:** Engineering Manager revisa o Test Report final e decide o avanço institucional permitido.
+**Role responsible:** Engineering Manager
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Kafka Quality Retest Execution `APPROVED` pelo Engineering Manager. O reteste limita-se ao plano atualizado e não autoriza merge, release ou avanço documental.
-**Latest published handoff:** Engineering Manager → Quality Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `150049f83e5b446bee207c195cf83ef33174d9db`.
-**Blockers:** Nenhum para reexecução autorizada. `E2E-046-001` deve comprovar o startup Kafka e o processamento/observação `OrderConfirmed` v1. Achado permanece rastreado na Story #46, sem Issue adicional.
-**Last updated:** 2026-07-18 — Engineering Manager — reexecução completa de Quality autorizada após correção de runtime Kafka.
+**Current gate:** Quality `COMPLETED`. Não autoriza merge ou release; aguarda Final review do Engineering Manager.
+**Latest published handoff:** Quality Engineer → Engineering Manager — [Story #46 Test Report](../../../quality/story-046/TEST_REPORT.md), branch `feature/story-046-security-baseline` / commit a publicar.
+**Blockers:** Nenhum bloqueio de Quality conhecido. `E2E-046-001` comprovou startup, publicação, consumo e observação `OrderConfirmed` v1 `COMPLETED`.
+**Last updated:** 2026-07-18 — Quality Engineer — reteste Kafka concluído com validação completa.
 
 ## Flow
 
@@ -43,10 +43,10 @@
 | Kafka runtime remediation | Software Engineer | DONE | Kafka disponível no runtime; Inventory iniciou com perfil Spring `kafka` e listener conectado antes de novo planejamento/autorização de Quality. |
 | Quality Planning update | Quality Engineer | DONE | [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md) revisado contra `c9eff3f`; cenários completos preservados. |
 | Quality Re-authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); reexecução completa autorizada após correção de runtime Kafka. |
-| Kafka Quality Retest Execution | Quality Engineer | DOING | Executar o plano completo e publicar Test Report final com recomendação. |
+| Kafka Quality Retest Execution | Quality Engineer | DONE — COMPLETED | `E2E-046-001` confirmou startup Kafka e observação `OrderConfirmed` v1 `COMPLETED`; Test Report final publicado. |
 | Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
-| Final review | Engineering Manager | TODO | N/A |
+| Final review | Engineering Manager | DOING | Revisar a validação Quality completa e decidir o próximo gate institucional. |
 | Administrative closure | Repository Owner | TODO | N/A |
 | Engineering Audit | AEO | TODO | N/A |
 | Institutional acceptance | Engineering Manager | TODO | N/A |

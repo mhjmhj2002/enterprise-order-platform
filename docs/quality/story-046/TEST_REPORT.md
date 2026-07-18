@@ -108,6 +108,29 @@ runtime-classpath defect to Software Engineering. Do not advance to
 documentation, merge or release until the Kafka-profile startup and the
 complete `E2E-046-001` observation are retested successfully.
 
+## Kafka final retest — 2026-07-18
+
+Executed against the published branch after `c9eff3f3661b9935b17d1c65252c9ba846b6fa5f`.
+Inventory started successfully with Spring profile `kafka`; PostgreSQL and
+Kafka were available locally. The Inventory automated suite was reexecuted
+with Docker/Testcontainers available.
+
+The isolated HTTP evidence returned `401` for sampled unauthenticated Catalog,
+Inventory and Order business routes. With runtime-injected credentials,
+Inventory creation returned `201`; authenticated Order creation returned `201`;
+reserve, payment start, payment completion and confirmation each returned
+`200`.
+
+`E2E-046-001` **PASSED**: the authenticated confirmed order produced the
+Inventory `order-confirmation-observations` result with `OrderConfirmed`,
+version `1`, and processing status `COMPLETED`. This verifies Kafka startup,
+publication, consumption and observable processing without recording a
+credential.
+
+**Final recommendation: VALIDATION COMPLETED.** All previously blocking
+runtime and end-to-end evidence has passed. Quality recommends advancement to
+Engineering Manager final review; this does not authorize merge or release.
+
 ## Institutional Handoff — Quality Engineer → Engineering Manager
 
 ### Published artifacts
