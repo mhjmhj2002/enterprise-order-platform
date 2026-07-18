@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Final Quality Retest permanece `REJECTED` até novo reteste autorizado. Correção de runtime Kafka publicada; Quality deve atualizar o plano se necessário e obter nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline`; commit de remediação será registrado após publicação.
+**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline` / `c9eff3f3661b9935b17d1c65252c9ba846b6fa5f`.
 **Blockers:** Nenhum bloqueio de classpath Kafka no runtime: o Inventory iniciou com perfil Spring `kafka`, conectou ao broker e o listener recebeu `OrderConfirmed` v1. `E2E-046-001` aguarda evidência do novo ciclo de Quality. Achado rastreado na Story #46, sem Issue adicional.
 **Last updated:** 2026-07-18 — Software Engineer — remediação de runtime Kafka concluída; handoff preparado para novo planejamento de Quality.
 
