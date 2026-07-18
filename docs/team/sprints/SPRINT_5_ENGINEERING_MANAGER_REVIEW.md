@@ -651,7 +651,8 @@ empacotamento/dependência na branch oficial da Story #46.
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Commit: pendente da publicação desta revisão.
+- Commit: `bbcdd3c`
+- Full hash: `bbcdd3c4d772eba84c1057e4ddcf840437d8d21b`
 
 ### Evidence and constraints
 

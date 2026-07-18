@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Final Quality Retest permanece `REJECTED`. Correção de runtime Kafka autorizada; novo reteste exige handoff técnico publicado, planejamento atualizado se necessário e nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação desta revisão.
+**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `bbcdd3c4d772eba84c1057e4ddcf840437d8d21b`.
 **Blockers:** Inventory não inicia com perfil Spring `kafka` por ausência de `org.apache.kafka.common.serialization.Deserializer`; `E2E-046-001` não possui evidência de consumo/observação `OrderConfirmed` v1. Achado rastreado na Story #46, sem Issue adicional.
 **Last updated:** 2026-07-18 — Engineering Manager — Quality Rejection Review concluída; correção de runtime Kafka devolvida ao Software Engineer.
 
