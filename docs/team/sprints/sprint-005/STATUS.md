@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Final Quality Retest Execution `APPROVED` pelo Engineering Manager. O reteste limita-se ao plano atualizado e não autoriza merge, release ou avanço documental.
-**Latest published handoff:** Engineering Manager → Quality Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação desta reautorização.
+**Latest published handoff:** Engineering Manager → Quality Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `c37ac5b8c0c5eec40f6ae4b13537172289eb5c1d`.
 **Blockers:** Nenhum para reteste final autorizado. Confirmação e evidência Kafka end-to-end aguardam execução; o achado permanece rastreado na Story #46, sem Issue adicional.
 **Last updated:** 2026-07-17 — Engineering Manager — reteste final de Quality autorizado.
 

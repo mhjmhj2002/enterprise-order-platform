@@ -588,7 +588,8 @@ Foi concluída a autorização explícita para o reteste final de Quality da Sto
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Commit: pendente da publicação desta reautorização.
+- Commit: `c37ac5b`
+- Full hash: `c37ac5b8c0c5eec40f6ae4b13537172289eb5c1d`
 
 ### Evidence and constraints
 
