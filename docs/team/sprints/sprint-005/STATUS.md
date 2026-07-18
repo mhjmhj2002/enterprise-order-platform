@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Integration remediation
-**Previous step:** Engineering Manager manteve a Quality `REJECTED` e autorizou somente a correção do `502` na integração autenticada Order → Inventory.
-**Next step:** Software Engineer diagnostica e corrige o `502`, publica handoff técnico e devolve ao Quality Engineer para novo planejamento/autorização.
-**Role responsible:** Software Engineer
+**Current step:** Quality Planning update
+**Previous step:** Software Engineer reproduziu a integração autenticada Order → Inventory com sucesso e publicou teste automatizado da credencial local do adaptador.
+**Next step:** Quality Engineer atualiza o plano conforme a evidência publicada e solicita nova autorização explícita do Engineering Manager antes de reexecutar Quality.
+**Role responsible:** Quality Engineer
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Quality permanece `REJECTED`. Correção de integração autorizada; novo reteste exige handoff técnico publicado, planejamento atualizado se necessário e nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `a8dddca659f8c1d4cd05d1f619888e1b33025ad1`.
-**Blockers:** O fluxo autenticado `POST /api/v1/orders/{orderId}/reserve-stock` retorna HTTP 502; confirmação e evidência Kafka end-to-end ficam bloqueadas. Achado permanece rastreado na Story #46, sem Issue adicional.
-**Last updated:** 2026-07-17 — Engineering Manager — Quality Rejection Review concluída; correção da integração devolvida ao Software Engineer.
+**Current gate:** Quality permanece `REJECTED` até novo reteste autorizado. A correção/evidência de integração foi publicada; Quality deve atualizar o plano se necessário e obter nova autorização explícita do Engineering Manager.
+**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline`; commit de evidência será registrado após publicação.
+**Blockers:** Nenhum bloqueio reproduzível na integração Order → Inventory sob as precondições aprovadas: a reserva autenticada retornou `200`. Confirmação e evidência Kafka end-to-end aguardam novo ciclo de Quality. Achado permanece rastreado na Story #46, sem Issue adicional.
+**Last updated:** 2026-07-17 — Software Engineer — integração autenticada reproduzida com sucesso e evidência automatizada publicada para novo planejamento de Quality.
 
 ## Flow
 
@@ -38,7 +38,7 @@
 | Quality Re-authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); reteste completo autorizado. |
 | Quality Retest Execution | Quality Engineer | DONE — REJECTED | Reteste automatizado e HTTP aprovados; Order → Inventory retorna 502. |
 | Quality Rejection Review | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); correção do `502` devolvida ao Software Engineer. |
-| Integration remediation | Software Engineer | DOING | Diagnosticar e corrigir a integração autenticada Order → Inventory antes de novo planejamento/autorização de Quality. |
+| Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Final review | Engineering Manager | TODO | N/A |
 | Administrative closure | Repository Owner | TODO | N/A |

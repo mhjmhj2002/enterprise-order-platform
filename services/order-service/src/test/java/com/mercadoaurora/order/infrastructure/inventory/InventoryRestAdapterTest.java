@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.client.RestClient;
+import org.springframework.test.web.client.MockRestServiceServer;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -23,6 +24,13 @@ import java.util.UUID;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
+import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
 
 class InventoryRestAdapterTest {
     private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
@@ -67,9 +75,42 @@ class InventoryRestAdapterTest {
         ), httpClient.calls.get(2));
     }
 
+    @Test
+    void shouldSendLocalBasicCredentialsToInventory() {
+        RestClient.Builder builder = RestClient.builder();
+        MockRestServiceServer server = MockRestServiceServer.bindTo(builder).build();
+        UUID warehouseId = UUID.randomUUID();
+        UUID skuId = UUID.randomUUID();
+        UUID reservationId = UUID.randomUUID();
+        String username = "api-" + UUID.randomUUID();
+        String password = "password-" + UUID.randomUUID();
+        InventoryRestAdapter adapter = new InventoryRestAdapter(
+                builder,
+                "http://inventory.test",
+                warehouseId,
+                new SecurityApiProperties(username, password)
+        );
+        Order order = Order.create(UUID.randomUUID(), UUID.randomUUID(), List.of(
+                buildItem(skuId, "Produto", "SKU")
+        ), Instant.now());
+
+        server.expect(requestTo("http://inventory.test/api/v1/inventory/%s/%s/reservations".formatted(skuId, warehouseId)))
+                .andExpect(method(POST))
+                .andExpect(header(AUTHORIZATION, "Basic " + java.util.Base64.getEncoder()
+                        .encodeToString((username + ":" + password).getBytes(java.nio.charset.StandardCharsets.UTF_8))))
+                .andRespond(withStatus(CREATED));
+
+        adapter.reserveStock(order, List.of(reservationId));
+        server.verify();
+    }
+
     private OrderItem buildItem(String productName, String skuName) {
+        return buildItem(UUID.randomUUID(), productName, skuName);
+    }
+
+    private OrderItem buildItem(UUID skuId, String productName, String skuName) {
         return OrderItem.create(
-                UUID.randomUUID(),
+                skuId,
                 productName,
                 skuName,
                 Map.of(),
