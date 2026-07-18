@@ -46,6 +46,17 @@ functional baseline, including Order → Inventory and `OrderConfirmed` v1.
    identifiers, so that unauthorized-write assertions have an observable
    before/after state.
 
+## Remediation update — 2026-07-17
+
+The plan was reviewed against the published remediation
+`29b52645529fea0fdfb3507efbe523e2e7e1c6e1`. Its scope is limited to test
+infrastructure: Catalog and Order use Testcontainers 1.21.4, and Inventory now
+declares `spring-kafka` in test scope so that `mvn test` can discover its Kafka
+consumer test. No security contract, business route, credential handling or
+acceptance criterion changed. The scenario set above remains valid; the next
+execution must rerun `SEC-046-002` before the previously blocked HTTP and
+end-to-end scenarios.
+
 ## Test scenarios
 
 | ID | Scenario | Acceptance criterion |
@@ -99,9 +110,10 @@ contracts, events or topics; and changes to domain behavior.
 
 ### Executive summary
 
-Quality planning for Story #46 is complete. The plan maps the approved
-authentication contract to reproducible smoke, negative, authenticated
-regression and end-to-end scenarios. No validation has been executed.
+Quality planning was updated after the published test-infrastructure
+remediation. The plan still maps the approved authentication contract to
+reproducible smoke, negative, authenticated regression and end-to-end
+scenarios. No retest has been executed under this update.
 
 ### Published artifacts
 
@@ -111,7 +123,8 @@ regression and end-to-end scenarios. No validation has been executed.
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Commit: recorded after the Quality Engineer publishes this plan.
+- Remediation reviewed: `29b52645529fea0fdfb3507efbe523e2e7e1c6e1`.
+- Updated-plan commit: recorded after the Quality Engineer publishes this plan.
 - Inbound implementation: `8dbb2e2` / `a7dc0d5ea3e3ac7d2f5b198595a6ad4e805d735b`.
 
 ### Evidence and constraints
@@ -125,9 +138,9 @@ regression and end-to-end scenarios. No validation has been executed.
 
 ### Risks and pending items
 
-- Pending: Engineering Manager authorization for Quality execution.
+- Pending: renewed Engineering Manager authorization for Quality execution.
 - Before execution, QE will update the three Postman collections as described
-  in scope, without versioning a credential.
+  in scope, without versioning a credential, then rerun the complete plan.
 
 ### Next authorized action
 
