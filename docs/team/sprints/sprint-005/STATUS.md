@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Release and GitHub synchronization
-**Previous step:** Engineering Manager autorizou a release `v0.4.0-security-baseline` e a sincronização administrativa da Story #46.
-**Next step:** Repository Owner cria tag e GitHub Release, encerra Issue/milestone, move o Board para `Done`, sincroniza `main` e publica evidência ao AEO.
-**Role responsible:** Repository Owner
+**Current step:** Engineering Audit
+**Previous step:** Repository Owner publicou a release `v0.4.0-security-baseline` e concluiu a sincronização GitHub autorizada da Story #46.
+**Next step:** AI Engineering Orchestrator executa o Engineering Audit; a retrospectiva e a Institutional Acceptance continuam posteriores e obrigatórias.
+**Role responsible:** AI Engineering Orchestrator
 **Current branch:** `main` (PR #47 merge commit: `292b40d1740b9028b611d48e64b7b7916b302dd7`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Release Authorization `APPROVED`. Repository Owner pode executar somente a release `v0.4.0-security-baseline` no merge commit da PR #47 e a sincronização GitHub explicitamente autorizada; Institutional Acceptance aguarda Audit e retrospectiva.
-**Latest published handoff:** Engineering Manager → Repository Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / `02c3daf5a21425678ffe125209e6016c72d4b83a`.
-**Blockers:** Nenhum para release e sincronização autorizadas. Engineering Audit e retrospectiva permanecem pendentes após a evidência administrativa; a Sprint não está encerrada.
-**Last updated:** 2026-07-18 — Engineering Manager — release e sincronização GitHub autorizadas ao Repository Owner.
+**Current gate:** Release e sincronização GitHub `DONE`; Institutional Acceptance aguarda Engineering Audit e retrospectiva.
+**Latest published handoff:** Repository Owner → AI Engineering Orchestrator — [Sprint 5 Repository Owner Administrative Evidence](REPORTS/SPRINT_5_CLOSURE_READINESS.md), publicada em `main`.
+**Blockers:** Nenhum para o Engineering Audit. A Sprint não está encerrada: retrospectiva e Institutional Acceptance permanecem obrigatórias.
+**Last updated:** 2026-07-18 — Repository Owner — release `v0.4.0-security-baseline` publicada; Issue, milestone e Board sincronizados; evidência entregue ao AEO.
 
 ## Flow
 
@@ -50,8 +50,8 @@
 | Final review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); PR #47 tecnicamente aprovada. |
 | Administrative merge | Repository Owner | DONE | PR #47 merged em `main` / `292b40d`; branch oficial removida remotamente. |
 | Administrative closure | Repository Owner | DONE — MERGE ONLY | Merge concluído; release/sincronização autorizadas em etapa própria. |
-| Release and GitHub synchronization | Repository Owner | DOING | Criar tag/release e sincronizar Issue, milestone, Board e `main`; publicar evidência ao AEO. |
-| Engineering Audit | AEO | TODO | Aguarda evidência de release e sincronização do Repository Owner. |
+| Release and GitHub synchronization | Repository Owner | DONE | Tag/GitHub Release `v0.4.0-security-baseline`, Issue #46 e milestone #7 fechados; card #46 em `Done`; evidência publicada. |
+| Engineering Audit | AEO | DOING | Evidência de release e sincronização do Repository Owner publicada; Audit autorizado a iniciar. |
 | Institutional acceptance | Engineering Manager | TODO | N/A |
 
 ## Institutional Handoff — Program Management Office → Product Owner
