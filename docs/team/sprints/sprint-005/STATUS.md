@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Kafka Quality Retest Execution `APPROVED` pelo Engineering Manager. O reteste limita-se ao plano atualizado e não autoriza merge, release ou avanço documental.
-**Latest published handoff:** Engineering Manager → Quality Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação desta reautorização.
+**Latest published handoff:** Engineering Manager → Quality Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `150049f83e5b446bee207c195cf83ef33174d9db`.
 **Blockers:** Nenhum para reexecução autorizada. `E2E-046-001` deve comprovar o startup Kafka e o processamento/observação `OrderConfirmed` v1. Achado permanece rastreado na Story #46, sem Issue adicional.
 **Last updated:** 2026-07-18 — Engineering Manager — reexecução completa de Quality autorizada após correção de runtime Kafka.
 

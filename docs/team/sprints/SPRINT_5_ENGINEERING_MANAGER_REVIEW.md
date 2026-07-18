@@ -720,7 +720,8 @@ incluindo o fluxo `OrderConfirmed` v1 sob o perfil `kafka`.
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Commit: pendente da publicação desta reautorização.
+- Commit: `150049f`
+- Full hash: `150049f83e5b446bee207c195cf83ef33174d9db`
 
 ### Evidence and constraints
 
