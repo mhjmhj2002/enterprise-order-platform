@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Quality permanece `REJECTED` até novo reteste autorizado. A correção/evidência de integração foi publicada; Quality deve atualizar o plano se necessário e obter nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline`; commit de evidência será registrado após publicação.
+**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline` / `f10cc53320976bdfcc3c99b6cf2b2973815adb5b`.
 **Blockers:** Nenhum bloqueio reproduzível na integração Order → Inventory sob as precondições aprovadas: a reserva autenticada retornou `200`. Confirmação e evidência Kafka end-to-end aguardam novo ciclo de Quality. Achado permanece rastreado na Story #46, sem Issue adicional.
 **Last updated:** 2026-07-17 — Software Engineer — integração autenticada reproduzida com sucesso e evidência automatizada publicada para novo planejamento de Quality.
 
