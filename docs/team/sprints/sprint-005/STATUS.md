@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Final review
-**Previous step:** Quality Engineer concluiu o reteste Kafka, incluindo `E2E-046-001`, sem defeitos bloqueadores.
-**Next step:** Engineering Manager revisa o Test Report final e decide o avanço institucional permitido.
-**Role responsible:** Engineering Manager
+**Current step:** Release documentation
+**Previous step:** Engineering Manager aceitou a validação completa de Quality e autorizou a preparação documental de release.
+**Next step:** Technical Writer publica a documentação de release e o handoff para Final Review técnica do Engineering Manager.
+**Role responsible:** Technical Writer
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Quality `COMPLETED`. Não autoriza merge ou release; aguarda Final review do Engineering Manager.
-**Latest published handoff:** Quality Engineer → Engineering Manager — [Story #46 Test Report](../../../quality/story-046/TEST_REPORT.md), branch `feature/story-046-security-baseline` / commit a publicar.
-**Blockers:** Nenhum bloqueio de Quality conhecido. `E2E-046-001` comprovou startup, publicação, consumo e observação `OrderConfirmed` v1 `COMPLETED`.
-**Last updated:** 2026-07-18 — Quality Engineer — reteste Kafka concluído com validação completa.
+**Current gate:** Quality `ACCEPTED`. Release documentation é obrigatória antes da Final Review técnica; não há autorização de merge ou release nesta etapa.
+**Latest published handoff:** Engineering Manager → Technical Writer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação deste encaminhamento.
+**Blockers:** Nenhum bloqueio de Quality conhecido. `E2E-046-001` comprovou startup, publicação, consumo e observação `OrderConfirmed` v1 `COMPLETED`. Documentação de release e Final Review técnica permanecem pendentes.
+**Last updated:** 2026-07-18 — Engineering Manager — Quality aceita; documentação de release autorizada ao Technical Writer.
 
 ## Flow
 
@@ -46,7 +46,8 @@
 | Kafka Quality Retest Execution | Quality Engineer | DONE — COMPLETED | `E2E-046-001` confirmou startup Kafka e observação `OrderConfirmed` v1 `COMPLETED`; Test Report final publicado. |
 | Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
-| Final review | Engineering Manager | DOING | Revisar a validação Quality completa e decidir o próximo gate institucional. |
+| Release documentation | Technical Writer | DOING | Publicar documentação de release da Story #46 e handoff para Final Review técnica. |
+| Final review | Engineering Manager | TODO | Aguarda documentação de release publicada pelo Technical Writer. |
 | Administrative closure | Repository Owner | TODO | N/A |
 | Engineering Audit | AEO | TODO | N/A |
 | Institutional acceptance | Engineering Manager | TODO | N/A |

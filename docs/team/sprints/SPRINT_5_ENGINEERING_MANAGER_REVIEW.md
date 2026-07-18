@@ -745,6 +745,71 @@ incluindo o fluxo `OrderConfirmed` v1 sob o perfil `kafka`.
 - Operational command: iniciar exclusivamente a reexecução de Quality da Story
   #46.
 
+## Final Review — aceitação de Quality e encaminhamento documental
+
+**Parecer de Quality:** `ACCEPTED`.
+
+O [Test Report](../../quality/story-046/TEST_REPORT.md) concluiu os cenários
+obrigatórios sem defeitos bloqueadores. A evidência final confirma `401` para
+acesso não autenticado, preservação do comportamento autenticado, integração
+Order → Inventory, startup do Inventory com perfil `kafka` e
+`OrderConfirmed` v1 observado como `COMPLETED`. A execução manteve credenciais
+fora dos artefatos publicados.
+
+Esta aceitação encerra a avaliação de Quality, mas **não** constitui aprovação
+técnica do PR, autorização de merge ou release. A Final Review técnica depende
+da documentação de release publicada pelo Technical Writer e de sua revisão
+subsequente pelo EM.
+
+## Institutional Handoff — Engineering Manager → Technical Writer
+
+### Executive summary
+
+Quality da Story #46 foi aceita. A documentação de release deve agora
+sincronizar o contrato aprovado, o uso de credenciais por ambiente, as
+exceções técnicas e a evidência final, sem revelar segredos.
+
+### Objective completed
+
+Foi concluída a revisão da recomendação de Quality e autorizada exclusivamente
+a preparação da documentação de release da Story #46.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_REPORT.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: pendente da publicação deste encaminhamento.
+
+### Evidence and constraints
+
+- Test Report final: `feature/story-046-security-baseline` /
+  `a2ca340ac9372a04aad2a7fd650190ee53ed37a9`.
+- A documentação deve refletir HTTP Basic por ambiente, rotas `/api/v1/**`,
+  exceções públicas aprovadas, integração Order → Inventory e limites de TLS/
+  identidade; não pode conter valores de credenciais.
+- Não autoriza mudança de código, contrato, escopo, merge ou release.
+
+### Pending items
+
+- Technical Writer: publicar documentação de release e handoff ao Engineering
+  Manager para Final Review técnica.
+
+### Next authorized action
+
+- Next role: Technical Writer
+- Required action: preparar e publicar exclusivamente a documentação de release
+  da Story #46, incluindo orientação de uso segura e referências à evidência.
+- Acceptance / stop criteria: parar e escalar se a documentação exigir nova
+  política de segurança, segredo, contrato ou escopo; não autorizar merge ou
+  release.
+- Operational command: iniciar exclusivamente a documentação de release da
+  Story #46.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
