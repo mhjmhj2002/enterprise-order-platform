@@ -459,7 +459,8 @@ completo e produzir recomendação atualizada.
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Commit: pendente da publicação desta reautorização.
+- Commit: `6408e11`
+- Full hash: `6408e119b0572a80f1593124e4d8ea11ad709f95`
 
 ### Evidence and constraints
 
