@@ -1,3 +1,3 @@
 # Sprint 5 Audit
 
-The AI Engineering Orchestrator records the Sprint 5 Engineering Audit, acceptance and supporting audit evidence here after Repository Owner closure-readiness evidence is published.
+The [Sprint 5 Engineering Audit Report](SPRINT_5_ENGINEERING_AUDIT_REPORT.md) records the AEO audit, process evidence and handoff to the Engineering Manager after Repository Owner closure-readiness evidence was published.

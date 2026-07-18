@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Engineering Audit
+**Current step:** Engineering Manager retrospective and institutional-closure decision
 **Previous step:** Repository Owner publicou a release `v0.4.0-security-baseline` e concluiu a sincronização GitHub autorizada da Story #46.
-**Next step:** AI Engineering Orchestrator executa o Engineering Audit; a retrospectiva e a Institutional Acceptance continuam posteriores e obrigatórias.
-**Role responsible:** AI Engineering Orchestrator
+**Next step:** Engineering Manager decide as exceções do audit, os Candidate Improvements e a Institutional Acceptance ou a remediação autorizada.
+**Role responsible:** Engineering Manager
 **Current branch:** `main` (PR #47 merge commit: `292b40d1740b9028b611d48e64b7b7916b302dd7`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Release e sincronização GitHub `DONE`; Institutional Acceptance aguarda Engineering Audit e retrospectiva.
-**Latest published handoff:** Repository Owner → AI Engineering Orchestrator — [Sprint 5 Repository Owner Administrative Evidence](REPORTS/SPRINT_5_CLOSURE_READINESS.md), publicada em `main`.
-**Blockers:** Nenhum para o Engineering Audit. A Sprint não está encerrada: retrospectiva e Institutional Acceptance permanecem obrigatórias.
-**Last updated:** 2026-07-18 — Repository Owner — release `v0.4.0-security-baseline` publicada; Issue, milestone e Board sincronizados; evidência entregue ao AEO.
+**Current gate:** Engineering Audit `FAIL`; Institutional Acceptance aguarda decisão explícita do Engineering Manager sobre as exceções e a retrospectiva.
+**Latest published handoff:** AI Engineering Orchestrator → Engineering Manager — [Sprint 5 Engineering Audit Report](AUDIT/SPRINT_5_ENGINEERING_AUDIT_REPORT.md), publicada em `main`.
+**Blockers:** Exceções de documentação de encerramento e ausência de evidência de Sprint Review exigem decisão do Engineering Manager. A Sprint não está encerrada.
+**Last updated:** 2026-07-18 — AI Engineering Orchestrator — Engineering Audit concluído com resultado `FAIL`; handoff para decisão do Engineering Manager publicado.
 
 ## Flow
 
@@ -51,8 +51,8 @@
 | Administrative merge | Repository Owner | DONE | PR #47 merged em `main` / `292b40d`; branch oficial removida remotamente. |
 | Administrative closure | Repository Owner | DONE — MERGE ONLY | Merge concluído; release/sincronização autorizadas em etapa própria. |
 | Release and GitHub synchronization | Repository Owner | DONE | Tag/GitHub Release `v0.4.0-security-baseline`, Issue #46 e milestone #7 fechados; card #46 em `Done`; evidência publicada. |
-| Engineering Audit | AEO | DOING | Evidência de release e sincronização do Repository Owner publicada; Audit autorizado a iniciar. |
-| Institutional acceptance | Engineering Manager | TODO | N/A |
+| Engineering Audit | AEO | DONE — FAIL | [Sprint 5 Engineering Audit Report](AUDIT/SPRINT_5_ENGINEERING_AUDIT_REPORT.md); exceções encaminhadas ao Engineering Manager. |
+| Institutional acceptance | Engineering Manager | TODO / BLOCKED | Aguarda decisão sobre audit e retrospectiva. |
 
 ## Institutional Handoff — Program Management Office → Product Owner
 
