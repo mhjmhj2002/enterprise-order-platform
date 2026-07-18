@@ -8,6 +8,7 @@ import com.mercadoaurora.catalog.api.dto.SkuResponse;
 import com.mercadoaurora.catalog.domain.ProductStatus;
 import com.mercadoaurora.catalog.domain.SkuStatus;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -15,6 +16,8 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.client.support.BasicAuthenticationInterceptor;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -43,6 +46,8 @@ class CatalogIntegrationTest {
         registry.add("spring.datasource.url", postgres::getJdbcUrl);
         registry.add("spring.datasource.username", postgres::getUsername);
         registry.add("spring.datasource.password", postgres::getPassword);
+        registry.add("security.api.username", () -> "test-api-consumer");
+        registry.add("security.api.password", () -> "test-api-password");
     }
 
     @LocalServerPort
@@ -50,6 +55,28 @@ class CatalogIntegrationTest {
 
     @Autowired
     TestRestTemplate restTemplate;
+
+    @BeforeEach
+    void authenticateRequests() {
+        restTemplate.getRestTemplate().setRequestFactory(new JdkClientHttpRequestFactory());
+        restTemplate.getRestTemplate().getInterceptors()
+                .add(new BasicAuthenticationInterceptor("test-api-consumer", "test-api-password"));
+    }
+
+    @Test
+    void shouldRejectUnauthenticatedBusinessRequestAndKeepTechnicalEndpointsPublic() {
+        TestRestTemplate anonymous = new TestRestTemplate();
+
+        ResponseEntity<String> response = anonymous.postForEntity(
+                baseUrl("/api/v1/products"),
+                new CreateProductRequest("Produto bloqueado", "Descricao", ProductStatus.INACTIVE,
+                        UUID.randomUUID(), UUID.randomUUID(), Map.of(), List.of()), String.class);
+
+        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+        assertNotNull(response.getHeaders().getFirst("WWW-Authenticate"));
+        assertEquals(HttpStatus.OK, anonymous.getForEntity(baseUrl("/actuator/health"), String.class).getStatusCode());
+        assertEquals(HttpStatus.OK, anonymous.getForEntity(baseUrl("/v3/api-docs"), String.class).getStatusCode());
+    }
 
     @Test
     void shouldCreateAndGetProduct() {

@@ -35,3 +35,8 @@ order:
     inventory:
       base-url: ${INVENTORY_SERVICE_URL:http://localhost:8082}
       default-warehouse-id: ${ORDER_DEFAULT_WAREHOUSE_ID:00000000-0000-0000-0000-000000000001}
+
+security:
+  api:
+    username: ${SECURITY_API_USERNAME}
+    password: ${SECURITY_API_PASSWORD}

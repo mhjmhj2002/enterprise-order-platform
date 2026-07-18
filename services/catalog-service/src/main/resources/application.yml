@@ -18,3 +18,14 @@ spring:
 
 server:
   port: ${SERVER_PORT:8081}
+
+security:
+  api:
+    username: ${SECURITY_API_USERNAME}
+    password: ${SECURITY_API_PASSWORD}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

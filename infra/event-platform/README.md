@@ -35,5 +35,5 @@ O Inventory Service consome `OrderConfirmed` v1 quando executado com o profile S
 
 ```bash
 cd services/inventory-service
-mvn -Pkafka spring-boot:run -Dspring-boot.run.profiles=kafka
+mvn spring-boot:run -Dspring-boot.run.profiles=kafka
 ```

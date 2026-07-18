@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Implementation
-**Previous step:** Engineering Manager aprovou o Architecture Gate e o ADR-008 com condições verificáveis para a Story #46.
-**Next step:** Software Engineer cria a branch oficial e implementa exclusivamente a baseline de autenticação aprovada, publicando handoff técnico para Quality.
-**Role responsible:** Software Engineer
-**Current branch:** `main` (base: `main`)
-**Pull Request:** N/A — não há branch de Story antes do refinamento e dos gates aplicáveis.
-**Current gate:** Architecture Approval `APPROVED WITH CONDITIONS`. Branch e implementação estão autorizadas somente conforme o [Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md) e o parecer do Engineering Manager; Quality aguarda handoff de implementação.
-**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / `4c56a04a26dac4bf36e3fb8c70e6323a25246cd0`.
-**Blockers:** Nenhum para implementação autorizada. TLS remoto, gateway, IdP, tokens, rotação, usuários, roles, auditoria, autorização granular, exceções adicionais e alteração de contratos continuam bloqueados por escopo.
-**Last updated:** 2026-07-17 — Engineering Manager — Architecture Approval aprovada com condições; implementação autorizada.
+**Current step:** Administrative merge
+**Previous step:** Engineering Manager concluiu a Final Engineering Review com parecer `APPROVED` e autorização técnica da PR #47.
+**Next step:** Repository Owner executa exclusivamente o Administrative Merge da PR #47, sincroniza `main` e publica evidência administrativa.
+**Role responsible:** Repository Owner
+**Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
+**Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
+**Current gate:** Final Engineering Review `APPROVED`. Administrative Merge da PR #47 está tecnicamente autorizado; release, tag, GitHub Release e operações de backlog continuam sem autorização.
+**Latest published handoff:** Engineering Manager → Repository Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `1cb8f235c9d7b8a6a399c0bdb6403b66082ccdc9`.
+**Blockers:** Nenhum para o Administrative Merge autorizado. A PR #47 está aberta com `REVIEW_REQUIRED` nativo; a aprovação técnica institucional foi registrada. Release, tag, GitHub Release, Issue/milestone e Board permanecem bloqueados até nova autorização.
+**Last updated:** 2026-07-18 — Engineering Manager — Final Engineering Review aprovada; Administrative Merge autorizado ao Repository Owner.
 
 ## Flow
 
@@ -28,11 +28,28 @@
 | Architecture Gate | Technical Lead | DONE — RECOMMENDED | [Story #46 Architecture Gate](../../../architecture/contracts/STORY_046_ARCHITECTURE_GATE.md), `main` / `09af854336f86e2d3ffdf07411cb744a62368132`. |
 | Architecture approval | Engineering Manager | DONE — APPROVED WITH CONDITIONS | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); implementação autorizada sob condições verificáveis. |
 | ADR documentation | Technical Writer | DONE | [ADR-008](../../../architecture/ADR/ADR-008-http-basic-authentication-baseline.md), `main` / `3d4a4d730e4e3ef564b780976063a2caa748b9c7`. |
-| Implementation | Software Engineer | TODO | N/A |
-| Quality | Quality Engineer | TODO | N/A |
+| Implementation | Software Engineer | DONE | [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline` / `a7dc0d5`. |
+| Quality Planning | Quality Engineer | DONE | [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md), branch `feature/story-046-security-baseline` / `2ab78a5`. |
+| Quality Authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); execução do Test Plan autorizada. |
+| Quality Execution | Quality Engineer | DONE — REJECTED | [Story #46 Test Report](../../../quality/story-046/TEST_REPORT.md); regressão falha e cenários obrigatórios bloqueados. |
+| Quality Rejection Review | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); remediação na Story #46, sem Issue adicional. |
+| Implementation remediation | Software Engineer | DONE | Regressão Kafka e compatibilidade Testcontainers corrigidas; aguarda atualização do planejamento de Quality. |
+| Quality Planning update | Quality Engineer | DONE | [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md) revisado para `29b5264`; reexecução ainda não iniciada. |
+| Quality Re-authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); reteste completo autorizado. |
+| Final Quality Retest Authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); reteste final autorizado após evidência de integração. |
+| Final Quality Retest Execution | Quality Engineer | DONE — REJECTED | Suites e fluxo REST autenticado aprovados; Inventory falha ao iniciar com perfil `kafka`, bloqueando `E2E-046-001`. |
+| Quality Retest Execution | Quality Engineer | DONE — REJECTED | Reteste automatizado e HTTP aprovados; Order → Inventory retorna 502. |
+| Quality Rejection Review | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); correção de runtime Kafka devolvida ao Software Engineer. |
+| Kafka runtime remediation | Software Engineer | DONE | Kafka disponível no runtime; Inventory iniciou com perfil Spring `kafka` e listener conectado antes de novo planejamento/autorização de Quality. |
+| Quality Planning update | Quality Engineer | DONE | [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md) revisado contra `c9eff3f`; cenários completos preservados. |
+| Quality Re-authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); reexecução completa autorizada após correção de runtime Kafka. |
+| Kafka Quality Retest Execution | Quality Engineer | DONE — COMPLETED | `E2E-046-001` confirmou startup Kafka e observação `OrderConfirmed` v1 `COMPLETED`; Test Report final publicado. |
+| Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
-| Final review | Engineering Manager | TODO | N/A |
-| Administrative closure | Repository Owner | TODO | N/A |
+| Release documentation | Technical Writer | DONE | [v0.4.0-security-baseline (candidate)](../../../releases/v0.4.0-security-baseline.md), `CHANGELOG.md`, `README.md` e Postman README; `1c0679ebbd507e36900591520e699fb474437411`. |
+| Final review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); PR #47 tecnicamente aprovada. |
+| Administrative merge | Repository Owner | DOING | Administrative Merge da PR #47 tecnicamente autorizado; release permanece bloqueado. |
+| Administrative closure | Repository Owner | TODO | Aguarda merge e autorizações posteriores de release/encerramento. |
 | Engineering Audit | AEO | TODO | N/A |
 | Institutional acceptance | Engineering Manager | TODO | N/A |
 

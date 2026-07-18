@@ -261,6 +261,624 @@ o contrato aprovado sob as condições verificáveis deste parecer.
 - Operational command: iniciar exclusivamente a implementação autorizada da
   Story #46.
 
+## Quality Authorization — Story #46
+
+**Decisão:** `APPROVED` para execução de Quality.
+
+O [Test Plan da Story #46](../../quality/story-046/TEST_PLAN.md) está aderente
+ao Product Plan, ao Architecture Gate e ao ADR-008. Ele cobre recusa `401`
+para credenciais ausentes, malformadas e inválidas; ausência de efeito de
+negócio nas escritas recusadas; regressão autenticada nos três serviços;
+compatibilidade Order → Inventory e `X-Correlation-Id`; e a regressão Kafka de
+`OrderConfirmed` v1. O plano também preserva as exceções técnicas públicas e
+proíbe a exposição de credenciais nas evidências.
+
+O PR [#47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47)
+está publicado na branch oficial
+`feature/story-046-security-baseline`; sua ponta publicada é
+`3b4b8a9a53391f0877d38a3ca1b752eaa1b5c662`. Não há check remoto pendente no
+momento da autorização. Esta decisão autoriza somente a execução do plano e
+não constitui recomendação de release, aprovação técnica final ou autorização
+de merge.
+
+## Institutional Handoff — Engineering Manager → Quality Engineer
+
+### Executive summary
+
+O Test Plan da Story #46 foi revisado e está autorizado para execução na branch
+oficial publicada.
+
+### Objective completed
+
+Foi concluída a autorização explícita de Quality, condicionada ao plano
+publicado, à injeção de credenciais somente em runtime e ao registro
+reproduzível dos resultados.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_PLAN.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: `72acd7c`
+- Full hash: `72acd7cef1a6816845d8bad58b6175c7b584a3ca`
+
+### Evidence and constraints
+
+- Test Plan: `feature/story-046-security-baseline` /
+  `2ab78a5245a944d7053145419e98b188773a5363`.
+- Branch oficial e PR #47 publicados em
+  `3b4b8a9a53391f0877d38a3ca1b752eaa1b5c662`.
+- Credenciais devem ser injetadas somente no ambiente de execução e omitidas de
+  terminal, coleções, relatórios e demais evidências.
+
+### Pending items
+
+- Quality Engineer: executar os cenários autorizados e publicar Test Report,
+  defeitos (se houver) e recomendação de release ao Engineering Manager.
+
+### Next authorized action
+
+- Next role: Quality Engineer
+- Required action: executar exclusivamente o Test Plan publicado e registrar
+  evidência reproduzível, limitações e recomendação no Test Report.
+- Acceptance / stop criteria: parar e reportar como bloqueio qualquer falha de
+  ambiente, incapacidade de injetar credenciais sem expô-las, desvio de contrato
+  ou necessidade de escopo bloqueado; não tratar cenário não executado como
+  aprovado.
+- Operational command: iniciar exclusivamente a execução de Quality da Story
+  #46.
+
+## Quality Rejection Review — Story #46
+
+**Decisão:** `CHANGES REQUIRED`.
+
+O [Test Report](../../quality/story-046/TEST_REPORT.md) rejeitou corretamente
+a validação. A Story não possui evidência executada para os cenários HTTP,
+mudança de estado, integração Order → Inventory e fluxo Kafka; além disso, o
+comando obrigatório de regressão do Inventory falha ao descobrir um teste Kafka
+sem o classpath correspondente. A incompatibilidade entre Testcontainers 1.20.1
+do Catalog e o Docker API 1.54 impede sua suíte de integração. Nenhum desses
+bloqueios pode ser aceito como resultado de Quality ou compensado por testes
+seletivos.
+
+### Decisão de rastreabilidade
+
+Não será criada uma Issue adicional. Os dois achados bloqueiam diretamente os
+critérios de aceite e a Quality da própria Story #46, que é o identificador
+institucional suficiente para sua correção e revalidação. Esta decisão evita
+um rastreador paralelo sem remover a obrigatoriedade de evidência.
+
+### Correção autorizada
+
+O Software Engineer deve, na branch oficial da Story:
+
+1. ajustar a classificação/dependência dos testes Kafka do Inventory para que
+   o comando de regressão padrão não tente executar teste sem o classpath
+   necessário, preservando a cobertura Kafka no perfil aplicável; e
+2. tornar executável a integração do Catalog no ambiente Docker suportado,
+   atualizando a compatibilidade de Testcontainers de maneira proporcional e
+   sem alterar comportamento de negócio, contrato ou escopo de segurança.
+
+Depois da correção, deve publicar novo handoff técnico. O Quality Engineer
+atualiza o plano se os comandos ou pré-condições mudarem e retorna ao EM para
+nova autorização de execução. Não há autorização de merge, release ou avanço
+documental enquanto todos os cenários obrigatórios não forem executados com
+sucesso.
+
+## Institutional Handoff — Engineering Manager → Software Engineer
+
+### Executive summary
+
+Quality rejeitou a Story #46 por bloqueios reprodutíveis de regressão e
+ambiente de integração. A implementação deve ser corrigida e republicada antes
+de qualquer nova execução de Quality.
+
+### Objective completed
+
+Foi concluída a avaliação da rejeição, com decisão de manter o rastreamento na
+Issue #46 e autorização limitada de correção técnica na branch oficial.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_REPORT.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: `c268aae`
+- Full hash: `c268aaee7a4ea5957ea13da48a60ec2db0c73048`
+
+### Evidence and constraints
+
+- Test Report: `feature/story-046-security-baseline` /
+  `51edd295f1691fd7a2f908cfaa9495cfb6fb781b`.
+- Inventory falha na descoberta Kafka do comando padrão; Catalog não executa
+  integração devido à incompatibilidade Testcontainers/Docker API.
+- A correção não autoriza novas capacidades de segurança, mudança de contratos
+  REST/Kafka, segredos versionados ou itens fora do escopo aprovado.
+
+### Pending items
+
+- Software Engineer: corrigir os dois bloqueios e publicar handoff técnico.
+- Quality Engineer: revisar o plano quando necessário e solicitar nova
+  autorização antes de reexecutar a validação.
+
+### Next authorized action
+
+- Next role: Software Engineer
+- Required action: implementar exclusivamente as correções de regressão e
+  compatibilidade de teste descritas nesta revisão, na branch oficial.
+- Acceptance / stop criteria: parar e escalar se a correção exigir mudança de
+  contrato, infraestrutura remota, escopo de produto ou nova dependência de
+  runtime; não reexecutar Quality sem novo handoff e autorização do EM.
+- Operational command: iniciar exclusivamente a remediação técnica da Story
+  #46.
+
+## Quality Re-authorization — Story #46
+
+**Decisão:** `APPROVED` para reteste completo de Quality.
+
+O [Test Plan atualizado](../../quality/story-046/TEST_PLAN.md) foi revisado
+contra a remediação publicada em
+`29b52645529fea0fdfb3507efbe523e2e7e1c6e1`. A atualização é limitada à
+infraestrutura de teste: Testcontainers 1.21.4 para Catalog e Order, e
+`spring-kafka` em escopo de teste no Inventory. Não houve mudança de contrato
+de segurança, rota de negócio, tratamento de credenciais ou critério de aceite.
+
+O Quality Engineer está autorizado a reexecutar todo o plano, começando por
+`SEC-046-002` e prosseguindo para as evidências HTTP, de mudança de estado,
+integração Order → Inventory e Kafka end-to-end antes bloqueadas. Qualquer
+cenário bloqueado, com falha, skip ambiental ou evidência incompleta deve ser
+reportado como tal; não há aprovação de merge, release ou documentação final
+por esta autorização.
+
+## Institutional Handoff — Engineering Manager → Quality Engineer
+
+### Executive summary
+
+O plano de reteste da Story #46 está aprovado após a remediação dos bloqueios
+de regressão e integração.
+
+### Objective completed
+
+Foi concluída a nova autorização explícita de Quality para executar o plano
+completo e produzir recomendação atualizada.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_PLAN.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: `6408e11`
+- Full hash: `6408e119b0572a80f1593124e4d8ea11ad709f95`
+
+### Evidence and constraints
+
+- Test Plan atualizado: `feature/story-046-security-baseline` /
+  `246e54fc5e1d03cd190df06251b43486428cde2b`.
+- Remediação revisada: `29b52645529fea0fdfb3507efbe523e2e7e1c6e1`.
+- Segredos continuam exclusivos do runtime e não podem constar de coleções,
+  logs, evidências ou relatórios.
+
+### Pending items
+
+- Quality Engineer: reexecutar o plano completo e publicar Test Report com
+  resultados, limitações, defeitos e recomendação ao Engineering Manager.
+
+### Next authorized action
+
+- Next role: Quality Engineer
+- Required action: executar exclusivamente o Test Plan atualizado e publicar
+  evidência reproduzível de cada cenário e a recomendação de validação.
+- Acceptance / stop criteria: interromper e reportar falha, bloqueio ou
+  limitação ambiental sem tratá-los como aprovação; não iniciar merge ou
+  release.
+- Operational command: iniciar exclusivamente o reteste de Quality da Story
+  #46.
+
+## Quality Rejection Review — integração Order → Inventory
+
+**Decisão:** `CHANGES REQUIRED`.
+
+O reteste confirmou regressão automatizada, smoke HTTP e proteção básica, mas
+o fluxo autenticado `POST /api/v1/orders/{orderId}/reserve-stock` retorna
+`502`. A falha bloqueia diretamente `ORD-046-003`, a confirmação de pedido e
+`E2E-046-001`; portanto, Quality permanece rejeitada e não há recomendação de
+merge, release ou avanço documental.
+
+Não será criada Issue adicional: o achado é uma falha de implementação do
+contrato Order → Inventory já pertencente à Story #46. A arquitetura, o ADR e
+o escopo funcional permanecem válidos; a correção não está autorizada a criar
+bypass de autenticação, propagar credenciais do consumidor, alterar contratos
+REST/Kafka ou introduzir nova infraestrutura.
+
+## Institutional Handoff — Engineering Manager → Software Engineer
+
+### Executive summary
+
+Quality rejeitou o reteste porque a integração autenticada Order → Inventory
+retorna `502`, bloqueando a evidência de confirmação e Kafka.
+
+### Objective completed
+
+Foi concluída a revisão da rejeição e autorizada uma correção limitada da
+implementação de integração na branch oficial da Story #46.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_REPORT.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: `a8dddca`
+- Full hash: `a8dddca659f8c1d4cd05d1f619888e1b33025ad1`
+
+### Evidence and constraints
+
+- Retest report: `feature/story-046-security-baseline` /
+  `2270c159030cd2249cb1f73f12e82591a9333868`.
+- `POST /api/v1/orders/{orderId}/reserve-stock` retorna `502` em cenário
+  autenticado, impedindo a sequência de confirmação e `OrderConfirmed` v1.
+- A correção deve preservar Basic Auth configurado localmente entre Order e
+  Inventory, `X-Correlation-Id` e os contratos existentes.
+
+### Pending items
+
+- Software Engineer: diagnosticar e corrigir o `502`, publicar handoff técnico
+  com evidência de integração e devolver ao Quality Engineer.
+
+### Next authorized action
+
+- Next role: Software Engineer
+- Required action: corrigir exclusivamente a integração autenticada Order →
+  Inventory que produz `502` e publicar o handoff técnico na branch oficial.
+- Acceptance / stop criteria: parar e escalar se a causa exigir mudança de
+  arquitetura, contrato, bypass, segredo versionado ou escopo; não reexecutar
+  Quality sem novo planejamento e autorização do EM.
+- Operational command: iniciar exclusivamente a correção da integração da
+  Story #46.
+
+## Quality Re-authorization — integração Order → Inventory
+
+**Decisão:** `APPROVED` para reteste final de Quality.
+
+O [Test Plan atualizado](../../quality/story-046/TEST_PLAN.md) incorpora a
+evidência publicada em `f10cc53320976bdfcc3c99b6cf2b2973815adb5b`: o adaptador
+Order envia a credencial Basic local configurada ao Inventory e a reserva
+autenticada foi reproduzida com `200`. A mudança não altera contratos,
+fronteiras de segurança, tratamento de credenciais ou critérios de aceite.
+
+O Quality Engineer está autorizado a reexecutar o plano completo, com atenção
+obrigatória a `ORD-046-003` e `E2E-046-001`, além dos cenários de regressão,
+HTTP e ausência de efeitos. A autorização não recomenda merge, release ou
+encerramento; qualquer falha, bloqueio ou evidência incompleta deve permanecer
+como resultado não aprovado.
+
+## Institutional Handoff — Engineering Manager → Quality Engineer
+
+### Executive summary
+
+O plano foi reautorizado após evidência de correção da integração autenticada
+Order → Inventory.
+
+### Objective completed
+
+Foi concluída a autorização explícita para o reteste final de Quality da Story
+#46 na branch oficial.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_PLAN.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: `c37ac5b`
+- Full hash: `c37ac5b8c0c5eec40f6ae4b13537172289eb5c1d`
+
+### Evidence and constraints
+
+- Test Plan atualizado: `feature/story-046-security-baseline` /
+  `795d30658f1fef79fd68d558444b2d454602ec52`.
+- Evidência de integração: `f10cc53320976bdfcc3c99b6cf2b2973815adb5b`.
+- Segredos continuam exclusivos do runtime e não podem ser registrados.
+
+### Pending items
+
+- Quality Engineer: reexecutar o plano e publicar Test Report final com
+  recomendação ao Engineering Manager.
+
+### Next authorized action
+
+- Next role: Quality Engineer
+- Required action: executar exclusivamente o Test Plan atualizado e publicar
+  evidência reproduzível e recomendação de validação.
+- Acceptance / stop criteria: reportar qualquer falha, bloqueio ou evidência
+  incompleta; não iniciar merge, release ou documentação final.
+- Operational command: iniciar exclusivamente o reteste final de Quality da
+  Story #46.
+
+## Quality Rejection Review — runtime Kafka do Inventory
+
+**Decisão:** `CHANGES REQUIRED`.
+
+O Test Report confirma que a fronteira HTTP, regressões automatizadas e fluxo
+REST autenticado foram validados, mas `E2E-046-001` falha porque o Inventory
+não inicia sob o perfil Spring `kafka`: a classe
+`org.apache.kafka.common.serialization.Deserializer` não está disponível no
+runtime. A atual dependência `spring-kafka` em escopo de teste (e apenas no
+perfil Maven) não satisfaz a execução da aplicação com o perfil Spring.
+
+O achado permanece rastreado na Story #46, sem Issue adicional. A remediação é
+limitada a disponibilizar a dependência Kafka necessária no classpath de
+runtime do Inventory, preservando a ativação dos componentes e configurações
+somente no perfil Spring `kafka`. Não autoriza alterar `OrderConfirmed` v1,
+tópico, grupo, contratos REST, arquitetura ou escopo de segurança.
+
+## Institutional Handoff — Engineering Manager → Software Engineer
+
+### Executive summary
+
+Quality rejeitou o reteste final por uma regressão de runtime: o Inventory não
+possui o classpath Kafka necessário quando iniciado com o perfil `kafka`.
+
+### Objective completed
+
+Foi concluída a avaliação do achado e autorizada a correção limitada de
+empacotamento/dependência na branch oficial da Story #46.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_REPORT.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: `bbcdd3c`
+- Full hash: `bbcdd3c4d772eba84c1057e4ddcf840437d8d21b`
+
+### Evidence and constraints
+
+- Test Report: `feature/story-046-security-baseline` /
+  `606ddc3da2242123f6b81874d33f5f7e9a1ac85d`.
+- O Inventory falha no runtime `kafka` por ausência de
+  `org.apache.kafka.common.serialization.Deserializer`; Kafka local estava
+  disponível.
+- A dependência pode estar disponível no runtime, mas os beans, listeners e
+  configurações Kafka devem continuar ativados apenas pelo perfil Spring
+  `kafka`.
+
+### Pending items
+
+- Software Engineer: corrigir o classpath de runtime e publicar evidência de
+  startup do Inventory com perfil `kafka`, seguida do handoff técnico.
+
+### Next authorized action
+
+- Next role: Software Engineer
+- Required action: corrigir exclusivamente a disponibilidade de Kafka no
+  runtime do Inventory e preservar o isolamento por perfil Spring `kafka`.
+- Acceptance / stop criteria: parar e escalar qualquer necessidade de mudar
+  evento, tópico, grupo, contrato, arquitetura ou escopo; não reexecutar
+  Quality sem planejamento e autorização do EM.
+- Operational command: iniciar exclusivamente a correção de runtime Kafka da
+  Story #46.
+
+## Quality Re-authorization — runtime Kafka do Inventory
+
+**Decisão:** `APPROVED` para reexecução completa de Quality.
+
+O [Test Plan atualizado](../../quality/story-046/TEST_PLAN.md) foi revisado
+contra a correção `c9eff3f3661b9935b17d1c65252c9ba846b6fa5f`. O
+`spring-kafka` está disponível no runtime do Inventory, enquanto listeners e
+configurações permanecem condicionados ao perfil Spring `kafka`. Não houve
+mudança de segurança, contrato REST/Kafka, rota de negócio ou critério de
+aceite.
+
+O Quality Engineer está autorizado a executar novamente o plano completo. A
+execução deve demonstrar `SEC-046-002`, o startup do Inventory com perfil
+`kafka` e `E2E-046-001` desde a confirmação autenticada até a evidência de
+processamento/observação no Inventory. Esta autorização não aprova merge,
+release ou avanço documental; falha, bloqueio ou evidência incompleta mantém a
+Story rejeitada.
+
+## Institutional Handoff — Engineering Manager → Quality Engineer
+
+### Executive summary
+
+O reteste completo foi reautorizado após a correção do classpath Kafka de
+runtime do Inventory.
+
+### Objective completed
+
+Foi concluída a autorização explícita para validar novamente todos os cenários,
+incluindo o fluxo `OrderConfirmed` v1 sob o perfil `kafka`.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_PLAN.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: `150049f`
+- Full hash: `150049f83e5b446bee207c195cf83ef33174d9db`
+
+### Evidence and constraints
+
+- Test Plan atualizado: `feature/story-046-security-baseline` /
+  `723b86c8518065ec12a22f7546d09db4481ec30a`.
+- Correção de runtime: `c9eff3f3661b9935b17d1c65252c9ba846b6fa5f`.
+- Credenciais continuam exclusivas do runtime e não podem ser registradas.
+
+### Pending items
+
+- Quality Engineer: executar o plano completo e publicar Test Report final com
+  a recomendação ao Engineering Manager.
+
+### Next authorized action
+
+- Next role: Quality Engineer
+- Required action: executar exclusivamente o Test Plan atualizado e publicar
+  evidência reproduzível e recomendação de validação.
+- Acceptance / stop criteria: reportar falha, bloqueio ou evidência incompleta;
+  não iniciar merge, release ou documentação final.
+- Operational command: iniciar exclusivamente a reexecução de Quality da Story
+  #46.
+
+## Final Review — aceitação de Quality e encaminhamento documental
+
+**Parecer de Quality:** `ACCEPTED`.
+
+O [Test Report](../../quality/story-046/TEST_REPORT.md) concluiu os cenários
+obrigatórios sem defeitos bloqueadores. A evidência final confirma `401` para
+acesso não autenticado, preservação do comportamento autenticado, integração
+Order → Inventory, startup do Inventory com perfil `kafka` e
+`OrderConfirmed` v1 observado como `COMPLETED`. A execução manteve credenciais
+fora dos artefatos publicados.
+
+Esta aceitação encerra a avaliação de Quality, mas **não** constitui aprovação
+técnica do PR, autorização de merge ou release. A Final Review técnica depende
+da documentação de release publicada pelo Technical Writer e de sua revisão
+subsequente pelo EM.
+
+## Institutional Handoff — Engineering Manager → Technical Writer
+
+### Executive summary
+
+Quality da Story #46 foi aceita. A documentação de release deve agora
+sincronizar o contrato aprovado, o uso de credenciais por ambiente, as
+exceções técnicas e a evidência final, sem revelar segredos.
+
+### Objective completed
+
+Foi concluída a revisão da recomendação de Quality e autorizada exclusivamente
+a preparação da documentação de release da Story #46.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_REPORT.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: `799d089`
+- Full hash: `799d089cea1298d7dc1da32524343e777fd5002e`
+
+### Evidence and constraints
+
+- Test Report final: `feature/story-046-security-baseline` /
+  `a2ca340ac9372a04aad2a7fd650190ee53ed37a9`.
+- A documentação deve refletir HTTP Basic por ambiente, rotas `/api/v1/**`,
+  exceções públicas aprovadas, integração Order → Inventory e limites de TLS/
+  identidade; não pode conter valores de credenciais.
+- Não autoriza mudança de código, contrato, escopo, merge ou release.
+
+### Pending items
+
+- Technical Writer: publicar documentação de release e handoff ao Engineering
+  Manager para Final Review técnica.
+
+### Next authorized action
+
+- Next role: Technical Writer
+- Required action: preparar e publicar exclusivamente a documentação de release
+  da Story #46, incluindo orientação de uso segura e referências à evidência.
+- Acceptance / stop criteria: parar e escalar se a documentação exigir nova
+  política de segurança, segredo, contrato ou escopo; não autorizar merge ou
+  release.
+- Operational command: iniciar exclusivamente a documentação de release da
+  Story #46.
+
+## Final Engineering Review — Story #46
+
+**Parecer:** `APPROVED`.
+
+A revisão final confirma consistência entre o Product Plan, Architecture Gate,
+ADR-008, implementação, Test Report e documentação de release candidata. O
+diff publicado da PR #47 não apresenta erro de whitespace; a Quality comprovou
+o bloqueio de rotas de negócio sem credenciais, preservação de comportamento
+autenticado, integração Order → Inventory e processamento observável de
+`OrderConfirmed` v1 como `COMPLETED`.
+
+O GitHub mantém a PR em `REVIEW_REQUIRED` por política nativa, sem checks
+remotos configurados. Esta aprovação institucional é a aprovação técnica
+formal; ela não substitui a operação administrativa exclusiva do Repository
+Owner e não autoriza tag, GitHub Release, fechamento de Issue/milestone ou
+movimentação de Project Board.
+
+## Institutional Handoff — Engineering Manager → Repository Owner
+
+### Executive summary
+
+A PR #47 está tecnicamente aprovada para Administrative Merge. Todos os gates
+de arquitetura, Quality e documentação aplicáveis foram concluídos na branch
+oficial.
+
+### Objective completed
+
+Foi concluída a Final Engineering Review e registrada a autorização técnica
+para o Repository Owner executar somente a operação administrativa de merge.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- PR [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47)
+- `docs/quality/story-046/TEST_REPORT.md`
+- `docs/releases/v0.4.0-security-baseline.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: `1cb8f23`
+- Full hash: `1cb8f235c9d7b8a6a399c0bdb6403b66082ccdc9`
+
+### Evidence and constraints
+
+- PR #47 head publicado: `8f03365b435b83c91e67af18bf7fea98d4b98778`.
+- Quality final: `a2ca340ac9372a04aad2a7fd650190ee53ed37a9`.
+- Release documentation: `1c0679ebbd507e36900591520e699fb474437411`.
+- `git diff --check main...HEAD` foi concluído sem achados.
+- O merge autorizado é somente o da PR #47 em `main`; não autoriza release,
+  tag, GitHub Release, fechamento de Issue/milestone ou Board.
+
+### Pending items
+
+- Repository Owner: executar Administrative Merge, sincronizar `main` e
+  publicar a evidência administrativa para o próximo gate de release.
+
+### Next authorized action
+
+- Next role: Repository Owner
+- Required action: executar exclusivamente o Administrative Merge autorizado
+  da PR #47 e publicar o handoff administrativo com evidência de `main`.
+- Acceptance / stop criteria: parar se a cabeça da PR, os artefatos publicados
+  ou os gates divergirem; não executar release ou operações de backlog sem nova
+  autorização explícita do Engineering Manager.
+- Operational command: iniciar exclusivamente o Administrative Merge da PR #47.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
