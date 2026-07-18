@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Quality Rejection Review
-**Previous step:** Quality Engineer concluiu o reteste final e rejeitou a validação por regressão de runtime Kafka no Inventory.
-**Next step:** Engineering Manager avalia o achado, decide o rastreamento formal e encaminha a remediação ao Software Engineer.
-**Role responsible:** Engineering Manager
+**Current step:** Kafka runtime remediation
+**Previous step:** Engineering Manager manteve a Quality `REJECTED`, decidiu que o achado permanece na Story #46 e autorizou somente a correção de classpath Kafka no runtime do Inventory.
+**Next step:** Software Engineer corrige a dependência de runtime, comprova o startup do Inventory com perfil `kafka` e publica novo handoff técnico.
+**Role responsible:** Software Engineer
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Final Quality Retest `REJECTED`. Não autoriza merge, release ou avanço documental.
-**Latest published handoff:** Quality Engineer → Engineering Manager — [Story #46 Test Report](../../../quality/story-046/TEST_REPORT.md), branch `feature/story-046-security-baseline` / `9d4812d`.
-**Blockers:** Inventory não inicia com perfil Spring `kafka` por ausência de `org.apache.kafka.common.serialization.Deserializer`; `E2E-046-001` não possui evidência de consumo/observação `OrderConfirmed` v1.
-**Last updated:** 2026-07-17 — Quality Engineer — reteste final rejeitado por regressão Kafka em runtime.
+**Current gate:** Final Quality Retest permanece `REJECTED`. Correção de runtime Kafka autorizada; novo reteste exige handoff técnico publicado, planejamento atualizado se necessário e nova autorização explícita do Engineering Manager.
+**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação desta revisão.
+**Blockers:** Inventory não inicia com perfil Spring `kafka` por ausência de `org.apache.kafka.common.serialization.Deserializer`; `E2E-046-001` não possui evidência de consumo/observação `OrderConfirmed` v1. Achado rastreado na Story #46, sem Issue adicional.
+**Last updated:** 2026-07-18 — Engineering Manager — Quality Rejection Review concluída; correção de runtime Kafka devolvida ao Software Engineer.
 
 ## Flow
 
@@ -39,7 +39,8 @@
 | Final Quality Retest Authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); reteste final autorizado após evidência de integração. |
 | Final Quality Retest Execution | Quality Engineer | DONE — REJECTED | Suites e fluxo REST autenticado aprovados; Inventory falha ao iniciar com perfil `kafka`, bloqueando `E2E-046-001`. |
 | Quality Retest Execution | Quality Engineer | DONE — REJECTED | Reteste automatizado e HTTP aprovados; Order → Inventory retorna 502. |
-| Quality Rejection Review | Engineering Manager | DOING | Avaliar a regressão Kafka de runtime relatada no [Test Report](../../../quality/story-046/TEST_REPORT.md), decidir rastreamento e encaminhar remediação. |
+| Quality Rejection Review | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); correção de runtime Kafka devolvida ao Software Engineer. |
+| Kafka runtime remediation | Software Engineer | DOING | Corrigir o classpath Kafka de runtime do Inventory antes de novo planejamento/autorização de Quality. |
 | Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Final review | Engineering Manager | TODO | N/A |

@@ -613,6 +613,73 @@ Foi concluída a autorização explícita para o reteste final de Quality da Sto
 - Operational command: iniciar exclusivamente o reteste final de Quality da
   Story #46.
 
+## Quality Rejection Review — runtime Kafka do Inventory
+
+**Decisão:** `CHANGES REQUIRED`.
+
+O Test Report confirma que a fronteira HTTP, regressões automatizadas e fluxo
+REST autenticado foram validados, mas `E2E-046-001` falha porque o Inventory
+não inicia sob o perfil Spring `kafka`: a classe
+`org.apache.kafka.common.serialization.Deserializer` não está disponível no
+runtime. A atual dependência `spring-kafka` em escopo de teste (e apenas no
+perfil Maven) não satisfaz a execução da aplicação com o perfil Spring.
+
+O achado permanece rastreado na Story #46, sem Issue adicional. A remediação é
+limitada a disponibilizar a dependência Kafka necessária no classpath de
+runtime do Inventory, preservando a ativação dos componentes e configurações
+somente no perfil Spring `kafka`. Não autoriza alterar `OrderConfirmed` v1,
+tópico, grupo, contratos REST, arquitetura ou escopo de segurança.
+
+## Institutional Handoff — Engineering Manager → Software Engineer
+
+### Executive summary
+
+Quality rejeitou o reteste final por uma regressão de runtime: o Inventory não
+possui o classpath Kafka necessário quando iniciado com o perfil `kafka`.
+
+### Objective completed
+
+Foi concluída a avaliação do achado e autorizada a correção limitada de
+empacotamento/dependência na branch oficial da Story #46.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_REPORT.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: pendente da publicação desta revisão.
+
+### Evidence and constraints
+
+- Test Report: `feature/story-046-security-baseline` /
+  `606ddc3da2242123f6b81874d33f5f7e9a1ac85d`.
+- O Inventory falha no runtime `kafka` por ausência de
+  `org.apache.kafka.common.serialization.Deserializer`; Kafka local estava
+  disponível.
+- A dependência pode estar disponível no runtime, mas os beans, listeners e
+  configurações Kafka devem continuar ativados apenas pelo perfil Spring
+  `kafka`.
+
+### Pending items
+
+- Software Engineer: corrigir o classpath de runtime e publicar evidência de
+  startup do Inventory com perfil `kafka`, seguida do handoff técnico.
+
+### Next authorized action
+
+- Next role: Software Engineer
+- Required action: corrigir exclusivamente a disponibilidade de Kafka no
+  runtime do Inventory e preservar o isolamento por perfil Spring `kafka`.
+- Acceptance / stop criteria: parar e escalar qualquer necessidade de mudar
+  evento, tópico, grupo, contrato, arquitetura ou escopo; não reexecutar
+  Quality sem planejamento e autorização do EM.
+- Operational command: iniciar exclusivamente a correção de runtime Kafka da
+  Story #46.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
