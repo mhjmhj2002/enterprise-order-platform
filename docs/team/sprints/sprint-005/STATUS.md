@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Kafka runtime remediation
-**Previous step:** Engineering Manager manteve a Quality `REJECTED`, decidiu que o achado permanece na Story #46 e autorizou somente a correção de classpath Kafka no runtime do Inventory.
-**Next step:** Software Engineer corrige a dependência de runtime, comprova o startup do Inventory com perfil `kafka` e publica novo handoff técnico.
-**Role responsible:** Software Engineer
+**Current step:** Quality Planning update
+**Previous step:** Software Engineer disponibilizou Kafka no classpath de runtime do Inventory e comprovou o startup com o perfil Spring `kafka` e listener conectado.
+**Next step:** Quality Engineer atualiza o plano/precondições se necessário e solicita nova autorização explícita do Engineering Manager antes de reexecutar Quality.
+**Role responsible:** Quality Engineer
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Final Quality Retest permanece `REJECTED`. Correção de runtime Kafka autorizada; novo reteste exige handoff técnico publicado, planejamento atualizado se necessário e nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `bbcdd3c4d772eba84c1057e4ddcf840437d8d21b`.
-**Blockers:** Inventory não inicia com perfil Spring `kafka` por ausência de `org.apache.kafka.common.serialization.Deserializer`; `E2E-046-001` não possui evidência de consumo/observação `OrderConfirmed` v1. Achado rastreado na Story #46, sem Issue adicional.
-**Last updated:** 2026-07-18 — Engineering Manager — Quality Rejection Review concluída; correção de runtime Kafka devolvida ao Software Engineer.
+**Current gate:** Final Quality Retest permanece `REJECTED` até novo reteste autorizado. Correção de runtime Kafka publicada; Quality deve atualizar o plano se necessário e obter nova autorização explícita do Engineering Manager.
+**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline`; commit de remediação será registrado após publicação.
+**Blockers:** Nenhum bloqueio de classpath Kafka no runtime: o Inventory iniciou com perfil Spring `kafka`, conectou ao broker e o listener recebeu `OrderConfirmed` v1. `E2E-046-001` aguarda evidência do novo ciclo de Quality. Achado rastreado na Story #46, sem Issue adicional.
+**Last updated:** 2026-07-18 — Software Engineer — remediação de runtime Kafka concluída; handoff preparado para novo planejamento de Quality.
 
 ## Flow
 
@@ -40,7 +40,7 @@
 | Final Quality Retest Execution | Quality Engineer | DONE — REJECTED | Suites e fluxo REST autenticado aprovados; Inventory falha ao iniciar com perfil `kafka`, bloqueando `E2E-046-001`. |
 | Quality Retest Execution | Quality Engineer | DONE — REJECTED | Reteste automatizado e HTTP aprovados; Order → Inventory retorna 502. |
 | Quality Rejection Review | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); correção de runtime Kafka devolvida ao Software Engineer. |
-| Kafka runtime remediation | Software Engineer | DOING | Corrigir o classpath Kafka de runtime do Inventory antes de novo planejamento/autorização de Quality. |
+| Kafka runtime remediation | Software Engineer | DONE | Kafka disponível no runtime; Inventory iniciou com perfil Spring `kafka` e listener conectado antes de novo planejamento/autorização de Quality. |
 | Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Final review | Engineering Manager | TODO | N/A |

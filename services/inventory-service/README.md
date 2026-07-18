@@ -52,12 +52,12 @@ Variaveis opcionais:
 - `INVENTORY_DB_USERNAME` (default `inventory`)
 - `INVENTORY_DB_PASSWORD` (default `inventory`)
 - `SERVER_PORT` (default `8082`)
-- `KAFKA_BOOTSTRAP_SERVERS` (profile Spring e Maven `kafka`; default `localhost:9094`)
+- `KAFKA_BOOTSTRAP_SERVERS` (profile Spring `kafka`; default `localhost:9094`)
 - `KAFKA_CONSUMER_GROUP_ID` (profile `kafka`; default `mercadoaurora.inventory.v1`)
 - `ORDER_CONFIRMATION_RECOVERY_FIXED_DELAY_MS` (profile `kafka`; cadência do worker de recuperação)
 - `ORDER_CONFIRMATION_RECOVERY_BATCH_SIZE` (profile `kafka`; limite de pendências por execução)
 
-Com o profile Maven e Spring `kafka`, o servico consome `OrderConfirmed` v1 no grupo
+Com o profile Spring `kafka`, o servico consome `OrderConfirmed` v1 no grupo
 `mercadoaurora.inventory.v1`. Cada evento válido é registrado de forma idempotente por `eventId`
 em uma pendência durável antes do reconhecimento. Um worker local recupera pendências de falhas
 temporárias e, ao concluir, gera uma única evidência consultável em
@@ -75,10 +75,15 @@ O consumo não reserva, baixa ou altera estoque. Não há DLT nesta Story.
 ```bash
 cd services/inventory-service
 mvn test
-mvn -Pkafka test
 ```
 
 > Os testes de integracao usam Testcontainers e sao automaticamente ignorados quando Docker nao estiver disponivel.
+
+Para iniciar o consumer Kafka localmente, use o profile Spring:
+
+```bash
+mvn spring-boot:run -Dspring-boot.run.profiles=kafka
+```
 
 ## Endpoints principais
 
