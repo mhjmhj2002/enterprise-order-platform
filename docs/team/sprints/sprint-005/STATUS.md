@@ -10,7 +10,7 @@
 **Current branch:** `main` (PR #47 merge commit: `292b40d1740b9028b611d48e64b7b7916b302dd7`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Release Authorization `APPROVED`. Repository Owner pode executar somente a release `v0.4.0-security-baseline` no merge commit da PR #47 e a sincronização GitHub explicitamente autorizada; Institutional Acceptance aguarda Audit e retrospectiva.
-**Latest published handoff:** Engineering Manager → Repository Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / pendente da publicação desta autorização.
+**Latest published handoff:** Engineering Manager → Repository Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), `main` / `02c3daf5a21425678ffe125209e6016c72d4b83a`.
 **Blockers:** Nenhum para release e sincronização autorizadas. Engineering Audit e retrospectiva permanecem pendentes após a evidência administrativa; a Sprint não está encerrada.
 **Last updated:** 2026-07-18 — Engineering Manager — release e sincronização GitHub autorizadas ao Repository Owner.
 

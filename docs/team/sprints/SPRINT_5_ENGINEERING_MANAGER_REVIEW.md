@@ -925,7 +925,8 @@ explícito para tag, GitHub Release, Issue, milestone, Board e evidência.
 ### Versioned reference
 
 - Branch: `main`
-- Commit: pendente da publicação desta autorização.
+- Commit: `02c3daf`
+- Full hash: `02c3daf5a21425678ffe125209e6016c72d4b83a`
 
 ### Evidence and constraints
 
