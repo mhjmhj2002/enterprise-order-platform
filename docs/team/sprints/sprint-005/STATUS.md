@@ -3,14 +3,14 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Quality Planning update
-**Previous step:** Software Engineer reproduziu a integração autenticada Order → Inventory com sucesso e publicou teste automatizado da credencial local do adaptador.
-**Next step:** Quality Engineer atualiza o plano conforme a evidência publicada e solicita nova autorização explícita do Engineering Manager antes de reexecutar Quality.
-**Role responsible:** Quality Engineer
+**Current step:** Quality Re-authorization
+**Previous step:** Quality Engineer atualizou o Test Plan conforme a evidência de integração publicada; nenhum novo reteste foi executado.
+**Next step:** Engineering Manager revisa o plano atualizado e decide nova autorização explícita para reteste.
+**Role responsible:** Engineering Manager
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Quality permanece `REJECTED` até novo reteste autorizado. A correção/evidência de integração foi publicada; Quality deve atualizar o plano se necessário e obter nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline` / `f10cc53320976bdfcc3c99b6cf2b2973815adb5b`.
+**Latest published handoff:** Quality Engineer → Engineering Manager — [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md), branch `feature/story-046-security-baseline` / commit pendente de publicação.
 **Blockers:** Nenhum bloqueio reproduzível na integração Order → Inventory sob as precondições aprovadas: a reserva autenticada retornou `200`. Confirmação e evidência Kafka end-to-end aguardam novo ciclo de Quality. Achado permanece rastreado na Story #46, sem Issue adicional.
 **Last updated:** 2026-07-17 — Software Engineer — integração autenticada reproduzida com sucesso e evidência automatizada publicada para novo planejamento de Quality.
 

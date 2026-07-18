@@ -57,6 +57,15 @@ acceptance criterion changed. The scenario set above remains valid; the next
 execution must rerun `SEC-046-002` before the previously blocked HTTP and
 end-to-end scenarios.
 
+## Integration remediation update — 2026-07-17
+
+Reviewed published commit `f10cc53320976bdfcc3c99b6cf2b2973815adb5b`.
+It adds an adapter-level assertion that Order sends its configured local Basic
+credential to Inventory; the Software Engineer also published successful
+authenticated reservation evidence. No contract changed. `ORD-046-003` and
+`E2E-046-001` remain the mandatory retest scenarios and require renewed
+Engineering Manager authorization before execution.
+
 ## Test scenarios
 
 | ID | Scenario | Acceptance criterion |
