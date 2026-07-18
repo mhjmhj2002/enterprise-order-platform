@@ -486,6 +486,70 @@ completo e produzir recomendação atualizada.
 - Operational command: iniciar exclusivamente o reteste de Quality da Story
   #46.
 
+## Quality Rejection Review — integração Order → Inventory
+
+**Decisão:** `CHANGES REQUIRED`.
+
+O reteste confirmou regressão automatizada, smoke HTTP e proteção básica, mas
+o fluxo autenticado `POST /api/v1/orders/{orderId}/reserve-stock` retorna
+`502`. A falha bloqueia diretamente `ORD-046-003`, a confirmação de pedido e
+`E2E-046-001`; portanto, Quality permanece rejeitada e não há recomendação de
+merge, release ou avanço documental.
+
+Não será criada Issue adicional: o achado é uma falha de implementação do
+contrato Order → Inventory já pertencente à Story #46. A arquitetura, o ADR e
+o escopo funcional permanecem válidos; a correção não está autorizada a criar
+bypass de autenticação, propagar credenciais do consumidor, alterar contratos
+REST/Kafka ou introduzir nova infraestrutura.
+
+## Institutional Handoff — Engineering Manager → Software Engineer
+
+### Executive summary
+
+Quality rejeitou o reteste porque a integração autenticada Order → Inventory
+retorna `502`, bloqueando a evidência de confirmação e Kafka.
+
+### Objective completed
+
+Foi concluída a revisão da rejeição e autorizada uma correção limitada da
+implementação de integração na branch oficial da Story #46.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_REPORT.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: pendente da publicação desta revisão.
+
+### Evidence and constraints
+
+- Retest report: `feature/story-046-security-baseline` /
+  `2270c159030cd2249cb1f73f12e82591a9333868`.
+- `POST /api/v1/orders/{orderId}/reserve-stock` retorna `502` em cenário
+  autenticado, impedindo a sequência de confirmação e `OrderConfirmed` v1.
+- A correção deve preservar Basic Auth configurado localmente entre Order e
+  Inventory, `X-Correlation-Id` e os contratos existentes.
+
+### Pending items
+
+- Software Engineer: diagnosticar e corrigir o `502`, publicar handoff técnico
+  com evidência de integração e devolver ao Quality Engineer.
+
+### Next authorized action
+
+- Next role: Software Engineer
+- Required action: corrigir exclusivamente a integração autenticada Order →
+  Inventory que produz `502` e publicar o handoff técnico na branch oficial.
+- Acceptance / stop criteria: parar e escalar se a causa exigir mudança de
+  arquitetura, contrato, bypass, segredo versionado ou escopo; não reexecutar
+  Quality sem novo planejamento e autorização do EM.
+- Operational command: iniciar exclusivamente a correção da integração da
+  Story #46.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
