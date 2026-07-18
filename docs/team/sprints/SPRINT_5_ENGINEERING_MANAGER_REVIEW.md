@@ -852,7 +852,8 @@ para o Repository Owner executar somente a operação administrativa de merge.
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Commit: pendente da publicação desta aprovação.
+- Commit: `1cb8f23`
+- Full hash: `1cb8f235c9d7b8a6a399c0bdb6403b66082ccdc9`
 
 ### Evidence and constraints
 

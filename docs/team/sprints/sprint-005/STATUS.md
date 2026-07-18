@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Final Engineering Review `APPROVED`. Administrative Merge da PR #47 está tecnicamente autorizado; release, tag, GitHub Release e operações de backlog continuam sem autorização.
-**Latest published handoff:** Engineering Manager → Repository Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação desta aprovação.
+**Latest published handoff:** Engineering Manager → Repository Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `1cb8f235c9d7b8a6a399c0bdb6403b66082ccdc9`.
 **Blockers:** Nenhum para o Administrative Merge autorizado. A PR #47 está aberta com `REVIEW_REQUIRED` nativo; a aprovação técnica institucional foi registrada. Release, tag, GitHub Release, Issue/milestone e Board permanecem bloqueados até nova autorização.
 **Last updated:** 2026-07-18 — Engineering Manager — Final Engineering Review aprovada; Administrative Merge autorizado ao Repository Owner.
 
