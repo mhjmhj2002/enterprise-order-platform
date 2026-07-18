@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Release documentation
-**Previous step:** Engineering Manager aceitou a validação completa de Quality e autorizou a preparação documental de release.
-**Next step:** Technical Writer publica a documentação de release e o handoff para Final Review técnica do Engineering Manager.
-**Role responsible:** Technical Writer
+**Current step:** Final review
+**Previous step:** Technical Writer publicou a documentação de release candidata, changelog e orientação consolidada de consumo da API.
+**Next step:** Engineering Manager executa a Final Review técnica da PR #47, da evidência de Quality e da documentação de release.
+**Role responsible:** Engineering Manager
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Quality `ACCEPTED`. Release documentation é obrigatória antes da Final Review técnica; não há autorização de merge ou release nesta etapa.
-**Latest published handoff:** Engineering Manager → Technical Writer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `799d089cea1298d7dc1da32524343e777fd5002e`.
-**Blockers:** Nenhum bloqueio de Quality conhecido. `E2E-046-001` comprovou startup, publicação, consumo e observação `OrderConfirmed` v1 `COMPLETED`. Documentação de release e Final Review técnica permanecem pendentes.
-**Last updated:** 2026-07-18 — Engineering Manager — Quality aceita; documentação de release autorizada ao Technical Writer.
+**Current gate:** Release documentation concluída. Final Review técnica é obrigatória antes de merge ou release; esta etapa não autoriza operações de repositório.
+**Latest published handoff:** Technical Writer → Engineering Manager — [v0.4.0-security-baseline (candidate)](../../../releases/v0.4.0-security-baseline.md), `CHANGELOG.md`, `README.md` e [Postman README](../../../api/postman/README.md), branch `feature/story-046-security-baseline` / `PENDING_COMMIT`.
+**Blockers:** Nenhum bloqueio de Quality conhecido. `E2E-046-001` comprovou startup, publicação, consumo e observação `OrderConfirmed` v1 `COMPLETED`. Merge e release aguardam Final Review técnica.
+**Last updated:** 2026-07-18 — Technical Writer — documentação de release publicada para Final Review técnica.
 
 ## Flow
 
@@ -46,8 +46,8 @@
 | Kafka Quality Retest Execution | Quality Engineer | DONE — COMPLETED | `E2E-046-001` confirmou startup Kafka e observação `OrderConfirmed` v1 `COMPLETED`; Test Report final publicado. |
 | Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
-| Release documentation | Technical Writer | DOING | Publicar documentação de release da Story #46 e handoff para Final Review técnica. |
-| Final review | Engineering Manager | TODO | Aguarda documentação de release publicada pelo Technical Writer. |
+| Release documentation | Technical Writer | DONE | [v0.4.0-security-baseline (candidate)](../../../releases/v0.4.0-security-baseline.md), `CHANGELOG.md`, `README.md` e Postman README; `PENDING_COMMIT`. |
+| Final review | Engineering Manager | DOING | Technical Writer → Engineering Manager — documentação de release candidata publicada para revisão. |
 | Administrative closure | Repository Owner | TODO | N/A |
 | Engineering Audit | AEO | TODO | N/A |
 | Institutional acceptance | Engineering Manager | TODO | N/A |

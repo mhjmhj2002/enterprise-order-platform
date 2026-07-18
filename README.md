@@ -31,6 +31,10 @@ Como portfólio técnico, evidencia decisões e entregas rastreáveis: DDD, arqu
 
 Cada serviço possui domínio, casos de uso e persistência próprios. Na baseline atual, o Order Service orquestra reservas de estoque por REST síncrono, publica assincronamente `OrderConfirmed` v1 com o perfil Kafka e o Inventory Service registra, recupera e expõe uma observação operacional local do processamento idempotente, sem alterar estoque ou reservas.
 
+As APIs de negócio em `/api/v1/**` exigem HTTP Basic com uma única credencial
+técnica por ambiente. Health, OpenAPI e Swagger UI são exceções técnicas
+públicas; a orientação de credenciais e limites está no [ADR-008](docs/architecture/ADR/ADR-008-http-basic-authentication-baseline.md).
+
 ```mermaid
 flowchart LR
     Client[Cliente / API Consumer]
@@ -94,6 +98,10 @@ O guia [Docker — Setup local](docker/README.md) contém os comandos para criar
 ### Execução dos serviços
 
 Depois de preparar os bancos, inicie cada serviço em um terminal, nesta ordem:
+
+Antes de iniciar, forneça `SECURITY_API_USERNAME` e `SECURITY_API_PASSWORD` no
+ambiente de cada serviço. Não versione nem exponha seus valores; fora do
+ambiente local, HTTP Basic requer HTTPS confiável.
 
 ```bash
 cd services/catalog-service
@@ -169,7 +177,7 @@ Para a Story #44, a fonte oficial é o [Test Report](docs/quality/story-044/TEST
 | Decisões | [Architecture Decision Records](docs/architecture/ADR/README.md) · [Architecture Notes](docs/architecture/ARCHITECTURE_NOTES.md) |
 | Domínio | [Business Discovery](docs/business/BUSINESS_DISCOVERY.md) · [Business Flow](docs/business/BUSINESS_FLOW.md) · [Glossário](docs/business/GLOSSARY.md) |
 | APIs | [Collections Postman](docs/api/postman/README.md) · READMEs de [Catalog](services/catalog-service/README.md), [Inventory](services/inventory-service/README.md) e [Order](services/order-service/README.md) |
-| Qualidade | [Story #44 Quality Gate](docs/quality/story-044/TEST_REPORT.md) · [Sprint 4 Quality Evidence](docs/quality/SPRINT_4_QUALITY_EVIDENCE.md) |
+| Qualidade | [Story #46 Test Report](docs/quality/story-046/TEST_REPORT.md) · [Story #44 Quality Gate](docs/quality/story-044/TEST_REPORT.md) |
 | Governança | [Team Charter](docs/team/TEAM_CHARTER.md) · [Workflow](docs/team/WORKFLOW.md) · [Playbooks](docs/team/roles/README.md) |
 | Histórico | [Project History](docs/team/PROJECT_HISTORY.md) · [Changelog](CHANGELOG.md) · [Release notes](docs/releases) |
 
@@ -188,6 +196,7 @@ A direção evolutiva da plataforma está registrada no [Engineering Roadmap](do
 | ✅ | Order Service e PaymentFakeAdapter |
 | 🗓️ | Payment, Fulfillment e Notification Services |
 | ✅ | Sprint 2–4: eventos, confiabilidade e visibilidade operacional local de `OrderConfirmed` v1; REST permanece suportado |
+| ✅ | Story #46 (release candidate): baseline de autenticação HTTP Basic nas APIs de negócio; autorização granular e gestão de identidade permanecem futuras |
 | 🗓️ | Saga Pattern, após validação do primeiro fluxo assíncrono |
 | 🗓️ | Observabilidade corporativa e rastreamento distribuído |
 | 🗓️ | Autenticação, autorização e API Gateway |
@@ -201,6 +210,7 @@ Os planos aprovados das Sprints 2 a 4 e as convenções institucionais estão no
 ## Releases
 
 - [`v0.3.0-order-service`](docs/releases/v0.3.0-order-service.md) — Order Service e conclusão da Story-009.
+- [`v0.4.0-security-baseline` (candidate)](docs/releases/v0.4.0-security-baseline.md) — Story #46, aguardando Final Review técnica e operações autorizadas de release.
 - [`v0.2.0-inventory-service`](https://github.com/mhjmhj2002/enterprise-order-platform/releases/tag/v0.2.0-inventory-service) — Inventory Service.
 - [Todas as releases publicadas](https://github.com/mhjmhj2002/enterprise-order-platform/releases).
 

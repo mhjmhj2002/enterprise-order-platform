@@ -8,6 +8,14 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Changed
 
+- Story #46 preparada para release: as APIs de negócio de Catalog, Inventory e
+  Order sob `/api/v1/**` agora exigem HTTP Basic com uma credencial técnica por
+  ambiente. Solicitações não autenticadas são recusadas com `401` antes de
+  qualquer efeito de negócio; health, OpenAPI e Swagger UI permanecem exceções
+  técnicas públicas.
+- A integração REST interna Order → Inventory passa a autenticar-se com a
+  credencial local configurada, preservando métodos, paths, payloads,
+  `X-Correlation-Id` e os contratos de negócio após autenticação válida.
 - A sequência oficial de abertura da Sprint foi alinhada para: Organizational Validation, Organizational Freeze, Sprint Initiation Request, Sprint Bootstrap do PMO, `STATUS.md` inicial e entrada do Product Owner.
 - O ciclo institucional de Sprint passa a iniciar com o Sprint Initiation Request versionado de Sponsor / Program Direction para o PMO; o Sprint Bootstrap exige esse artefato autorizado, cria o `STATUS.md` inicial e deixa evidência para auditoria.
 - Organizational implementation of PI-004 and PI-005 completed pending Engineering Manager validation: Sprint Execution Protocol, Organizational Freeze, Sprint workspace, STATUS.md, embedded Institutional Handoff sections, role responsibilities and audit controls are now documented for Sprint 5 use.
@@ -35,6 +43,8 @@ O formato segue uma abordagem inspirada em Keep a Changelog e versionamento SemV
 
 ### Added
 
+- ADR-008 e documentação de release candidata para a baseline de autenticação
+  da Story #46, incluindo limites de HTTPS, identidade e autorização.
 - Story #44 concluída: Inventory Service disponibiliza observação operacional local de `OrderConfirmed` v1 por pedido, com histórico seguro de `REGISTERED`, `TEMPORARY_FAILURE` e `COMPLETED`, sem alterar contratos, producer, tópico, grupo de consumo ou fluxo REST.
 - Candidate Improvement Backlog institucional para registrar ideias de melhoria durante a Sprint e submetê-las à decisão da Retrospectiva antes de qualquer alteração do processo.
 - Story #34 concluída: Inventory Service registra pendências duráveis de `OrderConfirmed` v1, recupera falhas temporárias localmente e expõe o estado `PENDING`/`COMPLETED` sem alterar o contrato de evento, o producer, o tópico ou o fluxo REST.

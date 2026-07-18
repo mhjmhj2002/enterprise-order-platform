@@ -21,6 +21,8 @@ Arquivo: `catalog-service.postman_collection.json`
 - `baseUrl`: URL base da API.
 - `productId`: preenchida automaticamente no teste de criacao de produto.
 - `skuId`: preenchida automaticamente no teste de criacao de SKU.
+- `apiUsername`, `apiPassword`: credenciais HTTP Basic injetadas localmente;
+  permanecem vazias e não versionadas.
 
 ## Inventory Service
 
@@ -30,6 +32,8 @@ Arquivo: `inventory-service.postman_collection.json`
 
 - `baseUrl`: URL base da API.
 - `skuId`, `warehouseId`, `reservationId`: identificadores para fluxo de reserva/commit/release.
+- `apiUsername`, `apiPassword`: credenciais HTTP Basic injetadas localmente;
+  permanecem vazias e não versionadas.
 
 ## Order Service
 
@@ -52,3 +56,9 @@ A collection cria pedidos independentes para happy path, falha de pagamento e va
 - `orderId`: preenchido automaticamente na criacao do pedido.
 - `reservationId`, `reservationId2`: referencias geradas automaticamente.
 - `warehouseId`, `quantity`, `correlationId`: contexto da execucao.
+- `apiUsername`, `apiPassword`: credenciais HTTP Basic injetadas localmente;
+  permanecem vazias e não versionadas.
+
+As rotas de negócio em `/api/v1/**` exigem HTTP Basic. Configure as variáveis
+localmente e nunca exporte seus valores junto com a collection. `GET
+/actuator/health`, OpenAPI e Swagger UI são exceções técnicas públicas.
