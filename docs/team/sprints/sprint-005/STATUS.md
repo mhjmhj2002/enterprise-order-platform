@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Quality `ACCEPTED`. Release documentation é obrigatória antes da Final Review técnica; não há autorização de merge ou release nesta etapa.
-**Latest published handoff:** Engineering Manager → Technical Writer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação deste encaminhamento.
+**Latest published handoff:** Engineering Manager → Technical Writer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `799d089cea1298d7dc1da32524343e777fd5002e`.
 **Blockers:** Nenhum bloqueio de Quality conhecido. `E2E-046-001` comprovou startup, publicação, consumo e observação `OrderConfirmed` v1 `COMPLETED`. Documentação de release e Final Review técnica permanecem pendentes.
 **Last updated:** 2026-07-18 — Engineering Manager — Quality aceita; documentação de release autorizada ao Technical Writer.
 

@@ -783,7 +783,8 @@ a preparação da documentação de release da Story #46.
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Commit: pendente da publicação deste encaminhamento.
+- Commit: `799d089`
+- Full hash: `799d089cea1298d7dc1da32524343e777fd5002e`
 
 ### Evidence and constraints
 
