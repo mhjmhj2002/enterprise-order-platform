@@ -523,7 +523,8 @@ implementação de integração na branch oficial da Story #46.
 ### Versioned reference
 
 - Branch: `feature/story-046-security-baseline`
-- Commit: pendente da publicação desta revisão.
+- Commit: `a8dddca`
+- Full hash: `a8dddca659f8c1d4cd05d1f619888e1b33025ad1`
 
 ### Evidence and constraints
 

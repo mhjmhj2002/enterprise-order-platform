@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Quality permanece `REJECTED`. Correção de integração autorizada; novo reteste exige handoff técnico publicado, planejamento atualizado se necessário e nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação desta revisão.
+**Latest published handoff:** Engineering Manager → Software Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `a8dddca659f8c1d4cd05d1f619888e1b33025ad1`.
 **Blockers:** O fluxo autenticado `POST /api/v1/orders/{orderId}/reserve-stock` retorna HTTP 502; confirmação e evidência Kafka end-to-end ficam bloqueadas. Achado permanece rastreado na Story #46, sem Issue adicional.
 **Last updated:** 2026-07-17 — Engineering Manager — Quality Rejection Review concluída; correção da integração devolvida ao Software Engineer.
 
