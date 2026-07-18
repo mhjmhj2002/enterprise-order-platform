@@ -681,6 +681,69 @@ empacotamento/dependência na branch oficial da Story #46.
 - Operational command: iniciar exclusivamente a correção de runtime Kafka da
   Story #46.
 
+## Quality Re-authorization — runtime Kafka do Inventory
+
+**Decisão:** `APPROVED` para reexecução completa de Quality.
+
+O [Test Plan atualizado](../../quality/story-046/TEST_PLAN.md) foi revisado
+contra a correção `c9eff3f3661b9935b17d1c65252c9ba846b6fa5f`. O
+`spring-kafka` está disponível no runtime do Inventory, enquanto listeners e
+configurações permanecem condicionados ao perfil Spring `kafka`. Não houve
+mudança de segurança, contrato REST/Kafka, rota de negócio ou critério de
+aceite.
+
+O Quality Engineer está autorizado a executar novamente o plano completo. A
+execução deve demonstrar `SEC-046-002`, o startup do Inventory com perfil
+`kafka` e `E2E-046-001` desde a confirmação autenticada até a evidência de
+processamento/observação no Inventory. Esta autorização não aprova merge,
+release ou avanço documental; falha, bloqueio ou evidência incompleta mantém a
+Story rejeitada.
+
+## Institutional Handoff — Engineering Manager → Quality Engineer
+
+### Executive summary
+
+O reteste completo foi reautorizado após a correção do classpath Kafka de
+runtime do Inventory.
+
+### Objective completed
+
+Foi concluída a autorização explícita para validar novamente todos os cenários,
+incluindo o fluxo `OrderConfirmed` v1 sob o perfil `kafka`.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/quality/story-046/TEST_PLAN.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: pendente da publicação desta reautorização.
+
+### Evidence and constraints
+
+- Test Plan atualizado: `feature/story-046-security-baseline` /
+  `723b86c8518065ec12a22f7546d09db4481ec30a`.
+- Correção de runtime: `c9eff3f3661b9935b17d1c65252c9ba846b6fa5f`.
+- Credenciais continuam exclusivas do runtime e não podem ser registradas.
+
+### Pending items
+
+- Quality Engineer: executar o plano completo e publicar Test Report final com
+  a recomendação ao Engineering Manager.
+
+### Next authorized action
+
+- Next role: Quality Engineer
+- Required action: executar exclusivamente o Test Plan atualizado e publicar
+  evidência reproduzível e recomendação de validação.
+- Acceptance / stop criteria: reportar falha, bloqueio ou evidência incompleta;
+  não iniciar merge, release ou documentação final.
+- Operational command: iniciar exclusivamente a reexecução de Quality da Story
+  #46.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary

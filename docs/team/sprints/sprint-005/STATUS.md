@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Quality Re-authorization
-**Previous step:** Quality Engineer revisou a remediação de runtime Kafka, atualizou o plano e preservou todos os cenários obrigatórios.
-**Next step:** Engineering Manager revisa o Test Plan atualizado e autoriza ou rejeita explicitamente a reexecução completa de Quality.
-**Role responsible:** Engineering Manager
+**Current step:** Kafka Quality Retest Execution
+**Previous step:** Engineering Manager revisou o Test Plan atualizado e autorizou a reexecução completa de Quality.
+**Next step:** Quality Engineer executa o plano completo, incluindo startup Kafka e `E2E-046-001`, e publica Test Report final com recomendação.
+**Role responsible:** Quality Engineer
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Quality Re-authorization `PENDING`. O reteste final anterior permanece `REJECTED`; nenhum merge, release ou avanço documental é autorizado.
-**Latest published handoff:** Quality Engineer → Engineering Manager — [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md), branch `feature/story-046-security-baseline` / commit a publicar.
-**Blockers:** Nenhum bloqueio de planejamento. A execução depende de nova autorização explícita do Engineering Manager; `E2E-046-001` deve comprovar a remediação no ciclo de Quality.
-**Last updated:** 2026-07-18 — Quality Engineer — plano atualizado após remediação de runtime Kafka; reautorização solicitada.
+**Current gate:** Kafka Quality Retest Execution `APPROVED` pelo Engineering Manager. O reteste limita-se ao plano atualizado e não autoriza merge, release ou avanço documental.
+**Latest published handoff:** Engineering Manager → Quality Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação desta reautorização.
+**Blockers:** Nenhum para reexecução autorizada. `E2E-046-001` deve comprovar o startup Kafka e o processamento/observação `OrderConfirmed` v1. Achado permanece rastreado na Story #46, sem Issue adicional.
+**Last updated:** 2026-07-18 — Engineering Manager — reexecução completa de Quality autorizada após correção de runtime Kafka.
 
 ## Flow
 
@@ -42,7 +42,8 @@
 | Quality Rejection Review | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); correção de runtime Kafka devolvida ao Software Engineer. |
 | Kafka runtime remediation | Software Engineer | DONE | Kafka disponível no runtime; Inventory iniciou com perfil Spring `kafka` e listener conectado antes de novo planejamento/autorização de Quality. |
 | Quality Planning update | Quality Engineer | DONE | [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md) revisado contra `c9eff3f`; cenários completos preservados. |
-| Quality Re-authorization | Engineering Manager | DOING | Revisar o plano atualizado e autorizar ou rejeitar explicitamente o reteste completo. |
+| Quality Re-authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); reexecução completa autorizada após correção de runtime Kafka. |
+| Kafka Quality Retest Execution | Quality Engineer | DOING | Executar o plano completo e publicar Test Report final com recomendação. |
 | Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Final review | Engineering Manager | TODO | N/A |
