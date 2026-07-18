@@ -56,6 +56,24 @@ validated because the required integration execution did not complete.
 mandatory negative, authenticated, integration and end-to-end scenarios lack
 completed reproducible evidence, and automated regression is failing.
 
+## Retest update — 2026-07-17
+
+The remediated automated suites passed: Catalog (24 tests), Inventory/Kafka
+and Order (29 tests) had no failures, errors or skips. HTTP smoke evidence
+also passed for all services: health `200`, business route without credentials
+`401`, and authenticated representative calls returned their expected status.
+An unauthenticated Catalog write returned `401`.
+
+The authenticated manual Order → Inventory flow was then executed with a new
+inventory item and order. `POST /api/v1/orders/{orderId}/reserve-stock`
+returned **502**, preventing payment, confirmation and `OrderConfirmed`
+evidence. This is a reproducible blocking integration defect in scenario
+`ORD-046-003` / `E2E-046-001`.
+
+**Updated recommendation: VALIDATION REJECTED.** The Engineering Manager must
+route the finding to Software Engineering; no merge, release or documentation
+advance is recommended.
+
 ## Institutional Handoff — Quality Engineer → Engineering Manager
 
 ### Published artifacts
