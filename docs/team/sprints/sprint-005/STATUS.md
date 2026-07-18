@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Quality permanece `REJECTED` até nova execução autorizada. Remediação publicada; Quality deve atualizar o plano se necessário e obter nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline`; commit de remediação será registrado após publicação.
+**Latest published handoff:** Software Engineer → Quality Engineer — [PR #47](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47), branch `feature/story-046-security-baseline` / `29b52645529fea0fdfb3507efbe523e2e7e1c6e1`.
 **Blockers:** Nenhum bloqueio de regressão automatizada. Evidências HTTP, de integração Order → Inventory e Kafka end-to-end permanecem pendentes de novo ciclo de Quality. Os achados continuam rastreados na Story #46; itens fora de escopo permanecem bloqueados.
 **Last updated:** 2026-07-17 — Software Engineer — remediação técnica concluída; handoff preparado para atualização do planejamento de Quality.
 
