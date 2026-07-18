@@ -7,10 +7,10 @@
 **Previous step:** Repository Owner concluiu o Administrative Merge da PR #47 e sincronizou `main`.
 **Next step:** Engineering Manager delibera sobre qualquer autorização posterior de release ou encerramento; não há operação adicional autorizada ao Repository Owner.
 **Role responsible:** Engineering Manager
-**Current branch:** `main` / `292b40d1740b9028b611d48e64b7b7916b302dd7`
+**Current branch:** `main` (PR #47 merge commit: `292b40d1740b9028b611d48e64b7b7916b302dd7`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Administrative Merge concluído. Release, tag, GitHub Release, Issue/milestone e Board continuam sem autorização.
-**Latest published handoff:** Repository Owner → AI Engineering Orchestrator — [Sprint 5 Repository Owner Administrative Evidence](REPORTS/SPRINT_5_CLOSURE_READINESS.md), `main` / `292b40d1740b9028b611d48e64b7b7916b302dd7`.
+**Latest published handoff:** Repository Owner → AI Engineering Orchestrator — [Sprint 5 Repository Owner Administrative Evidence](REPORTS/SPRINT_5_CLOSURE_READINESS.md), published on `main`.
 **Blockers:** Nova autorização explícita do Engineering Manager é necessária para release, tag, GitHub Release, Issue/milestone, Board e continuidade do encerramento administrativo.
 **Last updated:** 2026-07-18 — Repository Owner — Administrative Merge da PR #47 concluído; `main` sincronizada e evidência administrativa publicada.
 
