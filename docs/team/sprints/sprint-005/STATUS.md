@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Final review
-**Previous step:** Technical Writer publicou a documentação de release candidata, changelog e orientação consolidada de consumo da API.
-**Next step:** Engineering Manager executa a Final Review técnica da PR #47, da evidência de Quality e da documentação de release.
-**Role responsible:** Engineering Manager
+**Current step:** Administrative merge
+**Previous step:** Engineering Manager concluiu a Final Engineering Review com parecer `APPROVED` e autorização técnica da PR #47.
+**Next step:** Repository Owner executa exclusivamente o Administrative Merge da PR #47, sincroniza `main` e publica evidência administrativa.
+**Role responsible:** Repository Owner
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Release documentation concluída. Final Review técnica é obrigatória antes de merge ou release; esta etapa não autoriza operações de repositório.
-**Latest published handoff:** Technical Writer → Engineering Manager — [v0.4.0-security-baseline (candidate)](../../../releases/v0.4.0-security-baseline.md), `CHANGELOG.md`, `README.md` e [Postman README](../../../api/postman/README.md), branch `feature/story-046-security-baseline` / `1c0679ebbd507e36900591520e699fb474437411`.
-**Blockers:** Nenhum bloqueio de Quality conhecido. `E2E-046-001` comprovou startup, publicação, consumo e observação `OrderConfirmed` v1 `COMPLETED`. Merge e release aguardam Final Review técnica.
-**Last updated:** 2026-07-18 — Technical Writer — documentação de release publicada para Final Review técnica.
+**Current gate:** Final Engineering Review `APPROVED`. Administrative Merge da PR #47 está tecnicamente autorizado; release, tag, GitHub Release e operações de backlog continuam sem autorização.
+**Latest published handoff:** Engineering Manager → Repository Owner — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação desta aprovação.
+**Blockers:** Nenhum para o Administrative Merge autorizado. A PR #47 está aberta com `REVIEW_REQUIRED` nativo; a aprovação técnica institucional foi registrada. Release, tag, GitHub Release, Issue/milestone e Board permanecem bloqueados até nova autorização.
+**Last updated:** 2026-07-18 — Engineering Manager — Final Engineering Review aprovada; Administrative Merge autorizado ao Repository Owner.
 
 ## Flow
 
@@ -47,8 +47,9 @@
 | Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Release documentation | Technical Writer | DONE | [v0.4.0-security-baseline (candidate)](../../../releases/v0.4.0-security-baseline.md), `CHANGELOG.md`, `README.md` e Postman README; `1c0679ebbd507e36900591520e699fb474437411`. |
-| Final review | Engineering Manager | DOING | Technical Writer → Engineering Manager — documentação de release candidata publicada para revisão. |
-| Administrative closure | Repository Owner | TODO | N/A |
+| Final review | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); PR #47 tecnicamente aprovada. |
+| Administrative merge | Repository Owner | DOING | Administrative Merge da PR #47 tecnicamente autorizado; release permanece bloqueado. |
+| Administrative closure | Repository Owner | TODO | Aguarda merge e autorizações posteriores de release/encerramento. |
 | Engineering Audit | AEO | TODO | N/A |
 | Institutional acceptance | Engineering Manager | TODO | N/A |
 

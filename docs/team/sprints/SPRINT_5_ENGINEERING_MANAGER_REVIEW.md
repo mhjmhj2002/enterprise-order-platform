@@ -811,6 +811,73 @@ a preparação da documentação de release da Story #46.
 - Operational command: iniciar exclusivamente a documentação de release da
   Story #46.
 
+## Final Engineering Review — Story #46
+
+**Parecer:** `APPROVED`.
+
+A revisão final confirma consistência entre o Product Plan, Architecture Gate,
+ADR-008, implementação, Test Report e documentação de release candidata. O
+diff publicado da PR #47 não apresenta erro de whitespace; a Quality comprovou
+o bloqueio de rotas de negócio sem credenciais, preservação de comportamento
+autenticado, integração Order → Inventory e processamento observável de
+`OrderConfirmed` v1 como `COMPLETED`.
+
+O GitHub mantém a PR em `REVIEW_REQUIRED` por política nativa, sem checks
+remotos configurados. Esta aprovação institucional é a aprovação técnica
+formal; ela não substitui a operação administrativa exclusiva do Repository
+Owner e não autoriza tag, GitHub Release, fechamento de Issue/milestone ou
+movimentação de Project Board.
+
+## Institutional Handoff — Engineering Manager → Repository Owner
+
+### Executive summary
+
+A PR #47 está tecnicamente aprovada para Administrative Merge. Todos os gates
+de arquitetura, Quality e documentação aplicáveis foram concluídos na branch
+oficial.
+
+### Objective completed
+
+Foi concluída a Final Engineering Review e registrada a autorização técnica
+para o Repository Owner executar somente a operação administrativa de merge.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- PR [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47)
+- `docs/quality/story-046/TEST_REPORT.md`
+- `docs/releases/v0.4.0-security-baseline.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `feature/story-046-security-baseline`
+- Commit: pendente da publicação desta aprovação.
+
+### Evidence and constraints
+
+- PR #47 head publicado: `8f03365b435b83c91e67af18bf7fea98d4b98778`.
+- Quality final: `a2ca340ac9372a04aad2a7fd650190ee53ed37a9`.
+- Release documentation: `1c0679ebbd507e36900591520e699fb474437411`.
+- `git diff --check main...HEAD` foi concluído sem achados.
+- O merge autorizado é somente o da PR #47 em `main`; não autoriza release,
+  tag, GitHub Release, fechamento de Issue/milestone ou Board.
+
+### Pending items
+
+- Repository Owner: executar Administrative Merge, sincronizar `main` e
+  publicar a evidência administrativa para o próximo gate de release.
+
+### Next authorized action
+
+- Next role: Repository Owner
+- Required action: executar exclusivamente o Administrative Merge autorizado
+  da PR #47 e publicar o handoff administrativo com evidência de `main`.
+- Acceptance / stop criteria: parar se a cabeça da PR, os artefatos publicados
+  ou os gates divergirem; não executar release ou operações de backlog sem nova
+  autorização explícita do Engineering Manager.
+- Operational command: iniciar exclusivamente o Administrative Merge da PR #47.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
