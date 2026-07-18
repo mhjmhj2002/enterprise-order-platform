@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Quality Re-authorization
-**Previous step:** Quality Engineer atualizou o Test Plan contra a remediação publicada; não houve reexecução de testes.
-**Next step:** Engineering Manager revisa o plano atualizado e decide autorização explícita para o reteste de Quality.
-**Role responsible:** Engineering Manager
+**Current step:** Quality Retest Execution
+**Previous step:** Engineering Manager revisou o Test Plan atualizado e autorizou o reteste completo de Quality.
+**Next step:** Quality Engineer reexecuta o plano e publica Test Report com evidência, limitações, defeitos e recomendação atualizada.
+**Role responsible:** Quality Engineer
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Quality permanece `REJECTED` até reteste autorizado e aprovado. O plano atualizado aguarda nova autorização explícita do Engineering Manager.
-**Latest published handoff:** Quality Engineer → Engineering Manager — [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md), branch `feature/story-046-security-baseline` / `246e54fc5e1d03cd190df06251b43486428cde2b`.
-**Blockers:** Autorização explícita do Engineering Manager para reteste. Evidências HTTP, de integração Order → Inventory e Kafka end-to-end permanecem pendentes. Os achados continuam rastreados na Story #46; itens fora de escopo permanecem bloqueados.
-**Last updated:** 2026-07-17 — Quality Engineer — Test Plan atualizado para a remediação; aguardando reautorização.
+**Current gate:** Quality Retest Execution `APPROVED` pelo Engineering Manager. O reteste limita-se ao plano atualizado e não autoriza merge, release ou avanço documental.
+**Latest published handoff:** Engineering Manager → Quality Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / pendente da publicação desta reautorização.
+**Blockers:** Nenhum para reteste autorizado. Evidências HTTP, de integração Order → Inventory e Kafka end-to-end permanecem pendentes até execução. Os achados continuam rastreados na Story #46; itens fora de escopo permanecem bloqueados.
+**Last updated:** 2026-07-17 — Engineering Manager — reteste de Quality autorizado.
 
 ## Flow
 
@@ -35,7 +35,8 @@
 | Quality Rejection Review | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); remediação na Story #46, sem Issue adicional. |
 | Implementation remediation | Software Engineer | DONE | Regressão Kafka e compatibilidade Testcontainers corrigidas; aguarda atualização do planejamento de Quality. |
 | Quality Planning update | Quality Engineer | DONE | [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md) revisado para `29b5264`; reexecução ainda não iniciada. |
-| Quality Re-authorization | Engineering Manager | TODO | Revisar o plano atualizado e autorizar explicitamente (ou rejeitar) o reteste. |
+| Quality Re-authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); reteste completo autorizado. |
+| Quality Retest Execution | Quality Engineer | DOING | Reexecutar o plano atualizado e publicar Test Report com recomendação. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Final review | Engineering Manager | TODO | N/A |
 | Administrative closure | Repository Owner | TODO | N/A |
