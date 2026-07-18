@@ -12,6 +12,16 @@
       "type": "string"
     },
     {
+      "key": "apiUsername",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "apiPassword",
+      "value": "",
+      "type": "string"
+    },
+    {
       "key": "productId",
       "value": "00000000-0000-0000-0000-000000000001",
       "type": "string"

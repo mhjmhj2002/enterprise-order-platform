@@ -3,16 +3,16 @@
 **Sprint:** Sprint 5 — Security; baseline inicial de segurança direcional, com preservação do comportamento funcional existente.
 **Workspace:** `docs/team/sprints/sprint-005/`
 **Current Story:** [#46 — Story-022: Baseline inicial de segurança](https://github.com/mhjmhj2002/enterprise-order-platform/issues/46); escopo proposto em [Sprint 5 Product Plan](../SPRINT_5_PRODUCT_PLAN.md).
-**Current step:** Final Quality Retest Execution
-**Previous step:** Engineering Manager revisou o Test Plan atualizado e autorizou o reteste final de Quality.
-**Next step:** Quality Engineer reexecuta o plano completo e publica Test Report final com evidência, limitações, defeitos e recomendação.
-**Role responsible:** Quality Engineer
+**Current step:** Quality Rejection Review
+**Previous step:** Quality Engineer concluiu o reteste final e rejeitou a validação por regressão de runtime Kafka no Inventory.
+**Next step:** Engineering Manager avalia o achado, decide o rastreamento formal e encaminha a remediação ao Software Engineer.
+**Role responsible:** Engineering Manager
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
-**Current gate:** Final Quality Retest Execution `APPROVED` pelo Engineering Manager. O reteste limita-se ao plano atualizado e não autoriza merge, release ou avanço documental.
-**Latest published handoff:** Engineering Manager → Quality Engineer — [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md), branch `feature/story-046-security-baseline` / `c37ac5b8c0c5eec40f6ae4b13537172289eb5c1d`.
-**Blockers:** Nenhum para reteste final autorizado. Confirmação e evidência Kafka end-to-end aguardam execução; o achado permanece rastreado na Story #46, sem Issue adicional.
-**Last updated:** 2026-07-17 — Engineering Manager — reteste final de Quality autorizado.
+**Current gate:** Final Quality Retest `REJECTED`. Não autoriza merge, release ou avanço documental.
+**Latest published handoff:** Quality Engineer → Engineering Manager — [Story #46 Test Report](../../../quality/story-046/TEST_REPORT.md), branch `feature/story-046-security-baseline` / `9d4812d`.
+**Blockers:** Inventory não inicia com perfil Spring `kafka` por ausência de `org.apache.kafka.common.serialization.Deserializer`; `E2E-046-001` não possui evidência de consumo/observação `OrderConfirmed` v1.
+**Last updated:** 2026-07-17 — Quality Engineer — reteste final rejeitado por regressão Kafka em runtime.
 
 ## Flow
 
@@ -37,9 +37,9 @@
 | Quality Planning update | Quality Engineer | DONE | [Story #46 Test Plan](../../../quality/story-046/TEST_PLAN.md) revisado para `29b5264`; reexecução ainda não iniciada. |
 | Quality Re-authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); reteste completo autorizado. |
 | Final Quality Retest Authorization | Engineering Manager | DONE — APPROVED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); reteste final autorizado após evidência de integração. |
-| Final Quality Retest Execution | Quality Engineer | DOING | Reexecutar o plano completo e publicar Test Report final com recomendação. |
+| Final Quality Retest Execution | Quality Engineer | DONE — REJECTED | Suites e fluxo REST autenticado aprovados; Inventory falha ao iniciar com perfil `kafka`, bloqueando `E2E-046-001`. |
 | Quality Retest Execution | Quality Engineer | DONE — REJECTED | Reteste automatizado e HTTP aprovados; Order → Inventory retorna 502. |
-| Quality Rejection Review | Engineering Manager | DONE — CHANGES REQUIRED | [Sprint 5 Engineering Manager Review](../SPRINT_5_ENGINEERING_MANAGER_REVIEW.md); correção do `502` devolvida ao Software Engineer. |
+| Quality Rejection Review | Engineering Manager | DOING | Avaliar a regressão Kafka de runtime relatada no [Test Report](../../../quality/story-046/TEST_REPORT.md), decidir rastreamento e encaminhar remediação. |
 | Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
 | Final review | Engineering Manager | TODO | N/A |

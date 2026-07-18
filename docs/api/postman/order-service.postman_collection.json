@@ -23,6 +23,14 @@
       "value": "http://localhost:8083"
     },
     {
+      "key": "apiUsername",
+      "value": ""
+    },
+    {
+      "key": "apiPassword",
+      "value": ""
+    },
+    {
       "key": "inventoryBaseUrl",
       "value": "http://localhost:8082"
     },

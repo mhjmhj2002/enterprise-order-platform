@@ -74,6 +74,40 @@ evidence. This is a reproducible blocking integration defect in scenario
 route the finding to Software Engineering; no merge, release or documentation
 advance is recommended.
 
+## Final retest update — 2026-07-17
+
+Executed against `feature/story-046-security-baseline` / `9d4812d` (published
+implementation handoff `f10cc53320976bdfcc3c99b6cf2b2973815adb5b`). Catalog,
+Inventory and Order default automated suites passed with respectively 24, 36
+and 30 tests, without failures, errors or skips; Docker/Testcontainers was
+available. The Inventory `kafka` Maven-profile suite also passed with 36
+tests.
+
+The isolated HTTP retest passed the public health/OpenAPI surface (`200`),
+rejected sampled Catalog, Inventory and Order business calls without
+credentials (`401`), rejected an unauthorized Inventory write (`401`), and
+created Inventory and Order resources only with valid runtime-injected
+credentials. The authenticated Order flow created the order, reserved stock,
+started and marked payment, and confirmed successfully (`201`, then `200`,
+`200`, `200`, `200`), proving the repaired Order → Inventory REST path.
+
+`E2E-046-001` remains **FAILED**. Starting Inventory with the required Spring
+`kafka` profile fails before serving HTTP: `ClassNotFoundException:
+org.apache.kafka.common.serialization.Deserializer` while introspecting
+`KafkaConsumerConfig`. Kafka itself was available locally. Consequently,
+Inventory cannot consume the confirmed-order event and the required
+`OrderConfirmed` v1 processing/observation evidence cannot be produced. This
+is a reproducible High-severity integration regression; it blocks release.
+
+The three Postman collections now declare blank, non-versioned
+`apiUsername`/`apiPassword` variables; no credential was captured in an
+artifact.
+
+**Final recommendation: VALIDATION REJECTED.** Route the Inventory Kafka
+runtime-classpath defect to Software Engineering. Do not advance to
+documentation, merge or release until the Kafka-profile startup and the
+complete `E2E-046-001` observation are retested successfully.
+
 ## Institutional Handoff — Quality Engineer → Engineering Manager
 
 ### Published artifacts
