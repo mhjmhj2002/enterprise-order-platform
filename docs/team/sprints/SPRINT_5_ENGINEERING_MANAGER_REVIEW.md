@@ -879,6 +879,77 @@ para o Repository Owner executar somente a operação administrativa de merge.
   autorização explícita do Engineering Manager.
 - Operational command: iniciar exclusivamente o Administrative Merge da PR #47.
 
+## Release Authorization — Story #46
+
+**Decisão:** `RELEASE AUTHORIZED`.
+
+O Repository Owner comprovou o Administrative Merge da PR #47 em `main`, a
+remoção remota da branch de Story e a preservação intencional de Issue,
+milestone, Board, tag e release até esta deliberação. A Quality aceita, a
+Final Engineering Review aprovada e a documentação candidata permitem a
+publicação da release da Story.
+
+### Operações autorizadas ao Repository Owner
+
+1. Criar a tag e a GitHub Release `v0.4.0-security-baseline` no merge commit
+   `292b40d1740b9028b611d48e64b7b7916b302dd7`, usando a nota de release
+   publicada em `docs/releases/v0.4.0-security-baseline.md`.
+2. Encerrar a Issue #46 como concluída, fechar o milestone `Sprint 5 — Security`
+   e mover o card da Issue #46 para o estado final `Done` no Project Board.
+3. Sincronizar `main`, publicar a evidência administrativa de release e o
+   handoff Repository Owner → AI Engineering Orchestrator.
+
+Esta autorização não encerra a Sprint. O Engineering Audit e a retrospectiva
+continuam obrigatórios antes da Institutional Acceptance pelo EM.
+
+## Institutional Handoff — Engineering Manager → Repository Owner
+
+### Executive summary
+
+A release `v0.4.0-security-baseline` e a sincronização administrativa de
+GitHub da Story #46 estão autorizadas após merge, Quality e Final Review
+aprovados.
+
+### Objective completed
+
+Foi concluída a Release Authorization do Engineering Manager, com escopo
+explícito para tag, GitHub Release, Issue, milestone, Board e evidência.
+
+### Published artifacts
+
+- `docs/team/sprints/SPRINT_5_ENGINEERING_MANAGER_REVIEW.md`
+- `docs/releases/v0.4.0-security-baseline.md`
+- `docs/team/sprints/sprint-005/REPORTS/SPRINT_5_CLOSURE_READINESS.md`
+- `docs/team/sprints/sprint-005/STATUS.md`
+
+### Versioned reference
+
+- Branch: `main`
+- Commit: pendente da publicação desta autorização.
+
+### Evidence and constraints
+
+- Merge commit: `292b40d1740b9028b611d48e64b7b7916b302dd7`.
+- `main` e `origin/main` estavam sincronizados após a evidência administrativa.
+- A Release candidata, Quality e Final Review aprovados são as fontes desta
+  autorização; nenhuma outra Story ou backlog item é incluído.
+
+### Pending items
+
+- Repository Owner: executar todas e somente as operações autorizadas e
+  entregar evidência ao AEO.
+
+### Next authorized action
+
+- Next role: Repository Owner
+- Required action: publicar a release e sincronizar os estados GitHub listados
+  nesta autorização; então encaminhar a evidência administrativa ao AEO.
+- Acceptance / stop criteria: parar se a tag, alvo de merge, Issue, milestone,
+  Board ou nota de release divergirem; não iniciar o Audit antes de publicar a
+  evidência da operação.
+- Operational command: iniciar exclusivamente a release e sincronização GitHub
+  da Story #46.
+
 ## Institutional Handoff — Engineering Manager → Product Owner
 
 ### Executive summary
