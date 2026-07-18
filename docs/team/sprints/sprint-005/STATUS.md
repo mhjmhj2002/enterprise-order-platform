@@ -10,7 +10,7 @@
 **Current branch:** `feature/story-046-security-baseline` (base: `main` / `fb57961`)
 **Pull Request:** [#47 — feat: add Story #46 security baseline](https://github.com/mhjmhj2002/enterprise-order-platform/pull/47).
 **Current gate:** Release documentation concluída. Final Review técnica é obrigatória antes de merge ou release; esta etapa não autoriza operações de repositório.
-**Latest published handoff:** Technical Writer → Engineering Manager — [v0.4.0-security-baseline (candidate)](../../../releases/v0.4.0-security-baseline.md), `CHANGELOG.md`, `README.md` e [Postman README](../../../api/postman/README.md), branch `feature/story-046-security-baseline` / `PENDING_COMMIT`.
+**Latest published handoff:** Technical Writer → Engineering Manager — [v0.4.0-security-baseline (candidate)](../../../releases/v0.4.0-security-baseline.md), `CHANGELOG.md`, `README.md` e [Postman README](../../../api/postman/README.md), branch `feature/story-046-security-baseline` / `1c0679ebbd507e36900591520e699fb474437411`.
 **Blockers:** Nenhum bloqueio de Quality conhecido. `E2E-046-001` comprovou startup, publicação, consumo e observação `OrderConfirmed` v1 `COMPLETED`. Merge e release aguardam Final Review técnica.
 **Last updated:** 2026-07-18 — Technical Writer — documentação de release publicada para Final Review técnica.
 
@@ -46,7 +46,7 @@
 | Kafka Quality Retest Execution | Quality Engineer | DONE — COMPLETED | `E2E-046-001` confirmou startup Kafka e observação `OrderConfirmed` v1 `COMPLETED`; Test Report final publicado. |
 | Integration remediation | Software Engineer | DONE | Reserva autenticada reproduzida com `200`; teste do adaptador protege Basic Auth local antes de novo planejamento/autorização de Quality. |
 | Documentation Baseline | Technical Writer | DONE | [Story #46 Documentation Baseline](../../../architecture/contracts/STORY_046_DOCUMENTATION_BASELINE.md), `main` / `de2dd0bd5a5b36135ad4ebe4aea7092809992fb0`. |
-| Release documentation | Technical Writer | DONE | [v0.4.0-security-baseline (candidate)](../../../releases/v0.4.0-security-baseline.md), `CHANGELOG.md`, `README.md` e Postman README; `PENDING_COMMIT`. |
+| Release documentation | Technical Writer | DONE | [v0.4.0-security-baseline (candidate)](../../../releases/v0.4.0-security-baseline.md), `CHANGELOG.md`, `README.md` e Postman README; `1c0679ebbd507e36900591520e699fb474437411`. |
 | Final review | Engineering Manager | DOING | Technical Writer → Engineering Manager — documentação de release candidata publicada para revisão. |
 | Administrative closure | Repository Owner | TODO | N/A |
 | Engineering Audit | AEO | TODO | N/A |
